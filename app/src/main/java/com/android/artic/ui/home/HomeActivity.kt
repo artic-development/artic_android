@@ -26,6 +26,7 @@ class HomeActivity : BaseActivity() {
                 adapter.data = it
                 adapter.notifyDataSetChanged()
             }.apply { addDisposable(this) }
+
     }
 }
 

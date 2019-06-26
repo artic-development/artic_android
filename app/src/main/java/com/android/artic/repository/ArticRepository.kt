@@ -6,9 +6,21 @@ import com.android.artic.ui.home.data.HomeCardKind
 import com.android.artic.ui.home.data.LinkHomeCard
 import io.reactivex.Observable
 
+/**
+ * object that read, write data from server or local
+ * @author greedy0110
+ * */
 class ArticRepository (
 
 ) {
+    /**
+     * get HomeCard List by Asynchronous
+     * @author greedy0110
+     * @see HomeCard
+     * @see ArchiveHomeCard
+     * @see LinkHomeCard
+     * @return Observable HomeCar List
+     * */
     fun getHomeCardList(): Observable<List<HomeCard>> {
         return Observable.just(
             listOf(

@@ -15,7 +15,7 @@
             app:layout_constraintStart_toStartOf="parent" app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintBottom_toBottomOf="parent"/>
     <TextView
-            android:text="린 브랜딩을 어떻게\n시작해야 할까?"
+            tools:text="린 브랜딩을 어떻게\n시작해야 할까?"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:id="@+id/txt_rv_item_a_home_card_title"
@@ -26,7 +26,7 @@
             app:layout_constraintTop_toTopOf="@+id/img_rv_item_a_home_card" android:textSize="20sp"
             android:textColor="@color/white"/>
     <TextView
-            android:text="초보자를 위한 린 브랜딩 모음"
+            tools:text="초보자를 위한 린 브랜딩 모음"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:id="@+id/txt_rv_item_a_home_card_desc" android:layout_marginTop="14dp"

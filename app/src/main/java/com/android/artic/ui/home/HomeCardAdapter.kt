@@ -15,6 +15,16 @@ import com.android.artic.ui.home.data.LinkHomeCard
 import com.bumptech.glide.Glide
 import kotlin.IllegalArgumentException
 
+/**
+* HomeCard 추가시 작업 순서.
+* 0. HomeCardKind 추가
+* 1. HomeCard Interface 를 구현하는 data class 설계
+* 2. 추가되는 layout 작업
+* 3. 추가되는 Type에 맞는 inner class Holder 생성 (like ArchiveHolder)
+* 4. onCreateViewHolder() 에서 2에서 만든 layout 을 이용햐 3에서 만든 Holder 를 반환
+* 5. onBindViewHolder() 에서 새로운 Holder 에 대한 코드 작성
+ * @author greedy0110
+* */
 class HomeCardAdapter(
     private val context: Context,
     var data: List<HomeCard>
@@ -38,6 +48,7 @@ class HomeCardAdapter(
     override fun onBindViewHolder(holder: RecyclerView.ViewHolder, position: Int) {
         holder.run {
             when(this) {
+                // Archive Home Card 타입을 처리하자.
                 is ArchiveHolder -> {
                     val cur = data[position] as ArchiveHomeCard
                     img_rv_item_a_home_card.clipToOutline = true // 이미지 라운딩 처리를 위함
@@ -47,6 +58,7 @@ class HomeCardAdapter(
                     txt_rv_item_a_home_card_title.text = cur.title
                     txt_rv_item_a_home_card_desc.text = cur.desc
                 }
+                // Link Home Card 타입을 처리하자.
                 is LinkHolder -> {
                     val cur = data[position] as LinkHomeCard
                     img_rv_item_l_home_card.clipToOutline = true // 이미지 라운딩 처리를 위함

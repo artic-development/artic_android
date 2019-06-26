@@ -9,6 +9,7 @@ class ArticApplication : Application() {
     override fun onCreate() {
         super.onCreate()
 
+        // 의존성 주입을 위해 startKoin 을 호출해준다.
         startKoin {
             androidContext(this@ArticApplication)
             modules(listOf(
