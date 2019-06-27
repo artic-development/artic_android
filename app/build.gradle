@@ -93,4 +93,7 @@ dependencies {
     // date util extensions
     implementation 'com.github.hotchemi:khronos:0.9.0'
 
+    //design
+    implementation 'com.android.support:design:28.0.0'
+
 }
