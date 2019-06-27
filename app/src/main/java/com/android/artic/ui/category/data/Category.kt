@@ -1,4 +1,4 @@
-package com.android.artic.ui.category
+package com.android.artic.ui.category.data
 
 data class Category (
     val en_name: String,
@@ -6,7 +6,3 @@ data class Category (
     val children: List<ArchiveCategory>
 )
 
-data class ArchiveCategory(
-    val id: Int,
-    val name: String
-)

@@ -1,5 +1,7 @@
 package com.android.artic.repository
 
+import com.android.artic.ui.category.data.ArchiveCategory
+import com.android.artic.ui.category.data.Category
 import com.android.artic.ui.home.data.ArchiveHomeCard
 import com.android.artic.ui.home.data.HomeCard
 import com.android.artic.ui.home.data.HomeCardKind
@@ -71,5 +73,42 @@ class ArticRepository (
                 img_url = "https://upload.wikimedia.org/wikipedia/commons/thumb/3/33/180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_01.jpg/220px-180717_%EC%97%B4%EB%A6%B0%EC%9D%8C%EC%95%85%ED%9A%8C_%ED%8A%B8%EC%99%80%EC%9D%B4%EC%8A%A4_01.jpg"
             )
         ))
+    }
+
+    /**
+     * get CategoryList by Asynchronous
+     * @author greedy0110
+     * @see Category
+     * @return Callable Category List
+     * */
+    fun getCategoryList(): Call<List<Category>> {
+        return Calls.response(
+            listOf(
+                Category(
+                    en_name = "Design", kr_name = "디자인", children = listOf(
+                        ArchiveCategory(1, "UX/UI"),
+                        ArchiveCategory(2, "BX"),
+                        ArchiveCategory(3, "그래픽"),
+                        ArchiveCategory(4, "영상/모션")
+                    )
+                ),
+                Category(
+                    en_name = "Plan", kr_name = "서비스 기획", children = listOf(
+                        ArchiveCategory(1, "UX/UI"),
+                        ArchiveCategory(2, "BX"),
+                        ArchiveCategory(3, "그래픽"),
+                        ArchiveCategory(4, "영상/모션")
+                    )
+                ),
+                Category(
+                    en_name = "Management", kr_name = "매니지먼트", children = listOf(
+                        ArchiveCategory(1, "UX/UI"),
+                        ArchiveCategory(2, "BX"),
+                        ArchiveCategory(3, "그래픽"),
+                        ArchiveCategory(4, "영상/모션")
+                    )
+                )
+            )
+        )
     }
 }

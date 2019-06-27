@@ -57,7 +57,7 @@ dependencies {
     implementation "org.koin:koin-androidx-ext:$koin_version"
 
     // network
-    def retrofit_version='2.6.0'
+    def retrofit_version = '2.6.0'
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
@@ -67,7 +67,7 @@ dependencies {
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
 
     // util
-    def anko_version='0.10.8'
+    def anko_version = '0.10.8'
 
 // Anko Commons
     implementation "org.jetbrains.anko:anko-commons:$anko_version"

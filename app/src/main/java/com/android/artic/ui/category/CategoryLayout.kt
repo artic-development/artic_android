@@ -6,7 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.*
 import com.android.artic.R
+import com.android.artic.ui.category.data.Category
+import kotlinx.android.synthetic.main.child_category.view.*
+import kotlinx.android.synthetic.main.parent_category.view.*
+import org.jetbrains.anko.layoutInflater
+import org.jetbrains.anko.scrollView
+import org.jetbrains.anko.verticalLayout
 
+// TODO categories 가 변경될 때, 렌더링을 다시해야 하고, 바로바로 화면에 적용되어야한다.
 class CategoryLayout(
     private val context: Context,
     var categories: List<Category>
@@ -18,6 +25,18 @@ class CategoryLayout(
 
     private val parentCategoryCheckes: MutableList<Checkable> = mutableListOf()
 
+    /**
+     * create CategoryLayout
+     * (CategoryLayout hierarchy)
+     * - ScrollView
+     *      - TopLayout (LinearLayout, vertical)
+     *          - ParentCategory (R.layout.parent_category)
+     *          - ChildrenCategoryList (LinearLayout, vertical, default : Visible GONE)
+     *              - ChildCategory (R.layout.child_category)
+     *              - ChildCategory
+     * @see Category
+     * @author greedy0110
+     * */
     fun render(): View {
         val topLayout = LinearLayout(context).apply {
             orientation = LinearLayout.VERTICAL
@@ -42,17 +61,7 @@ class CategoryLayout(
                 .apply {
                     isChecked = false // 초기에는 닫힌 상태
                     parentCategoryCheckes.add(this)
-                    setOnCheckedChangeListener {  view, isChecked ->
-                        // 토글버튼을 누르면 토클 ui는 selector 로 변경되고
-                        // 체크 상태에 따라서 하부 카테고리가 보였다 안보엿다 한다.
-                        // 하나가 키면, 다른 녀석들은 전부다 꺼저야 한다?!
-                        if (isChecked) {
-                            childrenLayout.visibility = View.VISIBLE
-                            checkOneThenUncheckedTheOthers(view)
-                        } else {
-                            childrenLayout.visibility = View.GONE
-                        }
-                    }
+                    setOnCheckedChangeListener {  _, isChecked -> onCheckedChangeParentCategory(this, childrenLayout, isChecked) }
                     isEnabled = false // parentCategory 클릭으로만 변경 가능하도록
                 }
 
@@ -72,6 +81,56 @@ class CategoryLayout(
         }
 
         return topScrollview
+    }
+
+    /**
+     * create CategoryLayout using [Anko library](https://github.com/Kotlin/anko)
+     * @exception (Not Implemented yet)
+     * */
+    fun renderAnko(): View {
+        return context.run {
+            scrollView {
+                verticalLayout {
+                    for (category in categories) {
+                        val parentCategory = layoutInflater.inflate(R.layout.parent_category, this)
+                            .apply {
+                                txt_parent_category_en_name.text = category.en_name
+                                txt_parent_category_kr_name.text = category.kr_name
+                                container_parent_category.setOnClickListener {
+                                    btn_parent_category_children_toggle.isChecked = !btn_parent_category_children_toggle.isChecked
+                                }
+                            }
+                        val childrenCategories = verticalLayout {
+                            for (child in category.children) {
+                                layoutInflater.inflate(R.layout.child_category, this).apply {
+                                    txt_child_category_name.text = child.name
+                                }
+                            }
+                            visibility = View.GONE
+                        }
+                        parentCategory.btn_parent_category_children_toggle
+                            .apply {
+                                isChecked = false // 초기에는 닫힌 상태
+                                parentCategoryCheckes.add(this)
+                                setOnCheckedChangeListener {  _, isChecked -> onCheckedChangeParentCategory(this@apply, childrenCategories, isChecked)}
+                                isEnabled = false // parentCategory 클릭으로만 변경 가능하도록
+                            }
+                    }
+                }
+            }
+        }
+    }
+
+    private fun onCheckedChangeParentCategory(check: Checkable, children : View, isChecked: Boolean) {
+        // 토글버튼을 누르면 토클 ui는 selector 로 변경되고
+        // 체크 상태에 따라서 하부 카테고리가 보였다 안보엿다 한다.
+        // TODO 단순히 View 의 visibility 를 변경하는게 아니고, 슬라이스 처럼 부드럽게 변경되도록 할 수 있을가?
+        if (isChecked) {
+            children.visibility = View.VISIBLE
+            checkOneThenUncheckedTheOthers(check)
+        } else {
+            children.visibility = View.GONE
+        }
     }
 
     private fun checkOneThenUncheckedTheOthers(check: Checkable) {
