@@ -7,14 +7,14 @@
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
 
     <application
+        android:usesCleartextTraffic="true"
         android:name=".ArticApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
-        android:theme="@style/AppTheme"
-        android:usesCleartextTraffic="true">
+        android:theme="@style/AppTheme">
         <activity android:name=".ui.SearchResultActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,14 +22,19 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity
-            android:name=".ui.home.LinkActivity"
+        <activity android:name=".ui.search.SearchActivity">
+        </activity>
+        <activity android:name=".ui.home.LinkActivity"
             android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ui.category.CategoryActivity">
 
         </activity>
-        <activity android:name=".ui.category.CategoryActivity"></activity>
         <activity android:name=".ui.home.HomeActivity"></activity>
-        <activity android:name=".MainActivity" />
+        <activity android:name=".ui.archive.ArchiveActivity"></activity>
+        <activity android:name=".MainActivity">
+
+        </activity>
     </application>
 
 </manifest>
