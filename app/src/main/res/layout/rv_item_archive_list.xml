@@ -1,0 +1,85 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="179dp" android:background="#d1d1d1">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="169dp"
+        android:background="#ffffff">
+
+        <TextView
+            android:id="@+id/tv_rv_item_archive_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="25dp"
+            android:layout_marginRight="180dp"
+            android:layout_marginTop="32dp"
+            android:text="린 브랜딩을 어떻게 시작해야 할까?"
+            android:textColor="#444444"
+            android:textSize="21sp"
+            android:fontFamily="@font/nanum_barungothic_light"/>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentEnd="true"
+            android:layout_marginRight="28dp"
+            android:layout_marginTop="34dp">
+
+            <ImageButton
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:background="@drawable/btn_scrap"/>
+
+            <TextView
+                android:id="@+id/tv_rv_item_archive_list_scrap_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:text="350"
+                android:textSize="14sp"
+                android:textColor="#707070"/>
+
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="17dp"
+            android:layout_marginLeft="29dp">
+
+            <TextView
+                android:id="@+id/tv_rv_item_archive_list_article_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="13"
+                android:textSize="14sp"
+                android:textColor="@color/soft_blue"
+                android:fontFamily="@font/nanum_square_bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="개"
+                android:textSize="14sp"
+                android:textColor="@color/soft_blue"
+                android:fontFamily="@font/nanum_barungothic_bold"/>
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:text="의 아티클이 큐레이팅되었습니다."
+                android:textSize="14sp"
+                android:textColor="@color/brown_grey"
+                android:fontFamily="@font/nanum_barungothic_regular"/>
+
+        </LinearLayout>
+
+    </RelativeLayout>
+
+
+
+</RelativeLayout>
