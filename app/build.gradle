@@ -64,7 +64,7 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
@@ -92,5 +92,8 @@ dependencies {
 
     // date util extensions
     implementation 'com.github.hotchemi:khronos:0.9.0'
+
+    //design
+    implementation 'com.android.support:design:28.0.0'
 
 }
