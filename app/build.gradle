@@ -39,6 +39,9 @@ dependencies {
     implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
     implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
 
+    // circle image view
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
     def koin_version = '2.0.1'
 
 // Koin for Kotlin (androidX)
@@ -61,7 +64,7 @@ dependencies {
 
     implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
     implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
-
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
     implementation 'com.google.code.gson:gson:2.8.5'
 
     implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
