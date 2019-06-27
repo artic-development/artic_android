@@ -15,23 +15,23 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.search.SearchActivity">
-        </activity>
-        <activity android:name=".ui.home.LinkActivity"
-            android:theme="@style/AppTheme.NoActionBar">
-        </activity>
-        <activity android:name=".ui.category.CategoryActivity">
+        <activity android:name=".ui.SearchResultActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.archive.ArchiveActivity"></activity>
-        <activity android:name=".ui.home.HomeActivity">
-
-            
+        <activity android:name=".ui.search.SearchActivity">
         </activity>
+        <activity android:name=".ui.home.LinkActivity"
+            android:theme="@style/AppTheme.NoActionBar">
+        </activity>
+        <activity android:name=".ui.category.CategoryActivity">
+
+        </activity>
+        <activity android:name=".ui.home.HomeActivity"></activity>
+        <activity android:name=".ui.archive.ArchiveActivity"></activity>
         <activity android:name=".MainActivity">
 
         </activity>
