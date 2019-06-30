@@ -6,6 +6,7 @@ import com.android.artic.ui.home.data.ArchiveHomeCard
 import com.android.artic.ui.home.data.HomeCard
 import com.android.artic.ui.home.data.HomeCardKind
 import com.android.artic.ui.home.data.LinkHomeCard
+import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import io.reactivex.Observable
 import java.util.*
 import retrofit2.Call
@@ -108,6 +109,28 @@ class ArticRepository (
                         ArchiveCategory(3, "그래픽"),
                         ArchiveCategory(4, "영상/모션")
                     )
+                )
+            )
+        )
+    }
+
+    /**
+     * get New Archive List by Asynchronous
+     * @author greedy0110
+     * */
+    fun getNewArchiveList(): Call<List<ArchiveCardData>> {
+        return Calls.response(
+            listOf(
+                ArchiveCardData(
+                    archive_id = 0, category = "Animal", title = "고양이는 왜 이렇게 귀여운가. 고양이 키우고싶다. 숙소에 고양이 대려와.", img_url = "http://newsimg.hankookilbo.com/2016/04/13/201604131460701467_1.jpg"
+                ),ArchiveCardData(
+                    archive_id = 1, category = "Animal", title = "고양이는 왜 이렇게 귀여운가. 고양이 키우고싶다. 숙소에 고양이 대려와.", img_url = "http://newsimg.hankookilbo.com/2016/04/13/201604131460701467_1.jpg"
+                ),ArchiveCardData(
+                    archive_id = 2, category = "Animal", title = "고양이는 왜 이렇게 귀여운가. 고양이 키우고싶다. 숙소에 고양이 대려와.", img_url = "http://newsimg.hankookilbo.com/2016/04/13/201604131460701467_1.jpg"
+                ),ArchiveCardData(
+                    archive_id = 3, category = "Animal", title = "고양이는 왜 이렇게 귀여운가. 고양이 키우고싶다. 숙소에 고양이 대려와.", img_url = "http://newsimg.hankookilbo.com/2016/04/13/201604131460701467_1.jpg"
+                ),ArchiveCardData(
+                    archive_id = 4, category = "Animal", title = "고양이는 왜 이렇게 귀여운가. 고양이 키우고싶다. 숙소에 고양이 대려와.", img_url = "http://newsimg.hankookilbo.com/2016/04/13/201604131460701467_1.jpg"
                 )
             )
         )
