@@ -1,9 +1,8 @@
-package com.android.artic.ui.home
+package com.android.artic.ui.link
 
 
 
 import android.content.Context
-import androidx.recyclerview.widget.LinearLayoutManager
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -11,10 +10,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.home.data.ListOverviewData
+import com.android.artic.data.link.LinkOverviewData
 import com.bumptech.glide.Glide
 
-class LinkOverviewRecyclerViewAdapter(val ctx: Context,val dataList:ArrayList<ListOverviewData> ): RecyclerView.Adapter<LinkOverviewRecyclerViewAdapter.Holder>() {
+class LinkOverviewRecyclerViewAdapter(val ctx: Context,val dataList:ArrayList<LinkOverviewData> ): RecyclerView.Adapter<LinkOverviewRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_link_list,p0,false)
         return Holder(view)

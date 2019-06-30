@@ -4,8 +4,7 @@
     xmlns:android="http://schemas.android.com/apk/res/android"
     android:layout_height="wrap_content"
     android:layout_width="match_parent"
-    android:paddingBottom="5dp"
-    android:paddingTop="5dp"
+    android:paddingBottom="10dp"
     android:background="@color/very_light_pink">
     <RelativeLayout
 
