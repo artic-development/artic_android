@@ -5,7 +5,9 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.archive.data.ArchiveListData
+import com.android.artic.ui.search.SpacesItemDecoration
 import kotlinx.android.synthetic.main.activity_archive.*
+import kotlinx.android.synthetic.main.activity_search.*
 
 class ArchiveActivity : AppCompatActivity() {
 
@@ -26,5 +28,9 @@ class ArchiveActivity : AppCompatActivity() {
         archiveListAdapter = ArchiveListAdapter(this, dataList)
         rv_archive_archive_list.adapter = archiveListAdapter
         rv_archive_archive_list.layoutManager = LinearLayoutManager(this)
+
+        // spacing 조절
+//        var spacesItemDecoration = SpacesItemDecoration(this, 10)
+//        rv_archive_archive_list.addItemDecoration(spacesItemDecoration)
     }
 }

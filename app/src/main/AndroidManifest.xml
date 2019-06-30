@@ -27,10 +27,12 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.archive.ArchiveActivity"></activity>
+        <activity android:name=".ui.archive.ArchiveActivity">
+
+        </activity>
         <activity android:name=".ui.home.HomeActivity">
 
-            
+
         </activity>
         <activity android:name=".MainActivity">
 
