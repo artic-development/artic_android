@@ -15,7 +15,7 @@
         android:roundIcon="@mipmap/ic_launcher_round"
         android:supportsRtl="true"
         android:theme="@style/AppTheme">
-        <activity android:name=".ui.SearchResultActivity">
+        <activity android:name=".ui.search_result.SearchResultActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
@@ -24,7 +24,7 @@
         </activity>
         <activity android:name=".ui.search.SearchActivity">
         </activity>
-        <activity android:name=".ui.home.LinkActivity"
+        <activity android:name=".ui.link.LinkActivity"
             android:theme="@style/AppTheme.NoActionBar">
         </activity>
         <activity android:name=".ui.category.CategoryActivity">

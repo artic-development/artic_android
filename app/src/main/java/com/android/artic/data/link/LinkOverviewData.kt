@@ -1,6 +1,6 @@
-package com.android.artic.ui.home.data
+package com.android.artic.data.link
 
-data class ListOverviewData(
+data class LinkOverviewData(
     var archive_url: String,
     var link_title: String,
     var like_number: Int,

@@ -1,4 +1,4 @@
-package com.android.artic.ui
+package com.android.artic.ui.search_result
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -14,7 +14,8 @@ class SearchResultActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
 
-        search_result_viewpager.adapter=SearchResultAdapter(supportFragmentManager,2)
+        search_result_viewpager.adapter=
+            SearchResultAdapter(supportFragmentManager, 2)
         search_result_viewpager.offscreenPageLimit=2
         tl_search_result.setupWithViewPager(search_result_viewpager)
 

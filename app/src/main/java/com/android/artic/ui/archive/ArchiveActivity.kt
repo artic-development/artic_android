@@ -4,7 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
-import com.android.artic.ui.archive.data.ArchiveListData
+import com.android.artic.data.archive.ArchiveListData
 import kotlinx.android.synthetic.main.activity_archive.*
 
 class ArchiveActivity : AppCompatActivity() {
