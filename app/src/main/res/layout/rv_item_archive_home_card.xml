@@ -7,7 +7,7 @@
                                                    android:layout_height="360dp"
                                                    android:id="@+id/container_rv_item_a_home">
     <ImageView
-            android:background="@drawable/archive_home_card_round"
+            android:background="@drawable/archive_card_round"
             android:layout_width="0dp"
             android:layout_height="0dp" tools:srcCompat="@tools:sample/avatars"
             android:id="@+id/img_rv_item_a_home_card"
