@@ -2,14 +2,9 @@ package com.android.artic.ui.search
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.GridLayoutManager
-import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.artic.R
-import com.android.artic.ui.archive.ArchiveListAdapter
-import com.android.artic.ui.archive.data.ArchiveListData
 import com.android.artic.ui.search.data.RecommendWordData
-import kotlinx.android.synthetic.main.activity_archive.*
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {

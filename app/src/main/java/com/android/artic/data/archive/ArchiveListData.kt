@@ -1,4 +1,4 @@
-package com.android.artic.ui.archive.data
+package com.android.artic.data.archive
 
 data class ArchiveListData(
     var title: String,

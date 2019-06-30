@@ -1,4 +1,4 @@
-package com.android.artic.ui
+package com.android.artic.ui.search_result
 
 
 import android.os.Bundle
@@ -10,8 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
 import com.android.artic.ui.archive.ArchiveListAdapter
-import com.android.artic.ui.archive.data.ArchiveListData
-import kotlinx.android.synthetic.main.activity_archive.*
+import com.android.artic.data.archive.ArchiveListData
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 
 
