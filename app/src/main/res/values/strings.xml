@@ -9,4 +9,5 @@
     <string name="network_error">서버에서 데이터를 받아오는데 문제가 있습니다 ㅠ</string>
     <string name="home_title">당신이 찾는 모든 지식 콘텐츠</string>
     <string name="reading_history_title">최근 읽은 아티클</string>
+    <string name="new_article_link_title">새로운아티클</string>
 </resources>
