@@ -1,0 +1,48 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/white_two">
+
+    <RelativeLayout
+        android:id="@+id/rv_reading_history_container"
+        android:layout_width="match_parent"
+        android:layout_height="120dp"
+        android:background="@color/white_two"
+        android:paddingLeft="22dp">
+
+        <TextView
+            android:id="@+id/rv_reading_history_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="brunch.co.kr"
+            android:textSize="14sp"
+            android:layout_marginTop="20dp"
+            android:textColor="#aaaaaa"
+
+            />
+        <TextView
+            android:id="@+id/rv_reading_history_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_reading_history_url"
+            android:layout_marginTop="8dp"
+            android:textSize="14sp"
+            android:text="제품 디자이너는 코딩에 대해 잊어야\n합니다."/>
+
+
+        <ImageView
+            android:id="@+id/rv_reading_history_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="33dp"
+            android:background="@drawable/img_history"
+            android:layout_alignParentRight="true"/>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

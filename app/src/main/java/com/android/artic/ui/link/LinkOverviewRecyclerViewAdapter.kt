@@ -32,10 +32,10 @@ class LinkOverviewRecyclerViewAdapter(val ctx: Context,val dataList:ArrayList<Li
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
-        var archive_url=itemView.findViewById(R.id.rv_link_list_url) as TextView
-        var link_title=itemView.findViewById(R.id.rv_link_list_title) as TextView
-        var like_number=itemView.findViewById(R.id.rv_link_list_like_num) as TextView
-        var scrap_number=itemView.findViewById(R.id.rv_link_list_scrap_num) as TextView
-        var img_url =itemView.findViewById(R.id.rv_link_list_img) as ImageView
+        val archive_url=itemView.findViewById(R.id.rv_link_list_url) as TextView
+        val link_title=itemView.findViewById(R.id.rv_link_list_title) as TextView
+        val like_number=itemView.findViewById(R.id.rv_link_list_like_num) as TextView
+        val scrap_number=itemView.findViewById(R.id.rv_link_list_scrap_num) as TextView
+        val img_url =itemView.findViewById(R.id.rv_link_list_img) as ImageView
     }
 }

@@ -4,6 +4,7 @@ import com.android.artic.ui.category.data.ArchiveCategory
 import com.android.artic.ui.category.data.Category
 import com.android.artic.ui.home.category_archive.data.CategoryArchiveCardData
 import com.android.artic.ui.home.new_archive.data.ArchiveCardData
+import com.android.artic.ui.home.reading_history.data.HistoryData
 import io.reactivex.Observable
 import retrofit2.Call
 import retrofit2.mock.Calls
@@ -93,4 +94,18 @@ class ArticRepository (
             )
         )
     }
+
+    fun getReadingHistoryArchiveList():Call<List<HistoryData>> {
+        return Calls.response(
+            listOf(
+               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야\n합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+                HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와\n에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+            )
+
+        )
+    }
+
+
 }

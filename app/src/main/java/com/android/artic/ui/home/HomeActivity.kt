@@ -6,6 +6,7 @@ import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.home.category_archive.CategoryArchiveFragment
 import com.android.artic.ui.home.new_archive.NewArchiveFragment
 import com.android.artic.ui.home.new_article.NewArticleFragment
+import com.android.artic.ui.home.reading_history.ReadingHistoryFragment
 
 /**
  * 1. Home Fragment 들을 관리할 것
@@ -24,14 +25,14 @@ class HomeActivity : BaseActivity() {
         val transaction = supportFragmentManager.beginTransaction()
 
         transaction.add(R.id.container_home_fragments, NewArchiveFragment(), "new_archive_fragment")
-
         // 수민 추가
         transaction.add(R.id.container_home_fragments, NewArticleFragment(), "new_article_fragment")
 
 
-
+        transaction.add(R.id.container_home_fragments,ReadingHistoryFragment(),"reading_history_fragment")
         val categoryName = "Design"
         transaction.add(R.id.container_home_fragments ,CategoryArchiveFragment(0, categoryName), "category_archive_$categoryName")
+
 
         transaction.commit()
     }
