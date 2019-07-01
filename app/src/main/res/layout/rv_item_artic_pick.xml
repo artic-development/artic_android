@@ -9,14 +9,14 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
         <LinearLayout
-            android:id="@+id/rv_new_article_link_container"
+            android:id="@+id/rv_artic_pick_container"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical"
             android:paddingTop="20dp">
-            
+
             <ImageView
-                android:id="@+id/rv_new_article_link_img"
+                android:id="@+id/rv_artic_pick_img"
                 android:layout_width="match_parent"
                 android:layout_height="169.8dp"
                 android:scaleType="fitXY"
@@ -28,26 +28,26 @@
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:layout_marginHorizontal="20dp">
-            <TextView
-                android:id="@+id/rv_new_article_link_txt"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_margin="15dp"
-                android:textSize="16sp"
-                android:fontFamily="@font/nanum_barungothic_light"
-                android:textColor="@color/black"
-                android:text="디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점"/>
+                <TextView
+                    android:id="@+id/rv_artic_pick_txt"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_margin="15dp"
+                    android:textSize="16sp"
+                    android:fontFamily="@font/nanum_barungothic_light"
+                    android:textColor="@color/black"
+                    android:text="디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점"/>
 
                 <TextView
-                    android:id="@+id/rv_new_article_link_url"
+                    android:id="@+id/rv_artic_pick_url"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:textSize="14sp"
-                    android:layout_below="@id/rv_new_article_link_txt"
+                    android:layout_below="@id/rv_artic_pick_txt"
                     android:layout_marginLeft="15dp"
                     android:layout_marginBottom="15dp"
-                    android:fontFamily="@font/nanumbarungothic"
                     android:text="brunch.co.kr"
+                    android:fontFamily="@font/nanumbarungothic"
                     android:textColor="#aaaaaa"/>
 
             </RelativeLayout>

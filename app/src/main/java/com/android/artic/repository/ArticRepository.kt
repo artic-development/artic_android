@@ -2,6 +2,7 @@ package com.android.artic.repository
 
 import com.android.artic.ui.category.data.ArchiveCategory
 import com.android.artic.ui.category.data.Category
+import com.android.artic.ui.home.artic_pick.data.ArticPickData
 import com.android.artic.ui.home.category_archive.data.CategoryArchiveCardData
 import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
@@ -121,5 +122,18 @@ class ArticRepository (
         )
     }
 
+    fun getArticPickList():Call<List<ArticPickData>> {
+        return Calls.response(
+            listOf(
+                ArticPickData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(4,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
 
-}
+            )
+        )
+    }
+    }
+
+
