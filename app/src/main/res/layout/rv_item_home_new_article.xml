@@ -1,16 +1,17 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="match_parent" android:background="@drawable/back_transparent_round_card_grey">
+    android:layout_width="296dp" android:layout_height="wrap_content">
 
     <ImageView
         android:id="@+id/img_rv_item_home_new_article_background"
-        android:layout_width="296dp"
+        android:layout_width="match_parent"
         android:layout_height="173dp"
-        android:background="@drawable/archive_card_round"
-        android:src="#000000"/>
+        android:background="@drawable/top_round"
+        android:src="#000000"
+        android:scaleType="centerCrop"/>
 
     <RelativeLayout
-        android:layout_width="296dp"
+        android:layout_width="match_parent"
         android:layout_height="100dp"
         android:background="@drawable/back_transparent_round_card_grey">
 

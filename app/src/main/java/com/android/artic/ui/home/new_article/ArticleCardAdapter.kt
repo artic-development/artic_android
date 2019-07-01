@@ -22,6 +22,7 @@ class ArticleCardAdapter(val ctx: Context, var dataList: ArrayList<ArticleCardDa
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+        holder.img_background.clipToOutline = true // xml 파일에서 background를 라운드 처리하고, 이 코드도 추가해야 정상적으로 적용이 된다.
         Glide.with(ctx).load(dataList[position].background).into(holder.img_background)
         holder.tv_title.text = dataList[position].title
         holder.tv_url.text = dataList[position].url

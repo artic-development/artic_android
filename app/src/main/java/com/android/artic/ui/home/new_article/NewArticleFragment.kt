@@ -8,6 +8,8 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.home.new_article.data.ArticleCardData
+import com.android.artic.ui.search.SpacesItemDecoration
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
 
 class NewArticleFragment : Fragment() {
@@ -35,6 +37,10 @@ class NewArticleFragment : Fragment() {
 
             rv_frag_home_new_article.adapter = articleCardAdapter
             rv_frag_home_new_article.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
+
+            // recyclerview space 조절
+            var spacesItemDecoration = SpacesItemDecoration(this, 10)
+            rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
         }
     }
 }

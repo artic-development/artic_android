@@ -27,7 +27,8 @@ class HomeActivity : BaseActivity() {
 
         // 수민 추가
         transaction.add(R.id.container_home_fragments, NewArticleFragment(), "new_article_fragment")
-        
+
+
 
         val categoryName = "Design"
         transaction.add(R.id.container_home_fragments ,CategoryArchiveFragment(0, categoryName), "category_archive_$categoryName")
