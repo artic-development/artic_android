@@ -73,7 +73,7 @@
             android:textColor="@color/brownish_grey"
             android:textSize="13sp" />
 
-        <ImageButton
+        <ToggleButton
             android:id="@+id/rv_link_list_like"
             android:layout_width="20dp"
             android:layout_height="20dp"
@@ -81,7 +81,10 @@
             android:layout_marginLeft="20.2dp"
             android:layout_marginTop="18dp"
             android:layout_toRightOf="@id/rv_link_list_storage_txt"
-            android:background="@drawable/btn_like" />
+            android:background="@drawable/toggle_btn_like"
+            android:textOn=""
+            android:textOff=""
+            android:checked="true"/>
 
 
         <TextView
@@ -96,7 +99,8 @@
             android:includeFontPadding="false"
             android:text="1,202"
             android:textColor="@color/brownish_grey"
-            android:textSize="13sp" />
+            android:textSize="13sp"
+            android:background="@drawable/archive_card_round"/>
     </RelativeLayout>
 
 </RelativeLayout>
