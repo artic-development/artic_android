@@ -16,8 +16,8 @@
             android:id="@+id/btn_toolbar_review_back"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:layout_marginTop="20dp"
-            android:layout_marginLeft="20dp"
+            android:layout_marginTop="40dp"
+            android:layout_marginLeft="19dp"
             android:layout_alignParentLeft="true"
             android:adjustViewBounds="true"
             android:src="?attr/homeAsUpIndicator"
@@ -35,10 +35,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="디자인"
+        android:includeFontPadding="false"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanumbarungothicbold"
         android:textSize="21sp"
         android:layout_marginTop="28dp"
-        android:layout_marginLeft="19dp"
-        android:textStyle="bold"/>
+        android:layout_marginLeft="19dp" />
      <TextView
          android:id="@+id/search_result_number"
          android:layout_width="wrap_content"
@@ -46,6 +48,8 @@
          android:text="32"
          android:layout_marginLeft="19dp"
          android:layout_marginTop="10dp"
+         android:includeFontPadding="false"
+         android:fontFamily="@font/nanum_square_bold"
          android:layout_below="@id/search_result_category_name"
          android:textColor="@color/soft_blue"/>
 
@@ -53,6 +57,8 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nanum_square_regular"
             android:layout_below="@id/search_result_category_name"
             android:layout_toRightOf="@id/search_result_number"
             android:text="개의 검색 결과가 있습니다"/>

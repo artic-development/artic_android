@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:paddingBottom="10dp"
     android:background="@color/very_light_pink">
+
     <RelativeLayout
 
         android:layout_width="match_parent"
@@ -17,75 +18,85 @@
             android:id="@+id/rv_link_list_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:text="brunch.co.kr"
-            android:textSize="14sp"
             android:layout_marginTop="33dp"
+            android:fontFamily="@font/nanumbarungothic"
+            android:includeFontPadding="false"
+            android:text="brunch.co.kr"
             android:textColor="#c4c4c4"
+            android:textSize="14sp"
 
             />
+
         <TextView
             android:id="@+id/rv_link_list_title"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_below="@id/rv_link_list_url"
-            android:textStyle="bold"
             android:layout_marginTop="9dp"
-            android:textSize="16sp"
-            android:text="로고디자인을 위한 지식에 대한\n모든 것을 파헤친다 "/>
+            android:layout_marginRight="45dp"
+            android:layout_toStartOf="@id/rv_link_list_img"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 "
+            android:textColor="@color/black"
+            android:textSize="16sp" />
 
 
         <ImageView
             android:id="@+id/rv_link_list_img"
-            android:layout_width="90dp"
-            android:layout_height="90dp"
+            android:layout_width="79dp"
+            android:layout_height="78.9dp"
+            android:layout_alignParentRight="true"
+            android:layout_marginTop="43dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="33dp"
-            android:src="@drawable/sample"
-            android:layout_alignParentRight="true"/>
+            android:background="@drawable/sample" />
+
+        <ImageButton
+            android:id="@+id/rv_link_list_storage"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            android:layout_below="@id/rv_link_list_title"
+            android:layout_marginTop="18dp"
+            android:background="@drawable/btn_folder" />
+
+        <TextView
+            android:id="@+id/rv_link_list_storage_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_link_list_title"
+            android:layout_marginLeft="8dp"
+            android:layout_marginTop="21dp"
+            android:layout_toRightOf="@id/rv_link_list_storage"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:text="담기"
+            android:textColor="@color/brownish_grey"
+            android:textSize="13sp" />
 
         <ImageButton
             android:id="@+id/rv_link_list_like"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="26dp"
-            android:background="@drawable/btn_like"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
             android:layout_below="@id/rv_link_list_title"
-            />
+            android:layout_marginLeft="20.2dp"
+            android:layout_marginTop="18dp"
+            android:layout_toRightOf="@id/rv_link_list_storage_txt"
+            android:background="@drawable/btn_like" />
+
 
         <TextView
             android:id="@+id/rv_link_list_like_num"
-            android:layout_width="34dp"
-            android:layout_height="14dp"
-            android:textColor="@color/brownish_grey"
-            android:textSize="13sp"
-            android:layout_marginTop="26dp"
-            android:layout_marginLeft="5dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
             android:layout_below="@id/rv_link_list_title"
+            android:layout_marginLeft="4.8dp"
+            android:layout_marginTop="21dp"
             android:layout_toRightOf="@id/rv_link_list_like"
-            android:text="1,202"/>
-
-        <ImageButton
-            android:id="@+id/rv_link_list_scrap"
-            android:layout_width="18dp"
-            android:layout_height="18dp"
-            android:layout_marginTop="26dp"
-            android:layout_marginLeft="20dp"
-            android:layout_below="@id/rv_link_list_title"
-            android:layout_toRightOf="@id/rv_link_list_like_num"
-            android:background="@drawable/btn_scrap_selected"/>
-
-
-        <TextView
-            android:id="@+id/rv_link_list_scrap_num"
-            android:layout_width="24dp"
-            android:layout_height="14dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
+            android:text="1,202"
             android:textColor="@color/brownish_grey"
-            android:textSize="13sp"
-            android:layout_marginTop="26dp"
-            android:layout_marginLeft="5dp"
-            android:layout_below="@id/rv_link_list_title"
-            android:layout_toRightOf="@id/rv_link_list_scrap"
-            android:text="350"/>
+            android:textSize="13sp" />
     </RelativeLayout>
 
 </RelativeLayout>

@@ -19,17 +19,36 @@
         <include
             android:id="@+id/toolbar_list"
             layout="@layout/toolbar_list"/>
-        <TextView
+        <RelativeLayout
             android:layout_width="match_parent"
-            android:layout_height="116dp"
+            android:layout_height="wrap_content"
             android:background="#f2f2f2"
-            android:textColor="#444444"
-            android:paddingTop="31dp"
-            android:paddingBottom="29dp"
-            android:paddingLeft="20dp"
+            >
+        <TextView
+            android:id="@+id/link_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:textColor="@color/black"
+            android:layout_marginTop="32dp"
+            android:layout_toStartOf="@id/link_btn_scrap"
+            android:layout_marginBottom="32dp"
+            android:layout_marginRight="67dp"
+            android:layout_marginLeft="28dp"
+            android:fontFamily="@font/nanum_barungothic_light"
             android:textSize="21sp"
-            android:text="린 브랜딩을 어떻게\n시작해야 할까?"
+            android:includeFontPadding="false"
+            android:text="PM과 디자이너가 원활하게 소통하는 법을 알려주세요"
             />
+            <ImageView
+                android:id="@+id/link_btn_scrap"
+                android:layout_width="23.5dp"
+                android:layout_height="23.5dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginRight="19.5dp"
+                android:src="@drawable/btn_scrap_blue"
+               android:layout_alignParentRight="true"/>
+
+        </RelativeLayout>
 
         <androidx.recyclerview.widget.RecyclerView
             android:id="@+id/rv_link_list"

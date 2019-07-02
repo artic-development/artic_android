@@ -28,14 +28,13 @@ class LinkOverviewRecyclerViewAdapter(val ctx: Context,val dataList:ArrayList<Li
         p0.archive_url.text=dataList[p1].archive_url
         p0.like_number.text=dataList[p1].like_number.toString()
         p0.link_title.text=dataList[p1].link_title
-        p0.scrap_number.text=dataList[p1].scrap_number.toString()
+
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         val archive_url=itemView.findViewById(R.id.rv_link_list_url) as TextView
         val link_title=itemView.findViewById(R.id.rv_link_list_title) as TextView
         val like_number=itemView.findViewById(R.id.rv_link_list_like_num) as TextView
-        val scrap_number=itemView.findViewById(R.id.rv_link_list_scrap_num) as TextView
         val img_url =itemView.findViewById(R.id.rv_link_list_img) as ImageView
     }
 }

@@ -23,6 +23,7 @@
             android:text="@string/reading_history_title"
            android:textColor="@color/black"
            android:textSize="18sp"
+           android:includeFontPadding="false"
            android:layout_marginLeft="20dp"
            android:fontFamily="@font/nanum_barungothic_bold"/>
            
