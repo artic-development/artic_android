@@ -25,7 +25,7 @@ class CategoryActivity : AppCompatActivity() {
         repository.getCategoryList().enqueue(
             object : Callback<List<Category>> {
                 override fun onFailure(call: Call<List<Category>>, t: Throwable) {
-                    toast("카테고리 로드 실")
+                    toast("서버에서 데이터를 받아오는데 문제가 있습니다")
                 }
 
                 override fun onResponse(call: Call<List<Category>>, response: Response<List<Category>>) {
