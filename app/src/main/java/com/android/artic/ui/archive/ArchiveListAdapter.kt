@@ -23,14 +23,12 @@ class ArchiveListAdapter(val ctx: Context, val dataList: ArrayList<ArchiveListDa
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.title.text = "린 브랜딩을 어떻게 시작해야 할까?"
-        holder.scrap_num.text = "30"
         holder.article_num.text = "13"
 
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         var title = itemView.findViewById(R.id.tv_rv_item_archive_list_title) as TextView
-        var scrap_num = itemView.findViewById(R.id.tv_rv_item_archive_list_scrap_num) as TextView
         var article_num = itemView.findViewById<TextView>(R.id.tv_rv_item_archive_list_article_num)
     }
 }

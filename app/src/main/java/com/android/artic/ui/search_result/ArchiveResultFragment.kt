@@ -29,11 +29,18 @@ class ArchiveResultFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         var dataList : ArrayList<ArchiveListData> = ArrayList()
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, 13))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, 13))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, 13))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, 13))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, 13))
+
+        // category
+        var category : ArrayList<String> = ArrayList()
+        category.add("UI / UX")
+        category.add("브랜딩")
+
+
+        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
+        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
+        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
+        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
+        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
 
         archiveListAdapter = ArchiveListAdapter(context!!, dataList)
         rv_search_result_archive.adapter = archiveListAdapter

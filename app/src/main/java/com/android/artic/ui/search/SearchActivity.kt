@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.artic.R
+import com.android.artic.ui.SpacesItemDecoration
 import com.android.artic.ui.search.data.RecommendWordData
 import kotlinx.android.synthetic.main.activity_search.*
 
