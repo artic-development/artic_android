@@ -5,7 +5,6 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.archive.ArchiveListData
-import com.android.artic.ui.VerticalSpaceItemDecoration
 import kotlinx.android.synthetic.main.activity_detail_new_archive.*
 
 class DetailNewArchiveActivity : AppCompatActivity() {
