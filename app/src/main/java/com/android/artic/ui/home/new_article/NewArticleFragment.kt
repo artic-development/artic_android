@@ -27,7 +27,7 @@ class NewArticleFragment : Fragment() {
         activity?.run {
             // dataList
             var dataList = ArrayList<ArticleCardData>()
-            dataList.add(ArticleCardData("https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E", "브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?", "brunch.co.kr"))
+            dataList.add(ArticleCardData("https://encrypted-tbn0.gstatic.com/images?q=tbn:ANd9GcQrfEtpuKhHbz7VvGzYyPqGysRAaTGnunGAUpyDa8UNc4x1HdHM", "브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?", "brunch.co.kr"))
             dataList.add(ArticleCardData("https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E", "브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?", "brunch.co.kr"))
             dataList.add(ArticleCardData("https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E", "브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?", "brunch.co.kr"))
             dataList.add(ArticleCardData("https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E", "브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?", "brunch.co.kr"))
