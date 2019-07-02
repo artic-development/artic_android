@@ -11,7 +11,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white_two"
-        android:paddingLeft="22dp">
+        android:paddingLeft="22dp"
+    >
 
         <TextView
             android:id="@+id/rv_reading_history_url"
@@ -19,6 +20,8 @@
             android:layout_height="wrap_content"
             android:text="brunch.co.kr"
             android:textSize="14sp"
+            android:layout_alignParentLeft="true"
+            android:includeFontPadding="false"
             android:layout_marginTop="15dp"
             android:textColor="#aaaaaa"
             android:fontFamily="@font/nanum_barungothic_regular"
@@ -32,23 +35,25 @@
             android:layout_toStartOf="@id/rv_reading_history_img"
             android:layout_alignStart="@id/rv_reading_history_url"
             android:layout_marginTop="8dp"
-            android:layout_marginEnd="45dp"
+
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:layout_marginRight="45dp"
+            android:textColor="@color/black"
+            android:layout_alignParentLeft="true"
+            android:includeFontPadding="false"
             android:textSize="14sp"
-            android:text="제품 디자이너는 코딩에 대해 잊어야합니다."
-            android:layout_marginBottom="15dp"
-            android:textColor="#000000"
-            android:fontFamily="@font/nanum_barungothic_light"/>
+            android:text="제품 디자이너는 코딩에 대해 잊어야 합니다."/>
+
 
 
         <ImageView
             android:id="@+id/rv_reading_history_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_marginTop="33dp"
             android:layout_marginRight="20dp"
-            android:layout_marginTop="10dp"
-            android:src="@drawable/img_history"
-            android:background="@drawable/archive_card_round"
-            android:layout_alignParentRight="true"/>
+            android:background="@drawable/img_history"
+            android:layout_alignParentRight="true" />
 
 
     </RelativeLayout>

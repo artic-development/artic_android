@@ -100,10 +100,12 @@ class ArticRepository (
     fun getReadingHistoryArchiveList():Call<List<HistoryData>> {
         return Calls.response(
             listOf(
-               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+
+               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야 합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
                 HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","https://i.pinimg.com/564x/50/89/85/5089852c64cba2498a7adad495d68db8.jpg"),
-                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+
             )
 
         )
@@ -112,11 +114,11 @@ class ArticRepository (
     fun getNewArticleLinkList():Call<List<NewArticleLinkData>> {
         return Calls.response(
             listOf(
-                NewArticleLinkData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                NewArticleLinkData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                NewArticleLinkData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                NewArticleLinkData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                NewArticleLinkData(4,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
+                NewArticleLinkData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                NewArticleLinkData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                NewArticleLinkData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                NewArticleLinkData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                NewArticleLinkData(4,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
 
             )
         )
@@ -125,11 +127,11 @@ class ArticRepository (
     fun getArticPickList():Call<List<ArticPickData>> {
         return Calls.response(
             listOf(
-                ArticPickData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                ArticPickData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                ArticPickData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                ArticPickData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
-                ArticPickData(4,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는\n에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
+                ArticPickData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
+                ArticPickData(4,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
 
             )
         )
