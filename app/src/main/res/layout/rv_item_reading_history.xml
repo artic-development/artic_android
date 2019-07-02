@@ -12,7 +12,6 @@
         android:layout_height="wrap_content"
         android:background="@color/white_two"
         android:paddingLeft="22dp"
-
     >
 
         <TextView
@@ -23,9 +22,7 @@
             android:textSize="14sp"
             android:layout_alignParentLeft="true"
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanumbarungothic"
-            android:layout_marginTop="40dp"
-
+            android:layout_marginTop="15dp"
             android:textColor="#aaaaaa"
             android:fontFamily="@font/nanum_barungothic_regular"
             />
@@ -44,7 +41,6 @@
             android:textColor="@color/black"
             android:layout_alignParentLeft="true"
             android:includeFontPadding="false"
-            android:layout_toStartOf="@id/rv_reading_history_img"
             android:textSize="14sp"
             android:text="제품 디자이너는 코딩에 대해 잊어야 합니다."/>
 
@@ -54,12 +50,10 @@
             android:id="@+id/rv_reading_history_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
-
             android:layout_marginTop="33dp"
             android:layout_marginRight="20dp"
             android:background="@drawable/img_history"
-
-            android:layout_alignParentRight="true"/>
+            android:layout_alignParentRight="true" />
 
 
     </RelativeLayout>

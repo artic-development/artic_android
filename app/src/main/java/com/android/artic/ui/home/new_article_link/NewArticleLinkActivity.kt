@@ -24,7 +24,6 @@ class NewArticleLinkActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_article_link)
 
-
         rv_new_article_link.adapter=adapter
         rv_new_article_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 

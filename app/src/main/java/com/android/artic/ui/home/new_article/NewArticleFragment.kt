@@ -8,8 +8,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.home.new_article.data.ArticleCardData
-import com.android.artic.ui.search.SpacesItemDecoration
-import kotlinx.android.synthetic.main.activity_search.*
+import com.android.artic.ui.SpacesItemDecoration
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
 
 class NewArticleFragment : Fragment() {
