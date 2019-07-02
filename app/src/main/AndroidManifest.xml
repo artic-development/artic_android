@@ -15,6 +15,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".ui.article_about.ArticleAboutActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.detail_reading_history.DetailReadingHistoryActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -22,19 +29,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name=".ui.detail_new_archive.DetailNewArchiveActivity">
-
-        </activity>
-        <activity android:name=".ui.search_result.SearchResultActivity"></activity>
-        <activity android:name=".ui.search.SearchActivity"></activity>
+        <activity android:name=".ui.detail_new_archive.DetailNewArchiveActivity"></activity>
+        <activity android:name=".ui.search_result.SearchResultActivity" />
+        <activity android:name=".ui.search.SearchActivity" />
         <activity
             android:name=".ui.link.LinkActivity"
-            android:theme="@style/AppTheme.NoActionBar"></activity>
-        <activity android:name=".ui.category.CategoryActivity"></activity>
-        <activity android:name=".ui.home.artic_pick.ArticPickActivity"></activity>
+            android:theme="@style/AppTheme.NoActionBar" />
+        <activity android:name=".ui.category.CategoryActivity" />
+        <activity android:name=".ui.home.artic_pick.ArticPickActivity" />
         <activity android:name=".ui.home.new_article_link.NewArticleLinkActivity" />
-        <activity android:name=".ui.home.HomeActivity"></activity>
-        <activity android:name=".ui.archive.ArchiveActivity"></activity>
+        <activity android:name=".ui.home.HomeActivity" />
+        <activity android:name=".ui.archive.ArchiveActivity" />
         <activity android:name=".MainActivity" />
     </application>
 

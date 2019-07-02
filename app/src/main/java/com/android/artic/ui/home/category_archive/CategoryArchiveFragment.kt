@@ -19,7 +19,6 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-// TODO Activity - Fragment 사이에 데이터 전달?!
 /**
  * Display Category Archive List (2x2)
  * Must create this with param!
