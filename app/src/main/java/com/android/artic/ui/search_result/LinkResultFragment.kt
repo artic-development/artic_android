@@ -36,7 +36,6 @@ class LinkResultFragment : Fragment() {
                 "brunch.co.kr",
                 "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
                 202,
-                350,
                 "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
             )
         )
@@ -45,7 +44,6 @@ class LinkResultFragment : Fragment() {
                 "brunch.co.kr",
                 "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
                 202,
-                350,
                 "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
             )
         )
@@ -55,7 +53,6 @@ class LinkResultFragment : Fragment() {
                 "brunch.co.kr",
                 "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
                 202,
-                350,
                 "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
             )
         )
