@@ -63,7 +63,7 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/nanumbarungothiclight"
+            android:fontFamily="@font/nanum_barungothic_light"
             android:text="@string/home_title"
             android:textColor="@color/black"
             android:textSize="13sp"
@@ -75,11 +75,13 @@
             android:id="@+id/container_home_fragments"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
+            android:layout_marginTop="43dp"
             android:orientation="vertical"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/constraintLayout">
+            app:layout_constraintTop_toBottomOf="@+id/constraintLayout"
+            android:showDividers="middle"
+            android:divider="@drawable/empty_tall_divider">
 
 
         </LinearLayout>

@@ -100,10 +100,10 @@ class ArticRepository (
     fun getReadingHistoryArchiveList():Call<List<HistoryData>> {
         return Calls.response(
             listOf(
-               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야\n합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
+               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
                 HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와\n에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","https://i.pinimg.com/564x/50/89/85/5089852c64cba2498a7adad495d68db8.jpg"),
+                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
             )
 
         )
