@@ -1,17 +1,11 @@
 package com.android.artic.ui.article_about
 
-import android.graphics.Outline
-import android.os.Build
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
-import android.view.ViewOutlineProvider
-import androidx.annotation.RequiresApi
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
+import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.article_about.data.ArticleCardData
-import com.android.artic.ui.article_about.data.ArticlePreviewData
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.toast
@@ -54,19 +48,20 @@ class ArticleAboutActivity : AppCompatActivity() {
             }
         )
 
-        repository.getArticlePreviewInfo(articleId).enqueue(
-            object : Callback<ArticlePreviewData> {
-                override fun onFailure(call: Call<ArticlePreviewData>, t: Throwable) {
+        // TODO articleId 를 이용한 실제 함수로 변경해야함.
+        repository.getDummyArticle().enqueue(
+            object : Callback<Article> {
+                override fun onFailure(call: Call<Article>, t: Throwable) {
                     toast(R.string.network_error)
                 }
 
-                override fun onResponse(call: Call<ArticlePreviewData>, response: Response<ArticlePreviewData>) {
+                override fun onResponse(call: Call<Article>, response: Response<Article>) {
                     response.body()?.run {
                         txt_article_about_url.text = url
                         // TODO 타이틀 길이가 너무 길면 안된다! 알아서 줄여주는 방안을 생각해야함.
                         txt_article_about_title.text = title
                         Glide.with(this@ArticleAboutActivity)
-                            .load(img_url)
+                            .load(title_img_url)
                             .into(img_article_about)
 
                         btn_article_about_read.setOnClickListener {
@@ -81,13 +76,14 @@ class ArticleAboutActivity : AppCompatActivity() {
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
         rv_article_about_another_article.layoutManager = GridLayoutManager(this, 2)
 
-        repository.getAllArticleInArchive(archiveId).enqueue(
-            object : Callback<List<ArticleCardData>> {
-                override fun onFailure(call: Call<List<ArticleCardData>>, t: Throwable) {
+        // TODO archiveId 를 이용한 실제 함수로 변경해야함.
+        repository.getDummyArticleList().enqueue(
+            object : Callback<List<Article>> {
+                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                     toast(R.string.network_error)
                 }
 
-                override fun onResponse(call: Call<List<ArticleCardData>>, response: Response<List<ArticleCardData>>) {
+                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
                     // 한번에 최대 4개의 아티클만 보일 것
                     response.body()?.take(4)?.let {
                         adapter.data = it
