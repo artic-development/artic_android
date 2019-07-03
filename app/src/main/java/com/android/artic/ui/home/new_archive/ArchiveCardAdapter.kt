@@ -8,12 +8,12 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.home.new_archive.data.ArchiveCardData
+import com.android.artic.data.Archive
 import com.bumptech.glide.Glide
 
 class ArchiveCardAdapter(
     private val context: Context,
-    var data: List<ArchiveCardData>
+    var data: List<Archive>
 ) : RecyclerView.Adapter<ArchiveCardAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_archive_card, parent, false)
@@ -23,11 +23,11 @@ class ArchiveCardAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.run {
             val cur = data[position]
-            txt_category?.text = cur.category
+            txt_category?.text = cur.categories?.elementAt(0)
             txt_title?.text = cur.title
             img_background?.let{
                 Glide.with(context)
-                    .load(cur.img_url)
+                    .load(cur.title_img_url)
                     .into(it)
             }
             container?.setOnClickListener {

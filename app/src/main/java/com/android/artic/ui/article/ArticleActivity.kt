@@ -1,4 +1,6 @@
-package com.android.artic.ui.detail_reading_history
+package com.android.artic.ui.article
+
+
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -8,27 +10,31 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
-import kotlinx.android.synthetic.main.activity_detail_reading_history.*
+import kotlinx.android.synthetic.main.activity_link.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailReadingHistoryActivity : AppCompatActivity() {
+/**
+ * it must need archive id intent["archiveId"]
+ * */
+class ArticleActivity : AppCompatActivity() {
     private val repository: ArticRepository by inject()
+    private var archiveId: Int = -1
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
+
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_detail_reading_history)
-
+        setContentView(R.layout.activity_link)
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
-        rv_act_detail_reading_history.adapter=adapter
-        rv_act_detail_reading_history.layoutManager= LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+        rv_link_list.adapter=adapter
+        rv_link_list.layoutManager= LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
-        repository.getReadingHistoryArticleList().enqueue(
+        repository.getArticleListGivenArchive(archiveId).enqueue(
             object : Callback<List<Article>> {
                 override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                     toast(R.string.network_error)
@@ -42,5 +48,8 @@ class DetailReadingHistoryActivity : AppCompatActivity() {
                 }
             }
         )
+
     }
+
 }
+

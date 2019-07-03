@@ -1,4 +1,4 @@
-package com.android.artic.ui.detail_new_archive
+package com.android.artic.ui.adapter.archive
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 
-class DetailNewArchiveCategoryAdapter(val ctx: Context, var dataList: ArrayList<String>): RecyclerView.Adapter<DetailNewArchiveCategoryAdapter.Holder>(){
+class ArchiveCategoryAdapter(val ctx: Context, var dataList: List<String>): RecyclerView.Adapter<ArchiveCategoryAdapter.Holder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_archive_category_card, viewGroup, false)

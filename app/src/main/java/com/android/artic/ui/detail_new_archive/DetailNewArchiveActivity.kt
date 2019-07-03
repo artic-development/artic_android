@@ -2,33 +2,38 @@ package com.android.artic.ui.detail_new_archive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
-import com.android.artic.data.archive.ArchiveListData
-import kotlinx.android.synthetic.main.activity_detail_new_archive.*
+import com.android.artic.data.Archive
+import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.adapter.archive.ArchiveListAdapter
+import com.android.artic.ui.search_result.ArchiveListFragment
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetailNewArchiveActivity : AppCompatActivity() {
-
-    lateinit var detailNewArchiveListAdapter: DetailNewArchiveListAdapter
+    private val repository: ArticRepository by inject()
+    private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_new_archive)
 
-        var dataList : ArrayList<ArchiveListData> = ArrayList()
+        repository.getNewArchiveList().enqueue(
+            object : Callback<List<Archive>> {
+                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
+                    toast(R.string.network_error)
+                }
 
-        var category : ArrayList<String> = ArrayList()
-        category.add("UI / UX")
-        category.add("브랜딩")
-
-        dataList.add(ArchiveListData("PM과 디자이너가 서로 잘 소통하는 법을 알려주세", 13, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
-
-        detailNewArchiveListAdapter = DetailNewArchiveListAdapter(this, dataList)
-        rv_act_detail_new_archive.adapter = detailNewArchiveListAdapter
-        rv_act_detail_new_archive.layoutManager = LinearLayoutManager(this)
+                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
+                    response.body()?.let {
+                        adapter.dataList = it
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        )
     }
 }

@@ -48,8 +48,7 @@ class ArticleAboutActivity : AppCompatActivity() {
             }
         )
 
-        // TODO articleId 를 이용한 실제 함수로 변경해야함.
-        repository.getDummyArticle().enqueue(
+         repository.getArticle(articleId).enqueue(
             object : Callback<Article> {
                 override fun onFailure(call: Call<Article>, t: Throwable) {
                     toast(R.string.network_error)
@@ -76,8 +75,7 @@ class ArticleAboutActivity : AppCompatActivity() {
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
         rv_article_about_another_article.layoutManager = GridLayoutManager(this, 2)
 
-        // TODO archiveId 를 이용한 실제 함수로 변경해야함.
-        repository.getDummyArticleList().enqueue(
+        repository.getArticleListGivenArchive(archiveId).enqueue(
             object : Callback<List<Article>> {
                 override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                     toast(R.string.network_error)
