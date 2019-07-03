@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.artic_pick
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -8,28 +9,32 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.home.artic_pick.data.ArticPickData
+import com.android.artic.data.Article
+import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
-import kotlinx.android.synthetic.main.rv_item_artic_pick.view.*
 
-class ArticPickAdapter (val ctx: Context,   var dataList:List<ArticPickData>):RecyclerView.Adapter<ArticPickAdapter.Holder>() {
+class ArticPickAdapter (val ctx: Context,   var dataList:List<Article>):RecyclerView.Adapter<ArticPickAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_artic_pick, parent,false)
         return Holder(view)
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        holder.img_url?.clipToOutline = true
+
        holder.img_url?.let{
            Glide.with(ctx)
-               .load(dataList[position].img_url)
+               .load(dataList[position].title_img_url)
                .into(it)
        }
-        holder.artic_pick_url?.text=dataList[position].artic_pick_url
+        holder.artic_pick_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
+            var intent = Intent(ctx, ArticleActivity::class.java)
 
+            ctx.startActivity(intent)
         }
-
     }
 
 

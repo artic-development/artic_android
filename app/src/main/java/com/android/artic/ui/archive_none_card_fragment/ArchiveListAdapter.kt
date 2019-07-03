@@ -10,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
-import com.android.artic.ui.SpacesItemDecoration
+import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.util.dpToPx
 
 class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): RecyclerView.Adapter<ArchiveListAdapter.Holder>(){
 
@@ -42,7 +43,7 @@ class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): Recycle
         holder.rv_category_list.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
 
         // 카레고리 리스트 간격 설정
-        var spacesItemDecoration = SpacesItemDecoration(ctx, 6)
+        var spacesItemDecoration = HorizontalSpaceItemDecoration(ctx, 6.dpToPx(), 6.dpToPx())
         holder.rv_category_list.addItemDecoration(spacesItemDecoration)
     }
 

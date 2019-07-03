@@ -52,8 +52,7 @@ class CategoryArchiveFragment(
             // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
             rv_category_archive.layoutManager = GridLayoutManager(this, 2)
 
-            // TODO categoryId 를 사용해서 데이터를 받아오는 실제 구현
-            repository.getDummyArchiveList().enqueue(
+            repository.getArchiveListGivenCategory(categoryId).enqueue(
                 object : Callback<List<Archive>> {
                     override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
                         toast(R.string.network_error)

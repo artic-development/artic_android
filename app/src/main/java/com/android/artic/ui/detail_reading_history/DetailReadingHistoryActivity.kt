@@ -5,48 +5,42 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.data.link.LinkOverviewData
-import com.android.artic.ui.link.LinkOverviewRecyclerViewAdapter
+import com.android.artic.data.Article
+import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_detail_reading_history.*
-import kotlinx.android.synthetic.main.activity_link.*
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
 class DetailReadingHistoryActivity : AppCompatActivity() {
-
-    lateinit var linkOverviewRecyclerViewAdapter: LinkOverviewRecyclerViewAdapter
+    private val repository: ArticRepository by inject()
+    lateinit var adapter: ArticleOverviewRecyclerViewAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_detail_reading_history)
 
-        var dataList: ArrayList<LinkOverviewData> = ArrayList()
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                202,
-                "https://image.musinsa.com/mfile_s01/2019/04/13/728e95b288da3ab4767e1a4ca5e568cd163033.jpg"
-            )
-        )
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                202,
-                "https://image.musinsa.com/mfile_s01/2019/04/13/728e95b288da3ab4767e1a4ca5e568cd163033.jpg"
-            )
-        )
 
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                202,
-                "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
-            )
-        )
-
-        linkOverviewRecyclerViewAdapter= LinkOverviewRecyclerViewAdapter(this, dataList)
-        rv_act_detail_reading_history.adapter=linkOverviewRecyclerViewAdapter
+        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
+        rv_act_detail_reading_history.adapter=adapter
         rv_act_detail_reading_history.layoutManager= LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+
+        repository.getReadingHistoryArticleList().enqueue(
+            object : Callback<List<Article>> {
+                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
+                    toast(R.string.network_error)
+                }
+
+                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
+                    response.body()?.let {
+                        adapter.dataList = it
+                        adapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        )
     }
 }

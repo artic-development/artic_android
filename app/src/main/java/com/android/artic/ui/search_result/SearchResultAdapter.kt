@@ -26,7 +26,7 @@ class SearchResultAdapter (
     }
 
     fun getLinkReultFragment () : LinkResultFragment {
-        if(linkResultFragment ==null)  linkResultFragment = LinkResultFragment()
+        if(linkResultFragment ==null)  linkResultFragment = LinkResultFragment(articleList)
         return linkResultFragment!!
     }
 
@@ -34,7 +34,7 @@ class SearchResultAdapter (
     override fun getItem(position: Int): Fragment? {
         return when(position) {
             0-> ArchiveListFragment(archiveList)
-            1-> LinkResultFragment()
+            1-> LinkResultFragment(articleList)
             else->null
         }
 

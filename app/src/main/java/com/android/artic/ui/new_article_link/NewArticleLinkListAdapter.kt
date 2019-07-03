@@ -1,4 +1,4 @@
-package com.android.artic.ui.home.new_article_link
+package com.android.artic.ui.new_article_link
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,11 +8,11 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
+import com.android.artic.data.Article
 import com.bumptech.glide.Glide
 
 
-class NewArticleLinkListAdapter (val ctx: Context, var dataList:List<NewArticleLinkData>) : RecyclerView.Adapter<NewArticleLinkListAdapter.Holder>() {
+class NewArticleLinkListAdapter (val ctx: Context, var dataList:List<Article>) : RecyclerView.Adapter<NewArticleLinkListAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view:View=LayoutInflater.from(ctx).inflate(R.layout.rv_item_new_article_link, parent,false)
         return Holder(view)
@@ -24,10 +24,10 @@ class NewArticleLinkListAdapter (val ctx: Context, var dataList:List<NewArticleL
 
         holder.img_url?.let {
             Glide.with(ctx)
-                .load(dataList[position].img_url)
+                .load(dataList[position].title_img_url)
                 .into(it)
         }
-        holder.new_article_link_url?.text=dataList[position].new_article_link_url
+        holder.new_article_link_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
 
