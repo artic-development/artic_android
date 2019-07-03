@@ -4,10 +4,11 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.signup.signup.SignupLoginActivity
 import kotlinx.android.synthetic.main.activity_signup_start.*
 
-class SignupStartActivity : AppCompatActivity() {
+class SignupStartActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
