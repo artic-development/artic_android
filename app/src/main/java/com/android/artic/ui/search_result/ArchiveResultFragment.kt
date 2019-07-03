@@ -35,7 +35,6 @@ class ArchiveResultFragment : Fragment() {
         category.add("UI / UX")
         category.add("브랜딩")
 
-
         dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
         dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
         dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
