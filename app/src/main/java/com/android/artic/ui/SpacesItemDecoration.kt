@@ -1,4 +1,4 @@
-package com.android.artic.ui.search
+package com.android.artic.ui
 
 import androidx.recyclerview.widget.RecyclerView
 import android.R.attr.right

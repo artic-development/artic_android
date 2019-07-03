@@ -22,6 +22,9 @@ class LinkOverviewRecyclerViewAdapter(val ctx: Context,val dataList:ArrayList<Li
     override fun getItemCount(): Int =dataList.size
 
     override fun onBindViewHolder(p0: Holder, p1: Int) {
+
+        p0.img_url.clipToOutline = true // xml 파일에서 background를 라운드 처리하고, 이 코드도 추가해야 정상적으로 적용이 된다.
+
         Glide.with(ctx)
             .load(dataList[p1].img)
             .into(p0.img_url)

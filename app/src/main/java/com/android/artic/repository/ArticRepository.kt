@@ -1,5 +1,6 @@
 package com.android.artic.repository
 
+import com.android.artic.ui.article_about.data.ArticleCardData
 import com.android.artic.ui.category.data.ArchiveCategory
 import com.android.artic.ui.category.data.Category
 import com.android.artic.ui.home.artic_pick.data.ArticPickData
@@ -7,7 +8,7 @@ import com.android.artic.ui.home.category_archive.data.CategoryArchiveCardData
 import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
 import com.android.artic.ui.home.reading_history.data.HistoryData
-import io.reactivex.Observable
+import com.android.artic.ui.article_about.data.ArticlePreviewData
 import retrofit2.Call
 import retrofit2.mock.Calls
 
@@ -78,7 +79,7 @@ class ArticRepository (
     }
 
     /**
-     * get CategoryArchiveList (maybe get array which has 4 items (maybe))
+     * get CategoryArchiveList by Asynchronous (maybe get array which has 4 items (maybe))
      * @author greedy0110
      * */
     fun getCategoryArchiveList(categoryId: Int): Call<List<CategoryArchiveCardData>> {
@@ -100,10 +101,12 @@ class ArticRepository (
     fun getReadingHistoryArchiveList():Call<List<HistoryData>> {
         return Calls.response(
             listOf(
+
                HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야 합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
                 HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
                 HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
                 HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+
             )
 
         )
@@ -125,7 +128,6 @@ class ArticRepository (
     fun getArticPickList():Call<List<ArticPickData>> {
         return Calls.response(
             listOf(
-
                 ArticPickData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                 ArticPickData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                 ArticPickData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
@@ -135,6 +137,59 @@ class ArticRepository (
             )
         )
     }
+
+    /**
+     * get an article preview data by Asynchronous
+     * @author greedy0110
+     * */
+    fun getArticlePreviewInfo(articleId: Int): Call<ArticlePreviewData> {
+        return Calls.response(
+            ArticlePreviewData(url = "brunch.co.kr", title =  "디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점", img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500")
+        )
     }
+
+    /**
+     * get all article in given archive by Asynchronous (maybe take 4 less)
+     * @author greedy0110
+     * */
+    fun getAllArticleInArchive(archiveId: Int): Call<List<ArticleCardData>> {
+        return Calls.response(
+            listOf(
+                ArticleCardData(
+                    id = 4,
+                    url = "brunch.co.kr",
+                    title = "디자이너는 PM으로부터 무엇을 기대해야..",
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                ),ArticleCardData(
+                    id = 4,
+                    url = "brunch.co.kr",
+                    title = "디자이너는 PM으로부터 무엇을 기대해야..",
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                ),ArticleCardData(
+                    id = 4,
+                    url = "brunch.co.kr",
+                    title = "디자이너는 PM으로부터 무엇을 기대해야..",
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                ),ArticleCardData(
+                    id = 4,
+                    url = "brunch.co.kr",
+                    title = "디자이너는 PM으로부터 무엇을 기대해야..",
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                ),ArticleCardData(
+                    id = 4,
+                    url = "brunch.co.kr",
+                    title = "디자이너는 PM으로부터 무엇을 기대해야..",
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                )
+            )
+        )
+    }
+
+    fun getArchiveName(archiveId: Int): Call<String> {
+        return Calls.response(
+            "지금 바로 시작할 수 있는 린 브랜딩 방법론을 알려주세요"
+        )
+    }
+}
 
 

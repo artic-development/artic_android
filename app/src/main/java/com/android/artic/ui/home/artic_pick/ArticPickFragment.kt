@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.home.new_article.ArticleCardAdapter
 import com.android.artic.ui.home.new_article.data.ArticleCardData
-import com.android.artic.ui.search.SpacesItemDecoration
+import com.android.artic.ui.SpacesItemDecoration
 import kotlinx.android.synthetic.main.fragment_home_artic_pick.*
 
 class ArticPickFragment : Fragment() {
