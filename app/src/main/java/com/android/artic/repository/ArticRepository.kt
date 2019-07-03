@@ -125,6 +125,7 @@ class ArticRepository (
     fun getArticPickList():Call<List<ArticPickData>> {
         return Calls.response(
             listOf(
+
                 ArticPickData(0,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                 ArticPickData(1,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/459225/pexels-photo-459225.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"),
                 ArticPickData(2,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점","https://images.pexels.com/photos/34950/pexels-photo.jpg?auto=compress&cs=tinysrgb&dpr=1&w=500"),

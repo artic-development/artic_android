@@ -55,10 +55,9 @@
         android:background="@drawable/home_search_round"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        app:layout_constraintStart_toStartOf="parent"
-        android:layout_marginTop="26dp" app:layout_constraintTop_toBottomOf="@+id/txt_home_welcome"
+        android:layout_marginTop="26dp"
         android:layout_marginStart="20dp"
-        app:layout_constraintEnd_toEndOf="parent" android:layout_marginEnd="20dp"
+        android:layout_marginEnd="20dp"
         android:id="@+id/constraintLayout">
 
         <TextView
