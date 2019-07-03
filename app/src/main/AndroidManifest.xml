@@ -40,7 +40,6 @@
             </intent-filter>
         </activity>
         <activity android:name=".ui.archive.ArchiveActivity" />
-        <activity android:name=".MainActivity" />
     </application>
 
 </manifest>

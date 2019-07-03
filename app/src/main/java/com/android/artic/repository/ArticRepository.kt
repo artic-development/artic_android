@@ -2,8 +2,7 @@ package com.android.artic.repository
 
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
-import com.android.artic.ui.category.data.ArchiveCategory
-import com.android.artic.ui.category.data.Category
+import com.android.artic.data.Category
 import retrofit2.Call
 import retrofit2.mock.Calls
 
@@ -24,28 +23,13 @@ class ArticRepository (
         return Calls.response(
             listOf(
                 Category(
-                    en_name = "Design", kr_name = "디자인", children = listOf(
-                        ArchiveCategory(1, "UX/UI"),
-                        ArchiveCategory(2, "BX"),
-                        ArchiveCategory(3, "그래픽"),
-                        ArchiveCategory(4, "영상/모션")
-                    )
-                ),
-                Category(
-                    en_name = "Plan", kr_name = "서비스 기획", children = listOf(
-                        ArchiveCategory(1, "UX/UI"),
-                        ArchiveCategory(2, "BX"),
-                        ArchiveCategory(3, "그래픽"),
-                        ArchiveCategory(4, "영상/모션")
-                    )
-                ),
-                Category(
-                    en_name = "Management", kr_name = "매니지먼트", children = listOf(
-                        ArchiveCategory(1, "UX/UI"),
-                        ArchiveCategory(2, "BX"),
-                        ArchiveCategory(3, "그래픽"),
-                        ArchiveCategory(4, "영상/모션")
-                    )
+                    id = 0, name = "category", archive_ids = listOf(1,2,3)
+                ),Category(
+                    id = 0, name = "category", archive_ids = listOf(1,2,3)
+                ),Category(
+                    id = 0, name = "category", archive_ids = listOf(1,2,3)
+                ),Category(
+                    id = 0, name = "category", archive_ids = listOf(1,2,3)
                 )
             )
         )
