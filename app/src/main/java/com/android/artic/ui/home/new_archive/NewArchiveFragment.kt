@@ -9,8 +9,8 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
+import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import kotlinx.android.synthetic.main.fragment_new_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -44,14 +44,14 @@ class NewArchiveFragment : Fragment() {
             rv_archive_card.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             repository.getNewArchiveList().enqueue(
-                object :Callback<List<ArchiveCardData>> {
-                    override fun onFailure(call: Call<List<ArchiveCardData>>, t: Throwable) {
+                object :Callback<List<Archive>> {
+                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
                         toast(R.string.network_error)
                     }
 
                     override fun onResponse(
-                        call: Call<List<ArchiveCardData>>,
-                        response: Response<List<ArchiveCardData>>
+                        call: Call<List<Archive>>,
+                        response: Response<List<Archive>>
                     ) {
                         response.body()?.let {
                             adapter.data = it

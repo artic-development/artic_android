@@ -2,38 +2,40 @@ package com.android.artic.ui.archive
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
-import com.android.artic.data.archive.ArchiveListData
-import kotlinx.android.synthetic.main.activity_archive.*
+import com.android.artic.data.Archive
+import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.archive_none_card_fragment.ArchiveListFragment
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
 
+/**
+ * it must need categoryId:Int intent["categoryId"]
+ * @author greedy0110
+ * */
 class ArchiveActivity : AppCompatActivity() {
-
-    lateinit var archiveListAdapter: ArchiveListAdapter
+    private var categoryId: Int = -1
+    private val repository: ArticRepository by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_archive)
 
+        repository.getArchiveListGivenCategory(categoryId).enqueue(
+            object : Callback<List<Archive>> {
+                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
+                    toast(R.string.network_error)
+                }
 
-        var dataList : ArrayList<ArchiveListData> = ArrayList()
-
-        var category : ArrayList<String> = ArrayList()
-        category.add("UI / UX")
-        category.add("브랜딩")
-
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 13, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, category))
-        dataList.add(ArchiveListData("린 브랜딩을 어떻게 시작해야 할까?", 350, category))
-
-        archiveListAdapter = ArchiveListAdapter(this, dataList)
-        rv_archive_archive_list.adapter = archiveListAdapter
-        rv_archive_archive_list.layoutManager = LinearLayoutManager(this)
-
-        // spacing 조절
-//        var spacesItemDecoration = SpacesItemDecoration(this, 10)
-//        rv_archive_archive_list.addItemDecoration(spacesItemDecoration)
+                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
+                    response.body()?.let {
+                        supportFragmentManager.beginTransaction().add(R.id.container_archive_archive_list_fragment, ArchiveListFragment(it)).commit()
+                    }
+                }
+            }
+        )
     }
 }
