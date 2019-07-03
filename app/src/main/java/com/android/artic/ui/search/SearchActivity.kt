@@ -4,13 +4,14 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.GridSpacesItemDecoration
 import com.android.artic.ui.search.data.RecommendWordData
 import com.android.artic.util.dpToPx
 import com.android.artic.util.pxToDp
 import kotlinx.android.synthetic.main.activity_search.*
 
-class SearchActivity : AppCompatActivity() {
+class SearchActivity : BaseActivity() {
 
     lateinit var recommendWordAdapter: RecommendWordAdapter
 

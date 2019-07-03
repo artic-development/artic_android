@@ -6,12 +6,13 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_search_result.*
 
 /**
  * it must need searchWord intent["searchKeyword"]
  */
-class SearchResultActivity : AppCompatActivity() {
+class SearchResultActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

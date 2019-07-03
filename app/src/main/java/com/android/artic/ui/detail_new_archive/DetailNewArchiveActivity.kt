@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import com.android.artic.ui.search_result.ArchiveListFragment
 import org.jetbrains.anko.toast
@@ -13,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class DetailNewArchiveActivity : AppCompatActivity() {
+class DetailNewArchiveActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
 

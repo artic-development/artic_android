@@ -7,10 +7,11 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
 import kotlinx.android.synthetic.main.activity_signup_private.*
 
-class SignupPrivateActivity : AppCompatActivity() {
+class SignupPrivateActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

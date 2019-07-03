@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Category
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_category.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -13,7 +14,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class CategoryActivity : AppCompatActivity() {
+class CategoryActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private val adapter: CategoryAdapter by lazy { CategoryAdapter(this, listOf()) }
 

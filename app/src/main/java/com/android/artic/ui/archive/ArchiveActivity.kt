@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -16,7 +17,7 @@ import retrofit2.Response
  * it must need categoryId:Int intent["categoryId"]
  * @author greedy0110
  * */
-class ArchiveActivity : AppCompatActivity() {
+class ArchiveActivity : BaseActivity() {
     private var categoryId: Int = -1
     private val repository: ArticRepository by inject()
     private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
