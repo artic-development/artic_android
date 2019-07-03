@@ -11,6 +11,7 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.GridSpacesItemDecoration
+import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.android.artic.ui.new_article_link.NewArticleLinkActivity
 import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
@@ -22,7 +23,7 @@ import retrofit2.Response
 
 class NewArticleFragment : Fragment() {
     private val repository : ArticRepository by inject()
-    private lateinit var articleCardAdapter: ArticleCardAdapter
+    private lateinit var articleCardAdapter: BigImageArticleAdapter
 
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -40,7 +41,7 @@ class NewArticleFragment : Fragment() {
                 startActivity(intent)
             }
 
-            articleCardAdapter = ArticleCardAdapter(this, listOf())
+            articleCardAdapter = BigImageArticleAdapter(this, listOf())
 
             rv_frag_home_new_article.adapter = articleCardAdapter
             rv_frag_home_new_article.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)

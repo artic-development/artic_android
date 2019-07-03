@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
 import com.android.artic.data.Article
-import com.android.artic.ui.article.ArticleOverviewRecyclerViewAdapter
+import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_link_result.*
 
 
-class LinkResultFragment(private val data: List<Article>) : Fragment() {
+class LinkResultFragment(
+    private val data: List<Article>
+) : Fragment() {
 
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
     override fun onCreateView(

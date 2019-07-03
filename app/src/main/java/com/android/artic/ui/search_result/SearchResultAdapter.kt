@@ -5,7 +5,6 @@ import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentStatePagerAdapter
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
-import com.android.artic.ui.archive_none_card_fragment.ArchiveListFragment
 
 // TODO 얘가 search result 결과를 전부 받아서 그려주기만 해야한다. 즉, Search Result Activity 에서 전부 데이터 통신이 끝나고 데이터를 넘겨주면 다시 적용하도록 구성해야 한다?
 class SearchResultAdapter (

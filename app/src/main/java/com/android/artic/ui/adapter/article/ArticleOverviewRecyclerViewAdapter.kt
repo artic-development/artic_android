@@ -1,4 +1,4 @@
-package com.android.artic.ui.article
+package com.android.artic.ui.adapter.article
 
 
 

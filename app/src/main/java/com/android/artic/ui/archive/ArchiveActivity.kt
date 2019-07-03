@@ -5,7 +5,7 @@ import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.archive_none_card_fragment.ArchiveListFragment
+import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
@@ -19,6 +19,7 @@ import retrofit2.Response
 class ArchiveActivity : AppCompatActivity() {
     private var categoryId: Int = -1
     private val repository: ArticRepository by inject()
+    private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,7 +33,8 @@ class ArchiveActivity : AppCompatActivity() {
 
                 override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
                     response.body()?.let {
-                        supportFragmentManager.beginTransaction().add(R.id.container_archive_archive_list_fragment, ArchiveListFragment(it)).commit()
+                        adapter.dataList = it
+                        adapter.notifyDataSetChanged()
                     }
                 }
             }

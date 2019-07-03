@@ -94,8 +94,29 @@ class ArticRepository (
         )
     }
 
+    /**
+     * get an article by async
+     * @see Article
+     * @author greedy0110
+     * */
+    fun getArticle(articleId: Int): Call<Article> {
+        return Calls.response(
+            Article(
+                id = 0,
+                title = "article",
+                url = "https://github.com/artic-development/artic_android",
+                title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                like = 999,
+                isLiked = false
+            )
+        )
+    }
 
-
+    /**
+     * get article list which is selected by team artic by async
+     * @see Article
+     * @author greedy0110
+     * */
     fun getArticPickList():Call<List<Article>> {
         return Calls.response(
             listOf(
@@ -150,116 +171,6 @@ class ArticRepository (
     }
 
     /**
-     * get dummy category list by asynchronous
-     * @see Category
-     * @author greedy0110
-     * */
-    fun getDummyCategoryList(): Call<List<com.android.artic.data.Category>> {
-        return Calls.response(
-            listOf(
-                com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                ),com.android.artic.data.Category(
-                    id = 0,
-                    name = "design"
-                )
-            )
-        )
-    }
-
-    /**
-     * get dummy archive list by asynchronous
-     * @see Archive
-     * @author greedy0110
-     * */
-    fun getDummyArchiveList(): Call<List<Archive>> {
-        return Calls.response(
-            listOf(
-                Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 1,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 2,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 3,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 4,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 5,
-                    category_ids = listOf(1,2,3),
-                    title = "dummy archive",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                )
-            )
-        )
-    }
-
-    /**
-     * get dummy archive by asynchronous
-     * @see Archive
-     * @author greedy0110
-     * */
-    fun getDummyArchive(): Call<Archive> {
-        return Calls.response(
-            Archive(
-                id = 0,
-                category_ids = listOf(1,2,3),
-                title = "dummy archive",
-                title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                num_article = 3,
-                article_ids = listOf(1,2,3)
-            )
-        )
-    }
-
-    /**
      * get dummy article list by asynchronous
      * @see Article
      * @author greedy0110
@@ -303,24 +214,6 @@ class ArticRepository (
                     like = 999,
                     isLiked = false
                 )
-            )
-        )
-    }
-
-    /**
-     * get an dummy article by asynchronous
-     * @see Article
-     * @author greedy0110
-     * */
-    fun getDummyArticle(): Call<Article> {
-        return Calls.response(
-            Article(
-                id = 0,
-                title = "dummy article",
-                url = "https://github.com/artic-development/artic_android",
-                title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
-                like = 999,
-                isLiked = false
             )
         )
     }

@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.home.artic_pick.ArticPickAdapter
+import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import kotlinx.android.synthetic.main.activity_artic_pick.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -19,7 +19,7 @@ import retrofit2.Response
 class ArticPickActivity : AppCompatActivity() {
 
     private val repository : ArticRepository by inject()
-    private val adapter by lazy{ ArticPickAdapter(this, listOf()) }
+    private val adapter by lazy{ BigImageArticleAdapter(this, listOf()) }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

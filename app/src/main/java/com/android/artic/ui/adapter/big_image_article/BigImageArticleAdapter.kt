@@ -1,4 +1,4 @@
-package com.android.artic.ui.home.artic_pick
+package com.android.artic.ui.adapter.big_image_article
 
 import android.content.Context
 import android.content.Intent
@@ -11,11 +11,13 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.article.ArticleActivity
+import com.android.artic.util.dpToPx
+import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
 
-class ArticPickAdapter (val ctx: Context,   var dataList:List<Article>):RecyclerView.Adapter<ArticPickAdapter.Holder>() {
+class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):RecyclerView.Adapter<BigImageArticleAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_artic_pick, parent,false)
+        val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_big_image_article, parent,false)
         return Holder(view)
     }
 
@@ -37,17 +39,14 @@ class ArticPickAdapter (val ctx: Context,   var dataList:List<Article>):Recycler
         }
     }
 
-
-
     override fun getItemCount(): Int =dataList.size
 
-
-
-
     inner class Holder(itemView: View):RecyclerView.ViewHolder(itemView) {
-        val container=itemView.findViewById<View?>(R.id.rv_artic_pick_container)
-        val img_url=itemView.findViewById<ImageView?>(R.id.rv_artic_pick_img)
-        val title=itemView.findViewById<TextView?>(R.id.rv_artic_pick_txt)
-        val artic_pick_url=itemView.findViewById<TextView?>(R.id.rv_artic_pick_url)
+        val container=itemView.findViewById<View?>(R.id.rv_big_image_article_container)
+        val img_url=itemView.findViewById<ImageView?>(R.id.rv_big_image_article_img)?.apply {
+            setTopRound(6.dpToPx().toFloat())
+        }
+        val title=itemView.findViewById<TextView?>(R.id.rv_big_image_article_txt)
+        val artic_pick_url=itemView.findViewById<TextView?>(R.id.rv_big_image_article_url)
     }
 }

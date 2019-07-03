@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.article.ArticleOverviewRecyclerViewAdapter
+import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_detail_reading_history.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

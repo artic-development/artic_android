@@ -1,4 +1,4 @@
-package com.android.artic.ui.archive_none_card_fragment
+package com.android.artic.ui.adapter.archive
 
 import android.content.Context
 import android.view.LayoutInflater

@@ -24,11 +24,9 @@
         android:layout_width="match_parent"
         android:layout_height="0.6dp" />
 
-    <FrameLayout
-        android:id="@+id/container_archive_archive_list_fragment"
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_archive"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-    </FrameLayout>
+        android:layout_height="match_parent" />
 
 </LinearLayout>

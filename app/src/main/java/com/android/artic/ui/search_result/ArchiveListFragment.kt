@@ -1,4 +1,4 @@
-package com.android.artic.ui.archive_none_card_fragment
+package com.android.artic.ui.search_result
 
 
 import android.os.Bundle
@@ -10,13 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
 import com.android.artic.data.Archive
-import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import kotlinx.android.synthetic.main.fragment_archive_result.*
-import org.jetbrains.anko.support.v4.toast
-import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * none card archive list
@@ -24,7 +19,6 @@ import retrofit2.Response
 class ArchiveListFragment(
     val data: List<Archive>
 ) : Fragment() {
-    private val repository: ArticRepository by inject()
     lateinit var archiveListAdapter: ArchiveListAdapter
 
     override fun onCreateView(
@@ -41,21 +35,6 @@ class ArchiveListFragment(
         archiveListAdapter = ArchiveListAdapter(activity!!, data)
         rv_search_result_archive.adapter = archiveListAdapter
         rv_search_result_archive.layoutManager = LinearLayoutManager(activity!!)
-
-//        repository.getNewArchiveList().enqueue(
-//            object : Callback<List<Archive>> {
-//                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-//                    toast(R.string.network_error)
-//                }
-//
-//                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-//                    response.body()?.let {
-//                        archiveListAdapter.dataList = it
-//                        archiveListAdapter.notifyDataSetChanged()
-//                    }
-//                }
-//            }
-//        )
     }
 
 }
