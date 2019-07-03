@@ -10,11 +10,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.home.new_article.data.ArticleCardData
 import com.android.artic.ui.GridSpacesItemDecoration
-import com.android.artic.ui.detail_new_archive.DetailNewArchiveActivity
-import com.android.artic.ui.home.new_article_link.NewArticleLinkActivity
+import com.android.artic.ui.new_article_link.NewArticleLinkActivity
 import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
-import kotlinx.android.synthetic.main.fragment_new_archive.*
 
 class NewArticleFragment : Fragment() {
 

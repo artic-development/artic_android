@@ -1,4 +1,4 @@
-package com.android.artic.ui.home.new_article_link
+package com.android.artic.ui.new_article_link
 
 import android.content.Context
 import android.view.LayoutInflater
@@ -8,7 +8,7 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
+import com.android.artic.ui.new_article_link.data.NewArticleLinkData
 import com.bumptech.glide.Glide
 
 

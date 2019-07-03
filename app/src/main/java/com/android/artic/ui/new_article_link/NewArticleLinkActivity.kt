@@ -1,4 +1,4 @@
-package com.android.artic.ui.home.new_article_link
+package com.android.artic.ui.new_article_link
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -6,8 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.home.new_article_link.NewArticleLinkListAdapter
-import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
+import com.android.artic.ui.new_article_link.data.NewArticleLinkData
 import kotlinx.android.synthetic.main.activity_new_article_link.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

@@ -3,7 +3,6 @@ package com.android.artic.ui.home.reading_history
 
 import android.content.Intent
 import android.os.Bundle
-import android.service.voice.AlwaysOnHotwordDetector
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -14,10 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.detail_reading_history.DetailReadingHistoryActivity
-import com.android.artic.ui.home.new_article_link.NewArticleLinkActivity
 import com.android.artic.ui.home.reading_history.data.HistoryData
-import kotlinx.android.synthetic.main.fragment_home_new_article.*
-import kotlinx.android.synthetic.main.fragment_new_archive.*
 import kotlinx.android.synthetic.main.fragment_reading_history.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

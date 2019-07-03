@@ -1,4 +1,4 @@
-package com.android.artic.ui.home.new_article_link.data
+package com.android.artic.ui.new_article_link.data
 
 data class NewArticleLinkData(
     val article_id: Int,
