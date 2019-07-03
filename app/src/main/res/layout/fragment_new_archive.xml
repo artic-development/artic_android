@@ -6,17 +6,32 @@
     android:layout_height="wrap_content"
     tools:context=".ui.home.new_archive.NewArchiveFragment">
 
-    <TextView
-        android:id="@+id/txt_archive_label"
+    <LinearLayout
+        android:id="@+id/linear_fragment_new_archive"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:fontFamily="@font/nanum_barungothic_bold"
-        android:text="@string/new_archive"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent"
+        android:layout_marginStart="20dp" >
+
+        <TextView
+            android:id="@+id/txt_archive_label"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/nanum_barungothic_bold"
+            android:includeFontPadding="false"
+            android:text="@string/new_archive"
+            android:textColor="@color/black"
+            android:textSize="18sp"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_rightarrow"/>
+
+
+    </LinearLayout>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_archive_card"
@@ -25,5 +40,5 @@
         android:layout_marginTop="16dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_archive_label" />
+        app:layout_constraintTop_toBottomOf="@id/linear_fragment_new_archive" />
 </androidx.constraintlayout.widget.ConstraintLayout>

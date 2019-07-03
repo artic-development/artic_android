@@ -101,10 +101,10 @@ class ArticRepository (
         return Calls.response(
             listOf(
 
-               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야 합니다.","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"),
-                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점","http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png")
+               HistoryData(0,"brunch.co.kr","제품 디자이너는 코딩에 대해 잊어야 합니다.","https://img1.daumcdn.net/thumb/S600x434/?scode=1boon&fname=https://t1.daumcdn.net/liveboard/melon_magazine/29f6655955774fc2b8ac9baf22a91daa.jpg"),
+                HistoryData(1,"brunch.co.kr","댑(DApp)이 몰고올 디자이너 '댑'","https://img1.daumcdn.net/thumb/S600x434/?scode=1boon&fname=https://t1.daumcdn.net/liveboard/melon_magazine/29f6655955774fc2b8ac9baf22a91daa.jpg"),
+                HistoryData(2,"brunch.co.kr","사용자 경헙(UX), 망해가던 Gucci를","https://img1.daumcdn.net/thumb/S600x434/?scode=1boon&fname=https://t1.daumcdn.net/liveboard/melon_magazine/29f6655955774fc2b8ac9baf22a91daa.jpg"),
+                HistoryData(3,"brunch.co.kr","디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점","https://img1.daumcdn.net/thumb/S600x434/?scode=1boon&fname=https://t1.daumcdn.net/liveboard/melon_magazine/29f6655955774fc2b8ac9baf22a91daa.jpg")
 
             )
 

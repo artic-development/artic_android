@@ -4,8 +4,10 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.android.artic.R
-import com.android.artic.ui.SpacesItemDecoration
+import com.android.artic.ui.GridSpacesItemDecoration
 import com.android.artic.ui.search.data.RecommendWordData
+import com.android.artic.util.dpToPx
+import com.android.artic.util.pxToDp
 import kotlinx.android.synthetic.main.activity_search.*
 
 class SearchActivity : AppCompatActivity() {
@@ -31,7 +33,7 @@ class SearchActivity : AppCompatActivity() {
         rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3, StaggeredGridLayoutManager.HORIZONTAL)
 
         // recyclerview space 조절
-        var spacesItemDecoration = SpacesItemDecoration(this, 15)
+        var spacesItemDecoration = GridSpacesItemDecoration(this, 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
     }
 }

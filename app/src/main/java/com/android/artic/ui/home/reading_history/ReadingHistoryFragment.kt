@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.reading_history
 
 
+import android.content.Intent
 import android.os.Bundle
 import android.service.voice.AlwaysOnHotwordDetector
 import androidx.fragment.app.Fragment
@@ -12,7 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.detail_reading_history.DetailReadingHistoryActivity
+import com.android.artic.ui.home.new_article_link.NewArticleLinkActivity
 import com.android.artic.ui.home.reading_history.data.HistoryData
+import kotlinx.android.synthetic.main.fragment_home_new_article.*
 import kotlinx.android.synthetic.main.fragment_new_archive.*
 import kotlinx.android.synthetic.main.fragment_reading_history.*
 import org.jetbrains.anko.toast
@@ -45,6 +49,13 @@ class ReadingHistoryFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+            // 수민 추가 (액티비티 연결) -> 최근 읽은 아티클을 누르면 최근 읽은 아티클 리스가 뜨는 화면으로 이동
+            relative_fragment_reading_history.setOnClickListener {
+                var intent = Intent(this, DetailReadingHistoryActivity::class.java)
+
+                startActivity(intent)
+            }
+
             adapter = ReadingHistoryAdapter(this, listOf())
 
             rv_reading_history.adapter = adapter
