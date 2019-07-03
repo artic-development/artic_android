@@ -18,6 +18,10 @@ class LoginActivity : AppCompatActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login)
 
+        setListener()
+    }
+
+    private fun setListener() {
         // @수민) 완료 버튼 리스너
         tv_login_complete_btn.setOnClickListener {
             if (tv_login_complete_btn.currentTextColor == Color.parseColor("#4f80ff")) {
