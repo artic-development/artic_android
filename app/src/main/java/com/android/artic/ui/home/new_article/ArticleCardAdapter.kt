@@ -22,14 +22,15 @@ class ArticleCardAdapter(val ctx: Context, var dataList: ArrayList<ArticleCardDa
     override fun getItemCount(): Int = dataList.size
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-        holder.img_background.clipToOutline = true // xml 파일에서 background를 라운드 처리하고, 이 코드도 추가해야 정상적으로 적용이 된다.
-        Glide.with(ctx).load(dataList[position].background).into(holder.img_background)
+        holder.img_background!!.clipToOutline = true // xml 파일에서 background를 라운드 처리하고, 이 코드도 추가해야 정상적으로 적용이 된다. // @수민 동그란 이미지 안돼 ,,
+
+        Glide.with(ctx).load(dataList[position].background).into(holder.img_background!!)
         holder.tv_title.text = dataList[position].title
         holder.tv_url.text = dataList[position].url
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
-        var img_background = itemView.findViewById<ImageView>(R.id.img_rv_item_home_new_article_background)
+        var img_background = itemView.findViewById<ImageView?>(R.id.img_rv_item_home_new_article_background)
         var tv_title = itemView.findViewById<TextView>(R.id.tv_rv_item_home_new_article_title)
         var tv_url = itemView.findViewById<TextView>(R.id.tv_rv_item_home_new_article_url)
     }

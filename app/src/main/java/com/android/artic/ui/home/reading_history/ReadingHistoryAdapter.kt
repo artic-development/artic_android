@@ -24,6 +24,8 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<HistoryData> ): 
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
+        holder.img_url?.clipToOutline = true
+
         holder.img_url?.let {
             Glide.with(ctx)
             .load(dataList[position].img_url)

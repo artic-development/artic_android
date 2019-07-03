@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.new_archive
 
 
+import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.detail_new_archive.DetailNewArchiveActivity
 import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import kotlinx.android.synthetic.main.fragment_new_archive.*
 import org.jetbrains.anko.toast
@@ -38,6 +40,13 @@ class NewArchiveFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+            // 수민 추가 (액티비티 연결) -> 새로운 아카이브를 누르면 새로운 아카이브 리스트가 뜨는 화면으로 이동
+            linear_fragment_new_archive.setOnClickListener {
+                var intent = Intent(this, DetailNewArchiveActivity::class.java)
+
+                startActivity(intent)
+            }
+
             adapter = ArchiveCardAdapter(this, listOf())
 
             rv_archive_card.adapter = adapter

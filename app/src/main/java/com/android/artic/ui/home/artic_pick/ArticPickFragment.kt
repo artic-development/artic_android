@@ -1,5 +1,6 @@
 package com.android.artic.ui.home.artic_pick
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
@@ -9,7 +10,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.ui.home.new_article.ArticleCardAdapter
 import com.android.artic.ui.home.new_article.data.ArticleCardData
-import com.android.artic.ui.SpacesItemDecoration
+import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_home_artic_pick.*
 
 class ArticPickFragment : Fragment() {
@@ -24,6 +26,13 @@ class ArticPickFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+            // 수민 추가 (액티비티 연결) -> 새로운 아티클을 누르면 새로운 아티클 리스트가 뜨는 화면으로 이동
+            linear_fragment_home_artic_pick.setOnClickListener {
+                var intent = Intent(this, ArticPickActivity::class.java)
+
+                startActivity(intent)
+            }
+
             // dataList
             var dataList = ArrayList<ArticleCardData>()
             dataList.add(ArticleCardData("https://t1.daumcdn.net/cfile/tistory/24283C3858F778CA2E", "디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점", "brunch.co.kr"))
@@ -38,7 +47,7 @@ class ArticPickFragment : Fragment() {
             rv_frag_home_artic_pick.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             // recyclerview space 조절
-            var spacesItemDecoration = SpacesItemDecoration(this, 10)
+            var spacesItemDecoration = HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_artic_pick.addItemDecoration(spacesItemDecoration)
         }
     }

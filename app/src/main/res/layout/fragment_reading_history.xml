@@ -12,21 +12,22 @@
        android:background="@color/white_two">
 
        <RelativeLayout
-           android:layout_width="match_parent"
+           android:id="@+id/relative_fragment_reading_history"
+           android:layout_width="wrap_content"
            android:layout_height="wrap_content"
-           android:paddingTop="30dp"
-           >
-       <TextView
-            android:id="@+id/txt_reading_history"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="@string/reading_history_title"
-           android:textColor="@color/black"
-           android:textSize="18sp"
-           android:includeFontPadding="false"
-           android:layout_marginLeft="20dp"
-           android:fontFamily="@font/nanum_barungothic_bold"/>
-           
+           android:layout_marginTop="30dp"
+           android:layout_marginLeft="20dp" >
+
+           <TextView
+               android:id="@+id/txt_reading_history"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/reading_history_title"
+               android:textColor="@color/black"
+               android:textSize="18sp"
+               android:includeFontPadding="false"
+               android:fontFamily="@font/nanum_barungothic_bold"/>
+
            <ImageView
                android:layout_width="21dp"
                android:layout_height="21dp"
