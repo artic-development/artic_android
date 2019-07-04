@@ -15,14 +15,18 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.signup.SignupPrivateActivity"></activity>
-        <activity android:name=".ui.signup.SignupLoginActivity" />
-        <activity android:name=".ui.home.artic_pick.ArticPickActivity">
+        <activity android:name=".ui.mypage.MyPageActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.signup.SignupPrivateActivity" />
+        <activity android:name=".ui.signup.SignupLoginActivity" />
+        <activity android:name=".ui.home.artic_pick.ArticPickActivity">
+
+
         </activity>
         <activity android:name=".ui.home.new_article_link.NewArticleLinkActivity" />
         <activity android:name=".ui.search_result.SearchResultActivity" />

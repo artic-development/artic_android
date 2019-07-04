@@ -10,6 +10,7 @@ import android.view.View
 
 class SpacesItemDecoration(var context : Context, private val space: Int) : RecyclerView.ItemDecoration() {
 
+
     override fun getItemOffsets(
         outRect: Rect, view: View,
         parent: RecyclerView, state: RecyclerView.State

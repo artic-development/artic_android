@@ -9,6 +9,8 @@ import com.android.artic.ui.home.new_archive.data.ArchiveCardData
 import com.android.artic.ui.home.new_article_link.data.NewArticleLinkData
 import com.android.artic.ui.home.reading_history.data.HistoryData
 import com.android.artic.ui.article_about.data.ArticlePreviewData
+import com.android.artic.ui.mypage.data.MyPageMeData
+import com.android.artic.ui.mypage.data.MyPageScrapData
 import retrofit2.Call
 import retrofit2.mock.Calls
 
@@ -190,6 +192,36 @@ class ArticRepository (
             "지금 바로 시작할 수 있는 린 브랜딩 방법론을 알려주세요"
         )
     }
+
+    fun getMyPageScrap():Call<List<MyPageScrapData>>{
+        return Calls.response(
+            listOf(
+                MyPageScrapData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","Management","팀을 훌륭하게 이끄느 멋진 리더가 되려면 어떻게 해야할까요?"),
+                MyPageScrapData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","Management","팀을 훌륭하게 이끄느 멋진 리더가 되려면 어떻게 해야할까요?"),
+                MyPageScrapData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","Management","팀을 훌륭하게 이끄느 멋진 리더가 되려면 어떻게 해야할까요?"),
+                MyPageScrapData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","Management","팀을 훌륭하게 이끄느 멋진 리더가 되려면 어떻게 해야할까요?")
+
+
+
+
+            )
+        )
+    }
+
+
+    fun getMyPageMe() : Call<List<MyPageMeData>>{
+        return Calls.response(
+            listOf(
+                MyPageMeData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","모든 스크랩"),
+                MyPageMeData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","타이포 디자인"),
+                MyPageMeData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","타이포 디자인"),
+                MyPageMeData(0,"https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500","타이포 디자인")
+            )
+        )
+    }
+
 }
+
+
 
 

@@ -1,0 +1,55 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="wrap_content"
+    android:layout_height="wrap_content"
+    >
+
+
+        <RelativeLayout
+            android:id="@+id/rv_item_mypage_scrap_container"
+            android:layout_width="154dp"
+            android:layout_height="wrap_content"
+            android:layout_margin="6dp">
+
+            <ImageView
+                android:id="@+id/rv_item_mypage_scrap_img"
+                android:layout_width="match_parent"
+                android:layout_height="193dp"
+                android:layout_marginTop="14dp"
+                android:background="@drawable/archive_card_round"
+                android:scaleType="centerCrop"
+                android:src="@drawable/scrap"
+                />
+
+            <TextView
+                android:id="@+id/rv_item_mypage_scrap_title"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="12dp"
+                android:fontFamily="@font/gilroy_extrabold"
+                android:includeFontPadding="false"
+                android:textColor="@color/white"
+                android:textSize="13sp"
+                android:layout_marginTop="16dp"
+                tools:text="Management" />
+
+            <TextView
+                android:id="@+id/rv_item_mypage_scrap_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginLeft="12dp"
+                android:layout_marginRight="26dp"
+                android:layout_below="@id/rv_item_mypage_scrap_title"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:lineSpacingExtra="6sp"
+                android:textColor="@color/white"
+                android:includeFontPadding="false"
+                android:textSize="14sp"
+                android:text="팀을 훌륭하게 이끄는 멋진 리더가 되려면 어떻게 해야할까요?" />
+
+        </RelativeLayout>
+
+</FrameLayout>
