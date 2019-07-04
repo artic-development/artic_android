@@ -18,6 +18,7 @@
             android:layout_centerInParent="true"/>
 
         <ImageButton
+            android:id="@+id/ibtn_dialog_put_archive_new_archive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:background="@drawable/btn_plus"

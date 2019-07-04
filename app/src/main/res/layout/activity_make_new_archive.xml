@@ -47,10 +47,11 @@
         android:text="이름"
         android:textColor="@color/black"
         android:textSize="16sp"
-        android:fontFamily="@font/nanum_barungothic_bold"
+        android:fontFamily="@font/nanum_barungothic_regular"
         android:includeFontPadding="false"
         android:layout_marginLeft="20dp"
-        android:layout_marginTop="36dp"/>
+        android:layout_marginTop="36dp"
+        android:textStyle="bold"/>
 
     <EditText
         android:id="@+id/et_act_make_new_archive_title"

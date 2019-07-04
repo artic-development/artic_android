@@ -1,5 +1,6 @@
 package com.android.artic.ui.collect_archive
 
+import android.content.Intent
 import android.os.Bundle
 import android.view.*
 import androidx.recyclerview.widget.LinearLayoutManager
@@ -7,6 +8,7 @@ import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.util.dpToPx
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_put_archive.*
@@ -35,6 +37,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     // @수민) Button Listener 설정
     private fun setButtonListener() {
+        // @수민) 완료 버튼
         btn_rv_dialog_put_archive_complete.setOnClickListener {
             if (btn_rv_dialog_put_archive_complete.text.toString() == "취소") {
                 dismiss()
@@ -43,6 +46,13 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                 // TODO (@수민) 완료 누렀을 때 내 아카이브 리스트에서 선택한 리스트에 아티클 넣는 통신
                 toast("아카이브에 넣었당")
             }
+        }
+
+        // @수민) 플러스 버튼
+        ibtn_dialog_put_archive_new_archive.setOnClickListener {
+            var intent = Intent(ctx, MakeNewArchiveActivity::class.java)
+
+            startActivity(intent)
         }
     }
 
