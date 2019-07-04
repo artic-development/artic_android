@@ -16,16 +16,18 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity"></activity>
-        <activity android:name=".ui.setting.setting.SettingActivity" />
+        <activity android:name=".ui.setting.setting.SettingActivity" >
+        <intent-filter>
+            <action android:name="android.intent.action.MAIN" />
+
+            <category android:name="android.intent.category.LAUNCHER" />
+        </intent-filter>
+        </activity>
         <activity android:name=".ui.mypage.mypage_scrap.MyPageScrapActivity" />
         <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
         <activity android:name=".ui.login.login_start.LoginStartActivity" />
         <activity android:name=".ui.mypage.mypage.MyPageActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.signup.signup.SignupPrivateActivity" />
         <activity android:name=".ui.signup.signup.SignupLoginActivity" />
