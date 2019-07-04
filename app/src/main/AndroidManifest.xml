@@ -15,14 +15,19 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.signup.signup_start.SignupStartActivity"></activity>
-        <activity android:name=".ui.login.login_start.LoginStartActivity">
+        <activity android:name=".ui.article_webview.ArticleWebViewActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
 
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
+        <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
+        <activity android:name=".ui.login.login_start.LoginStartActivity"></activity>
         <activity android:name=".ui.signup.signup.SignupPrivateActivity" />
         <activity android:name=".ui.signup.signup.SignupLoginActivity" />
-        <activity android:name=".ui.detail_artic_pick.ArticPickActivity"></activity>
-        <activity android:name=".ui.login.login.LoginActivity"></activity>
+        <activity android:name=".ui.detail_artic_pick.ArticPickActivity" />
+        <activity android:name=".ui.login.login.LoginActivity" />
         <activity android:name=".ui.detail_reading_history.DetailReadingHistoryActivity" />
         <activity android:name=".ui.detail_new_archive.DetailNewArchiveActivity" />
         <activity android:name=".ui.new_article_link.NewArticleLinkActivity" />
@@ -32,7 +37,7 @@
             android:name=".ui.article.ArticleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.category.CategoryActivity" />
-        <activity android:name=".ui.home.HomeActivity" >
+        <activity android:name=".ui.home.HomeActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
