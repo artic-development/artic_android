@@ -27,6 +27,7 @@
 
     </LinearLayout>
 
+
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_frag_home_new_article"
         android:layout_width="match_parent"
