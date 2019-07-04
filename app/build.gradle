@@ -98,4 +98,6 @@ dependencies {
     implementation 'com.android.support:design:28.0.0'
     implementation 'com.android.support:percent:28.0.0'
 
+    // android web view
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
 }
