@@ -7,17 +7,34 @@
     tools:context=".ui.home.category_archive.CategoryArchiveFragment">
 
 
-    <TextView
-        android:id="@+id/txt_category_archive_name"
+    <LinearLayout
+        android:id="@+id/linear_fragment_category_archive_category"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginStart="22dp"
-        android:fontFamily="@font/gilroyextrabold"
-        tools:text="Design"
-        android:textColor="@color/black"
-        android:textSize="18sp"
+        android:orientation="horizontal"
+        android:layout_marginStart="20dp"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent" />
+        app:layout_constraintTop_toTopOf="parent">
+
+        <TextView
+            android:id="@+id/txt_category_archive_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:fontFamily="@font/avenir_next_bold"
+            android:includeFontPadding="false"
+            tools:text="Design"
+            android:textColor="@color/black"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"/>
+
+        <ImageView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:src="@drawable/btn_rightarrow"/>
+
+
+    </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_category_archive"
@@ -28,5 +45,5 @@
         android:layout_marginEnd="15dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/txt_category_archive_name" />
+        app:layout_constraintTop_toBottomOf="@+id/linear_fragment_category_archive_category" />
 </androidx.constraintlayout.widget.ConstraintLayout>

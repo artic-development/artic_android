@@ -32,14 +32,12 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent">
 
-            <!--TODO 길어지면 .. 으로 처리해야하는데.. -->
             <TextView
                 android:fontFamily="@font/nanum_barungothic_regular"
                 android:textSize="12sp"
                 android:lineSpacingExtra="4sp"
                 android:textColor="@color/black"
                 android:includeFontPadding="false"
-
                 android:id="@+id/txt_rv_item_article_about_article_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -49,18 +47,22 @@
                 tools:text="디자이너는 PM으로부터 무엇을 기대해야.."
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                app:layout_constraintTop_toTopOf="parent"
+                android:ellipsize="end"
+                android:maxLines="2" />
 
             <TextView
                 android:id="@+id/txt_rv_item_article_about_article_url"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="8dp"
+                android:layout_marginTop="10dp"
                 android:layout_marginBottom="12dp"
 
+                android:ellipsize="end"
                 android:fontFamily="@font/nanum_barungothic_regular"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="9sp"
+                android:maxLines="1"
                 android:textColor="@color/brown_grey"
                 android:textSize="12sp"
                 app:layout_constraintBottom_toBottomOf="parent"

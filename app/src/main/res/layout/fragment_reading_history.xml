@@ -23,15 +23,15 @@
                android:layout_width="wrap_content"
                android:layout_height="wrap_content"
                android:text="@string/reading_history_title"
-               android:textColor="@color/black"
+               android:textColor="#191919"
                android:textSize="18sp"
                android:includeFontPadding="false"
-               android:fontFamily="@font/nanum_barungothic_bold"/>
+               android:fontFamily="@font/nanum_barungothic_regular"
+               android:textStyle="bold"/>
 
            <ImageView
                android:layout_width="21dp"
                android:layout_height="21dp"
-               android:layout_marginLeft="1dp"
                android:layout_toRightOf="@id/txt_reading_history"
                android:src="@drawable/btn_rightarrow"/>
 

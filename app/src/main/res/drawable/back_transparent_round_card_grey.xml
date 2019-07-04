@@ -2,9 +2,9 @@
 <layer-list xmlns:android="http://schemas.android.com/apk/res/android" >
 
 <item
-    android:bottom="1dp"
-    android:left="1dp"
-    android:right="1dp"
+    android:bottom="0dp"
+    android:left="0dp"
+    android:right="0dp"
     android:top="-2dp">
     <shape android:shape="rectangle" >
         <stroke

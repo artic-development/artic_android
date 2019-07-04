@@ -6,55 +6,57 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    android:paddingLeft="20dp"
-    tools:context=".ui.signup.signup.SignupLoginActivity">
+    tools:context=".ui.signup.signup.SignupLoginActivity"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="64dp">
 
-        <ImageView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="?attr/homeAsUpIndicator"
-            android:layout_marginTop="53dp"
-            />
         <TextView
             android:id="@+id/signup_login_next_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentRight="true"
-            android:fontFamily="@font/nanumbarungothic"
+            android:fontFamily="@font/nanum_barungothic_regular"
             android:textColor="#cdcdcd"
             android:includeFontPadding="false"
             android:textSize="17sp"
-            android:layout_marginTop="53dp"
+            android:layout_centerVertical="true"
             android:layout_marginRight="20dp"
             android:text="다음"/>
+        
     </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#d1d1d1"/>
+
     <RelativeLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingTop="43dp"
-        android:paddingRight="170dp"
-        android:paddingBottom="74dp">
-    <TextView
-        android:id="@+id/email_txt"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이메일"
-        android:includeFontPadding="false"
-        android:fontFamily="@font/nanumbarungothicbold"
-        android:textColor="@color/black"
-        android:textSize="21sp"
-        />
+        android:paddingTop="32dp"
+        android:paddingBottom="74dp"
+        android:paddingLeft="20dp">
+        <TextView
+            android:id="@+id/email_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이메일"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="21sp" />
+
         <TextView
             android:id="@+id/signup_login_txt1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="과 "
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanumbarungothiclight"
+            android:fontFamily="@font/nanum_barungothic_light"
             android:textSize="21sp"
             android:textColor="@color/black"
             android:layout_toRightOf="@id/email_txt"/>
@@ -64,7 +66,8 @@
             android:layout_height="wrap_content"
             android:text="비밀번호"
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanumbarungothicbold"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:textStyle="bold"
             android:textColor="@color/black"
             android:textSize="21sp"
             android:layout_toRightOf="@id/signup_login_txt1"/>
@@ -73,7 +76,7 @@
             android:layout_height="wrap_content"
             android:layout_toRightOf="@id/password_txt"
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanumbarungothiclight"
+            android:fontFamily="@font/nanum_barungothic_light"
             android:textSize="21sp"
             android:textColor="@color/black"
             android:text="를"/>
@@ -83,11 +86,12 @@
             android:layout_below="@id/email_txt"
             android:text="알려주세요!"
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanumbarungothiclight"
+            android:fontFamily="@font/nanum_barungothic_light"
             android:textSize="21sp"
-            android:textColor="@color/black"/>
-
+            android:textColor="@color/black"
+            android:layout_marginTop="8dp"/>
     </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -95,14 +99,21 @@
         android:includeFontPadding="false"
         android:fontFamily="@font/nanumbarungothic"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"/>
     <EditText
         android:id="@+id/signup_login_edit_email"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="36dp"
-        android:layout_marginTop="10dp"
-        android:hint="artic@gmail.com"/>
+        android:layout_marginTop="20dp"
+        android:hint="artic@gmail.com"
+        android:layout_marginLeft="20dp"
+        android:theme="@style/EditTheme"
+        android:textSize="14sp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="2sp"/>
 
     <TextView
         android:layout_width="wrap_content"
@@ -112,15 +123,23 @@
         android:layout_marginTop="54dp"
         android:fontFamily="@font/nanumbarungothic"
         android:textColor="@color/black"
-        android:textSize="16sp"/>
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp" />
+
     <EditText
         android:id="@+id/signup_login_edit_password"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginRight="36dp"
-        android:layout_marginTop="10dp"
+        android:layout_marginTop="20dp"
         android:inputType="textPassword"
-        android:hint="영문,숫자 포함 8자리 이상"/>
+        android:hint="영문,숫자 포함 8자리 이상"
+        android:layout_marginLeft="20dp"
+        android:theme="@style/EditTheme"
+        android:textSize="14sp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:lineSpacingExtra="2sp"/>
 
 
 </LinearLayout>
