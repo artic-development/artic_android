@@ -407,6 +407,57 @@ class ArticRepository (
             )
         )
     }
+
+    // @수민
+    fun getMyArchiveList() : Call<List<Archive>> {
+        return Calls.response(
+            listOf(
+                Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                )
+            )
+        )
+    }
 }
 
 

@@ -2,18 +2,21 @@ package com.android.artic.ui.adapter.article
 
 
 
-import android.content.Context
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.bumptech.glide.Glide
 
-class ArticleOverviewRecyclerViewAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
+
+class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_link_list,p0,false)
         return Holder(view)
@@ -32,6 +35,14 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: Context, var dataList:List<Art
         p0.like_number.text=dataList[p1].like.toString()
         p0.link_title.text=dataList[p1].title
 
+        // @수민 담기 버튼 리스너
+        p0.btn_put.setOnClickListener {
+            var putFragment = CollectArchiveDialogFragment()
+
+
+
+            putFragment.show(ctx.supportFragmentManager, putFragment.tag)
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -39,5 +50,8 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: Context, var dataList:List<Art
         val link_title=itemView.findViewById(R.id.rv_link_list_title) as TextView
         val like_number=itemView.findViewById(R.id.rv_link_list_like_num) as TextView
         val img_url =itemView.findViewById(R.id.rv_link_list_img) as ImageView
+
+        // @숨니
+        var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
     }
 }
