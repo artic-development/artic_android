@@ -13,6 +13,7 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_link_result.*
+import org.jetbrains.anko.support.v4.ctx
 
 
 class LinkResultFragment(
@@ -32,7 +33,7 @@ class LinkResultFragment(
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter= ArticleOverviewRecyclerViewAdapter(context!!, data)
+        adapter= ArticleOverviewRecyclerViewAdapter(activity!!, data)
         rv_search_result_link.adapter=adapter
         rv_search_result_link.layoutManager= LinearLayoutManager(context!!, RecyclerView.VERTICAL,false)
 

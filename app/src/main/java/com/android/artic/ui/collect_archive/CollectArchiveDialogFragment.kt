@@ -1,0 +1,72 @@
+package com.android.artic.ui.collect_archive
+
+import android.os.Bundle
+import android.view.*
+import androidx.recyclerview.widget.LinearLayoutManager
+import com.android.artic.R
+import com.android.artic.data.Archive
+import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.util.dpToPx
+import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import kotlinx.android.synthetic.main.dialog_put_archive.*
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.support.v4.toast
+import org.koin.android.ext.android.inject
+import retrofit2.Call
+import retrofit2.Callback
+import retrofit2.Response
+
+class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
+
+    private val repository: ArticRepository by inject()
+    private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf()) }
+
+    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
+        return inflater.inflate(R.layout.dialog_put_archive, container)
+    }
+
+    override fun onActivityCreated(savedInstanceState: Bundle?) {
+        super.onActivityCreated(savedInstanceState)
+
+        setRecyclerView()
+        setButtonListener()
+    }
+
+    // @수민) Button Listener 설정
+    private fun setButtonListener() {
+        btn_rv_dialog_put_archive_complete.setOnClickListener {
+            if (btn_rv_dialog_put_archive_complete.text.toString() == "취소") {
+                dismiss()
+            }
+            else if (btn_rv_dialog_put_archive_complete.text.toString() == "완료") {
+                // TODO (@수민) 완료 누렀을 때 내 아카이브 리스트에서 선택한 리스트에 아티클 넣는 통신
+                toast("아카이브에 넣었당")
+            }
+        }
+    }
+
+    // @수민) RecyclerView 설정
+    private fun setRecyclerView() {
+        rv_dialog_put_archive_my_archive_list.adapter = collectArchiveListAdapter
+        rv_dialog_put_archive_my_archive_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
+
+        var spacesItemDecoration = HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
+        rv_dialog_put_archive_my_archive_list.addItemDecoration(spacesItemDecoration)
+
+        repository.getMyArchiveList().enqueue(
+            object : Callback<List<Archive>> {
+                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
+                    toast(R.string.network_error)
+                }
+
+                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
+                    response.body()?.let {
+                        collectArchiveListAdapter.dataList = it
+                        collectArchiveListAdapter.notifyDataSetChanged()
+                    }
+                }
+            }
+        )
+    }
+}
