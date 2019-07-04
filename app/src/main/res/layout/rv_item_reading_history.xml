@@ -50,9 +50,11 @@
             android:id="@+id/rv_reading_history_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
-            android:layout_marginTop="33dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
-            android:background="@drawable/img_history"
+            android:background="@drawable/archive_card_round"
+            android:scaleType="centerCrop"
             android:layout_alignParentRight="true" />
 
 

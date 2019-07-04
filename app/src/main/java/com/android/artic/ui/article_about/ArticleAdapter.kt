@@ -8,13 +8,13 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.ui.article_about.data.ArticleCardData
+import com.android.artic.data.Article
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
 
 class ArticleAdapter(
     private val context: Context,
-    var data: List<ArticleCardData>
+    var data: List<Article>
 ): RecyclerView.Adapter<ArticleAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_article_about_article, parent, false)
@@ -28,7 +28,7 @@ class ArticleAdapter(
             val cur = data[position]
             img?.let {
                 Glide.with(context)
-                    .load(cur.img_url)
+                    .load(cur.title_img_url)
                     .into(it)
             }
             txt_title?.text = cur.title

@@ -10,14 +10,16 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
-import com.android.artic.ui.link.LinkOverviewRecyclerViewAdapter
-import com.android.artic.data.link.LinkOverviewData
+import com.android.artic.data.Article
+import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.fragment_link_result.*
 
 
-class LinkResultFragment : Fragment() {
+class LinkResultFragment(
+    private val data: List<Article>
+) : Fragment() {
 
-    lateinit var linkOverviewRecyclerViewAdapter: LinkOverviewRecyclerViewAdapter
+    lateinit var adapter: ArticleOverviewRecyclerViewAdapter
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
         savedInstanceState: Bundle?
@@ -30,35 +32,8 @@ class LinkResultFragment : Fragment() {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        var dataList: ArrayList<LinkOverviewData> = ArrayList()
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
-                202,
-                "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
-            )
-        )
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
-                202,
-                "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
-            )
-        )
-
-        dataList.add(
-            LinkOverviewData(
-                "brunch.co.kr",
-                "로고디자인을 위한 지식에 대한\n모든 것을 파헤치다",
-                202,
-                "http://sopt.org/wp/wp-content/uploads/2014/01/24_SOPT-LOGO_COLOR-1.png"
-            )
-        )
-
-        linkOverviewRecyclerViewAdapter= LinkOverviewRecyclerViewAdapter(context!!, dataList)
-        rv_search_result_link.adapter=linkOverviewRecyclerViewAdapter
+        adapter= ArticleOverviewRecyclerViewAdapter(context!!, data)
+        rv_search_result_link.adapter=adapter
         rv_search_result_link.layoutManager= LinearLayoutManager(context!!, RecyclerView.VERTICAL,false)
 
 

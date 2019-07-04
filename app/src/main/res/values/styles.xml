@@ -12,4 +12,9 @@
         <item name="windowActionBar">false</item>
         <item name="windowNoTitle">true</item>
     </style>
+
+    <style name="EditTheme" parent="Theme.AppCompat.Light.NoActionBar">
+        <item name="colorAccent">@color/very_light_pink_two</item>
+        <item name="colorControlNormal">@color/very_light_pink_two</item>
+    </style>
 </resources>
