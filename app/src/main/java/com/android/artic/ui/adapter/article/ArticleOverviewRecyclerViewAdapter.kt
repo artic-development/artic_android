@@ -2,16 +2,19 @@ package com.android.artic.ui.adapter.article
 
 
 
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageButton
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.bumptech.glide.Glide
 
@@ -43,6 +46,13 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
 
             putFragment.show(ctx.supportFragmentManager, putFragment.tag)
         }
+
+        // @수민) 아티클 상세보기로
+        p0.relative_article_item_card.setOnClickListener {
+            var intent = Intent(ctx, ArticleAboutActivity::class.java)
+
+            ctx.startActivity(intent)
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -53,5 +63,6 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
 
         // @숨니
         var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
+        var relative_article_item_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_link_list)
     }
 }

@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.reading_history
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.bumptech.glide.Glide
 
 class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
@@ -32,7 +34,9 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
         holder.reading_history_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
+            var intent = Intent(ctx, ArticleAboutActivity::class.java)
 
+            ctx.startActivity(intent)
         }
     }
 

@@ -11,6 +11,7 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.GridSpacesItemDecoration
+import com.android.artic.ui.HorizontalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.android.artic.ui.new_article_link.NewArticleLinkActivity
 import com.android.artic.util.dpToPx
@@ -47,7 +48,7 @@ class NewArticleFragment : Fragment() {
             rv_frag_home_new_article.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             // recyclerview space 조절
-            var spacesItemDecoration = GridSpacesItemDecoration(this, 10.dpToPx())
+            var spacesItemDecoration = HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
 
             repository.getNewArticleList().enqueue(

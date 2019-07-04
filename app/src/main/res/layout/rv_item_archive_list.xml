@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
-    android:layout_width="match_parent" android:layout_height="180dp" android:background="#f9f9f9">
+    android:layout_width="match_parent" android:layout_height="180dp" android:background="#f9f9f9"
+    android:id="@+id/relative_rv_item_archive_list">
 
     <RelativeLayout
         android:layout_width="match_parent"
@@ -40,7 +41,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_alignEnd="@id/ibtn_rv_item_archive_list_scrap"
-            android:layout_alignStart="@id/tv_rv_item_archive_list_title"
             android:layout_alignParentBottom="true"
             android:layout_marginBottom="18dp">
 
@@ -78,8 +78,10 @@
                     android:text="13"
                     android:textSize="14sp"
                     android:fontFamily="@font/nanum_barungothic_bold"
+                    android:textStyle="bold"
                     android:textColor="#4f80ff"
-                    android:includeFontPadding="false"/>
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2sp"/>
 
                 <TextView
                     android:layout_width="wrap_content"
@@ -87,8 +89,10 @@
                     android:text="개"
                     android:textSize="14sp"
                     android:fontFamily="@font/nanum_barungothic_bold"
+                    android:textStyle="bold"
                     android:textColor="#4f80ff"
-                    android:includeFontPadding="false"/>
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2sp"/>
 
             </LinearLayout>
 

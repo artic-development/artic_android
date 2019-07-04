@@ -9,7 +9,8 @@
     <androidx.cardview.widget.CardView
         android:layout_width="match_parent"
         android:layout_height="215dp"
-        android:layout_margin="5dp">
+        android:layout_margin="5dp"
+        app:cardCornerRadius="6dp">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/container_rv_item_category_archive_card"
@@ -31,10 +32,12 @@
                 android:id="@+id/txt_rv_item_category_archive_card_title"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
-                android:layout_marginEnd="18dp"
-                android:fontFamily="@font/nanumbarungothic"
+                android:layout_marginEnd="16dp"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textSize="14sp"
+                android:includeFontPadding="false"
                 android:lineSpacingExtra="6sp"
                 android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
@@ -46,9 +49,11 @@
                 android:id="@+id/txt_rv_item_category_archive_card_articlenum"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="18dp"
+                android:layout_marginStart="16dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nanumsquarebold"
+                android:fontFamily="@font/nanum_square_bold"
+                android:includeFontPadding="false"
+                android:textStyle="bold"
                 android:lineSpacingExtra="7sp"
                 android:textColor="@color/white"
                 android:textSize="13sp"

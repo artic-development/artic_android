@@ -8,7 +8,9 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.VerticalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.activity_artic_pick.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -28,6 +30,9 @@ class ArticPickActivity : BaseActivity() {
 
         rv_artic_pick.adapter=adapter
         rv_artic_pick.layoutManager=LinearLayoutManager(this,RecyclerView.VERTICAL,false)
+
+        var spaceItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
+        rv_artic_pick.addItemDecoration(spaceItemDecoration)
 
         repository.getArticPickList().enqueue(
             object : Callback<List<Article>> {

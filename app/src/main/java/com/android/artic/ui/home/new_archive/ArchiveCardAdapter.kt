@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.new_archive
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.ui.archive.ArchiveActivity
+import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
 
 class ArchiveCardAdapter(
@@ -32,6 +35,9 @@ class ArchiveCardAdapter(
             }
             container?.setOnClickListener {
                 // TODO cur.archive_id 를 사용해서 다른 화면으로 넘어가는 코드 구현
+                var intent = Intent(context, ArticleActivity::class.java)
+
+                context.startActivity(intent)
             }
         }
     }

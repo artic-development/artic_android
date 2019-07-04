@@ -6,22 +6,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:orientation="vertical"
-    tools:context=".ui.new_article_link.NewArticleLinkActivity">
+    tools:context=".ui.new_article_link.NewArticleLinkActivity"
+    android:background="@color/white">
 
     <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="55dp"
+        android:layout_height="64dp"
         android:background="@color/white">
-        <ImageView
-            android:id="@+id/btn_toolbar_review_back"
-            android:layout_width="24dp"
-            android:layout_height="24dp"
-            android:layout_marginTop="17dp"
-            android:layout_marginLeft="20dp"
-            android:layout_alignParentLeft="true"
-            android:adjustViewBounds="true"
-            android:src="?attr/homeAsUpIndicator"
-            />
 
         <TextView
             android:layout_width="wrap_content"
@@ -29,15 +20,23 @@
             android:layout_centerInParent="true"
             android:textSize="17sp"
             android:textColor="@color/black"
+            android:fontFamily="@font/nanum_barungothic_regular"
             android:includeFontPadding="false"
-            android:fontFamily="@font/nanum_barungothic_bold"
             android:text="@string/new_article_link_title"/>
     </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#d1d1d1"/>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_new_article_link"
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:layout_marginLeft="20dp"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp">
 
 
     </androidx.recyclerview.widget.RecyclerView>
