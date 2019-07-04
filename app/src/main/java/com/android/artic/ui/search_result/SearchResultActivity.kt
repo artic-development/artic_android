@@ -6,16 +6,21 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_search_result.*
 
-class SearchResultActivity : AppCompatActivity() {
+/**
+ * it must need searchWord intent["searchKeyword"]
+ */
+class SearchResultActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
 
+        // TODO 실제 검색 결과 데이터를 넘겨줘야 한다.
         search_result_viewpager.adapter=
-            SearchResultAdapter(supportFragmentManager, 2)
+            SearchResultAdapter(supportFragmentManager, 2, listOf(), listOf())
         search_result_viewpager.offscreenPageLimit=2
         tl_search_result.setupWithViewPager(search_result_viewpager)
 
@@ -24,9 +29,5 @@ class SearchResultActivity : AppCompatActivity() {
 
         tl_search_result.getTabAt(0)!!.customView=searchResultTabLayout.findViewById(R.id.search_result_archive_tab) as RelativeLayout
         tl_search_result.getTabAt(1)!!.customView=searchResultTabLayout.findViewById(R.id.search_result_link_tab) as RelativeLayout
-
     }
-
-
 }
-

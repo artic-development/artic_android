@@ -6,6 +6,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.toast
@@ -19,7 +20,7 @@ import retrofit2.Response
  * it must need archive id (intent["archiveId"])
  * @author greedy0110
  * */
-class ArticleAboutActivity : AppCompatActivity() {
+class ArticleAboutActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private val adapter: ArticleAdapter by lazy { ArticleAdapter(this, listOf()) }
 
@@ -48,8 +49,7 @@ class ArticleAboutActivity : AppCompatActivity() {
             }
         )
 
-        // TODO articleId 를 이용한 실제 함수로 변경해야함.
-        repository.getDummyArticle().enqueue(
+         repository.getArticle(articleId).enqueue(
             object : Callback<Article> {
                 override fun onFailure(call: Call<Article>, t: Throwable) {
                     toast(R.string.network_error)
@@ -76,8 +76,7 @@ class ArticleAboutActivity : AppCompatActivity() {
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
         rv_article_about_another_article.layoutManager = GridLayoutManager(this, 2)
 
-        // TODO archiveId 를 이용한 실제 함수로 변경해야함.
-        repository.getDummyArticleList().enqueue(
+        repository.getArticleListGivenArchive(archiveId).enqueue(
             object : Callback<List<Article>> {
                 override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                     toast(R.string.network_error)

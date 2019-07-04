@@ -8,12 +8,10 @@ import android.widget.ImageView
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.data.link.LinkOverviewData
-import com.android.artic.ui.home.reading_history.data.HistoryData
-import com.android.artic.ui.link.LinkOverviewRecyclerViewAdapter
+import com.android.artic.data.Article
 import com.bumptech.glide.Glide
 
-class ReadingHistoryAdapter(val ctx: Context, var dataList:List<HistoryData> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
+class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ReadingHistoryAdapter.Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_reading_history, p0, false)
         return Holder(view)
@@ -28,10 +26,10 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<HistoryData> ): 
 
         holder.img_url?.let {
             Glide.with(ctx)
-            .load(dataList[position].img_url)
+            .load(dataList[position].title_img_url)
                 .into(it)
         }
-        holder.reading_history_url?.text=dataList[position].reading_history_url
+        holder.reading_history_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
 

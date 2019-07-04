@@ -8,13 +8,14 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.util.Log
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.sdk25.coroutines.textChangedListener
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.textColorResource
 
-class LoginActivity : AppCompatActivity() {
+class LoginActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

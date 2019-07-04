@@ -11,9 +11,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
+import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.detail_reading_history.DetailReadingHistoryActivity
-import com.android.artic.ui.home.reading_history.data.HistoryData
 import kotlinx.android.synthetic.main.fragment_reading_history.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -57,15 +57,15 @@ class ReadingHistoryFragment : Fragment() {
             rv_reading_history.adapter = adapter
             rv_reading_history.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
 
-            repository.getReadingHistoryArchiveList().enqueue(
-                object : Callback<List<HistoryData>> {
-                    override fun onFailure(call: Call<List<HistoryData>>, t: Throwable) {
+            repository.getReadingHistoryArticleList().enqueue(
+                object : Callback<List<Article>> {
+                    override fun onFailure(call: Call<List<Article>>, t: Throwable) {
                         toast(R.string.network_error)
                     }
 
                     override fun onResponse(
-                        call: Call<List<HistoryData>>,
-                        response: Response<List<HistoryData>>
+                        call: Call<List<Article>>,
+                        response: Response<List<Article>>
                     ) {
                         response.body()?.let {
                             adapter.dataList = it
