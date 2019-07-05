@@ -63,6 +63,8 @@
     </RelativeLayout>
 
     <com.google.android.material.tabs.TabLayout
+        app:tabIndicatorHeight="0dp"
+        app:tabRippleColor="@null"
         android:id="@+id/tl_search_result"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"

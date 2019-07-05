@@ -14,12 +14,12 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="13dp"
         android:layout_marginBottom="13dp"
+        android:fontFamily="@font/avenir_next_bold"
+        android:includeFontPadding="false"
+        android:text="Design"
         android:textColor="@color/black"
         android:textSize="21sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="parent"
-        android:text="Design"
-        android:fontFamily="@font/avenir_next_bold"
-        android:includeFontPadding="false"/>
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>
