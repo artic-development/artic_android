@@ -10,7 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.android.artic.ui.detail_artic_pick.ArticPickActivity
 import com.android.artic.util.dpToPx
@@ -46,7 +46,8 @@ class ArticPickFragment : Fragment() {
             rv_frag_home_artic_pick.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             // recyclerview space 조절
-            var spacesItemDecoration = HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
+            var spacesItemDecoration =
+                HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_artic_pick.addItemDecoration(spacesItemDecoration)
 
             repository.getArticPickList().enqueue(

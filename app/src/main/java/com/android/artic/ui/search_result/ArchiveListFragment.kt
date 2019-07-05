@@ -11,9 +11,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.VerticalSpaceItemDecoration
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
-import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
