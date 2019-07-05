@@ -15,4 +15,6 @@
     <string name="new_article_about_read">아티클 읽기</string>
     <string name="new_article_about_archive">아카이브의 다른 아티클</string>
     <string name="new_article_about_showall">전체 보기</string>
+    <string name="new_notification">새로운 알림</string>
+    <string name="notification_old">읽은 알림</string>
 </resources>
