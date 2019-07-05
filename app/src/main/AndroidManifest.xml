@@ -52,11 +52,6 @@
             android:theme="@style/AppTheme.NoActionBar" />
         <activity android:name=".ui.category.CategoryActivity" />
         <activity android:name=".ui.home.HomeActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.archive.ArchiveActivity" />
     </application>
