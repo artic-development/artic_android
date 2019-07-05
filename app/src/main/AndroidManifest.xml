@@ -18,7 +18,7 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.setting.setting_version.VersionActivity"></activity>
+        <activity android:name=".ui.setting.setting_version.SettingVersionActivity"></activity>
         <activity android:name=".ui.navigation.NavigationActivity"></activity>
         <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
         <activity android:name=".ui.article_webview.ArticleWebViewActivity" />

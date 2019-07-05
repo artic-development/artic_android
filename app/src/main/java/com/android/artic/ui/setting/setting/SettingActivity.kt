@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.ui.setting.setting_editprofile.SettingEditProfileActivity
+import com.android.artic.ui.setting.setting_version.SettingVersionActivity
 import kotlinx.android.synthetic.main.activity_setting.*
 
 class SettingActivity : AppCompatActivity() {
@@ -18,6 +19,12 @@ class SettingActivity : AppCompatActivity() {
         setting_edit_profile_container.setOnClickListener{
             val intent= Intent(this, SettingEditProfileActivity::class.java)
 
+            startActivity(intent)
+        }
+
+        //버전정보 누르면 버전 페이지로
+        setting_version_info_container.setOnClickListener{
+            val intent= Intent(this, SettingVersionActivity::class.java)
             startActivity(intent)
         }
     }
