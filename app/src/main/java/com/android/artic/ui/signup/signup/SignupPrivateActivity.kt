@@ -11,7 +11,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
-import com.android.artic.ui.home.HomeFragment
+import com.android.artic.ui.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_signup_private.*
 import org.jetbrains.anko.toast
 
@@ -29,7 +29,7 @@ class SignupPrivateActivity : BaseActivity() {
         signup_private_done_txt.setOnClickListener {
             if (signup_private_done_txt.currentTextColor == Color.parseColor("#4f80ff")) {
                 // TODO (@수민) 회원가입 완료 통신 구현
-                var intent = Intent(this, HomeFragment::class.java)
+                var intent = Intent(this, NavigationActivity::class.java)
 
                 intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
@@ -97,7 +97,7 @@ class SignupPrivateActivity : BaseActivity() {
                     // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
                     if (et_act_signup_private_name.text.toString() != "" && et_act_signup_private_birth.text.toString() != "") {
                         // TODO (@수민) 검색 기능 구현
-                        var intent = Intent(this@SignupPrivateActivity, HomeFragment::class.java)
+                        var intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
 
                         intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                         intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
