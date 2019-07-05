@@ -1,6 +1,7 @@
 package com.android.artic.ui.home.category_archive
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
 
 class CategoryArchiveCardAdapter(
@@ -30,6 +32,15 @@ class CategoryArchiveCardAdapter(
             }
             txt_title?.text = cur.title
             txt_articenum?.text = String.format("아티클 %d개", cur.num_article) // TODO 아티클 이라는 단어를 strings.xml에서 관리할 수 없나?
+            // @수민) 카드 라운드 처리
+            img_background?.clipToOutline = true
+
+            // @수민) 카드를 누르면 아카이브 상세 보기 (링크 목록) 으로 이동
+            container?.setOnClickListener {
+                var intent = Intent(context, ArticleActivity::class.java)
+
+                context.startActivity(intent)
+            }
         }
     }
 

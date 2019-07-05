@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.article.ArticleActivity
+import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.util.dpToPx
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
@@ -22,8 +23,10 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+//        var params =
 
         holder.img_url?.clipToOutline = true
+
 
        holder.img_url?.let{
            Glide.with(ctx)
@@ -33,7 +36,7 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
         holder.artic_pick_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
-            var intent = Intent(ctx, ArticleActivity::class.java)
+            var intent = Intent(ctx, ArticleAboutActivity::class.java)
 
             ctx.startActivity(intent)
         }

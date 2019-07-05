@@ -13,9 +13,12 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:text="새로운 아티클"
-            android:fontFamily="@font/nanum_barungothic_bold"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
             android:textSize="18sp"
-            android:textColor="#191919"/>
+            android:textColor="#191919"
+            android:layout_gravity="center_vertical"/>
 
         <ImageView
             android:layout_width="wrap_content"
@@ -23,6 +26,7 @@
             android:src="@drawable/btn_rightarrow"/>
 
     </LinearLayout>
+
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_frag_home_new_article"

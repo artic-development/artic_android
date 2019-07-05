@@ -7,6 +7,7 @@ import com.android.artic.data.notification.*
 import khronos.Dates
 import khronos.days
 import khronos.minutes
+import com.android.artic.ui.search.data.RecommendWordData
 import retrofit2.Call
 import retrofit2.mock.Calls
 
@@ -44,37 +45,37 @@ class ArticRepository (
             listOf(
                 Article(
                     id = 0,
-                    title = "history article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    title = "제품 디자이너는 코딩에 대해 잊어야 합니다. ",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "history article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    title = "댑 (DApp)이 몰고올 디자이너 ‘댑’ ",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "history article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    title = "사용자 경험(UX), 망해가던 Gucci를",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "history article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    title = "디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "history article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    title = "와츠앱 스티커 작업기를 가진다면 어떻게 해야할까?",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
                 )
@@ -168,37 +169,37 @@ class ArticRepository (
             listOf(
                 Article(
                     id = 0,
-                    title = "dummy article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "dummy article",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "dummy article",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "dummy article",
+                    title = "UI / UX 뭐시기 어쩌고",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "dummy article",
+                    title = "UI / UX 뭐시기 어쩌고",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 )
@@ -272,42 +273,28 @@ class ArticRepository (
                 Archive(
                     id = 0,
                     category_ids = listOf(1,2,3),
-                    title = "new archive list",
+                    title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
                     article_ids = listOf(1,2,3)
                 ),Archive(
                     id = 1,
                     category_ids = listOf(1,2,3),
-                    title = "new archive list",
+                    title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
                     article_ids = listOf(1,2,3)
                 ),Archive(
                     id = 2,
                     category_ids = listOf(1,2,3),
-                    title = "new archive list",
+                    title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
                     article_ids = listOf(1,2,3)
                 ),Archive(
                     id = 3,
                     category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 4,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ),Archive(
-                    id = 5,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
+                    title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
                     article_ids = listOf(1,2,3)
@@ -328,35 +315,35 @@ class ArticRepository (
                     id = 0,
                     title = "new article",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/XsHRu.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "new article",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
-                    like = 999,
-                    isLiked = true
-                ),Article(
-                    id = 0,
-                    title = "new article",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/XsHRu.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "new article",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/XsHRu.jpg",
                     like = 999,
-                    isLiked = true
+                    isLiked = false
                 ),Article(
                     id = 0,
                     title = "new article",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/XsHRu.jpg",
+                    like = 999,
+                    isLiked = false
+                ),Article(
+                    id = 0,
+                    title = "new article",
+                    url = "https://github.com/artic-development/artic_android",
+                    title_img_url = "https://img.theqoo.net/img/XsHRu.jpg",
                     like = 999,
                     isLiked = false
                 )
@@ -374,39 +361,123 @@ class ArticRepository (
             listOf(
                 Article(
                     id = 0,
-                    title = "article given archive",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
+                    url = "https://github.com",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "article given archive",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "article given archive",
+                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
-                    title = "article given archive",
+                    title = "UI / UX 뭐시기 어쩌고",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
-                    title = "article given archive",
+                    title = "UI / UX 뭐시기 어쩌고",
                     url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
+                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
+                )
+            )
+        )
+    }
+
+    // @수민
+    fun getMyArchiveList() : Call<List<Archive>> {
+        return Calls.response(
+            listOf(
+                Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                ), Archive(
+                    id = 0,
+                    category_ids = listOf(1,2,3),
+                    title = "new archive list",
+                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+                    num_article = 3,
+                    article_ids = listOf(1,2,3)
+                )
+            )
+        )
+    }
+
+    // @수민) 추천 검색어 받아오기
+    fun getRecommendWordList() : Call<List<RecommendWordData>> {
+        return Calls.response(
+            listOf(
+//                "UI/UX 디자인", "BX 디자인", "브랜딩", "서비스 기획", "편집 디자인", "안드로이드", "iOS", "서버"
+                RecommendWordData(
+                    word= "UI/UX 디자인"
+                ),
+                RecommendWordData(
+                    word= "BX 디자인"
+                ),
+                RecommendWordData(
+                    word= "브랜딩"
+                ),
+                RecommendWordData(
+                    word = "서비스 기획"
+                ),
+                RecommendWordData(
+                    word = "편집 디자인"
+                ),
+                RecommendWordData(
+                    word = "안드로이드"
+                ),
+                RecommendWordData(
+                    word = "iOS"
+                ),
+                RecommendWordData(
+                    word = "서버"
                 )
             )
         )

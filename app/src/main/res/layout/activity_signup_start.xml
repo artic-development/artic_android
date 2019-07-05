@@ -5,13 +5,13 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.signup.signup_start.SignupStartActivity"
-    android:background="@color/colorPrimary">
+    android:background="@color/white">
 
     <ImageView
         android:id="@+id/img_act_signup_start_logo"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="213dp"
+        android:layout_marginTop="205dp"
         android:src="@drawable/artic_logo"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"

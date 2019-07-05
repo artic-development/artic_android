@@ -21,16 +21,22 @@
                 android:id="@+id/txt_article_about_source"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="29dp"
                 android:fontFamily="@font/nanum_barungothic_regular"
                 android:includeFontPadding="false"
                 android:text="@string/new_article_about_title"
                 android:textColor="@color/black"
                 android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+            
         </androidx.constraintlayout.widget.ConstraintLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#d1d1d1" />
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
@@ -52,6 +58,7 @@
                 android:textSize="20sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
                 tools:text="지금 바로 시작할 수 있는\n린 브랜딩 방법론을 알려주세요" />
@@ -81,7 +88,9 @@
                 android:textColor="@color/brown_grey"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="brunch.co.kr" />
+                tools:text="brunch.co.kr"
+                android:ellipsize="end"
+                android:maxLines="1"  />
 
             <TextView
                 android:id="@+id/txt_article_about_title"
@@ -107,7 +116,8 @@
                 android:layout_marginEnd="20dp"
                 android:layout_marginBottom="20dp"
                 android:background="@drawable/blue_edge_round"
-                android:fontFamily="@font/nanum_barungothic_bold"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="9sp"
                 android:text="@string/new_article_about_read"
@@ -130,7 +140,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="23dp"
                 android:layout_marginTop="25dp"
-                android:fontFamily="@font/nanum_barungothic_bold"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="9sp"
                 android:text="@string/new_article_about_archive"
@@ -156,7 +167,8 @@
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
                 android:layout_marginBottom="40dp"
-                android:fontFamily="@font/nanum_barungothic_bold"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
                 android:includeFontPadding="false"
                 android:lineSpacingExtra="9sp"
                 android:text="@string/new_article_about_showall"

@@ -8,7 +8,10 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.ui.VerticalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.activity_new_article_link.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -25,8 +28,12 @@ class NewArticleLinkActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_new_article_link)
 
-        rv_new_article_link.adapter=adapter
-        rv_new_article_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+        rv_new_article_link.adapter = adapter
+        rv_new_article_link.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+
+        // recyclerview space 조절
+        var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
+        rv_new_article_link.addItemDecoration(spacesItemDecoration)
 
         repository.getDummyArticleList().enqueue(
             object : Callback<List<Article>> {

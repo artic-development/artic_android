@@ -1,0 +1,61 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="wrap_content"
+    android:layout_alignParentBottom="true">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="50dp">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="저장 위치"
+            android:textColor="#000000"
+            android:textSize="14sp"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:layout_centerInParent="true"/>
+
+        <ImageButton
+            android:id="@+id/ibtn_dialog_put_archive_new_archive"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:background="@drawable/btn_plus"
+            android:layout_alignParentEnd="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"/>
+
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#cdcdcd"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_dialog_put_archive_my_archive_list"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginBottom="13dp">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#cdcdcd"/>
+
+    <Button
+        android:id="@+id/btn_rv_dialog_put_archive_complete"
+        android:layout_width="match_parent"
+        android:layout_height="84dp"
+        android:background="@color/artic_transparent"
+        android:text="취소"
+        android:textColor="@color/black"
+        android:textSize="17sp"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:includeFontPadding="false"/>
+
+</LinearLayout>
