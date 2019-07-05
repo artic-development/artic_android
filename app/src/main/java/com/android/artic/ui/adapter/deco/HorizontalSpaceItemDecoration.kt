@@ -1,4 +1,4 @@
-package com.android.artic.ui
+package com.android.artic.ui.adapter.deco
 
 import android.content.Context
 import android.graphics.Rect

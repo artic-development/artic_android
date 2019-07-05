@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.util.dpToPx
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
@@ -61,7 +61,8 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
         rv_dialog_put_archive_my_archive_list.adapter = collectArchiveListAdapter
         rv_dialog_put_archive_my_archive_list.layoutManager = LinearLayoutManager(context, LinearLayoutManager.HORIZONTAL, false)
 
-        var spacesItemDecoration = HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
+        var spacesItemDecoration =
+            HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
         rv_dialog_put_archive_my_archive_list.addItemDecoration(spacesItemDecoration)
 
         repository.getMyArchiveList().enqueue(
