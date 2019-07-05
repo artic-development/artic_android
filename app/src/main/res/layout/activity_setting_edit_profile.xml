@@ -32,7 +32,7 @@
             android:text="완료"
             android:textSize="17sp"
             android:layout_marginRight="20dp"
-            android:textColor="@color/soft_blue"
+            android:textColor="@color/brownish_grey"
             android:includeFontPadding="false"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:layout_alignParentRight="true"
@@ -92,7 +92,7 @@
         android:layout_height="0.6dp"
         android:layout_marginTop="20dp"
         android:background="#d1d1d1"
-        app:layout_constraintTop_toBottomOf="@+id/editText4" />
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_myinfo_et" />
 
     <TextView
         android:id="@+id/edit_profile_name_txt"
@@ -138,10 +138,10 @@
 
 
     <EditText
-        android:id="@+id/editText4"
+        android:id="@+id/edit_profile_myinfo_et"
         android:layout_width="300dp"
         android:layout_height="wrap_content"
-        android:layout_marginStart="32dp"
+        android:layout_marginLeft="34dp"
         android:background="@null"
         android:ems="10"
         android:gravity="start|top"

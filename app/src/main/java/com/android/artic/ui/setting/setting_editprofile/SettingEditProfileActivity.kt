@@ -7,26 +7,29 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.os.Environment
 import android.provider.MediaStore
+import android.text.Editable
+import android.text.TextWatcher
 import android.util.Log
 import android.view.View
-import android.widget.Button
-import android.widget.ImageView
-import android.widget.TextView
-import android.widget.Toast
+import android.widget.*
 import androidx.appcompat.app.AlertDialog
+import androidx.core.content.ContextCompat
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
+import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
+import org.jetbrains.anko.backgroundColor
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
 
-class SettingEditProfileActivity : AppCompatActivity() {
+class SettingEditProfileActivity : BaseActivity() {
 
     private var btn: TextView?= null
     private var imageview: ImageView? = null
+
     private val GALLERY=1
-    private val CAMERA =2
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_setting_edit_profile)
@@ -35,11 +38,53 @@ class SettingEditProfileActivity : AppCompatActivity() {
         btn = findViewById<View>(R.id.edit_profile_img_change_btn) as TextView
         imageview= findViewById<View>(R.id.edit_profile_img) as ImageView
 
+
+        edit_profile_name_et.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+              //  edit_profile_finish_btn.setTextColor(ContextCompat.getColor(btn , R.color.soft_blue))
+                changeTextColor()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                edit_profile_finish_btn.isEnabled=false
+
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+
+            }
+
+        })
+
+        edit_profile_myinfo_et.addTextChangedListener(object: TextWatcher{
+            override fun afterTextChanged(s: Editable?) {
+                changeTextColor()
+            }
+
+            override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
+                edit_profile_finish_btn.isEnabled=false
+            }
+
+            override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
+                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+            }
+
+        })
+
+
         btn!!.setOnClickListener{
             choosePhotoFromGallary()
 
         }
 
+
+
+
+
+    }
+
+    fun changeTextColor() {
+        edit_profile_finish_btn.setTextColor(ContextCompat.getColor(this , R.color.soft_blue))
     }
 
     //갤러리에서 이미지를 선택하면 onActivityResult() 메소드가 실행
@@ -80,6 +125,7 @@ class SettingEditProfileActivity : AppCompatActivity() {
     }
 
     //이미지를 저장하는 메소드
+    //IMAGE_DIRECTORY는 모든 이미지가 저장 될 폴더 이름
     fun saveImage(myBitmap: Bitmap):String {
         val bytes = ByteArrayOutputStream()
         myBitmap.compress(Bitmap.CompressFormat.JPEG, 90, bytes)

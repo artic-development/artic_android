@@ -18,14 +18,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ui.navigation.NavigationActivity">
-
-        </activity>
+        <activity android:name=".ui.setting.setting_version.VersionActivity"></activity>
+        <activity android:name=".ui.navigation.NavigationActivity"></activity>
         <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
-        <activity android:name=".ui.article_webview.ArticleWebViewActivity"></activity>
+        <activity android:name=".ui.article_webview.ArticleWebViewActivity" />
         <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
-        <activity android:name=".ui.login.login_start.LoginStartActivity"></activity>
-        <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity"></activity>
+        <activity android:name=".ui.login.login_start.LoginStartActivity" />
+        <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity" />
         <activity android:name=".ui.setting.setting.SettingActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -46,7 +45,7 @@
         <activity
             android:name=".ui.search.SearchActivity"
             android:windowSoftInputMode="adjustPan" />
-        <activity android:name=".ui.article.ArticleActivity"></activity>
+        <activity android:name=".ui.article.ArticleActivity" />
         <activity android:name=".ui.archive.ArchiveActivity" />
     </application>
 
