@@ -13,8 +13,7 @@ import org.koin.java.KoinJavaComponent.inject
 class SearchResultAdapter (
     fm:FragmentManager,
     private val num_fragmnet:Int,
-    private val archiveList: List<Archive>,
-    private val articleList: List<Article>
+    private val searchKeyword: String
 ) : FragmentStatePagerAdapter(fm) {
 
     companion object{
@@ -24,13 +23,13 @@ class SearchResultAdapter (
 
     fun getArchiveResultFragment () : ArchiveListFragment {
         if(archiveResultFragment ==null)
-            archiveResultFragment = ArchiveListFragment(archiveList)
+            archiveResultFragment = ArchiveListFragment(searchKeyword)
         return archiveResultFragment!!
     }
 
     fun getLinkReultFragment () : LinkResultFragment {
         if(linkResultFragment ==null)
-            linkResultFragment = LinkResultFragment(articleList)
+            linkResultFragment = LinkResultFragment(searchKeyword)
         return linkResultFragment!!
     }
 
@@ -38,8 +37,8 @@ class SearchResultAdapter (
     override fun getItem(position: Int): Fragment? {
         return when(position) {
 
-            0-> ArchiveListFragment(archiveList)
-            1-> LinkResultFragment(articleList)
+            0-> ArchiveListFragment(searchKeyword)
+            1-> LinkResultFragment(searchKeyword)
             else->null
         }
 

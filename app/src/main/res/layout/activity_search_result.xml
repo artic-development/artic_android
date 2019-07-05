@@ -12,7 +12,7 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/white">
-        
+
     </RelativeLayout>
     
     <View
@@ -69,7 +69,13 @@
         android:background="@color/white"
         app:tabGravity="fill"
         app:tabMode="fixed"/>
-    
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="#d1d1d1" />
+
     <androidx.viewpager.widget.ViewPager
         android:id="@+id/search_result_viewpager"
         android:layout_width="match_parent"

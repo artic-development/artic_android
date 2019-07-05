@@ -28,11 +28,11 @@
             android:id="@+id/img_search_result_tab_archive"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:src="@drawable/dot"
-            android:layout_toRightOf="@id/tv_search_result_tab_archive"
             android:layout_alignTop="@id/tv_search_result_tab_archive"
-            android:layout_marginLeft="2dp"
-            android:layout_marginTop="-5dp"/>
+            android:layout_marginLeft="3dp"
+            android:layout_marginTop="-5dp"
+            android:layout_toRightOf="@id/tv_search_result_tab_archive"
+            android:src="@drawable/dot" />
 
     </RelativeLayout>
     <RelativeLayout
