@@ -10,11 +10,13 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.notification.*
+import com.android.artic.ui.archive.ArchiveActivity
 import com.android.artic.util.dpToPx
 import com.android.artic.util.howMuchPreviousFrom
 import com.android.artic.util.setLeftRound
 import com.android.artic.util.setRightRound
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 import java.util.*
 
 class NotificationAdapter(
@@ -54,6 +56,7 @@ class NotificationAdapter(
 
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동!
+                        context.startActivity<ArchiveActivity>()
                     }
                 }
             }
@@ -72,6 +75,7 @@ class NotificationAdapter(
 
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동!
+                        context.startActivity<ArchiveActivity>()
                     }
                 }
             }
@@ -97,6 +101,7 @@ class NotificationAdapter(
                     }
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동
+                        context.startActivity<ArchiveActivity>()
                     }
                 }
             }

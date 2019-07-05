@@ -9,7 +9,7 @@ import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
-import com.android.artic.ui.home.HomeFragment
+import com.android.artic.ui.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 
@@ -51,7 +51,7 @@ class LoginActivity : BaseActivity() {
         // @수민) 완료 버튼 리스너
         btn_login_complete.setOnClickListener {
             if(btn_login_complete.isActivated) {
-                var intent = Intent(this, HomeFragment::class.java)
+                var intent = Intent(this, NavigationActivity::class.java)
 
                 startActivity(intent)
             }
@@ -64,7 +64,7 @@ class LoginActivity : BaseActivity() {
                     // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
                     if (et_login_email.text.toString() != "" && et_login_password.text.toString() != "") {
                         // TODO (@수민) 검색 기능 구현
-                        var intent = Intent(this@LoginActivity, HomeFragment::class.java)
+                        var intent = Intent(this@LoginActivity, NavigationActivity::class.java)
 
                         this@LoginActivity.startActivity(intent)
 

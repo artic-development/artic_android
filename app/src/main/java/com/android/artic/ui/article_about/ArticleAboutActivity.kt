@@ -33,7 +33,7 @@ class ArticleAboutActivity : BaseActivity() {
         val archiveId = intent.getIntExtra("archiveId", -1)
         val articleId = intent.getIntExtra("articleId", -1)
         if (articleId == -1 || archiveId == -1) {
-            toast(R.string.network_error)
+            //toast(R.string.network_error)
             //finish()
         }
 
