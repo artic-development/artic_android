@@ -1,6 +1,7 @@
 package com.android.artic.ui.article_about
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
 
@@ -35,6 +37,9 @@ class ArticleAdapter(
             txt_url?.text = cur.url // TODO url의 뒷부분만 보여줘야함. 어캐할래? .com .co.kr ... 등등 파서를 만들어야할듯?
             container?.setOnClickListener {
                 // TODO 아티클 읽어야함
+                var intent = Intent(context, ArticleWebViewActivity::class.java)
+
+                context.startActivity(intent)
             }
         }
     }

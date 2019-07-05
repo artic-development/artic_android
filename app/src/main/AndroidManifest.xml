@@ -22,14 +22,7 @@
         </activity>
         <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
         <activity android:name=".ui.login.login_start.LoginStartActivity">
-
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-
-
-        </activity>
+         </activity>
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity">
 
         </activity>
@@ -48,15 +41,19 @@
         <activity android:name=".ui.detail_new_archive.DetailNewArchiveActivity" />
         <activity android:name=".ui.new_article_link.NewArticleLinkActivity" />
         <activity android:name=".ui.search_result.SearchResultActivity" />
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.search.SearchActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
-            android:name=".ui.article.ArticleActivity"
-            android:theme="@style/AppTheme.NoActionBar" >
+            android:name=".ui.article.ArticleActivity">
 
         </activity>
-        <activity android:name=".ui.category.CategoryActivity" />
-        <activity android:name=".ui.home.HomeActivity">
 
+        <activity android:name=".ui.category.CategoryActivity"/>
+        <activity android:name=".ui.home.HomeActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
         </activity>
         <activity android:name=".ui.archive.ArchiveActivity" />
     </application>

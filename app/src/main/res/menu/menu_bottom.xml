@@ -1,34 +1,24 @@
 <?xml version="1.0" encoding="utf-8"?>
-<menu xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto">
+<menu xmlns:android="http://schemas.android.com/apk/res/android">
 
     <item
-        android:id="@+id/navigation_menu1"
-        android:icon="@drawable/tab_home"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:title="MENU1"
-        />
+        android:id="@+id/navigation_home"
+        android:icon="@drawable/selector_tab_home"
+        android:title="" />
 
     <item
-        android:id="@+id/navigation_menu2"
-        android:icon="@drawable/tab_category"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:title="MENU2" />
+        android:id="@+id/navigation_category"
+        android:icon="@drawable/selector_tab_category"
+        android:title="" />
 
     <item
-        android:id="@+id/navigation_menu3"
-        android:icon="@drawable/tab_notice"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:title="MENU3" />
+        android:id="@+id/navigation_notice"
+        android:icon="@drawable/selector_tab_notice"
+        android:title="" />
 
     <item
-        android:id="@+id/navigation_menu4"
-        android:icon="@drawable/tab_profile"
-        app:showAsAction="always"
-        android:enabled="true"
-        android:title="MENU3" />
+        android:id="@+id/navigation_profile"
+        android:icon="@drawable/selector_tab_profile"
+        android:title="" />
 
 </menu>

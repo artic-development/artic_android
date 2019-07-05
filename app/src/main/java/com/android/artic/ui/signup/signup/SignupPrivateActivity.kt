@@ -6,11 +6,16 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import android.view.KeyEvent
+import android.view.View
+import android.view.inputmethod.EditorInfo
+import android.widget.TextView
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
 import kotlinx.android.synthetic.main.activity_signup_private.*
+import org.jetbrains.anko.toast
 
 class SignupPrivateActivity : BaseActivity() {
 
@@ -32,7 +37,6 @@ class SignupPrivateActivity : BaseActivity() {
                 intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
                 startActivity(intent)
-//                finish()
             }
         }
 
@@ -45,10 +49,19 @@ class SignupPrivateActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (et_act_signup_private_name.text.toString() != "" && et_act_signup_private_birth.text.toString() != "") {
-                    signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+
+                // TODO (@수민) 이메일 유효성 검사
+                if (et_act_signup_private_name.text.toString() != "") {
+                    tv_act_signup_private_name_check_success.visibility = View.VISIBLE
+                    tv_act_signup_private_name_check_fail.visibility = View.INVISIBLE
+
+                    if (tv_act_signup_private_birth_check_success.visibility == View.VISIBLE) {
+                        signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+                    }
                 }
                 else {
+                    tv_act_signup_private_name_check_success.visibility = View.INVISIBLE
+                    tv_act_signup_private_name_check_fail.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
                 }
             }
@@ -62,12 +75,44 @@ class SignupPrivateActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                if (et_act_signup_private_birth.text.toString() != "" && et_act_signup_private_name.text.toString() != "") {
-                    signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+                // TODO (@수민) 이메일 유효성 검사
+                if (et_act_signup_private_birth.text.toString() != "") {
+                    tv_act_signup_private_birth_check_success.visibility = View.VISIBLE
+                    tv_act_signup_private_birth_check_fail.visibility = View.INVISIBLE
+
+                    if (tv_act_signup_private_name_check_success.visibility == View.VISIBLE) {
+                        signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+                    }
                 }
                 else {
+                    et_act_signup_private_birth.visibility = View.INVISIBLE
+                    et_act_signup_private_birth.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
                 }
+            }
+        })
+
+        // @수민) 생년월일 keyboard 완료 버튼 리스너
+        et_act_signup_private_birth?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
+            override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
+                if (actionId == EditorInfo.IME_ACTION_DONE) {
+                    // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
+                    if (et_act_signup_private_name.text.toString() != "" && et_act_signup_private_birth.text.toString() != "") {
+                        // TODO (@수민) 검색 기능 구현
+                        var intent = Intent(this@SignupPrivateActivity, HomeActivity::class.java)
+
+                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+                        this@SignupPrivateActivity.startActivity(intent)
+
+                        return true
+                    }
+                    else {
+                        toast("이름과 생년월일을 입력해주세요.")
+                    }
+                }
+                return false
             }
         })
     }

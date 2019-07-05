@@ -5,9 +5,10 @@ import android.os.Bundle
 import android.view.View
 import androidx.fragment.app.Fragment
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_my_page.*
 
-class MyPageActivity : AppCompatActivity() {
+class MyPageActivity : BaseActivity() {
 
 
 
