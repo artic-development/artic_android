@@ -3,6 +3,10 @@ package com.android.artic.repository
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
+import com.android.artic.data.notification.*
+import khronos.Dates
+import khronos.days
+import khronos.minutes
 import retrofit2.Call
 import retrofit2.mock.Calls
 
@@ -403,6 +407,119 @@ class ArticRepository (
                     title_img_url = "https://avatars0.githubusercontent.com/u/52156026?s=200&v=4",
                     like = 999,
                     isLiked = false
+                )
+            )
+        )
+    }
+
+    // TODO 어떻게 여러가지 타입의 서버에서 받아오는 데이터를 한번에 처리할 수 있을까?
+    /**
+     * get new notification list by async
+     * @see AppNotification
+     * @author greedy0110
+     * */
+    fun getNewNotificationList(): Call<List<AppNotification>> {
+        return Calls.response(
+            listOf(
+                AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = Dates.yesterday,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ), AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = 5.minutes.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ),
+                RemindArticleNotification(
+                    viewType = NotificationType.REMIND_ARCHIVE,
+                    date = 6.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    articleName = "remind article",
+                    num_article = 15
+                ), AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ), RecommendArchiveNotification (
+                    viewType = NotificationType.RECOMMEND_ARCHIVE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archiveId = 0,
+                    articleImgUrls = listOf(
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    )
+                ), RecommendArchiveNotification (
+                    viewType = NotificationType.RECOMMEND_ARCHIVE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archiveId = 0,
+                    articleImgUrls = listOf(
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    )
+                )
+            )
+        )
+    }
+
+    /**
+     * get already read notification list by async
+     * @see AppNotification
+     * @author greedy0110
+     * */
+    fun getAlreadyReadNotificationList(): Call<List<AppNotification>> {
+        return Calls.response(
+            listOf(
+                AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = Dates.yesterday,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ), AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = 5.minutes.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ),
+                RemindArticleNotification(
+                    viewType = NotificationType.REMIND_ARCHIVE,
+                    date = 6.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    articleName = "remind article",
+                    num_article = 15
+                ), AddArticleNotification(
+                    viewType = NotificationType.ADD_ARTICLE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archive_title = "new notification",
+                    archive_id = 0
+                ), RecommendArchiveNotification (
+                    viewType = NotificationType.RECOMMEND_ARCHIVE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archiveId = 0,
+                    articleImgUrls = listOf(
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    )
+                ), RecommendArchiveNotification (
+                    viewType = NotificationType.RECOMMEND_ARCHIVE,
+                    date = 5.days.ago,
+                    img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                    archiveId = 0,
+                    articleImgUrls = listOf(
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                        "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500"
+                    )
                 )
             )
         )
