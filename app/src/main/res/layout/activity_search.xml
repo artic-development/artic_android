@@ -56,7 +56,7 @@
         android:layout_marginTop="20dp"/>
 
     <androidx.constraintlayout.widget.ConstraintLayout
-        android:background="@drawable/home_search_round"
+        android:background="@drawable/search_search_round"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginTop="26dp"
@@ -64,21 +64,27 @@
         android:layout_marginEnd="20dp"
         android:id="@+id/constraintLayout">
 
-        <TextView
+        <EditText
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="16dp"
+            android:layout_marginEnd="20dp"
             android:fontFamily="@font/nanum_barungothic_regular"
-            android:text="검색어를 입력하세요"
-            android:textColor="@color/brown_grey"
+            android:includeFontPadding="false"
+            android:hint="검색어를 입력하세요"
+            android:textColor="@color/black"
+            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.0"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="1.0" />
+            app:layout_constraintVertical_bias="1.0"
+            android:background="@null"
+            android:ellipsize="end"
+            android:maxLines="1"/>
         <ImageView
             android:src="@drawable/ic_search"
             android:layout_width="wrap_content"
@@ -103,10 +109,11 @@
         android:id="@+id/rv_search_recommend_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="#000000"
+        android:paddingBottom="10dp"
         android:layout_marginTop="17dp"
         android:layout_marginLeft="22dp"
         android:layout_marginRight="20dp">
-
 
     </androidx.recyclerview.widget.RecyclerView>
 

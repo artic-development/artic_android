@@ -1,13 +1,18 @@
 package com.android.artic.ui.search
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.LinearLayout
 import android.widget.TextView
+import androidx.core.content.ContextCompat.startActivity
+import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.ui.search.data.RecommendWordData
+import com.android.artic.ui.search_result.SearchResultActivity
 
 class RecommendWordAdapter(val ctx: Context, var dataList: List<RecommendWordData>): RecyclerView.Adapter<RecommendWordAdapter.Holder>(){
 
@@ -21,9 +26,17 @@ class RecommendWordAdapter(val ctx: Context, var dataList: List<RecommendWordDat
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.recommend_word.text = dataList[position].word
+
+        // @수민) 추천 검색어를 누르면 검색 결과 화면으로 이동
+        holder.card.setOnClickListener {
+            var intent = Intent(ctx, SearchResultActivity::class.java)
+
+            ctx.startActivity(intent)
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
         var recommend_word = itemView.findViewById<TextView>(R.id.tv_search_card_title)
+        var card = itemView.findViewById<LinearLayout>(R.id.linear_rv_search_recommend_card)
     }
 }
