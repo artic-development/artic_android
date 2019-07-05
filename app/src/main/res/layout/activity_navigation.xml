@@ -16,6 +16,7 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
+        app:tabIndicatorHeight="0dp"
         app:tabRippleColor="@null"
         android:background="@drawable/bottom_navigation_border"
         android:id="@+id/tl_navigation"

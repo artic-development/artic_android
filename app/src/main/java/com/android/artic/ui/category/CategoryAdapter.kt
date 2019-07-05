@@ -1,6 +1,7 @@
 package com.android.artic.ui.category
 
 import android.content.Context
+import android.content.Intent
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -9,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Category
+import com.android.artic.ui.archive.ArchiveActivity
 
 class CategoryAdapter(
     private val context: Context,
@@ -28,6 +30,7 @@ class CategoryAdapter(
 
             container?.setOnClickListener {
                 // TODO cur.id 를 이용해서 category 에 해당하는 archive 로드하는 창으로 이동
+                context.startActivity(Intent(context, ArchiveActivity::class.java))
             }
         }
     }
