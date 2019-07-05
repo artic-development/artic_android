@@ -97,6 +97,7 @@
             android:textColor="@color/black"/>
 
     </RelativeLayout>
+
     <TextView
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
@@ -106,6 +107,7 @@
         android:textColor="@color/black"
         android:textSize="16sp"
         android:layout_marginLeft="20dp"/>
+
     <EditText
         android:id="@+id/et_act_signup_private_name"
         android:layout_width="match_parent"
@@ -118,7 +120,39 @@
         android:theme="@style/EditTheme"
         android:textSize="14sp"
         android:fontFamily="@font/nanum_barungothic_light"
-        android:includeFontPadding="false"/>
+        android:includeFontPadding="false"
+        android:singleLine ="true"
+        android:nextFocusDown="@id/et_act_signup_private_birth"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_name_check_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용하실 수 있는 이름입니다"
+            android:textSize="12sp"
+            android:textColor="@color/soft_blue"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_name_check_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15자 이내로 입력해주세요"
+            android:textSize="12sp"
+            android:textColor="#ff1515"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
 
     <TextView
         android:layout_width="wrap_content"
@@ -143,7 +177,38 @@
         android:theme="@style/EditTheme"
         android:textSize="14sp"
         android:fontFamily="@font/nanum_barungothic_light"
-        android:includeFontPadding="false"/>
+        android:includeFontPadding="false"
+        android:inputType="date"
+        android:singleLine ="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_birth_check_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용하실 수 있는 형식입니다"
+            android:textSize="12sp"
+            android:textColor="@color/soft_blue"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_birth_check_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="형식에 맞게 입력해주세요"
+            android:textSize="12sp"
+            android:textColor="#ff1515"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
 
 
 </LinearLayout>

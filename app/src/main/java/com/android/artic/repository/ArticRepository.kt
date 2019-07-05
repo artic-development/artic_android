@@ -94,7 +94,7 @@ class ArticRepository (
                 id = 0,
                 title = "article",
                 url = "https://github.com/artic-development/artic_android",
-                title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
+                title_img_url = "https://img.theqoo.net/img/lQZRv.jpg",
                 like = 999,
                 isLiked = false
             )

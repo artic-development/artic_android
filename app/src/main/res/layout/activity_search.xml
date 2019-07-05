@@ -65,6 +65,7 @@
         android:id="@+id/constraintLayout">
 
         <EditText
+            android:id="@+id/et_act_search_search_word"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="46dp"
@@ -83,8 +84,8 @@
             app:layout_constraintTop_toTopOf="parent"
             app:layout_constraintVertical_bias="1.0"
             android:background="@null"
-            android:ellipsize="end"
-            android:maxLines="1"/>
+            android:imeOptions="actionSearch"
+            android:inputType="text"/>
         <ImageView
             android:src="@drawable/ic_search"
             android:layout_width="wrap_content"
