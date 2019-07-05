@@ -1,5 +1,6 @@
 package com.android.artic.ui.article_about
 
+import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
@@ -7,6 +8,7 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.toast
@@ -66,6 +68,9 @@ class ArticleAboutActivity : BaseActivity() {
 
                         btn_article_about_read.setOnClickListener {
                             // TODO 아티클 읽기 구현해야함!
+                            var intent = Intent(this@ArticleAboutActivity, ArticleWebViewActivity::class.java)
+
+                            startActivity(intent)
                         }
                     }
                 }

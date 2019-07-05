@@ -7,6 +7,7 @@ import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_article_web_view.*
 import org.jetbrains.anko.toast
@@ -77,6 +78,9 @@ class ArticleWebViewActivity : AppCompatActivity() {
 
                         btn_article_web_view_collect.setOnClickListener {
                             // TODO 담기 Dialog 를 띄워줘야함.
+                            var putFragment = CollectArchiveDialogFragment()
+
+                            putFragment.show(this@ArticleWebViewActivity.supportFragmentManager, putFragment.tag)
                         }
                     }
                 }
