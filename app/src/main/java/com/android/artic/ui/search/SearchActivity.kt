@@ -29,6 +29,7 @@ class SearchActivity : BaseActivity() {
 
         // recyclerview space 조절
         var spacesItemDecoration = GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
+//        spacesItemDecoration.
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
         repository.getRecommendWordList().enqueue(
