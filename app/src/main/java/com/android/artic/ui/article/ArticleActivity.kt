@@ -31,6 +31,8 @@ class ArticleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_link)
 
+
+
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)

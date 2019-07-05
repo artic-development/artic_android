@@ -11,7 +11,7 @@
     <RelativeLayout
         android:id="@+id/relativeLayout"
         android:layout_width="match_parent"
-        android:layout_height="55.6dp"
+        android:layout_height="64dp"
         android:background="@color/white"
         tools:ignore="MissingConstraints">
 
@@ -48,21 +48,6 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-    <TextView
-        android:id="@+id/setting_user_center"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="30dp"
-        android:layout_marginEnd="249dp"
-        android:fontFamily="@font/nanum_barungothic_light"
-        android:includeFontPadding="false"
-        android:text="고객센터"
-        android:textColor="@color/black"
-        android:textSize="14sp"
-        app:layout_constraintEnd_toStartOf="@+id/setting_user_center_btn"
-        app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile" />
 
     <TextView
         android:id="@+id/setting_version_info"
@@ -71,7 +56,7 @@
         android:layout_marginStart="20dp"
         android:layout_marginTop="30dp"
         android:layout_marginEnd="215dp"
-        android:layout_marginBottom="20dp"
+        android:layout_marginBottom="21dp"
         android:fontFamily="@font/nanum_barungothic_light"
         android:includeFontPadding="false"
         android:text="버전정보"
@@ -80,7 +65,7 @@
         app:layout_constraintBottom_toTopOf="@+id/view"
         app:layout_constraintEnd_toStartOf="@+id/version_number"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_user_center" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile" />
 
     <ImageView
         android:id="@+id/setting_edit_profile_btn"
@@ -92,15 +77,6 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
-    <ImageView
-        android:id="@+id/setting_user_center_btn"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="25dp"
-        android:layout_marginEnd="20dp"
-        android:src="@drawable/btn_setting_rightarrow"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile_btn" />
 
     <ImageView
         android:id="@+id/setting_version_info_btn"
@@ -110,13 +86,13 @@
         android:layout_marginEnd="20dp"
         android:src="@drawable/btn_setting_rightarrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_user_center_btn" />
+        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile_btn" />
 
     <TextView
         android:id="@+id/version_number"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
-        android:layout_marginTop="113dp"
+        android:layout_marginTop="67dp"
         android:layout_marginEnd="1dp"
         android:fontFamily="@font/nanum_barungothic_light"
         android:includeFontPadding="false"
@@ -130,7 +106,7 @@
         android:id="@+id/view"
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:layout_marginTop="148dp"
+        android:layout_marginTop="108dp"
         android:background="#d1d1d1"
         app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
 
@@ -155,11 +131,10 @@
         android:id="@+id/setting_login_btn"
         android:layout_width="21dp"
         android:layout_height="21dp"
-        android:layout_marginTop="8dp"
+        android:layout_marginTop="20dp"
         android:layout_marginEnd="20dp"
         android:src="@drawable/btn_setting_rightarrow"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/setting_user_center_btn"
         app:layout_constraintTop_toTopOf="@+id/view" />
 
     <TextView
