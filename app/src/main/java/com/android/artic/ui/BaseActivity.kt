@@ -43,4 +43,5 @@ abstract class BaseActivity: AppCompatActivity() {
             window.statusBarColor = Color.BLACK
         }
     }
+
 }

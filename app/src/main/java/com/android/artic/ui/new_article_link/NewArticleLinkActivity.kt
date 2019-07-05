@@ -1,6 +1,5 @@
 package com.android.artic.ui.new_article_link
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
@@ -8,8 +7,7 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
-import com.android.artic.ui.HorizontalSpaceItemDecoration
-import com.android.artic.ui.VerticalSpaceItemDecoration
+import com.android.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.activity_new_article_link.*

@@ -1,4 +1,4 @@
-package com.android.artic.ui
+package com.android.artic.ui.adapter.deco
 
 import androidx.recyclerview.widget.RecyclerView
 import android.R.attr.right
