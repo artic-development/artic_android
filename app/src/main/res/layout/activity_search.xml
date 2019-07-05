@@ -109,7 +109,6 @@
         android:id="@+id/rv_search_recommend_word"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="#000000"
         android:paddingBottom="10dp"
         android:layout_marginTop="17dp"
         android:layout_marginLeft="22dp"

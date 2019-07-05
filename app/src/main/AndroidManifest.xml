@@ -45,7 +45,8 @@
         <activity android:name=".ui.detail_new_archive.DetailNewArchiveActivity" />
         <activity android:name=".ui.new_article_link.NewArticleLinkActivity" />
         <activity android:name=".ui.search_result.SearchResultActivity" />
-        <activity android:name=".ui.search.SearchActivity" />
+        <activity android:name=".ui.search.SearchActivity"
+            android:windowSoftInputMode="adjustPan" />
         <activity
             android:name=".ui.article.ArticleActivity"
             android:theme="@style/AppTheme.NoActionBar" />
