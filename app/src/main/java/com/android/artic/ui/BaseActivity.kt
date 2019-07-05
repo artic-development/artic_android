@@ -1,13 +1,20 @@
 package com.android.artic.ui
 
+import android.content.Intent
 import android.graphics.Color
 import android.os.Build
 import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.android.artic.R
+import com.android.artic.ui.category.CategoryActivity
+import com.android.artic.ui.home.HomeActivity
+import com.android.artic.ui.mypage.mypage.MyPageActivity
+import com.android.artic.ui.notification.NotificationActivity
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import kotlinx.android.synthetic.main.bottom_navigation.*
 
 abstract class BaseActivity: AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
@@ -42,5 +49,46 @@ abstract class BaseActivity: AppCompatActivity() {
             // 21 버전 이상일 때
             window.statusBarColor = Color.BLACK
         }
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // 상속받은 activity의 setContentView 호출 후에 호출되어야 하므로 onResume에 추가
+        // bottom navigation 세팅!
+        global_bottom_navigation?.apply {
+            // 이거 해줘야 우라가 menu에서 선택한 icon이 selector 동작을 정확히 수행함.
+            itemIconTintList = null
+
+            if (status != -1)
+                selectedItemId = status
+
+            setOnNavigationItemSelectedListener {
+                if (status == it.itemId) false
+                else {
+                    status = it.itemId
+                    when (it.itemId) {
+                        R.id.navigation_home -> {
+                            startActivity(Intent(this@BaseActivity, HomeActivity::class.java))
+                        }
+                        R.id.navigation_category -> {
+                            startActivity(Intent(this@BaseActivity, CategoryActivity::class.java))
+                        }
+                        R.id.navigation_notice -> {
+                            startActivity(Intent(this@BaseActivity, NotificationActivity::class.java))
+                        }
+                        R.id.navigation_profile -> {
+                            startActivity(Intent(this@BaseActivity, MyPageActivity::class.java))
+                        }
+                        else -> false
+                    }
+                }
+                true
+            }
+        }
+    }
+
+    companion object {
+        var status: Int = -1
     }
 }
