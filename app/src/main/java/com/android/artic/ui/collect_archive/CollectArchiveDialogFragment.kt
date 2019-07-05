@@ -54,6 +54,13 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
             startActivity(intent)
         }
+
+        // @수민) 내 아카이브 리스트가 없을 때, 아카이브 만들기를 누르면 아카이브 만드는 화면으로 이동
+        linear_dialog_put_archive_make_new_archive.setOnClickListener {
+            var intent = Intent(ctx, MakeNewArchiveActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 
     // @수민) RecyclerView 설정
@@ -73,6 +80,14 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                 override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
                     response.body()?.let {
                         collectArchiveListAdapter.dataList = it
+
+                        if (it.isEmpty()) {
+                            linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
+                        }
+                        else {
+                            linear_dialog_put_archive_make_new_archive.visibility = View.GONE
+                        }
+
                         collectArchiveListAdapter.notifyDataSetChanged()
                     }
                 }
