@@ -69,7 +69,7 @@
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             android:layout_weight="1"
-            android:background="#b3b3b3"
+            android:background="@color/very_light_pink_two"
             android:scaleType="centerCrop"
             tools:srcCompat="@tools:sample/avatars" />
 
