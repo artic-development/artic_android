@@ -13,17 +13,19 @@
         android:orientation="horizontal"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
-        android:layout_marginStart="20dp" >
+        android:layout_marginStart="20dp">
 
         <TextView
             android:id="@+id/txt_archive_label"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:fontFamily="@font/nanum_barungothic_bold"
+            android:fontFamily="@font/nanum_barungothic_regular"
             android:includeFontPadding="false"
+            android:textStyle="bold"
             android:text="@string/new_archive"
-            android:textColor="@color/black"
-            android:textSize="18sp"/>
+            android:textColor="#191919"
+            android:textSize="18sp"
+            android:layout_gravity="center_vertical"/>
 
         <ImageView
             android:layout_width="wrap_content"

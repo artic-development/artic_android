@@ -9,7 +9,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.ui.search.data.RecommendWordData
 
-class RecommendWordAdapter(val ctx: Context, var dataList: ArrayList<RecommendWordData>): RecyclerView.Adapter<RecommendWordAdapter.Holder>(){
+class RecommendWordAdapter(val ctx: Context, var dataList: List<RecommendWordData>): RecyclerView.Adapter<RecommendWordAdapter.Holder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_search_recommend_card, viewGroup, false)

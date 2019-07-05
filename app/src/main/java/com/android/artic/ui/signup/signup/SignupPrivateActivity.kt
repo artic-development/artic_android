@@ -8,6 +8,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.home.HomeActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
 import kotlinx.android.synthetic.main.activity_signup_private.*
 
@@ -25,6 +26,13 @@ class SignupPrivateActivity : BaseActivity() {
         signup_private_done_txt.setOnClickListener {
             if (signup_private_done_txt.currentTextColor == Color.parseColor("#4f80ff")) {
                 // TODO (@수민) 회원가입 완료 통신 구현
+                var intent = Intent(this, HomeActivity::class.java)
+
+                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+                startActivity(intent)
+//                finish()
             }
         }
 

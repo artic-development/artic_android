@@ -32,8 +32,8 @@ class ArticleActivity : BaseActivity() {
         setContentView(R.layout.activity_link)
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
-        rv_link_list.adapter=adapter
-        rv_link_list.layoutManager= LinearLayoutManager(this, RecyclerView.VERTICAL,false)
+        rv_link_list.adapter = adapter
+        rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         repository.getArticleListGivenArchive(archiveId).enqueue(
             object : Callback<List<Article>> {

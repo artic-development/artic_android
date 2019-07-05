@@ -2,129 +2,115 @@
 
 <RelativeLayout
     xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:layout_height="wrap_content"
+    android:layout_height="175dp"
     android:layout_width="match_parent"
-    android:paddingBottom="10dp"
-    android:background="@color/very_light_pink">
+    android:background="@color/very_light_pink"
+    android:id="@+id/relative_rv_item_link_list">
 
-    <androidx.constraintlayout.widget.ConstraintLayout
-
+    <RelativeLayout
         android:layout_width="match_parent"
-        android:layout_height="wrap_content"
-        android:background="@color/white"
-        android:paddingBottom="25dp">
+        android:layout_height="165dp"
+        android:background="@color/white">
 
         <TextView
             android:id="@+id/rv_link_list_url"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="34dp"
-            android:fontFamily="@font/nanum_barungothic_bold"
+            android:layout_marginTop="33dp"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
             android:includeFontPadding="false"
             android:text="brunch.co.kr"
-
             android:textColor="#c4c4c4"
             android:textSize="14sp"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:layout_toStartOf="@id/rv_link_list_img"
+            android:layout_marginRight="70dp"
+            android:ellipsize="end"
+            android:maxLines="1" />
 
         <TextView
             android:id="@+id/rv_link_list_title"
-            android:layout_width="0dp"
+            android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginEnd="44dp"
+            android:layout_below="@id/rv_link_list_url"
+            android:layout_marginTop="9dp"
+            android:layout_marginRight="45dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toStartOf="@id/rv_link_list_img"
             android:fontFamily="@font/nanum_barungothic_light"
-            android:lineSpacingExtra="9sp"
             android:includeFontPadding="false"
             android:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 "
             android:textColor="@color/black"
-            android:textSize="16sp"
-            app:layout_constraintEnd_toStartOf="@+id/rv_link_list_img"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_link_list_url" />
+            android:textSize="16sp" />
 
 
         <ImageView
             android:id="@+id/rv_link_list_img"
             android:layout_width="79dp"
-            android:layout_height="78.9dp"
+            android:layout_height="79dp"
             android:layout_alignParentRight="true"
-            android:layout_marginTop="42dp"
-            android:layout_marginEnd="20dp"
-            android:layout_marginBottom="43dp"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
             android:background="@drawable/archive_card_round"
-            android:scaleType="centerCrop"
-            android:src="@drawable/sample"
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toTopOf="parent" />
+            android:scaleType="centerCrop" />
 
-        <ImageButton
-            android:id="@+id/rv_link_list_storage"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/rv_link_list_title"
-            android:layout_marginStart="20dp"
-            android:background="@drawable/btn_folder"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_link_list_like_num"
-            app:layout_constraintStart_toEndOf="@+id/rv_link_list_like_num"
-            app:layout_constraintTop_toTopOf="@+id/rv_link_list_like_num" />
-
-        <TextView
-            android:id="@+id/rv_link_list_storage_txt"
+        <LinearLayout
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_below="@id/rv_link_list_title"
-            android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/rv_link_list_storage"
-            android:fontFamily="@font/nanum_barungothic_light"
-            android:includeFontPadding="false"
-            android:text="담기"
-            android:textColor="@color/brownish_grey"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_link_list_storage"
-            app:layout_constraintStart_toEndOf="@+id/rv_link_list_storage"
-            app:layout_constraintTop_toTopOf="@+id/rv_link_list_storage" />
-
-        <ToggleButton
-            android:id="@+id/rv_link_list_like"
-            android:layout_width="20dp"
-            android:layout_height="20dp"
-            android:layout_below="@id/rv_link_list_title"
-            android:layout_marginStart="20dp"
-            android:layout_marginTop="18dp"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
             android:layout_marginBottom="25dp"
-            android:layout_toRightOf="@id/rv_link_list_storage_txt"
-            android:background="@drawable/toggle_btn_like"
-            android:checked="true"
-            android:textOff=""
-            android:textOn=""
-            app:layout_constraintBottom_toBottomOf="parent"
-            app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/rv_link_list_title" />
-
-
-        <TextView
-            android:id="@+id/rv_link_list_like_num"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
             android:layout_below="@id/rv_link_list_title"
-            android:layout_marginStart="5dp"
-            android:layout_toRightOf="@id/rv_link_list_like"
-            android:background="@drawable/archive_card_round"
-            android:fontFamily="@font/nanum_square_regular"
-            android:includeFontPadding="false"
-            android:text="1,202"
-            android:textColor="@color/brownish_grey"
-            android:textSize="13sp"
-            app:layout_constraintBottom_toBottomOf="@+id/rv_link_list_like"
-            app:layout_constraintStart_toEndOf="@+id/rv_link_list_like"
-            app:layout_constraintTop_toTopOf="@+id/rv_link_list_like" />
-    </androidx.constraintlayout.widget.ConstraintLayout>
+            android:layout_marginTop="18dp">
+
+            <ImageButton
+                android:id="@+id/rv_link_list_storage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/btn_folder"/>
+
+            <TextView
+                android:id="@+id/rv_link_list_storage_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="8dp"
+                android:layout_toRightOf="@id/rv_link_list_storage"
+                android:fontFamily="@font/nanum_barungothic_light"
+                android:includeFontPadding="false"
+                android:text="담기"
+                android:textColor="@color/brownish_grey"
+                android:textSize="13sp"/>
+
+            <ToggleButton
+                android:id="@+id/rv_link_list_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/toggle_btn_like"
+                android:textOn=""
+                android:textOff=""
+                android:checked="true"/>
+
+
+            <TextView
+                android:id="@+id/rv_link_list_like_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="4.8dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:text="1,202"
+                android:textColor="@color/brownish_grey"
+                android:textSize="13sp"
+                android:background="@drawable/archive_card_round"/>
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
 
 </RelativeLayout>

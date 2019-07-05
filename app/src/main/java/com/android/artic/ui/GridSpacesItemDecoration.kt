@@ -8,11 +8,10 @@ import android.graphics.Rect
 import android.view.View
 
 
-class GridSpacesItemDecoration(val context : Context, private val space: Int) : RecyclerView.ItemDecoration() {
+class GridSpacesItemDecoration(val context : Context, private val horizontalSpace : Int, private val verticalSpace : Int) : RecyclerView.ItemDecoration() {
 
     override fun getItemOffsets(outRect: Rect, view: View, parent: RecyclerView, state: RecyclerView.State) {
-        outRect.left = space
-        outRect.right = space
-        outRect.bottom = space
+        outRect.left = horizontalSpace
+        outRect.bottom = verticalSpace
     }
 }

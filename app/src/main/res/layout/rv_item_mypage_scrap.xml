@@ -35,7 +35,7 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
                 android:layout_marginTop="16dp"
-                android:fontFamily="@font/gilroy_extrabold"
+                android:fontFamily="@font/avenir_next_bold"
                 android:includeFontPadding="false"
                 android:textColor="@color/white"
                 android:textSize="13sp"
