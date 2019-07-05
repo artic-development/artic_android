@@ -5,6 +5,9 @@
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
     <uses-permission android:name="android.permission.ACCESS_WIFI_STATE" />
+    <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.WRITE_EXTERNAL_STORAGE" />
+    <uses-permission android:name="android.permission.CAMERA" />
 
     <application
         android:name=".ArticApplication"
@@ -16,18 +19,20 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.navigation.NavigationActivity">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
         </activity>
         <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
         <activity android:name=".ui.article_webview.ArticleWebViewActivity"></activity>
         <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
         <activity android:name=".ui.login.login_start.LoginStartActivity"></activity>
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity"></activity>
-        <activity android:name=".ui.setting.setting.SettingActivity"></activity>
+        <activity android:name=".ui.setting.setting.SettingActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
         <activity android:name=".ui.mypage.mypage_scrap.MyPageScrapActivity" />
         <activity android:name=".ui.article_about.ArticleAboutActivity" />
         <activity android:name=".ui.signup.signup.SignupPrivateActivity" />
