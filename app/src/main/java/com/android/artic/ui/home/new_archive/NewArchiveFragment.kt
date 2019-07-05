@@ -12,10 +12,9 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.HorizontalSpaceItemDecoration
+import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.detail_new_archive.DetailNewArchiveActivity
 import com.android.artic.util.dpToPx
-import kotlinx.android.synthetic.main.fragment_home_new_article.*
 import kotlinx.android.synthetic.main.fragment_new_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -56,7 +55,8 @@ class NewArchiveFragment : Fragment() {
             rv_archive_card.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             // recyclerview space 조절
-            var spacesItemDecoration = HorizontalSpaceItemDecoration(this, 8.dpToPx(), 20.dpToPx())
+            var spacesItemDecoration =
+                HorizontalSpaceItemDecoration(this, 8.dpToPx(), 20.dpToPx())
             rv_archive_card.addItemDecoration(spacesItemDecoration)
 
             // recyclerview 데이터 뿌리기
