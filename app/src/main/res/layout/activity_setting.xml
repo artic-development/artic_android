@@ -1,0 +1,182 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/white"
+    tools:context=".ui.setting.setting.SettingActivity">
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="55.6dp"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:text="설정"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_alignParentBottom="true"
+            android:background="#d1d1d1" />
+    </RelativeLayout>
+
+    <TextView
+        android:id="@+id/setting_edit_profile"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="233dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="프로필 수정"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/setting_edit_profile_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <TextView
+        android:id="@+id/setting_user_center"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="249dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="고객센터"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/setting_user_center_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile" />
+
+    <TextView
+        android:id="@+id/setting_version_info"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="215dp"
+        android:layout_marginBottom="20dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="버전정보"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/view"
+        app:layout_constraintEnd_toStartOf="@+id/version_number"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_user_center" />
+
+    <ImageView
+        android:id="@+id/setting_edit_profile_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="18dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/btn_setting_rightarrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <ImageView
+        android:id="@+id/setting_user_center_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/btn_setting_rightarrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_edit_profile_btn" />
+
+    <ImageView
+        android:id="@+id/setting_version_info_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/btn_setting_rightarrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_user_center_btn" />
+
+    <TextView
+        android:id="@+id/version_number"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="113dp"
+        android:layout_marginEnd="1dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="1.0.1"
+        android:textColor="#a3a3a3"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toStartOf="@+id/setting_version_info_btn"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <View
+        android:id="@+id/view"
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:layout_marginTop="148dp"
+        android:background="#d1d1d1"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <TextView
+        android:id="@+id/setting_login"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:layout_marginEnd="258dp"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:includeFontPadding="false"
+        android:text="로그인"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        android:textStyle="bold"
+        app:layout_constraintEnd_toStartOf="@+id/setting_login_btn"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <ImageView
+        android:id="@+id/setting_login_btn"
+        android:layout_width="21dp"
+        android:layout_height="21dp"
+        android:layout_marginTop="8dp"
+        android:layout_marginEnd="20dp"
+        android:src="@drawable/btn_setting_rightarrow"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_user_center_btn"
+        app:layout_constraintTop_toTopOf="@+id/view" />
+
+    <TextView
+        android:id="@+id/setting_artic_account_logout"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:layout_marginEnd="192dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="articcrew 계정 로그아웃"
+        android:textColor="@color/soft_blue"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/setting_login" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>
