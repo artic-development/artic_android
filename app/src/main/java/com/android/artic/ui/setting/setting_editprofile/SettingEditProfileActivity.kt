@@ -38,15 +38,28 @@ class SettingEditProfileActivity : BaseActivity() {
         btn = findViewById<View>(R.id.edit_profile_img_change_btn) as TextView
         imageview= findViewById<View>(R.id.edit_profile_img) as ImageView
 
+        edit_profile_finish_btn.isActivated=false
+        setListener()
+
+        btn!!.setOnClickListener{
+            choosePhotoFromGallary()
+
+        }
+
+
+
+    }
+
+    private fun setListener() {
 
         edit_profile_name_et.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-              //  edit_profile_finish_btn.setTextColor(ContextCompat.getColor(btn , R.color.soft_blue))
-                changeTextColor()
+                //  edit_profile_finish_btn.setTextColor(ContextCompat.getColor(btn , R.color.soft_blue))
+                edit_profile_finish_btn.isActivated=true
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                edit_profile_finish_btn.isEnabled=false
+                edit_profile_finish_btn.isActivated=false
 
             }
 
@@ -58,11 +71,11 @@ class SettingEditProfileActivity : BaseActivity() {
 
         edit_profile_myinfo_et.addTextChangedListener(object: TextWatcher{
             override fun afterTextChanged(s: Editable?) {
-                changeTextColor()
+                edit_profile_finish_btn.isActivated=true
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                edit_profile_finish_btn.isEnabled=false
+               edit_profile_finish_btn.isActivated=false
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
@@ -71,21 +84,14 @@ class SettingEditProfileActivity : BaseActivity() {
 
         })
 
-
-        btn!!.setOnClickListener{
-            choosePhotoFromGallary()
-
+        edit_profile_finish_btn.setOnClickListener{
+            finish()
         }
-
-
-
-
-
     }
 
-    fun changeTextColor() {
-        edit_profile_finish_btn.setTextColor(ContextCompat.getColor(this , R.color.soft_blue))
-    }
+//    fun changeEditProfile() {
+//        edit_profile_finish_btn.setTextColor(ContextCompat.getColor(this , R.color.soft_blue))
+//    }
 
     //갤러리에서 이미지를 선택하면 onActivityResult() 메소드가 실행
     fun choosePhotoFromGallary() {
