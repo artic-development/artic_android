@@ -95,6 +95,7 @@ class SignupPrivateActivity : BaseActivity() {
                     et_act_signup_private_birth.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
                 }
+
             }
         })
 
