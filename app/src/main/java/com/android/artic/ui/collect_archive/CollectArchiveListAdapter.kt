@@ -36,6 +36,8 @@ class CollectArchiveListAdapter(private val ctx: Context, private val parentFrag
         var alpha = holder.img_select_layer.drawable
         alpha.alpha = 61
 
+
+
         Glide
             .with(ctx)
             .load(dataList[position].title_img_url)
