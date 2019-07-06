@@ -171,7 +171,7 @@
         android:layout_height="wrap_content"
         android:layout_marginRight="20dp"
         android:layout_marginTop="20dp"
-        android:hint="YY MM DD"
+        android:hint="YYYY-MM-DD"
         android:layout_marginLeft="20dp"
         android:lineSpacingExtra="2sp"
         android:theme="@style/EditTheme"

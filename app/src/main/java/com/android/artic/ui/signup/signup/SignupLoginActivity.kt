@@ -13,8 +13,12 @@ import com.android.artic.R
 import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
 import org.jetbrains.anko.toast
+import java.util.regex.Pattern
 
 class SignupLoginActivity : BaseActivity() {
+
+    val emailPattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
+    val passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$", Pattern.CASE_INSENSITIVE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,8 +46,11 @@ class SignupLoginActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                // TODO (@수민) 이메일 유효성 검사
-                if (signup_login_edit_email.text.toString() != "") {
+                // 이메일 유효성 검사
+                var emailStr = signup_login_edit_email.text.toString()
+                var emailMatcher = emailPattern.matcher(emailStr)
+
+                if (signup_login_edit_email.text.toString() != "" && emailMatcher.find()) {
                     tv_act_signup_login_email_check_success.visibility = View.VISIBLE
                     tv_act_signup_login_email_check_fail.visibility = View.INVISIBLE
 
@@ -67,8 +74,11 @@ class SignupLoginActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                // TODO (@수민) 비밀번호 유효성 검사
-                if (signup_login_edit_password.text.toString() != "") {
+                // 비밀번호 유효성 검사
+                var passwordStr = signup_login_edit_password.text.toString()
+                var passwordMathcer = passwordPattern.matcher(passwordStr)
+
+                if (signup_login_edit_password.text.toString() != "" && passwordMathcer.find()) {
                     tv_act_signup_login_password_check_success.visibility = View.VISIBLE
                     tv_act_signup_login_password_check_fail.visibility = View.INVISIBLE
 
@@ -90,7 +100,6 @@ class SignupLoginActivity : BaseActivity() {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
                     if (signup_login_edit_email.text.toString() != "" && signup_login_edit_password.text.toString() != "") {
-                        // TODO (@수민) 검색 기능 구현
                         var intent = Intent(this@SignupLoginActivity, SignupPrivateActivity::class.java)
 
                         this@SignupLoginActivity.startActivity(intent)
