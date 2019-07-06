@@ -28,8 +28,10 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
+        <activity android:name=".ui.setting.setting.SettingActivity">
+
+        </activity>
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity"></activity>
-        <activity android:name=".ui.setting.setting.SettingActivity"></activity>
         <activity android:name=".ui.mypage.mypage_scrap.MyPageScrapActivity" />
         <activity android:name=".ui.article_about.ArticleAboutActivity" />
         <activity android:name=".ui.signup.signup.SignupPrivateActivity" />

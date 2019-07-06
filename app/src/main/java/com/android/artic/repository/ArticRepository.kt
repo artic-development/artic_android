@@ -450,7 +450,6 @@ class ArticRepository (
         )
     }
 
-    // @수민) 추천 검색어 받아오기
     fun getRecommendWordList() : Call<List<RecommendWordData>> {
         return Calls.response(
             listOf(
