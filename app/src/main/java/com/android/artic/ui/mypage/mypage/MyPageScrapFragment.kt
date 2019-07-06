@@ -11,6 +11,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.adapter.deco.GridItemDecoration
+import com.android.artic.ui.adapter.deco.GridSpacesItemDecoration
+import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_my_page_scrap.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -46,8 +49,7 @@ class MyPageScrapFragment : Fragment() {
 
             rv_mypage_scrap.adapter = adapter
             rv_mypage_scrap.layoutManager = GridLayoutManager(this, 2)
-
-
+            rv_mypage_scrap.addItemDecoration(GridSpacesItemDecoration(this, 12.dpToPx(), 12.dpToPx()))
 
             repository.getMyPageScrap().enqueue(
                 object : Callback<List<Archive>> {

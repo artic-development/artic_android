@@ -39,7 +39,9 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
 
     inner class Holder(itemView: View) :RecyclerView.ViewHolder(itemView){
         val container=itemView.findViewById<View?>(R.id.rv_item_mypage_scrap_container)
-        val img_url=itemView.findViewById<ImageView?>(R.id.rv_item_mypage_scrap_img)
+        val img_url=itemView.findViewById<ImageView?>(R.id.rv_item_mypage_scrap_img)?.apply {
+            clipToOutline = true
+        }
         val scrap_category=itemView.findViewById<TextView?>(R.id.rv_item_mypage_scrap_title)
         val scrap_title=itemView.findViewById<TextView?>(R.id.rv_item_mypage_scrap_txt)
     }
