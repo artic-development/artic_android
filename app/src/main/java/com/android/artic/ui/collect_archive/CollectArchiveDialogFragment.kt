@@ -81,6 +81,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                 override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
                     response.body()?.let {
                         collectArchiveListAdapter.dataList = it
+                        collectArchiveListAdapter.checkedList = MutableList(it.size) { false }
 
                         if (it.isEmpty()) {
                             linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
