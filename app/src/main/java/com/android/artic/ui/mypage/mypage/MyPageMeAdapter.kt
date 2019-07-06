@@ -37,7 +37,9 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
         val container=itemView.findViewById<View?>(R.id.rv_item_mypage_me_container)
-        val img_url=itemView.findViewById<ImageView?>(R.id.rv_item_mypage_me_img)
+        val img_url=itemView.findViewById<ImageView?>(R.id.rv_item_mypage_me_img)?.apply {
+            clipToOutline = true
+        }
         val directory_name=itemView.findViewById<TextView?>(R.id.rv_item_mypage_me_directory_name)
     }
 }

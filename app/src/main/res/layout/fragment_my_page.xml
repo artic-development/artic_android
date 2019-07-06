@@ -12,34 +12,44 @@
         android:layout_width="match_parent"
         android:layout_height="64dp"
         android:background="@color/white">
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_centerInParent="true"
-        android:fontFamily="@font/nanum_barungothic_regular"
-        android:includeFontPadding="false"
-        android:text="artic"
-        android:textColor="@color/black"
-        android:textSize="17sp" />
 
-    <ImageButton
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:layout_alignParentRight="true"
-        android:layout_centerVertical="true"
-        android:layout_marginRight="25dp"
-        android:background="@drawable/btn_setting" />
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:text="artic"
+            android:textColor="@color/black"
+            android:textSize="17sp" />
+
+        <ImageButton
+            android:id="@+id/btn_my_page_setting"
+            android:layout_width="21dp"
+            android:layout_height="21dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="25dp"
+            android:background="@drawable/btn_setting" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_alignParentBottom="true"
+            android:background="@color/very_light_pink_two" />
 
 
-            </RelativeLayout>
+    </RelativeLayout>
 
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-    <LinearLayout
-    android:layout_width="match_parent"
-    android:layout_height="match_parent"
-    android:orientation="vertical">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical">
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0.3dp"
@@ -52,19 +62,19 @@
                 android:paddingLeft="20dp">
 
                 <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/profile_img"
+                    android:id="@+id/img_my_page_profile"
                     android:layout_width="72dp"
                     android:layout_height="72dp"
                     android:layout_marginTop="32dp"
                     android:src="@drawable/profile" />
 
                 <TextView
-                    android:id="@+id/profile_name"
+                    android:id="@+id/txt_my_page_name"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="49dp"
-                    android:layout_toRightOf="@id/profile_img"
+                    android:layout_toRightOf="@id/img_my_page_profile"
                     android:fontFamily="@font/nanum_barungothic_bold"
                     android:includeFontPadding="false"
                     android:text="이아틱"
@@ -72,13 +82,13 @@
                     android:textSize="16sp" />
 
                 <TextView
-                    android:id="@+id/profile_email"
+                    android:id="@+id/txt__my_page_email"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/profile_name"
+                    android:layout_below="@id/txt_my_page_name"
                     android:layout_marginLeft="20dp"
                     android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/profile_img"
+                    android:layout_toRightOf="@id/img_my_page_profile"
                     android:fontFamily="@font/nanum_barungothic_light"
                     android:text="articcrew@gmail.com"
                     android:textColor="@color/black"
@@ -88,8 +98,7 @@
             <FrameLayout
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:background="@color/very_light_pink"
-                android:paddingBottom="10dp">
+                android:background="@color/very_light_pink">
 
                 <RelativeLayout
                     android:layout_width="match_parent"
@@ -98,7 +107,7 @@
                     android:paddingBottom="30dp">
 
                     <TextView
-                        android:id="@+id/introduce_txt"
+                        android:id="@+id/label_my_page_introduce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
@@ -109,10 +118,10 @@
                         android:textSize="13sp" />
 
                     <TextView
-                        android:id="@+id/my_introduce_txt"
+                        android:id="@+id/txt_my_page_introduce"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_below="@id/introduce_txt"
+                        android:layout_below="@id/label_my_page_introduce"
                         android:layout_marginLeft="20dp"
                         android:layout_marginTop="11dp"
                         android:layout_marginRight="72dp"
@@ -129,77 +138,125 @@
 
             </FrameLayout>
 
-
-            <LinearLayout
+            <View
+                android:id="@+id/view3"
                 android:layout_width="match_parent"
-                android:layout_height="44dp"
-                android:background="@color/white"
-                android:gravity="center_vertical"
-                android:orientation="horizontal">
+                android:layout_height="0.1dp"
+                android:background="@color/brown_grey" />
 
-                <RelativeLayout
-                    android:id="@+id/mypage_tab_scrap"
+            <View
+                android:id="@+id/view5"
+                android:layout_width="match_parent"
+                android:layout_height="10dp"
+                android:background="@color/very_light_pink" />
+
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="44dp">
+
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_my_page"
+                    android:layout_width="200dp"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabGravity="center"
+                    app:tabRippleColor="@null" />
+
+                <ImageView
+                    android:id="@+id/imageView4"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
+                    android:layout_marginEnd="25dp"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:srcCompat="@drawable/btn_plus" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
-                    <TextView
-                        android:id="@+id/tv_act_my_page_scrap"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:fontFamily="@font/nanum_barungothic_bold"
-                        android:includeFontPadding="false"
-                        android:text="스크랩"
-                        android:textColor="@color/soft_blue"
-                        android:textSize="14sp" />
-
-                    <ImageView
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_marginLeft="2dp"
-                        android:layout_toRightOf="@id/tv_act_my_page_scrap"
-                        android:src="@drawable/dot" />
-
-                </RelativeLayout>
-
-                <RelativeLayout
-                    android:id="@+id/mypage_tab_me"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp">
-
-                    <TextView
-                        android:id="@+id/tv_act_my_page_me"
-                        android:layout_width="wrap_content"
-                        android:layout_height="wrap_content"
-                        android:layout_alignParentEnd="true"
-                        android:layout_marginEnd="0dp"
-                        android:fontFamily="@font/nanum_barungothic_regular"
-                        android:includeFontPadding="false"
-                        android:text="나"
-                        android:textColor="@color/black"
-                        android:textSize="14sp" />
-
-                </RelativeLayout>
-
-
-                <ImageButton
-                    android:id="@+id/mypage_tab_plus_btn"
-                    android:layout_width="21dp"
-                    android:layout_height="21dp"
-                    android:layout_marginRight="25dp"
-                    android:background="@drawable/btn_plus" />
-            </LinearLayout>
-
-
-            <FrameLayout
-                android:id="@+id/mypage_frame"
+            <View
+                android:id="@+id/view4"
                 android:layout_width="match_parent"
-                android:layout_height="match_parent">
+                android:layout_height="0.5dp"
+                android:background="@color/brown_grey" />
+
+            <com.android.artic.ui.HeightWrappingViewPager
+                android:id="@+id/vp_my_page"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content" />
 
 
-            </FrameLayout>
+            <!--<LinearLayout-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="44dp"-->
+            <!--android:background="@color/white"-->
+            <!--android:gravity="center_vertical"-->
+            <!--android:orientation="horizontal">-->
 
-    </LinearLayout>
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/mypage_tab_scrap"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="20dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_act_my_page_scrap"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:fontFamily="@font/nanum_barungothic_bold"-->
+            <!--android:includeFontPadding="false"-->
+            <!--android:text="스크랩"-->
+            <!--android:textColor="@color/soft_blue"-->
+            <!--android:textSize="14sp" />-->
+
+            <!--<ImageView-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="2dp"-->
+            <!--android:layout_toRightOf="@id/tv_act_my_page_scrap"-->
+            <!--android:src="@drawable/dot" />-->
+
+            <!--</RelativeLayout>-->
+
+            <!--<RelativeLayout-->
+            <!--android:id="@+id/mypage_tab_me"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_marginLeft="20dp">-->
+
+            <!--<TextView-->
+            <!--android:id="@+id/tv_act_my_page_me"-->
+            <!--android:layout_width="wrap_content"-->
+            <!--android:layout_height="wrap_content"-->
+            <!--android:layout_alignParentEnd="true"-->
+            <!--android:layout_marginEnd="0dp"-->
+            <!--android:fontFamily="@font/nanum_barungothic_regular"-->
+            <!--android:includeFontPadding="false"-->
+            <!--android:text="나"-->
+            <!--android:textColor="@color/black"-->
+            <!--android:textSize="14sp" />-->
+
+            <!--</RelativeLayout>-->
+
+
+            <!--<ImageButton-->
+            <!--android:id="@+id/mypage_tab_plus_btn"-->
+            <!--android:layout_width="21dp"-->
+            <!--android:layout_height="21dp"-->
+            <!--android:layout_marginRight="25dp"-->
+            <!--android:background="@drawable/btn_plus" />-->
+            <!--</LinearLayout>-->
+
+
+            <!--<FrameLayout-->
+            <!--android:id="@+id/mypage_frame"-->
+            <!--android:layout_width="match_parent"-->
+            <!--android:layout_height="match_parent">-->
+
+
+            <!--</FrameLayout>-->
+
+        </LinearLayout>
     </ScrollView>
 </LinearLayout>
