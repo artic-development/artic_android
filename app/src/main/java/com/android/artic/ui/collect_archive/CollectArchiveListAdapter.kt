@@ -16,7 +16,12 @@ import com.android.artic.data.Archive
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.dialog_put_archive.*
 
-class CollectArchiveListAdapter(private val ctx: Context, private val parentFragment : CollectArchiveDialogFragment, var dataList: List<Archive>): RecyclerView.Adapter<CollectArchiveListAdapter.Holder>(){
+class CollectArchiveListAdapter(
+    private val ctx: Context,
+    private val parentFragment : CollectArchiveDialogFragment,
+    var dataList: List<Archive>,
+    var checkedList: MutableList<Boolean>
+): RecyclerView.Adapter<CollectArchiveListAdapter.Holder>(){
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_archive_select_my_archive, viewGroup, false)
@@ -38,22 +43,42 @@ class CollectArchiveListAdapter(private val ctx: Context, private val parentFrag
             .into(holder.img_my_archive_thumbnail)
         holder.tv_my_archive_name.text = dataList[position].title
 
+        if (checkedList[position]) {
+            holder.relative_select_layer.visibility = View.VISIBLE
+        }
+        else {
+            holder.relative_select_layer.visibility = View.GONE
+        }
+
         // @수민) 버튼 리스너
         holder.relative_archive_item.setOnClickListener {
-            // TODO 아카이브를 누르면,,, 선택,,,,음 ,,,
-            if (holder.relative_select_layer.visibility == View.GONE) {
-                holder.relative_select_layer.visibility = View.VISIBLE
-
-                parentFragment.btn_rv_dialog_put_archive_complete.setTextColor(Color.parseColor("#4f80ff"))
-                parentFragment.btn_rv_dialog_put_archive_complete.text = "완료"
-            }
-            else if (holder.relative_select_layer.visibility == View.VISIBLE) {
-                holder.relative_select_layer.visibility = View.GONE
+            val prevCheck = checkedList.indexOf(true)
+            if (prevCheck == position) { // 전부다 체크 해제!
+                checkedList[position] = false
+                notifyItemChanged(position)
 
                 parentFragment.btn_rv_dialog_put_archive_complete.setTextColor(Color.parseColor("#000000"))
                 parentFragment.btn_rv_dialog_put_archive_complete.text = "취소"
             }
+            else if (prevCheck != -1) {
+                checkedList[prevCheck] = false
+                notifyItemChanged(prevCheck)
+
+                checkedList[position] = true
+                notifyItemChanged(position)
+            }
+            else {
+                checkedList[position] = true
+                notifyItemChanged(position)
+
+                parentFragment.btn_rv_dialog_put_archive_complete.setTextColor(Color.parseColor("#4f80ff"))
+                parentFragment.btn_rv_dialog_put_archive_complete.text = "완료"
+            }
         }
+    }
+
+    private fun setDialogSelect(position: Int) {
+
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){

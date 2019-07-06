@@ -22,7 +22,7 @@ import retrofit2.Response
 class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     private val repository: ArticRepository by inject()
-    private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf()) }
+    private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf(), mutableListOf()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)
@@ -81,6 +81,9 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                 override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
                     response.body()?.let {
                         collectArchiveListAdapter.dataList = it
+                        val checkedList = mutableListOf<Boolean>()
+                        it.forEach { checkedList.add(false) }
+                        collectArchiveListAdapter.checkedList = checkedList
 
                         if (it.isEmpty()) {
                             linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
