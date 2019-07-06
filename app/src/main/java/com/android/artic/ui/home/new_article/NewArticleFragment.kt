@@ -51,20 +51,27 @@ class NewArticleFragment : Fragment() {
                 HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
 
-            repository.getNewArticleList().enqueue(
-                object : Callback<List<Article>> {
-                    override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
+//            repository.getNewArticleList().enqueue(
+//                object : Callback<List<Article>> {
+//                    override fun onFailure(call: Call<List<Article>>, t: Throwable) {
+//                        toast(R.string.network_error)
+//                    }
+//
+//                    override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
+//                        response.body()?.let {
+//                            articleCardAdapter.dataList = it
+//                            articleCardAdapter.notifyDataSetChanged()
+//                        }
+//                    }
+//                }
+//            )
 
-                    override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                        response.body()?.let {
-                            articleCardAdapter.dataList = it
-                            articleCardAdapter.notifyDataSetChanged()
-                        }
-                    }
-                }
-            )
+            repository.getNewArticleList({
+                articleCardAdapter.dataList = it
+                articleCardAdapter.notifyDataSetChanged()
+            }, {
+                toast(R.string.network_error)
+            })
         }
     }
 }
