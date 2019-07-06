@@ -26,7 +26,9 @@ class ArchiveCardAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.run {
             val cur = data[position]
-            txt_category?.text = cur.categories?.elementAt(0)
+            var categoriesString = ""
+            cur.categories?.forEach { categoriesString += "$it\n" }
+            txt_category?.text = categoriesString
             txt_title?.text = cur.title
             img_background?.let{
                 Glide.with(context)

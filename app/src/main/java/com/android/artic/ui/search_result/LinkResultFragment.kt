@@ -51,8 +51,19 @@ class LinkResultFragment(
 
                 override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
                     response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
+                        if(it.isNotEmpty()) {
+                            adapter.dataList = it
+                            adapter.notifyDataSetChanged()
+
+                            rv_search_result_link.visibility=View.VISIBLE
+                            link_result_empty.visibility=View.GONE
+
+                        } else{
+
+                            rv_search_result_link.visibility=View.GONE
+                            link_result_empty.visibility=View.VISIBLE
+
+                        }
                     }
                 }
             }

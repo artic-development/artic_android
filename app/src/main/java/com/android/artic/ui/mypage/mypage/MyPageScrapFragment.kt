@@ -50,7 +50,12 @@ class MyPageScrapFragment : Fragment() {
             rv_mypage_scrap.adapter = adapter
             rv_mypage_scrap.layoutManager = GridLayoutManager(this, 2)
             rv_mypage_scrap.addItemDecoration(GridSpacesItemDecoration(this, 12.dpToPx(), 12.dpToPx()))
+        }
+    }
 
+    override fun onResume() {
+        super.onResume()
+        activity?.run {
             repository.getMyPageScrap().enqueue(
                 object : Callback<List<Archive>> {
                     override fun onFailure(call: Call<List<Archive>>, t: Throwable) {

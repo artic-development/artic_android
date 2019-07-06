@@ -273,6 +273,7 @@ class ArticRepository (
                 Archive(
                     id = 0,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -280,6 +281,7 @@ class ArticRepository (
                 ),Archive(
                     id = 1,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -287,6 +289,7 @@ class ArticRepository (
                 ),Archive(
                     id = 2,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -294,6 +297,7 @@ class ArticRepository (
                 ),Archive(
                     id = 3,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Management"),
                     title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -704,42 +708,42 @@ class ArticRepository (
     fun getSearchArticleList(keyword: String): Call<List<Article>> {
         return Calls.response(
             listOf(
-                Article(
-                    id = 0,
-                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com",
-                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
-                    like = 999,
-                    isLiked = false
-                ),Article(
-                    id = 0,
-                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
-                    like = 999,
-                    isLiked = true
-                ),Article(
-                    id = 0,
-                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
-                    like = 999,
-                    isLiked = false
-                ),Article(
-                    id = 0,
-                    title = "UI / UX 뭐시기 어쩌고",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
-                    like = 999,
-                    isLiked = true
-                ),Article(
-                    id = 0,
-                    title = "UI / UX 뭐시기 어쩌고",
-                    url = "https://github.com/artic-development/artic_android",
-                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
-                    like = 999,
-                    isLiked = false
-                )
+//                Article(
+//                    id = 0,
+//                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
+//                    url = "https://github.com",
+//                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
+//                    like = 999,
+//                    isLiked = false
+//                ),Article(
+//                    id = 0,
+//                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
+//                    url = "https://github.com/artic-development/artic_android",
+//                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
+//                    like = 999,
+//                    isLiked = true
+//                ),Article(
+//                    id = 0,
+//                    title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
+//                    url = "https://github.com/artic-development/artic_android",
+//                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
+//                    like = 999,
+//                    isLiked = false
+//                ),Article(
+//                    id = 0,
+//                    title = "UI / UX 뭐시기 어쩌고",
+//                    url = "https://github.com/artic-development/artic_android",
+//                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
+//                    like = 999,
+//                    isLiked = true
+//                ),Article(
+//                    id = 0,
+//                    title = "UI / UX 뭐시기 어쩌고",
+//                    url = "https://github.com/artic-development/artic_android",
+//                    title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
+//                    like = 999,
+//                    isLiked = false
+//                )
             )
         )
     }
@@ -752,49 +756,49 @@ class ArticRepository (
     fun getSearchArchiveList(keyword: String): Call<List<Archive>> {
         return Calls.response(
             listOf(
-                Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "search archive list",
-                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                )
+//                Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "search archive list",
+//                    title_img_url = "https://img.theqoo.net/img/GOvlc.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                )
             )
         )
     }

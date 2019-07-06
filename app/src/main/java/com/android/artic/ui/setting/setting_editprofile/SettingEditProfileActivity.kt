@@ -52,14 +52,14 @@ class SettingEditProfileActivity : BaseActivity() {
 
     private fun setListener() {
 
-        edit_profile_name_et.addTextChangedListener(object: TextWatcher{
+        edit_profile_name_et.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
                 //  edit_profile_finish_btn.setTextColor(ContextCompat.getColor(btn , R.color.soft_blue))
-                edit_profile_finish_btn.isActivated=true
+                edit_profile_finish_btn.isActivated = true
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-                edit_profile_finish_btn.isActivated=false
+                edit_profile_finish_btn.isActivated = false
 
             }
 
@@ -69,22 +69,22 @@ class SettingEditProfileActivity : BaseActivity() {
 
         })
 
-        edit_profile_myinfo_et.addTextChangedListener(object: TextWatcher{
+        edit_profile_myinfo_et.addTextChangedListener(object : TextWatcher {
             override fun afterTextChanged(s: Editable?) {
-                edit_profile_finish_btn.isActivated=true
+                edit_profile_finish_btn.isActivated = true
             }
 
             override fun beforeTextChanged(s: CharSequence?, start: Int, count: Int, after: Int) {
-               edit_profile_finish_btn.isActivated=false
+                edit_profile_finish_btn.isActivated = false
             }
 
             override fun onTextChanged(s: CharSequence?, start: Int, before: Int, count: Int) {
-                TODO("not implemented") //To change body of created functions use File | Settings | File Templates.
+
             }
 
         })
 
-        edit_profile_finish_btn.setOnClickListener{
+        edit_profile_finish_btn.setOnClickListener {
             finish()
         }
     }
@@ -117,7 +117,7 @@ class SettingEditProfileActivity : BaseActivity() {
                     val path = saveImage(bitmap)
                     Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
                     imageview!!.setImageBitmap(bitmap)
-
+                    edit_profile_finish_btn.isActivated = true
                 }
                 catch (e: IOException) {
                     e.printStackTrace()
