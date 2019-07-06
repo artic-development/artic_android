@@ -17,16 +17,17 @@
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.navigation.NavigationActivity">
 
-        </activity>
-        <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
-        <activity android:name=".ui.article_webview.ArticleWebViewActivity"></activity>
-        <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
-        <activity android:name=".ui.login.login_start.LoginStartActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
 
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
+        </activity>
+        <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
+        <activity android:name=".ui.article_webview.ArticleWebViewActivity"></activity>
+        <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
+        <activity android:name=".ui.login.login_start.LoginStartActivity">
+
         </activity>
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity"></activity>
         <activity android:name=".ui.setting.setting.SettingActivity"></activity>
