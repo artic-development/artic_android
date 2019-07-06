@@ -57,10 +57,10 @@ class SearchResultActivity : BaseActivity() {
     // TODO 유틸로 뺄 수 있니?
     private fun initAllTabItem() {
         tv_search_result_tab_archive.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
-        img_search_result_tab_archive.visibility = View.GONE
+        img_search_result_tab_archive.visibility = View.INVISIBLE
 
         tv_search_result_tab_article.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
-        img_search_result_tab_article.visibility = View.GONE
+        img_search_result_tab_article.visibility = View.INVISIBLE
     }
 
     private fun selectArchiveTab() {
