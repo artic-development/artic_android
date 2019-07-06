@@ -11,9 +11,14 @@ import com.android.artic.R
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_login.*
+import kotlinx.android.synthetic.main.activity_signup_login.*
 import org.jetbrains.anko.toast
+import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
+
+    val emailPattern : Pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
+    val passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$", Pattern.CASE_INSENSITIVE)
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -51,9 +56,23 @@ class LoginActivity : BaseActivity() {
         // @수민) 완료 버튼 리스너
         btn_login_complete.setOnClickListener {
             if(btn_login_complete.isActivated) {
-                var intent = Intent(this, NavigationActivity::class.java)
+                // 유효성 검사
+                // 이메일
+                var emailStr = et_login_email.text.toString()
+                var emailMatcher = emailPattern.matcher(emailStr)
 
-                startActivity(intent)
+                // 비밀번호
+                var passwordStr = et_login_password.text.toString()
+                var passwordMatcher = passwordPattern.matcher(passwordStr)
+
+                if (!emailMatcher.find() || !passwordMatcher.find()) {
+                    toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
+                }
+                else {
+                    var intent = Intent(this, NavigationActivity::class.java)
+
+                    startActivity(intent)
+                }
             }
         }
 
@@ -63,10 +82,23 @@ class LoginActivity : BaseActivity() {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
                     if (et_login_email.text.toString() != "" && et_login_password.text.toString() != "") {
-                        // TODO (@수민) 검색 기능 구현
-                        var intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+                        // 유효성 검사
+                        // 이메일
+                        var emailStr = et_login_email.text.toString()
+                        var emailMatcher = emailPattern.matcher(emailStr)
 
-                        this@LoginActivity.startActivity(intent)
+                        // 비밀번호
+                        var passwordStr = et_login_password.text.toString()
+                        var passwordMatcher = passwordPattern.matcher(passwordStr)
+                        if (!emailMatcher.find() || !passwordMatcher.find()) {
+                            toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
+                        }
+
+                        else {
+                            var intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+
+                            this@LoginActivity.startActivity(intent)
+                        }
 
                         return true
                     }
