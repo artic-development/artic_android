@@ -42,7 +42,13 @@ class MyPageMeFragment : Fragment() {
             adapter = MyPageMeAdapter(this, listOf())
             rv_mypage_me.adapter = adapter
             rv_mypage_me.layoutManager = GridLayoutManager(this,2)
+        }
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        activity?.run {
             repository.getMyPageMe().enqueue(
                 object: Callback<List<Archive>> {
                     override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
@@ -54,14 +60,10 @@ class MyPageMeFragment : Fragment() {
                             adapter.data=it
                             adapter.notifyDataSetChanged()
                         }
-
-
                     }
-
                 }
             )
         }
-
     }
 }
 

@@ -1,17 +1,22 @@
 package com.android.artic.ui.mypage.mypage
 
+import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
+import androidx.fragment.app.FragmentPagerAdapter
 import androidx.fragment.app.FragmentStatePagerAdapter
+import com.android.artic.ui.HeightWrappingViewPager
 
 class MyPageTabLayoutAdapter(
     fm: FragmentManager
-): FragmentStatePagerAdapter(fm) {
-    private val fs = listOf(
-        MyPageScrapFragment(), MyPageMeFragment()
-    )
+): FragmentPagerAdapter(fm) {
+    override fun getItem(position: Int): Fragment {
+        return when (position) {
+            0 -> MyPageScrapFragment()
+            1 -> MyPageMeFragment()
+            else -> throw IllegalArgumentException("my page tab layout adater 0..1")
+        }
+    }
 
-    override fun getItem(position: Int): Fragment = fs[position]
-
-    override fun getCount(): Int = fs.size
+    override fun getCount(): Int = 2
 }
