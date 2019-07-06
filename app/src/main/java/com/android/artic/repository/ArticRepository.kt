@@ -273,6 +273,7 @@ class ArticRepository (
                 Archive(
                     id = 0,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -280,6 +281,7 @@ class ArticRepository (
                 ),Archive(
                     id = 1,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -287,6 +289,7 @@ class ArticRepository (
                 ),Archive(
                     id = 2,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Design", "Management"),
                     title = "PM과 디자이너가 서로 잘 소통하는 법을 알려주세요",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
@@ -294,6 +297,7 @@ class ArticRepository (
                 ),Archive(
                     id = 3,
                     category_ids = listOf(1,2,3),
+                    categories = listOf("Management"),
                     title = "린 브랜딩을 어떻게 시작해야 할까?",
                     title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
                     num_article = 3,
