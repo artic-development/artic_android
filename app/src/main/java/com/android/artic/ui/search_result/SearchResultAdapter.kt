@@ -6,6 +6,8 @@ import androidx.fragment.app.FragmentStatePagerAdapter
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseFragment
+import io.reactivex.subjects.BehaviorSubject
 import org.koin.android.ext.android.inject
 import org.koin.java.KoinJavaComponent.inject
 
@@ -15,6 +17,7 @@ class SearchResultAdapter (
     private val num_fragmnet:Int,
     private val searchKeyword: String
 ) : FragmentStatePagerAdapter(fm) {
+    val searchCount = BehaviorSubject.createDefault(0)
 
     companion object{
         private var archiveResultFragment: ArchiveListFragment?=null
@@ -34,11 +37,18 @@ class SearchResultAdapter (
     }
 
 
-    override fun getItem(position: Int): Fragment? {
+    override fun getItem(position: Int): BaseFragment? {
         return when(position) {
-
-            0-> ArchiveListFragment(searchKeyword)
-            1-> LinkResultFragment(searchKeyword)
+            0-> ArchiveListFragment(searchKeyword).apply {
+                searchCount.subscribe {
+                    this@SearchResultAdapter.searchCount.onNext(it)
+                }
+            }
+            1-> LinkResultFragment(searchKeyword).apply {
+                searchCount.subscribe {
+                    this@SearchResultAdapter.searchCount.onNext(it)
+                }
+            }
             else->null
         }
 

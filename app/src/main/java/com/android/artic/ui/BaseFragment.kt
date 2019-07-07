@@ -13,4 +13,16 @@ open class BaseFragment(
         return inflater.inflate(layoutId, container, false)
     }
 
+    /**
+     * this might call when page is scrolled into this fragment
+     * @author greedy0110
+     * */
+    open fun onResumeFragment() {}
+
+    /**
+     * this might call when page is scrolled out this fragment
+     * @author greedy0110
+     * */
+    open fun onPauseFragment() {}
+
 }

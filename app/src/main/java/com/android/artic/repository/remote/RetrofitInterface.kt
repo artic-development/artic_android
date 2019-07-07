@@ -76,4 +76,18 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
     ): Call<BaseResponse<List<ArticleResponse>>>
+
+    @GET("/search/article")
+    fun getSearchArticleList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Query("keyword") keyword: String
+    ): Call<BaseResponse<List<ArticleResponse>>>
+
+    @GET("/search/archive")
+    fun getSearchArchiveList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Query("keyword") keyword: String
+    ): Call<BaseResponse<List<ArchiveResponse>>>
 }

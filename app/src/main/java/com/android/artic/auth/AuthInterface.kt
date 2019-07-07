@@ -10,7 +10,7 @@ import retrofit2.http.Header
 import retrofit2.http.POST
 
 /**
- * 데이터를 처리하기 위한 것이 아닌 통신을 모아놓음 like 로그인, 회원가입 등
+ * 데이터를 처리하기 위한 것이 아닌 통신을 모아놓음 isLiked 로그인, 회원가입 등
  * @author greedy0110
  * */
 interface AuthInterface{

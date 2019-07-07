@@ -5,8 +5,12 @@ import android.os.Bundle
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
+import com.android.artic.auth.Auth
+import com.android.artic.data.auth.Signin
+import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
+import org.koin.android.ext.android.inject
 
 class NavigationActivity : AppCompatActivity() {
     private lateinit var pagerAdapter: NavigationTabPagerAdapter
@@ -14,6 +18,9 @@ class NavigationActivity : AppCompatActivity() {
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_navigation)
+
+        // TODO 테스트 용이다. 릴리즈 할때는 제거해야함!
+        dummyAuth()
 
         pagerAdapter = NavigationTabPagerAdapter(supportFragmentManager)
 
@@ -31,5 +38,16 @@ class NavigationActivity : AppCompatActivity() {
         for (i in 0 until tl_navigation.tabCount) {
             tl_navigation.getTabAt(i)?.setIcon(iconList[i])
         }
+    }
+
+    private val auth: Auth by inject()
+    private val logger: Logger by inject()
+    private fun dummyAuth() {
+        auth.requestSignin(
+            Signin("greedy0110@gmail.com", "greedy0110"),
+            successCallback = {
+                logger.info("get dummy token ${it.token}")
+            }
+        )
     }
 }

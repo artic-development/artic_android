@@ -64,4 +64,20 @@ class RetrofitDataSource : RemoteDataSource {
     override fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
     }
+
+    override fun getSearchArticleList(
+        contentType: String,
+        token: String,
+        keyword: String
+    ): Call<BaseResponse<List<ArticleResponse>>> {
+        return retrofit.getSearchArticleList(contentType, token, keyword)
+    }
+
+    override fun getSearchArchiveList(
+        contentType: String,
+        token: String,
+        keyword: String
+    ): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getSearchArchiveList(contentType, token, keyword)
+    }
 }

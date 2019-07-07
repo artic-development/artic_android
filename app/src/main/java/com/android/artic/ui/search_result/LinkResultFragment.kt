@@ -11,8 +11,11 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
+import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_link_result.*
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
@@ -22,19 +25,12 @@ import retrofit2.Response
 
 
 class LinkResultFragment(
-    val keyword: String
-) : Fragment() {
+    private val keyword: String
+) : BaseFragment(R.layout.fragment_link_result) {
     private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_link_result, container, false)
-    }
-
+    val searchCount = BehaviorSubject.createDefault(0)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,30 +39,46 @@ class LinkResultFragment(
         rv_search_result_link.adapter=adapter
         rv_search_result_link.layoutManager= LinearLayoutManager(context!!, RecyclerView.VERTICAL,false)
 
-        repository.getSearchArticleList(keyword).enqueue(
-            object : Callback<List<Article>> {
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
+        showEmptyView()
+
+        repository.getSearchArticleList(
+            keyword = keyword,
+            successCallback = {
+                // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
+                searchCount.onNext(it.size)
+                if(it.isNotEmpty()) {
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+
+                    showListView()
+
+                } else{
+                    showEmptyView()
                 }
-
-                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                    response.body()?.let {
-                        if(it.isNotEmpty()) {
-                            adapter.dataList = it
-                            adapter.notifyDataSetChanged()
-
-                            rv_search_result_link.visibility=View.VISIBLE
-                            link_result_empty.visibility=View.GONE
-
-                        } else{
-
-                            rv_search_result_link.visibility=View.GONE
-                            link_result_empty.visibility=View.VISIBLE
-
-                        }
-                    }
-                }
+            },
+            failCallback = {
+                logger.error("LinkResultFragment ${it.message}")
+                toast(R.string.network_error)
+                showEmptyView()
             }
         )
+    }
+
+    private fun showEmptyView() {
+        rv_search_result_link.visibility=View.GONE
+        link_result_empty.visibility=View.VISIBLE
+    }
+
+    private fun showListView() {
+        rv_search_result_link.visibility=View.VISIBLE
+        link_result_empty.visibility=View.GONE
+    }
+
+    override fun onResumeFragment() {
+        super.onResumeFragment()
+
+        // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
+        if (::adapter.isInitialized)
+            searchCount.onNext(adapter.dataList.size)
     }
 }
