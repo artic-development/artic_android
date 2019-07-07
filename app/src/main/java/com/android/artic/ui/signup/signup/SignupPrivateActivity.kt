@@ -10,13 +10,21 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
+import com.android.artic.auth.Auth
+import com.android.artic.data.auth.Signin
+import com.android.artic.data.auth.Signup
+import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
+import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 import java.util.regex.Pattern
 
 class SignupPrivateActivity : BaseActivity() {
+    private val api: Auth by inject()
+    private val logger: Logger by inject()
 
     val namePattern = Pattern.compile("^[가-힣]*.{0,15}\$", Pattern.CASE_INSENSITIVE) // 이름 형식
     val birthPattern = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", Pattern.CASE_INSENSITIVE) // 날짜 형식
@@ -32,13 +40,7 @@ class SignupPrivateActivity : BaseActivity() {
         // @수민) 완료 버튼 리스너
         signup_private_done_txt.setOnClickListener {
             if (signup_private_done_txt.currentTextColor == Color.parseColor("#4f80ff")) {
-                // TODO (@수민) 회원가입 완료 통신 구현
-                var intent = Intent(this, NavigationActivity::class.java)
-
-                intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                startActivity(intent)
+                signup()
             }
         }
 
@@ -78,8 +80,8 @@ class SignupPrivateActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var birthStr = et_act_signup_private_birth.text.toString()
-                var birthMatcher = birthPattern.matcher(birthStr)
+                val birthStr = et_act_signup_private_birth.text.toString()
+                val birthMatcher = birthPattern.matcher(birthStr)
 
                 // TODO (@수민) 생일 유효성 검사
                 if (et_act_signup_private_birth.text.toString() != "" && birthMatcher.find()) {
@@ -91,8 +93,8 @@ class SignupPrivateActivity : BaseActivity() {
                     }
                 }
                 else {
-                    et_act_signup_private_birth.visibility = View.INVISIBLE
-                    et_act_signup_private_birth.visibility = View.VISIBLE
+                    tv_act_signup_private_birth_check_success.visibility = View.INVISIBLE
+                    tv_act_signup_private_birth_check_fail.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
                 }
 
@@ -103,23 +105,53 @@ class SignupPrivateActivity : BaseActivity() {
         et_act_signup_private_birth?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
-                    if (et_act_signup_private_name.text.toString() != "" && et_act_signup_private_birth.text.toString() != "") {
-                        var intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
-
-                        intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                        intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                        this@SignupPrivateActivity.startActivity(intent)
-
-                        return true
-                    }
-                    else {
-                        toast("이름과 생년월일을 입력해주세요.")
-                    }
+                    signup()
+                    return true
                 }
                 return false
             }
         })
+    }
+
+    private fun signup() {
+        logger.log("ui signup")
+        // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
+        val id = intent.getStringExtra("id")
+        val pw = intent.getStringExtra("pw")
+        val name = et_act_signup_private_name.text.toString()
+        val birth = et_act_signup_private_birth.text.toString()
+        if (name.isNotEmpty() && birth.isNotEmpty()) {
+            api.requestSignup(data = Signup(id,pw, birth.toDate("yyyy-MM-dd"), name),
+                successCallback = {
+                    // 회원가입 성공한 것으로 자동 로그인하자!
+                    api.requestSignin(data = Signin(it.id, it.pw),
+                        successCallback = {
+                            // TODO 응답 받은 토큰을 저장할 것
+                            logger.log("token data : $it")
+
+                            val intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
+
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+                            this@SignupPrivateActivity.startActivity(intent)
+                        },
+                        statusCallback = {
+                                status, success, message ->
+                            if (status == 400) {
+                                toast(message)
+                            }
+                        }
+                    )
+                },
+                statusCallback = { status, success, message ->
+                    if (status == 400) {
+                        toast(message)
+                    }
+                })
+        }
+        else {
+            toast("이름과 생년월일을 입력해주세요.")
+        }
     }
 }

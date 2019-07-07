@@ -1,11 +1,11 @@
 package com.android.artic.ui.article_about
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
@@ -25,6 +25,7 @@ import retrofit2.Response
 class ArticleAboutActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private val adapter: ArticleAdapter by lazy { ArticleAdapter(this, listOf()) }
+    private val logger: Logger by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -32,6 +33,9 @@ class ArticleAboutActivity : BaseActivity() {
 
         val archiveId = intent.getIntExtra("archiveId", -1)
         val articleId = intent.getIntExtra("articleId", -1)
+
+        logger.log("archiveId $archiveId , articleId $articleId")
+
         if (articleId == -1 || archiveId == -1) {
             //toast(R.string.network_error)
             //finish()
@@ -51,31 +55,25 @@ class ArticleAboutActivity : BaseActivity() {
             }
         )
 
-         repository.getArticle(articleId).enqueue(
-            object : Callback<Article> {
-                override fun onFailure(call: Call<Article>, t: Throwable) {
-                    toast(R.string.network_error)
+        repository.getArticle(articleId = articleId,
+            successCallback = {
+                txt_article_about_url.text = it.url
+                // TODO 타이틀 길이가 너무 길면 안된다! 알아서 줄여주는 방안을 생각해야함.
+                txt_article_about_title.text = title
+                Glide.with(this@ArticleAboutActivity)
+                    .load(it.title_img_url)
+                    .into(img_article_about)
+
+                btn_article_about_read.setOnClickListener {
+                    // TODO 아티클 읽기 구현해야함!
+                    var intent = Intent(this@ArticleAboutActivity, ArticleWebViewActivity::class.java)
+
+                    startActivity(intent)
                 }
-
-                override fun onResponse(call: Call<Article>, response: Response<Article>) {
-                    response.body()?.run {
-                        txt_article_about_url.text = url
-                        // TODO 타이틀 길이가 너무 길면 안된다! 알아서 줄여주는 방안을 생각해야함.
-                        txt_article_about_title.text = title
-                        Glide.with(this@ArticleAboutActivity)
-                            .load(title_img_url)
-                            .into(img_article_about)
-
-                        btn_article_about_read.setOnClickListener {
-                            // TODO 아티클 읽기 구현해야함!
-                            var intent = Intent(this@ArticleAboutActivity, ArticleWebViewActivity::class.java)
-
-                            startActivity(intent)
-                        }
-                    }
-                }
-            }
-        )
+            },
+            failCallback = {
+                toast(R.string.network_error)
+            })
 
         rv_article_about_another_article.adapter = adapter
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.

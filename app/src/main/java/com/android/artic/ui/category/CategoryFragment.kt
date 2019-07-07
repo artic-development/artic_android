@@ -26,18 +26,13 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
             rv_category.adapter = adapter
             rv_category.layoutManager = LinearLayoutManager(this)
 
-            repository.getCategoryList().enqueue(
-                object : Callback<List<Category>> {
-                    override fun onFailure(call: Call<List<Category>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
-
-                    override fun onResponse(call: Call<List<Category>>, response: Response<List<Category>>) {
-                        response.body()?.let {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
+            repository.getCategoryList(
+                successCallback = {
+                    adapter.data = it
+                    adapter.notifyDataSetChanged()
+                },
+                failCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }
