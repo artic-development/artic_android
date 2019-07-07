@@ -73,7 +73,7 @@
             app:layout_constraintTop_toBottomOf="@+id/version_artic_img" />
 
         <TextView
-            android:id="@+id/textView3"
+            android:id="@+id/tv_act_setting_version_version_info"
             android:layout_width="182dp"
             android:layout_height="34dp"
             android:background="@drawable/round_brownish_grey_border"

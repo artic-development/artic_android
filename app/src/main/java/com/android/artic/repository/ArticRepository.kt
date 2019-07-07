@@ -26,6 +26,34 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 카테고리별 아카이브 리스트
+    fun getCategoryArchiveList(
+        categoryId: Int,
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getCategoryArchiveList(categoryId).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Archive(
+                        id = res.archive_idx,
+                        title = res.archive_title,
+                        title_img_url = res.archive_img,
+                        category_idx = res.category_idx,
+                        num_article = res.article_cnt,
+                        categories = res.category_all!!.map { cate -> cate.category_title }
+                    ) }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+
+    }
+
     /**
      * get CategoryList by Asynchronous
      * @author greedy0110

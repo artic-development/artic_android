@@ -35,7 +35,7 @@ class CollectArchiveListAdapter(
         holder.img_my_archive_thumbnail.clipToOutline = true
         holder.img_select_layer.clipToOutline = true
         var alpha = holder.img_select_layer.drawable
-        alpha.alpha = 61
+        alpha.alpha = 80
 
         Glide
             .with(ctx)

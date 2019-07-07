@@ -24,7 +24,7 @@ import retrofit2.Response
 class ArticleWebViewActivity : AppCompatActivity() {
     private val repository: ArticRepository by inject()
     private var articleId = -1
-    private var articleUrl = "https://github.com/artic-development/artic_android"
+    private var articleUrl = "https://brunch.co.kr/@waltzfordebby/3"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
