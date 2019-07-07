@@ -60,21 +60,13 @@ class NewArchiveFragment : Fragment() {
             rv_archive_card.addItemDecoration(spacesItemDecoration)
 
             // recyclerview 데이터 뿌리기
-            repository.getNewArchiveList().enqueue(
-                object :Callback<List<Archive>> {
-                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
-
-                    override fun onResponse(
-                        call: Call<List<Archive>>,
-                        response: Response<List<Archive>>
-                    ) {
-                        response.body()?.let {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
+            repository.getNewArchiveList(
+                successCallback = {
+                    adapter.data = it
+                    adapter.notifyDataSetChanged()
+                },
+                failCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }
