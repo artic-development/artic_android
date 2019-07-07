@@ -61,7 +61,10 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
                         response: Response<List<AppNotification>>
                     ) {
                         response.body()?.let {
-                            if (it.isNotEmpty()) container_notification_new.visibility = View.VISIBLE
+                            if (it.isNotEmpty()) {
+                                container_notification_new.visibility = View.VISIBLE
+                                relative_frag_notification_no_alert.visibility = View.GONE
+                            }
                             adapterNewNotification.data = it
                             adapterNewNotification.notifyDataSetChanged()
                         }
@@ -80,7 +83,10 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
                         response: Response<List<AppNotification>>
                     ) {
                         response.body()?.let {
-                            if (it.isNotEmpty()) container_notification_old.visibility = View.VISIBLE
+                            if (it.isNotEmpty()) {
+                                container_notification_old.visibility = View.VISIBLE
+                                relative_frag_notification_no_alert.visibility = View.GONE
+                            }
                             adapterOldNotification.data = it
                             adapterOldNotification.notifyDataSetChanged()
                         }

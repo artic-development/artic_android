@@ -46,35 +46,35 @@ class ArticRepository (
                 Article(
                     id = 0,
                     title = "제품 디자이너는 코딩에 대해 잊어야 합니다. ",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "댑 (DApp)이 몰고올 디자이너 ‘댑’ ",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
                     title = "사용자 경험(UX), 망해가던 Gucci를",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "디자이너가 알아두면 좋은 인하우스와 에이전시의 차이점",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
                     title = "와츠앱 스티커 작업기를 가진다면 어떻게 해야할까?",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/Ixosq.jpg",
                     like = 999,
                     isLiked = false
@@ -93,7 +93,7 @@ class ArticRepository (
             Article(
                 id = 0,
                 title = "article",
-                url = "https://github.com/artic-development/artic_android",
+                url = "https://brunch.co.kr/@waltzfordebby/3",
                 title_img_url = "https://img.theqoo.net/img/lQZRv.jpg",
                 like = 999,
                 isLiked = false
@@ -112,35 +112,35 @@ class ArticRepository (
                 Article(
                     id = 0,
                     title = "artic pick article",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "artic pick article",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
                     title = "artic pick article",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "artic pick article",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
                     title = "artic pick article",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://images.pexels.com/photos/248797/pexels-photo-248797.jpeg?auto=compress&cs=tinysrgb&dpr=1&w=500",
                     like = 999,
                     isLiked = false
@@ -170,21 +170,21 @@ class ArticRepository (
                 Article(
                     id = 0,
                     title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
                 ),Article(
                     id = 0,
                     title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
@@ -366,14 +366,14 @@ class ArticRepository (
                 Article(
                     id = 0,
                     title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = false
                 ),Article(
                     id = 0,
                     title = "로고디자인을 위한 지식에 대한 모든 것을 파헤치다",
-                    url = "https://github.com/artic-development/artic_android",
+                    url = "https://brunch.co.kr/@waltzfordebby/3",
                     title_img_url = "https://img.theqoo.net/img/xRxVm.jpg",
                     like = 999,
                     isLiked = true
