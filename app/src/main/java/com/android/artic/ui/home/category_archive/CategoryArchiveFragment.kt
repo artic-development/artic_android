@@ -61,7 +61,7 @@ class CategoryArchiveFragment(
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
-            adapter = CategoryArchiveCardAdapter(this, listOf())
+            adapter = CategoryArchiveCardAdapter(this, listOf(), categoryName)
 
             txtCategoryArchiveName.text = categoryName
             rvCategoryArchive.adapter = adapter
