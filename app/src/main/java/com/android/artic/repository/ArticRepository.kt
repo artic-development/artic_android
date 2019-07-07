@@ -1,5 +1,6 @@
 package com.android.artic.repository
 
+import com.android.artic.auth.Auth
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -8,7 +9,9 @@ import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
 import com.android.artic.repository.remote.RemoteDataSource
 import com.android.artic.repository.remote.response.BaseResponse
+import com.android.artic.ui.new_archive.MakeNewArchiveData
 import com.android.artic.ui.search.data.RecommendWordData
+import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -23,6 +26,34 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 카테고리별 아카이브 리스트
+    fun getCategoryArchiveList(
+        categoryId: Int,
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getCategoryArchiveList(categoryId).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Archive(
+                        id = res.archive_idx,
+                        title = res.archive_title,
+                        title_img_url = res.archive_img,
+                        category_idx = res.category_idx,
+                        num_article = res.article_cnt,
+                        categories = res.category_all!!.map { cate -> cate.category_title }
+                    ) }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+
+    }
+
     /**
      * get CategoryList by Asynchronous
      * @author greedy0110
@@ -140,8 +171,30 @@ class ArticRepository (
      * @see Archive
      * @author greedy0110
      * */
-    fun getArchiveListGivenCategory(categoryId: Int): Call<List<Archive>>{
-        return Calls.response(local.getArchiveListGivenCategory(categoryId))
+    fun getArchiveListGivenCategory(
+        categoryId: Int,
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        ){
+        remote.getArchiveListGivenCategory(categoryId).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    logger.log("get archive list ${it.data}")
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Archive(
+                        id = res.archive_idx,
+                        category_ids = listOf(res.category_idx),
+                        title = res.archive_title,
+                        title_img_url = res.archive_img,
+                        num_article = res.article_cnt
+                    ) }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     /**
@@ -159,7 +212,7 @@ class ArticRepository (
                     if (it.data == null) listOf()
                     else it.data.map { res -> Archive(
                         id = res.archive_idx,
-                        categories = res.category_all.map { cate -> cate.category_title },
+                        categories = res.category_all!!.map { cate -> cate.category_title },
                         category_ids = listOf(res.category_idx),
                         title = res.archive_title,
                         title_img_url = res.archive_img,
@@ -208,8 +261,37 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getArticleListGivenArchive(archiveId: Int): Call<List<Article>> {
-        return Calls.response(local.getArticleListGivenArchive(archiveId))
+    fun getArticleListGivenArchive(
+        archiveId: Int,
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.getArticleListGivenArchiveId(
+                archiveId = archiveId,
+                contentType = "application/json",
+                token = token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            Article(
+                                id = res.article_idx,
+                                like = res.hits,
+                                title_img_url = res.thumnail,
+                                title = res.article_title,
+                                url = res.link
+                            )
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
     // @수민
@@ -228,8 +310,32 @@ class ArticRepository (
     }
 
 
-    fun getMyPageMe() : Call<List<Archive>>{
-        return Calls.response(local.getMyPageMe())
+    fun getMyPageMe(
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ){
+        Auth.token?.let {token ->
+            remote.getMyArchiveList(
+                "application/json", token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            category_ids = listOf(res.category_idx),
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            num_article = res.article_cnt
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
 
@@ -270,23 +376,30 @@ class ArticRepository (
         return Calls.response(local.getSearchArchiveList(keyword))
     }
 
-    data class SomeUIData(val s:String)
-    data class SomeServerData(val integer: Int)
-
-    fun getSomething(successCallback: (SomeUIData)->Unit, failCallback: (Throwable)->Unit) {
-        Calls.response(
-            SomeServerData(1)
-        ).enqueue(object : Callback<SomeServerData>{
-            override fun onFailure(call: Call<SomeServerData>, t: Throwable) {
-                failCallback(t)
-            }
-
-            override fun onResponse(call: Call<SomeServerData>, response: Response<SomeServerData>) {
-                response.body()?.let {
-                    successCallback(SomeUIData(it.integer.toString()))
+    fun addMyArchive(
+        data: MakeNewArchiveData,
+        successCallback: (Int) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let {token ->
+            remote.postRegisterArchive("application/json", token,
+                JsonObject().apply {
+                    addProperty("title", data.title)
+                    addProperty("img", data.img)
+                    addProperty("category_idx", data.categoryIdx)
                 }
-            }
-        })
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
     /**

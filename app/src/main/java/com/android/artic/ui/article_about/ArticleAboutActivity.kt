@@ -79,19 +79,14 @@ class ArticleAboutActivity : BaseActivity() {
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
         rv_article_about_another_article.layoutManager = GridLayoutManager(this, 2)
 
-        repository.getArticleListGivenArchive(archiveId).enqueue(
-            object : Callback<List<Article>> {
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                    // 한번에 최대 4개의 아티클만 보일 것
-                    response.body()?.take(4)?.let {
-                        adapter.data = it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
+        repository.getArticleListGivenArchive(
+            archiveId = archiveId,
+            successCallback = {
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
 

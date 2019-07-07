@@ -43,8 +43,6 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         p0.btn_put.setOnClickListener {
             var putFragment = CollectArchiveDialogFragment()
 
-
-
             putFragment.show(ctx.supportFragmentManager, putFragment.tag)
         }
 

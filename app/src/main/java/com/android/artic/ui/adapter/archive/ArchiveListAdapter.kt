@@ -15,6 +15,7 @@ import com.android.artic.data.Archive
 import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.util.dpToPx
+import org.jetbrains.anko.startActivity
 
 class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): RecyclerView.Adapter<ArchiveListAdapter.Holder>(){
 
@@ -37,18 +38,10 @@ class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): Recycle
         holder.tv_article_num.text = dataList[position].num_article.toString()
 
         // 카테고리 리스트 어댑터 설정
-//        detailNewArchiveCategoryAdapter =
-//            ArchiveCategoryAdapter(
-//                ctx,
-//                dataList[position].categories!!
-//            )
-        // 위 코드로 바꿔야 함
-        var categoryList = listOf("Management", "UI/UX")
-
         detailNewArchiveCategoryAdapter =
             ArchiveCategoryAdapter(
                 ctx,
-                categoryList
+                dataList[position].categories!!
             )
 
         holder.rv_category_list.adapter = detailNewArchiveCategoryAdapter
@@ -60,9 +53,11 @@ class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): Recycle
         holder.rv_category_list.addItemDecoration(spacesItemDecoration)
 
         holder.relative_archive_list_card.setOnClickListener {
-            var intent = Intent(ctx, ArticleActivity::class.java)
-
-            ctx.startActivity(intent)
+            ctx.startActivity<ArticleActivity>(
+                "archiveTitle" to dataList[position].title,
+                "categoryTitle" to dataList[position].categories?.get(0),
+                "archiveId" to dataList[position].id
+            )
         }
     }
 

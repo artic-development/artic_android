@@ -65,26 +65,20 @@ class MyPageMeFragment : Fragment() {
         super.onResume()
 
         activity?.run {
-            repository.getMyPageMe().enqueue(
-                object: Callback<List<Archive>> {
-                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                        toast(R.string.network_error)
+            repository.getMyPageMe(
+                successCallback = {
+                    if(it.isNotEmpty()) {
+                        adapter.data = it
+                        adapter.notifyDataSetChanged()
+                        rv_mypage_me.visibility = View.VISIBLE
+                        mypage_my_empty_view.visibility = View.GONE
+                    }else{
+                        rv_mypage_me.visibility=View.GONE
+                        mypage_my_empty_view.visibility=View.VISIBLE
                     }
-
-                    override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                        response.body()?.let {
-                            if (it.isNotEmpty()) {
-                                adapter.data = it
-                                adapter.notifyDataSetChanged()
-                                rv_mypage_me.visibility=View.VISIBLE
-                                mypage_my_empty_view.visibility=View.GONE
-                            } else {
-
-                                rv_mypage_me.visibility=View.GONE
-                                mypage_my_empty_view.visibility=View.VISIBLE
-                            }
-                        }
-                    }
+                },
+                failCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }

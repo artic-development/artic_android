@@ -12,10 +12,12 @@ import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 class CategoryArchiveCardAdapter(
     private val context: Context,
-    var data: List<Archive>
+    var data: List<Archive>,
+    private val categoryName: String
 ) : RecyclerView.Adapter<CategoryArchiveCardAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_category_archive_card, parent, false)
@@ -37,9 +39,11 @@ class CategoryArchiveCardAdapter(
 
             // @수민) 카드를 누르면 아카이브 상세 보기 (링크 목록) 으로 이동
             container?.setOnClickListener {
-                var intent = Intent(context, ArticleActivity::class.java)
-
-                context.startActivity(intent)
+                context.startActivity<ArticleActivity>(
+                    "archiveTitle" to cur.title,
+                    "categoryTitle" to categoryName,
+                    "archiveId" to cur.id
+                )
             }
         }
     }

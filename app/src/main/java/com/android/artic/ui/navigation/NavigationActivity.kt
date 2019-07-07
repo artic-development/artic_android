@@ -2,6 +2,7 @@ package com.android.artic.ui.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.ui.BaseFragment
