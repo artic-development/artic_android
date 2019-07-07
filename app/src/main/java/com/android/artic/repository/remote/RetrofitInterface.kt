@@ -60,4 +60,11 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Body body: JsonObject
     ): Call<BaseResponse<Int>>
+
+    @GET("/archive/{archive_idx}/articles")
+    fun getArticleListGivenArchiveId(
+        @Path("archive_idx") archiveId: Int,
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ): Call<BaseResponse<List<ArticleResponse>>>
 }

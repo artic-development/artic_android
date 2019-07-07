@@ -55,4 +55,8 @@ class RetrofitDataSource : RemoteDataSource {
     override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
         return retrofit.postRegisterArchive(contentType, token, body)
     }
+
+    override fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
+        return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+    }
 }

@@ -261,8 +261,37 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getArticleListGivenArchive(archiveId: Int): Call<List<Article>> {
-        return Calls.response(local.getArticleListGivenArchive(archiveId))
+    fun getArticleListGivenArchive(
+        archiveId: Int,
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.getArticleListGivenArchiveId(
+                archiveId = archiveId,
+                contentType = "application/json",
+                token = token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            Article(
+                                id = res.article_idx,
+                                like = res.hits,
+                                title_img_url = res.thumnail,
+                                title = res.article_title,
+                                url = res.link
+                            )
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
     // @수민
