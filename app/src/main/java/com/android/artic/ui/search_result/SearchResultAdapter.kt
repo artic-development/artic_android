@@ -36,8 +36,7 @@ class SearchResultAdapter (
         return linkResultFragment!!
     }
 
-
-    override fun getItem(position: Int): BaseFragment? {
+    override fun getItem(position: Int): BaseFragment {
         return when(position) {
             0-> ArchiveListFragment(searchKeyword).apply {
                 searchCount.subscribe {
@@ -49,7 +48,7 @@ class SearchResultAdapter (
                     this@SearchResultAdapter.searchCount.onNext(it)
                 }
             }
-            else->null
+            else -> throw IllegalArgumentException()
         }
 
     }

@@ -24,6 +24,7 @@ class SearchResultActivity : BaseActivity() {
         setContentView(R.layout.activity_search_result)
 
         searchKeyword = intent.getStringExtra("searchKeyword")
+        search_result_category_name.text = searchKeyword
 
         adapter = SearchResultAdapter(supportFragmentManager, 2, searchKeyword).apply {
             searchCount.subscribe {

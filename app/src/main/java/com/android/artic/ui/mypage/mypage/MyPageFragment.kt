@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
 import androidx.core.content.ContextCompat
+import androidx.recyclerview.widget.RecyclerView
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.ui.BaseFragment
@@ -74,4 +75,3 @@ class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
         }
     }
 }
-
