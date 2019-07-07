@@ -32,4 +32,10 @@ interface RetrofitInterface {
     fun getCategoryArchiveList(
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
+
+    // @수민) 아티클 좋아요
+    @POST("/article/:article_idx/like")
+    fun postArticleLike(
+        @
+    )
 }
