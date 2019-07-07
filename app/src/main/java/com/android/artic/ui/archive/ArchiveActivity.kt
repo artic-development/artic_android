@@ -32,19 +32,5 @@ class ArchiveActivity : BaseActivity() {
         rv_archive.adapter = adapter
         rv_archive.layoutManager = LinearLayoutManager(this)
 
-        repository.getArchiveListGivenCategory(categoryId).enqueue(
-            object : Callback<List<Archive>> {
-                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                    response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-            }
-        )
     }
 }
