@@ -12,6 +12,7 @@ import android.widget.TextView
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import java.util.regex.Pattern
 
@@ -30,11 +31,7 @@ class SignupLoginActivity : BaseActivity() {
     private fun setListener() {
         // @수민) 완료 버튼 리스너
         signup_login_next_txt.setOnClickListener {
-            if (signup_login_next_txt.currentTextColor == Color.parseColor("#707070")) {
-                var intent = Intent(this, SignupPrivateActivity::class.java)
-
-                startActivity(intent)
-            }
+            goNext()
         }
 
         // @수민) TextChangedListener
@@ -98,20 +95,21 @@ class SignupLoginActivity : BaseActivity() {
         signup_login_edit_password?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
-                    if (signup_login_edit_email.text.toString() != "" && signup_login_edit_password.text.toString() != "") {
-                        var intent = Intent(this@SignupLoginActivity, SignupPrivateActivity::class.java)
-
-                        this@SignupLoginActivity.startActivity(intent)
-
-                        return true
-                    }
-                    else {
-                        toast("아이디와 비밀번호를 입력해주세요.")
-                    }
+                    goNext()
                 }
                 return false
             }
         })
+    }
+
+    private fun goNext() {
+        val id = signup_login_edit_email.text.toString()
+        val pw = signup_login_edit_password.text.toString()
+        if (id.isNotEmpty() && pw.isNotEmpty()) {
+            startActivity<SignupPrivateActivity>("id" to id, "pw" to pw)
+        }
+        else {
+            toast("아이디와 비밀번호를 입력해주세요.")
+        }
     }
 }

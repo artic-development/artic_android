@@ -8,14 +8,19 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
+import com.android.artic.auth.Auth
+import com.android.artic.data.auth.Signin
+import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup_login.*
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
+    private val api: Auth by inject()
+    private val logger: Logger by inject()
 
     val emailPattern : Pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
     val passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$", Pattern.CASE_INSENSITIVE)
@@ -56,26 +61,7 @@ class LoginActivity : BaseActivity() {
         // @수민) 완료 버튼 리스너
         btn_login_complete.setOnClickListener {
             if(btn_login_complete.isActivated) {
-                // 유효성 검사
-                // 이메일
-                var emailStr = et_login_email.text.toString()
-                var emailMatcher = emailPattern.matcher(emailStr)
-
-                // 비밀번호
-                var passwordStr = et_login_password.text.toString()
-                var passwordMatcher = passwordPattern.matcher(passwordStr)
-
-                if (!emailMatcher.find() || !passwordMatcher.find()) {
-                    toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
-                }
-                else {
-                    var intent = Intent(this, NavigationActivity::class.java)
-
-                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                    startActivity(intent)
-                }
+                signin()
             }
         }
 
@@ -85,26 +71,7 @@ class LoginActivity : BaseActivity() {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
                     // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
                     if (et_login_email.text.toString() != "" && et_login_password.text.toString() != "") {
-                        // 유효성 검사
-                        // 이메일
-                        var emailStr = et_login_email.text.toString()
-                        var emailMatcher = emailPattern.matcher(emailStr)
-
-                        // 비밀번호
-                        var passwordStr = et_login_password.text.toString()
-                        var passwordMatcher = passwordPattern.matcher(passwordStr)
-                        if (!emailMatcher.find() || !passwordMatcher.find()) {
-                            toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
-                        }
-
-                        else {
-                            var intent = Intent(this@LoginActivity, NavigationActivity::class.java)
-
-                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
-                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
-
-                            this@LoginActivity.startActivity(intent)
-                        }
+                        signin()
 
                         return true
                     }
@@ -115,5 +82,44 @@ class LoginActivity : BaseActivity() {
                     return false
             }
         })
+    }
+
+    private fun signin() {
+        // 유효성 검사
+        // 이메일
+        val emailStr = et_login_email.text.toString()
+        val emailMatcher = emailPattern.matcher(emailStr)
+
+        // 비밀번호
+        val passwordStr = et_login_password.text.toString()
+        val passwordMatcher = passwordPattern.matcher(passwordStr)
+        if (!emailMatcher.find() || !passwordMatcher.find()) {
+            toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
+        }
+
+        else {
+            logger.log("request signin")
+            // TODO 로그인 구현이 되어야함!
+            api.requestSignin(
+                data = Signin(emailStr, passwordStr),
+                successCallback = {
+                    // TODO 응답 받은 토큰을 저장할 것
+                    logger.log("token data : $it")
+
+                    val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
+                    this@LoginActivity.startActivity(intent)
+                },
+                statusCallback = {
+                        status, success, message ->
+                    if (status == 400) {
+                        toast(message)
+                    }
+                }
+            )
+        }
     }
 }
