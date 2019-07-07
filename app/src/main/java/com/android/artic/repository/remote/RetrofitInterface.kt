@@ -90,5 +90,11 @@ interface RetrofitInterface {
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<Int>>
 
+    @GET("mypage/archive/scrap")
+    fun getScrapArchiveList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token:String
+    ): Call<BaseResponse<List<ArchiveResponse>>>
+
 
 }

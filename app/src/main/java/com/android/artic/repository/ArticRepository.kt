@@ -299,14 +299,43 @@ class ArticRepository (
         return Calls.response(local.getMyArchiveList())
     }
 
+    fun getScrapArchiveList(): Call<List<Archive>> {
+        return Calls.response(local.getScrapArchiveList())
+    }
+
     fun getRecommendWordList() : Call<List<RecommendWordData>> {
         return Calls.response(local.getRecommendWordList())
     }
 
 
 
-    fun getMyPageScrap():Call<List<Archive>>{
-        return Calls.response(local.getMyPageScrap())
+    fun getMyPageScrap(
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ){
+        Auth.token?.let{token->
+            remote.getScrapArchiveList(
+                "application/json",token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper={
+                        if(it.data==null)  listOf()
+                        else it.data.map{res->Archive(
+                            id = res.archive_idx,
+                            category_ids = listOf(res.category_idx),
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            num_article = res.article_cnt
+                        )}
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+
+                )
+            )
+        }
     }
 
 
