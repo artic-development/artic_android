@@ -10,8 +10,11 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
+import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
@@ -23,18 +26,12 @@ import retrofit2.Response
  * none card archive list
  * */
 class ArchiveListFragment(
-    val keyword: String
-) : Fragment() {
+    private val keyword: String
+) : BaseFragment(R.layout.fragment_archive_result) {
     private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
     lateinit var adapter: ArchiveListAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_archive_result, container, false)
-    }
+    val searchCount = BehaviorSubject.createDefault(0)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -43,28 +40,38 @@ class ArchiveListFragment(
         rv_search_result_archive.adapter = adapter
         rv_search_result_archive.layoutManager = LinearLayoutManager(activity!!)
 
-        repository.getSearchArchiveList(keyword).enqueue(
-            object : Callback<List<Archive>> {
-                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
+        rv_search_result_archive.visibility=View.GONE
+        archive_result_empty.visibility=View.VISIBLE
 
-                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                    response.body()?.let {
-                        if(it.isNotEmpty()) {
-                            adapter.dataList = it
-                            adapter.notifyDataSetChanged()
+        repository.getSearchArchiveList(
+            keyword = keyword,
+            successCallback = {
+                // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
+                searchCount.onNext(it.size)
+                if(it.isNotEmpty()) {
 
-                            rv_search_result_archive.visibility = View.VISIBLE
-                            archive_result_empty.visibility = View.GONE
-                        } else{
-                            rv_search_result_archive.visibility=View.GONE
-                            archive_result_empty.visibility=View.VISIBLE
-                        }
-                    }
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+
+                    rv_search_result_archive.visibility = View.VISIBLE
+                    archive_result_empty.visibility = View.GONE
+                } else{
+                    rv_search_result_archive.visibility=View.GONE
+                    archive_result_empty.visibility=View.VISIBLE
                 }
+            },
+            failCallback = {
+                logger.error("ArchiveListFragment ${it.message}")
+                toast(R.string.network_error)
             }
         )
     }
 
+    override fun onResumeFragment() {
+        super.onResumeFragment()
+
+        // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
+        if (::adapter.isInitialized)
+            searchCount.onNext(adapter.dataList.size)
+    }
 }
