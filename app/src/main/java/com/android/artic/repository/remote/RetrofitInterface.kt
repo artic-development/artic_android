@@ -13,6 +13,7 @@ import retrofit2.http.Path
 import retrofit2.http.*
 
 interface RetrofitInterface {
+
     @GET("/home/article/articles/new")
     fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>>
 
@@ -49,6 +50,7 @@ interface RetrofitInterface {
         @Path("category_idx") categoryIdx: Int
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
+    // 내 아카이브 목록 GET
     @GET("/mypage/archive/mine")
     fun getMyArchiveList(
         @Header("Content-Type") contentType: String,
@@ -90,4 +92,13 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Query("keyword") keyword: String
     ): Call<BaseResponse<List<ArchiveResponse>>>
+
+    @POST("/archive/article/{article_idx}/history")
+    fun postArticleRead(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token:String,
+        @Path("article_idx") articleIdx: Int
+    ): Call<BaseResponse<Int>>
+
+
 }

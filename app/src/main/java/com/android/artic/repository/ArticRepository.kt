@@ -484,6 +484,30 @@ class ArticRepository (
         }
     }
 
+    fun readArticle(
+        articleIdx: Int,
+        successCallback: (Int) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.postArticleRead(
+                contentType = "application/json",
+                token = token,
+                articleIdx = articleIdx
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
     /**
      * @param mapper transform server data to UI data
      * @param successCallback will be called when server interaction success

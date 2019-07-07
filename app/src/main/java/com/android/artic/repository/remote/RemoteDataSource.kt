@@ -21,6 +21,8 @@ interface RemoteDataSource {
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
     fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun postArticleLike(contentType: String, token: String, articleIdx: Int) : Call<BaseResponse<Int>>
+    fun postArticleRead(contentType: String, token : String, articleIdx: Int) : Call<BaseResponse<Int>>
+
     fun getSearchArticleList(
         contentType: String,
         token: String,
