@@ -140,8 +140,30 @@ class ArticRepository (
      * @see Archive
      * @author greedy0110
      * */
-    fun getArchiveListGivenCategory(categoryId: Int): Call<List<Archive>>{
-        return Calls.response(local.getArchiveListGivenCategory(categoryId))
+    fun getArchiveListGivenCategory(
+        categoryId: Int,
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ){
+        remote.getArchiveListGivenCategory(categoryId).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Archive(
+                        id = res.archive_idx,
+                        categories = res.category_all.map { cate -> cate.category_title },
+                        category_ids = listOf(res.category_idx),
+                        title = res.archive_title,
+                        title_img_url = res.archive_img,
+                        num_article = res.article_cnt
+                    ) }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     /**
@@ -322,5 +344,3 @@ class ArticRepository (
         }
     }
 }
-
-
