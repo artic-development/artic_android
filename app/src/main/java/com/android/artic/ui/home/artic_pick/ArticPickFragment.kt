@@ -52,6 +52,8 @@ class ArticPickFragment : Fragment() {
 
             repository.getArticPickList(
                 successCallback = {
+                    // 추천 데이터가 없으면 프레그먼트를 제거하자!
+                    if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commit()
                     adapter.dataList = it
                     adapter.notifyDataSetChanged()
                 },

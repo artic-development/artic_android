@@ -68,6 +68,8 @@ class ReadingHistoryFragment : Fragment() {
                         response: Response<List<Article>>
                     ) {
                         response.body()?.let {
+                            // 데이터 없으면 fragment 제거
+                            if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
                             adapter.dataList = it
                             adapter.notifyDataSetChanged()
                         }
