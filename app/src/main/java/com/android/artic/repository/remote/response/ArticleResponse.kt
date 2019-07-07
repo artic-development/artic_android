@@ -6,5 +6,6 @@ data class ArticleResponse(
     val thumnail: String,
     val link: String,
     val date: String,
-    val hits: Int
+    val hits: Int,
+    val archive_title: String? = null
 )

@@ -26,18 +26,13 @@ class DetailNewArchiveActivity : BaseActivity() {
         rv_detail_new_archive_list.adapter = adapter
         rv_detail_new_archive_list.layoutManager = LinearLayoutManager(this)
 
-        repository.getNewArchiveList().enqueue(
-            object : Callback<List<Archive>> {
-                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                    response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
+        repository.getNewArchiveList(
+            successCallback = {
+                adapter.dataList = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
     }

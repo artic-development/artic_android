@@ -66,12 +66,15 @@ class NewArticleFragment : Fragment() {
 //                }
 //            )
 
-            repository.getNewArticleList({
-                articleCardAdapter.dataList = it
-                articleCardAdapter.notifyDataSetChanged()
-            }, {
-                toast(R.string.network_error)
-            })
+            repository.getNewArticleList(
+                successCallback = {
+                    articleCardAdapter.dataList = it
+                    articleCardAdapter.notifyDataSetChanged()
+                },
+                failCallback = {
+                    toast(R.string.network_error)
+                }
+            )
         }
     }
 }

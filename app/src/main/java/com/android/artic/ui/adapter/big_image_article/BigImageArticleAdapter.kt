@@ -15,6 +15,7 @@ import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.util.dpToPx
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):RecyclerView.Adapter<BigImageArticleAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
@@ -36,9 +37,7 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
         holder.artic_pick_url?.text=dataList[position].url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
-            var intent = Intent(ctx, ArticleAboutActivity::class.java)
-
-            ctx.startActivity(intent)
+            ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[position].id)
         }
     }
 

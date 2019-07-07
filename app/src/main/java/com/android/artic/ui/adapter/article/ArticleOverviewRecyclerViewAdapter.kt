@@ -17,6 +17,7 @@ import com.android.artic.data.Article
 import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 
 class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
@@ -49,9 +50,7 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
 
         // @수민) 아티클 상세보기로
         p0.relative_article_item_card.setOnClickListener {
-            var intent = Intent(ctx, ArticleAboutActivity::class.java)
-
-            ctx.startActivity(intent)
+            ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
         }
     }
 

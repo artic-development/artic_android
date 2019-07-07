@@ -4,6 +4,7 @@ import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
 import com.android.artic.data.notification.*
+import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
 import com.android.artic.repository.remote.RemoteDataSource
 import com.android.artic.repository.remote.response.ArticResponse
@@ -19,6 +20,7 @@ import retrofit2.mock.Calls
  * @author greedy0110
  * */
 class ArticRepository (
+    private val logger: Logger,
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
@@ -28,8 +30,26 @@ class ArticRepository (
      * @see Category
      * @return Callable Category List
      * */
-    fun getCategoryList(): Call<List<Category>> {
-        return Calls.response(local.getCategoryList())
+    fun getCategoryList(
+        successCallback: (List<Category>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getCategoryList().enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    it.data.map { res->
+                        Category(
+                            id = res.category_idx,
+                            name = res.category_title
+                        )
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     fun getReadingHistoryArticleList():Call<List<Article>> {
@@ -41,8 +61,30 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getArticle(articleId: Int): Call<Article> {
-        return Calls.response(local.getArticle(articleId))
+    fun getArticle(
+        articleId: Int,
+        successCallback: (Article) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getArticle(articleId).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    it.data.let { res ->
+                        Article(
+                            id = res.article_idx,
+                            like = res.hits,
+                            title_img_url = res.thumnail,
+                            title = res.article_title,
+                            url = res.link
+                        )
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     /**
@@ -50,8 +92,29 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getArticPickList():Call<List<Article>> {
-        return Calls.response(local.getArticPickList())
+    fun getArticPickList(
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getArticPickList().enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    it.data.map { res ->
+                        Article(
+                            id = res.article_idx,
+                            like = res.hits,
+                            title_img_url = res.thumnail,
+                            title = res.article_title,
+                            url = res.link
+                        )
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     /**
@@ -85,8 +148,27 @@ class ArticRepository (
      * @see Archive
      * @author greedy0110
      * */
-    fun getNewArchiveList(): Call<List<Archive>> {
-        return Calls.response(local.getNewArchiveList())
+    fun getNewArchiveList(
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+        remote.getNewArchiveList().enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    it.data.map { res -> Archive(
+                        id = res.archive_idx,
+                        categories = res.category_all.map { cate -> cate.category_title },
+                        category_ids = listOf(res.category_idx),
+                        title = res.archive_title,
+                        title_img_url = res.archive_img,
+                        num_article = res.article_cnt
+                    ) }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
     /**
@@ -94,35 +176,29 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getNewArticleList(successCallback: (List<Article>) -> Unit, failCallback: (Throwable) -> Unit, statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+    fun getNewArticleList(
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
         remote.getNewArticleList().enqueue(
-            object : Callback<ArticResponse<List<ArticleResponse>>> {
-                override fun onFailure(call: Call<ArticResponse<List<ArticleResponse>>>, t: Throwable) {
-                     failCallback(t)
-                }
-
-                override fun onResponse(
-                    call: Call<ArticResponse<List<ArticleResponse>>>,
-                    response: Response<ArticResponse<List<ArticleResponse>>>
-                ) {
-                    response.body()?.let {
-                        statusCallback?.invoke(it.status, it.success, it.message)
-
-                        successCallback(
-                            it.data.map { res -> Article(
-                                id = res.article_idx,
-                                like = res.hits,
-                                title_img_url = res.thumnail,
-                                title = res.article_title,
-                                url = res.link
-                                ) }
-                        )
+            createFromRemoteCallback(
+                mapper = {
+                    it.data.map { res -> Article(
+                        id = res.article_idx,
+                        like = res.hits,
+                        title_img_url = res.thumnail,
+                        title = res.article_title,
+                        url = res.link)
                     }
-                }
-
-            }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
         )
     }
+
+
 
     /**
      * get article list given archive id by async
@@ -208,6 +284,39 @@ class ArticRepository (
                 }
             }
         })
+    }
+
+    /**
+     * @param mapper transform server data to UI data
+     * @param successCallback will be called when server interaction success
+     * @param failCallback will be called when server interaction fail
+     * @param statusCallback will be called when server interaction with no error
+     * @author greedy0110
+     * */
+    private fun <UI, SERVER: ArticResponse<*>>createFromRemoteCallback(
+        mapper: (SERVER) -> UI,
+        successCallback: (UI) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
+    {
+        logger.log("call createFromRemoteCallback")
+        return object : Callback<SERVER> {
+            override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                failCallback?.invoke(t)
+            }
+
+            override fun onResponse(
+                call: Call<SERVER>,
+                response: Response<SERVER>
+            ) {
+                response.body()?.let {
+                    logger.log("from SERVER : \n$it")
+                    statusCallback?.invoke(it.status, it.success, it.message)
+                    successCallback(mapper(it))
+                }
+            }
+
+        }
     }
 }
 
