@@ -1,4 +1,4 @@
-package com.android.artic.api.response
+package com.android.artic.auth.response
 
 data class SigninResponse(
     val refreshToken: String,

@@ -10,13 +10,12 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
-import com.android.artic.api.ArticApi
+import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
-import com.jakewharton.rxbinding3.widget.textChanges
 import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*
 import org.jetbrains.anko.toast
@@ -24,7 +23,7 @@ import org.koin.android.ext.android.inject
 import java.util.regex.Pattern
 
 class SignupPrivateActivity : BaseActivity() {
-    private val api: ArticApi by inject()
+    private val api: Auth by inject()
     private val logger: Logger by inject()
 
     val namePattern = Pattern.compile("^[가-힣]*.{0,15}\$", Pattern.CASE_INSENSITIVE) // 이름 형식

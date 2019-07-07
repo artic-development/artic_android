@@ -1,6 +1,6 @@
 package com.android.artic.repository.remote
 
-import com.android.artic.api.ArticApi
+import com.android.artic.auth.Auth
 import com.android.artic.repository.remote.response.ArchiveResponse
 import com.android.artic.repository.remote.response.ArticleResponse
 import com.android.artic.repository.remote.response.BaseResponse
@@ -13,7 +13,7 @@ import retrofit2.converter.gson.GsonConverterFactory
 class RetrofitDataSource : RemoteDataSource {
     private val retrofit: RetrofitInterface by lazy {
         Retrofit.Builder()
-            .baseUrl(ArticApi.BASE_URL)
+            .baseUrl(Auth.BASE_URL)
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(RetrofitInterface::class.java)

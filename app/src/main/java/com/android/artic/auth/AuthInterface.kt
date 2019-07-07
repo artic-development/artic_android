@@ -1,7 +1,7 @@
-package com.android.artic.api
+package com.android.artic.auth
 
-import com.android.artic.api.response.SigninResponse
-import com.android.artic.api.response.SignupResponse
+import com.android.artic.auth.response.SigninResponse
+import com.android.artic.auth.response.SignupResponse
 import com.android.artic.repository.remote.response.BaseResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
@@ -13,7 +13,7 @@ import retrofit2.http.POST
  * 데이터를 처리하기 위한 것이 아닌 통신을 모아놓음 like 로그인, 회원가입 등
  * @author greedy0110
  * */
-interface ApiInterface{
+interface AuthInterface{
     /**
      * https://github.com/artic-development/artic_server/wiki/%ED%9A%8C%EC%9B%90%EA%B0%80%EC%9E%85
      * body

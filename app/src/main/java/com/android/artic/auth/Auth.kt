@@ -1,7 +1,7 @@
-package com.android.artic.api
+package com.android.artic.auth
 
-import com.android.artic.api.response.SigninResponse
-import com.android.artic.api.response.SignupResponse
+import com.android.artic.auth.response.SigninResponse
+import com.android.artic.auth.response.SignupResponse
 import com.android.artic.data.auth.Signin
 import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
@@ -15,19 +15,20 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class ArticApi (
+class Auth (
     private val logger: Logger
 ) {
     companion object {
         val BASE_URL = "http://15.164.11.203:3000"
+        var token: String? = null
     }
 
-    private val retrofit: ApiInterface by lazy {
+    private val retrofit: AuthInterface by lazy {
         Retrofit.Builder()
             .baseUrl(BASE_URL)
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
-            .build().create(ApiInterface::class.java)
+            .build().create(AuthInterface::class.java)
     }
 
     fun requestSignin(
@@ -42,9 +43,26 @@ class ArticApi (
                 addProperty("pw", data.pw)
             }
         ).enqueue(
-            createFromRemoteCallback(
-                successCallback, failCallback, statusCallback
-            )
+            object : Callback<BaseResponse<SigninResponse>> {
+                override fun onFailure(call: Call<BaseResponse<SigninResponse>>, t: Throwable) {
+                    failCallback?.invoke(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<SigninResponse>>,
+                    response: Response<BaseResponse<SigninResponse>>
+                ) {
+                    response.body()?.let {
+                        logger.log("from SERVER : \n$it")
+                        statusCallback?.invoke(it.status, it.success, it.message)
+                        it.data?.let(successCallback)
+                        it.data?.let { res->
+                            token = res.token // 서버에서 받아온 토큰의 저장
+                        }
+                    }
+                }
+
+            }
         )
     }
 

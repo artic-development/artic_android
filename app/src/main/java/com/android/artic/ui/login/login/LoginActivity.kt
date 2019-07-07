@@ -8,20 +8,18 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
-import com.android.artic.api.ArticApi
+import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import kotlinx.android.synthetic.main.activity_login.*
-import kotlinx.android.synthetic.main.activity_signup_login.*
-import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
-    private val api: ArticApi by inject()
+    private val api: Auth by inject()
     private val logger: Logger by inject()
 
     val emailPattern : Pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
