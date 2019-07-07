@@ -84,6 +84,8 @@ interface LocalDataSource {
     // @수민
     fun getMyArchiveList() : List<Archive>
 
+    fun getScrapArchiveList() : List<Archive>
+
     fun getRecommendWordList() : List<RecommendWordData>
 
     fun getMyPageScrap():List<Archive>
