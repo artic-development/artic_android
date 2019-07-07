@@ -7,15 +7,18 @@ import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
+import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
+import org.koin.android.ext.android.inject
 
 /**
  * it must need searchWord intent["searchKeyword"]
  */
 class SearchResultActivity : BaseActivity() {
+    private val logger: Logger by inject()
     private var searchKeyword = ""
     private lateinit var adapter: SearchResultAdapter
 
@@ -47,8 +50,8 @@ class SearchResultActivity : BaseActivity() {
 
                 // Page 가 변경될때 마다. 상단에 검색 결과가 변경, 반영되어야 한다.
                 override fun onPageSelected(position: Int) {
-                    adapter.getItem(currentPosition)?.onPauseFragment()
-                    adapter.getItem(position)?.onResumeFragment()
+                    adapter.getItem(currentPosition).onPauseFragment()
+                    adapter.getItem(position).onResumeFragment()
                     currentPosition = position
 
                     when (position) {
