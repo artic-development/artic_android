@@ -6,10 +6,7 @@ import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
@@ -50,6 +47,11 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         p0.relative_article_item_card.setOnClickListener {
             ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
         }
+
+        // @수민) 좋아요 통신
+        p0.toggle_btn_like.setOnClickListener {
+
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -61,5 +63,6 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         // @숨니
         var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
         var relative_article_item_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_link_list)
+        var toggle_btn_like = itemView.findViewById<ToggleButton>(R.id.rv_link_list_like)
     }
 }

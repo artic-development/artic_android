@@ -5,6 +5,7 @@ import com.android.artic.repository.remote.response.ArchiveResponse
 import com.android.artic.repository.remote.response.ArticleResponse
 import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.repository.remote.response.CategoryResponse
+import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import retrofit2.Call
 import retrofit2.Retrofit
@@ -31,6 +32,11 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getArticle(articleIdx)
     }
 
+    // 아티클 좋아요 누르기
+    override fun postArticleLike(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<Int>> {
+        return retrofit.postArticleLike(contentType, token, articleIdx)
+    }
+
     override fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticPickList()
     }
@@ -43,5 +49,19 @@ class RetrofitDataSource : RemoteDataSource {
     override fun getCategoryArchiveList(categoryIdx : Int): Call<BaseResponse<List<ArchiveResponse>>> {
         return retrofit.getCategoryArchiveList(categoryIdx)
     }
+    override fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getArchiveListGivenCategory(categoryIdx)
+    }
 
+    override fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getMyArchiveList(contentType, token)
+    }
+
+    override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
+        return retrofit.postRegisterArchive(contentType, token, body)
+    }
+
+    override fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
+        return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+    }
 }

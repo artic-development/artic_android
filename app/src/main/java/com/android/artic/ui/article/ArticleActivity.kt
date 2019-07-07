@@ -1,7 +1,5 @@
 package com.android.artic.ui.article
 
-
-
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.view.View
@@ -20,7 +18,9 @@ import retrofit2.Callback
 import retrofit2.Response
 
 /**
- * it must need archive id intent["archiveId"]
+ * it must need archive id intent["archiveId"]: Int
+ * it must need category title intent["categoryTitle"]: String
+ * it must need category title intent["archiveTitle]: String
  * */
 class ArticleActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
@@ -32,24 +32,22 @@ class ArticleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_link)
 
-
+        tv_act_link_archive_title.text = intent.getStringExtra("categoryTitle")
+        link_title.text = intent.getStringExtra("archiveTitle")
+        archiveId = intent.getIntExtra("archiveId", -1)
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
-        repository.getArticleListGivenArchive(archiveId).enqueue(
-            object : Callback<List<Article>> {
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                    response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
+        repository.getArticleListGivenArchive(
+            archiveId = archiveId,
+            successCallback = {
+                adapter.dataList = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
     }

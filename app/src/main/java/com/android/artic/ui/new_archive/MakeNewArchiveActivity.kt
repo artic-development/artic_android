@@ -6,12 +6,17 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.android.artic.R
+import com.android.artic.logger.Logger
+import com.android.artic.repository.ArticRepository
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_make_new_archive.*
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 
 class MakeNewArchiveActivity : AppCompatActivity() {
+    private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -42,9 +47,18 @@ class MakeNewArchiveActivity : AppCompatActivity() {
         // @수민) 완료 버튼 리스너
         txt_act_make_new_archive_complete.setOnClickListener {
             if (txt_act_make_new_archive_complete.currentTextColor == Color.parseColor("#4f80ff")) {
-                // TODO (@수민) 아카이브 생성 통신
-                toast("아카이브 생성 완료")
-                finish()
+                val title = et_act_make_new_archive_title.text.toString()
+                repository.addMyArchive(
+                    data = MakeNewArchiveData(title, null, 6),// TODO categoryIdx 를 어덯게 지정할지 얘기하고 수정해야한다. 일단 더미로 6으로 구현
+                    successCallback = {
+                        toast("아카이브 생성 완료")
+                        finish()
+                    },
+                    failCallback = {
+                        logger.error("${it.message}")
+                        toast(R.string.network_error)
+                    }
+                )
             }
         }
     }

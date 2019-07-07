@@ -49,18 +49,13 @@ class MyPageMeFragment : Fragment() {
         super.onResume()
 
         activity?.run {
-            repository.getMyPageMe().enqueue(
-                object: Callback<List<Archive>> {
-                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
-
-                    override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                        response.body()?.let{
-                            adapter.data=it
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
+            repository.getMyPageMe(
+                successCallback = {
+                    adapter.data=it
+                    adapter.notifyDataSetChanged()
+                },
+                failCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }

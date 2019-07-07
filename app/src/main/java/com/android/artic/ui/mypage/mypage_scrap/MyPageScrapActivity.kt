@@ -30,21 +30,15 @@ class MyPageScrapActivity : BaseActivity() {
         rv_mypage_scrap_link.adapter=adapter
         rv_mypage_scrap_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
-        repository.getArticleListGivenArchive(archiveId).enqueue(
-            object: Callback<List<Article>>{
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                    response.body()?.let{
-                        adapter.dataList=it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-
+        repository.getArticleListGivenArchive(
+            archiveId = archiveId,
+            successCallback = {
+                adapter.dataList=it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
-
-        )
+            )
     }
 }
