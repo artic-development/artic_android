@@ -62,24 +62,6 @@ class CategoryArchiveFragment(
                 startActivity(intent)
             }
 
-            repository.getArchiveListGivenCategory(categoryId).enqueue(
-                object : Callback<List<Archive>> {
-                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
-
-                    override fun onResponse(
-                        call: Call<List<Archive>>,
-                        response: Response<List<Archive>>
-                    ) {
-                        // 최신 4개의 archive 만 가져온다!
-                        response.body()?.take(4)?.let {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-                        }
-                    }
-                }
-            )
         }
     }
 }
