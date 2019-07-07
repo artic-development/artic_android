@@ -9,6 +9,7 @@ import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
+import com.android.artic.data.Archive
 import com.android.artic.data.Category
 import com.android.artic.ui.archive.ArchiveActivity
 
@@ -30,7 +31,12 @@ class CategoryAdapter(
 
             container?.setOnClickListener {
                 // TODO cur.id 를 이용해서 category 에 해당하는 archive 로드하는 창으로 이동
-                context.startActivity(Intent(context, ArchiveActivity::class.java))
+                var intent = Intent(context, ArchiveActivity::class.java)
+
+                intent.putExtra("category_idx", cur.id)
+                intent.putExtra("category_name", cur.name)
+
+                context.startActivity(intent)
             }
         }
     }

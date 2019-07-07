@@ -37,18 +37,10 @@ class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): Recycle
         holder.tv_article_num.text = dataList[position].num_article.toString()
 
         // 카테고리 리스트 어댑터 설정
-//        detailNewArchiveCategoryAdapter =
-//            ArchiveCategoryAdapter(
-//                ctx,
-//                dataList[position].categories!!
-//            )
-        // 위 코드로 바꿔야 함
-        var categoryList = listOf("Management", "UI/UX")
-
         detailNewArchiveCategoryAdapter =
             ArchiveCategoryAdapter(
                 ctx,
-                categoryList
+                dataList[position].categories!!
             )
 
         holder.rv_category_list.adapter = detailNewArchiveCategoryAdapter
