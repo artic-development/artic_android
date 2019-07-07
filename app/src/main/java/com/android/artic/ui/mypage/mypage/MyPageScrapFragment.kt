@@ -14,6 +14,9 @@ import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.deco.GridItemDecoration
 import com.android.artic.ui.adapter.deco.GridSpacesItemDecoration
 import com.android.artic.util.dpToPx
+import kotlinx.android.synthetic.main.fragment_my_page.*
+import kotlinx.android.synthetic.main.fragment_my_page.view.*
+import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import kotlinx.android.synthetic.main.fragment_my_page_scrap.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -43,6 +46,8 @@ class MyPageScrapFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+
+            initialView()
             adapter = MyPageScrapAdapter(this, listOf())
 
 
@@ -51,6 +56,11 @@ class MyPageScrapFragment : Fragment() {
             rv_mypage_scrap.layoutManager = GridLayoutManager(this, 2)
             rv_mypage_scrap.addItemDecoration(GridSpacesItemDecoration(this, 12.dpToPx(), 12.dpToPx()))
         }
+    }
+
+    private fun initialView() {
+        rv_mypage_scrap.visibility=View.GONE
+        mypage_scrap_empty_view.visibility=View.VISIBLE
     }
 
     override fun onResume() {
@@ -67,9 +77,18 @@ class MyPageScrapFragment : Fragment() {
                         response: Response<List<Archive>>
                     ) {
                         response.body()?.let {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-                        }
+                            if(it.isNotEmpty()) {
+                                adapter.data = it
+                                adapter.notifyDataSetChanged()
+
+                                rv_mypage_scrap.visibility=View.VISIBLE
+                                mypage_scrap_empty_view.visibility=View.GONE
+
+                            } else{
+                                rv_mypage_scrap.visibility=View.GONE
+                                mypage_scrap_empty_view.visibility=View.VISIBLE
+                            }
+                            }
                     }
                 }
             )
