@@ -6,6 +6,7 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import im.delight.android.webview.AdvancedWebView
@@ -23,12 +24,22 @@ import retrofit2.Response
  * */
 class ArticleWebViewActivity : AppCompatActivity() {
     private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
     private var articleId = -1
     private var articleUrl = "https://brunch.co.kr/@waltzfordebby/3"
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article_web_view)
+
+        articleId = intent.getIntExtra("articleId", -1)
+
+        repository.readArticle(
+            articleIdx = articleId,
+            successCallback = {
+                logger.log("$articleId read article $it")
+            }
+        )
 
         // article id를 사용해서 데이터를 받아와야함. article url, article isLiked 여부
         repository.getArticle(articleId = articleId,

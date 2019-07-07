@@ -416,99 +416,100 @@ class MockLocalDataSource : LocalDataSource {
 
     override fun getMyPageScrap(): List<Archive> {
         return listOf(
-                Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-
-                ), Archive(
-                    id = 1,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 2,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 3,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 4,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 5,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                )
+//                Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//
+//                ), Archive(
+//                    id = 1,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 2,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 3,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 4,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 5,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                )
         )
     }
 
 
     override fun getMyPageMe() : List<Archive> {
         return listOf(
-                Archive(
-                    id = 0,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 1,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 2,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 3,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 4,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                ), Archive(
-                    id = 5,
-                    category_ids = listOf(1,2,3),
-                    title = "new archive list",
-                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
-                    num_article = 3,
-                    article_ids = listOf(1,2,3)
-                )            )
+//                Archive(
+//                    id = 0,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 1,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 2,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 3,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 4,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                ), Archive(
+//                    id = 5,
+//                    category_ids = listOf(1,2,3),
+//                    title = "new archive list",
+//                    title_img_url = "https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg",
+//                    num_article = 3,
+//                    article_ids = listOf(1,2,3)
+//                )
+               )
     }
 
     override fun getNewNotificationList(): List<AppNotification> {
