@@ -104,7 +104,7 @@ class ArticRepository (
                     it.data!!.let { res ->
                         Article(
                             id = res.article_idx,
-                            like = res.hits,
+                            like = res.like_cnt?:0,
                             title_img_url = res.thumnail,
                             title = res.article_title,
                             url = res.link
@@ -135,7 +135,7 @@ class ArticRepository (
                     else it.data.map { res ->
                         Article(
                             id = res.article_idx,
-                            like = res.hits,
+                            like = res.like_cnt?:0,
                             title_img_url = res.thumnail,
                             title = res.article_title,
                             url = res.link
@@ -241,7 +241,7 @@ class ArticRepository (
                     if (it.data == null) listOf()
                     else it.data.map { res -> Article(
                         id = res.article_idx,
-                        like = res.hits,
+                        like = res.like_cnt?:0,
                         title_img_url = res.thumnail,
                         title = res.article_title,
                         url = res.link)
@@ -279,7 +279,7 @@ class ArticRepository (
                         else it.data.map { res ->
                             Article(
                                 id = res.article_idx,
-                                like = res.hits,
+                                like = res.like_cnt?:0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
                                 url = res.link
@@ -363,8 +363,38 @@ class ArticRepository (
      * @see Archive
      * @author greedy0110
      * */
-    fun getSearchArticleList(keyword: String): Call<List<Article>> {
-        return Calls.response(local.getSearchArticleList(keyword))
+    fun getSearchArticleList(
+        keyword: String,
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let {token ->
+            remote.getSearchArticleList(
+                contentType = "application/json",
+                token = token,
+                keyword = keyword
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            Article(
+                                id = res.article_idx,
+                                like = res.like_cnt?:0,
+                                isLiked = res.like,
+                                title_img_url = res.thumnail,
+                                title = res.article_title,
+                                url = res.link
+                            )
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
     /**
@@ -372,8 +402,34 @@ class ArticRepository (
      * @see Archive
      * @author greedy0110
      * */
-    fun getSearchArchiveList(keyword: String): Call<List<Archive>> {
-        return Calls.response(local.getSearchArchiveList(keyword))
+    fun getSearchArchiveList(
+        keyword: String,
+        successCallback: (List<Archive>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ){
+        Auth.token?.let {token ->
+            remote.getSearchArchiveList(
+                "application/json", token, keyword
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            categories = res.category_all!!.map { ca -> ca.category_title },
+                            category_ids = listOf(res.category_idx),
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            num_article = res.article_cnt
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
     fun addMyArchive(

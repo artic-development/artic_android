@@ -8,6 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.ui.BaseActivity
+import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
 
@@ -16,17 +17,26 @@ import kotlinx.android.synthetic.main.search_result_tab.*
  */
 class SearchResultActivity : BaseActivity() {
     private var searchKeyword = ""
+    private lateinit var adapter: SearchResultAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_search_result)
 
-        // TODO 실제 검색 결과 데이터를 넘겨줘야 한다.
-        search_result_viewpager.adapter = SearchResultAdapter(supportFragmentManager, 2, searchKeyword)
+        searchKeyword = intent.getStringExtra("searchKeyword")
+
+        adapter = SearchResultAdapter(supportFragmentManager, 2, searchKeyword).apply {
+            searchCount.subscribe {
+                search_result_number.text = it.toString()
+            }
+        }
+        search_result_viewpager.adapter = adapter
         search_result_viewpager.offscreenPageLimit=2
 
         search_result_viewpager.addOnPageChangeListener(
             object : ViewPager.OnPageChangeListener {
+                private var currentPosition = 0
+
                 override fun onPageScrollStateChanged(state: Int) {
 
                 }
@@ -34,10 +44,19 @@ class SearchResultActivity : BaseActivity() {
                 override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
                 }
 
+                // Page 가 변경될때 마다. 상단에 검색 결과가 변경, 반영되어야 한다.
                 override fun onPageSelected(position: Int) {
+                    adapter.getItem(currentPosition)?.onPauseFragment()
+                    adapter.getItem(position)?.onResumeFragment()
+                    currentPosition = position
+
                     when (position) {
-                        0 -> selectArchiveTab()
-                        1 -> selectArticleTab()
+                        0 -> {
+                            selectArchiveTab()
+                        }
+                        1 -> {
+                            selectArticleTab()
+                        }
                     }
                 }
             }

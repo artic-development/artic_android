@@ -19,6 +19,7 @@ import retrofit2.Callback
 import retrofit2.Response
 import android.view.inputmethod.EditorInfo
 import com.android.artic.ui.search_result.SearchResultActivity
+import org.jetbrains.anko.startActivity
 
 
 class SearchActivity : BaseActivity() {
@@ -38,7 +39,6 @@ class SearchActivity : BaseActivity() {
         // recyclerview space 조절
         var spacesItemDecoration =
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
-//        spacesItemDecoration.
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
         repository.getRecommendWordList().enqueue(
@@ -52,7 +52,6 @@ class SearchActivity : BaseActivity() {
                         recommendWordAdapter.dataList = it
                         recommendWordAdapter.notifyDataSetChanged()
                     }
-
                 }
             }
         )
@@ -63,10 +62,8 @@ class SearchActivity : BaseActivity() {
         et_act_search_search_word?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
-                    // TODO (@수민) 검색 기능 구현
-                    var intent = Intent(this@SearchActivity, SearchResultActivity::class.java)
-
-                    this@SearchActivity.startActivity(intent)
+                    val keyword = v.text.toString()
+                    startActivity<SearchResultActivity>("searchKeyword" to keyword)
 
                     return true
                 }
