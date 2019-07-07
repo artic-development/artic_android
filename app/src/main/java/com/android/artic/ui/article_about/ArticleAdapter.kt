@@ -13,6 +13,7 @@ import com.android.artic.data.Article
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 class ArticleAdapter(
     private val context: Context,
@@ -36,10 +37,7 @@ class ArticleAdapter(
             txt_title?.text = cur.title
             txt_url?.text = cur.url // TODO url의 뒷부분만 보여줘야함. 어캐할래? .com .co.kr ... 등등 파서를 만들어야할듯?
             container?.setOnClickListener {
-                // TODO 아티클 읽어야함
-                var intent = Intent(context, ArticleWebViewActivity::class.java)
-
-                context.startActivity(intent)
+                context.startActivity<ArticleWebViewActivity>("articleId" to cur.id)
             }
         }
     }
