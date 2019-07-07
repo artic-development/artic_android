@@ -1,6 +1,7 @@
 package com.android.artic
 
 import android.app.Application
+import com.android.artic.api.apiModule
 import com.android.artic.logger.loggerModule
 import com.android.artic.repository.module
 import org.koin.android.ext.koin.androidContext
@@ -15,7 +16,8 @@ class ArticApplication : Application() {
             androidContext(this@ArticApplication)
             modules(listOf(
                 module,
-                loggerModule
+                loggerModule,
+                apiModule
             ))
         }
     }

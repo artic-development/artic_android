@@ -1,8 +1,8 @@
 package com.android.artic.repository.remote.response
 
-data class ArticResponse<Data> (
+data class BaseResponse<Data> (
     val status: Int,
     val success: Boolean,
     val message: String,
-    val data: Data
+    val data: Data?
 )

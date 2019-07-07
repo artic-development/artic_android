@@ -7,8 +7,7 @@ import com.android.artic.data.notification.*
 import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
 import com.android.artic.repository.remote.RemoteDataSource
-import com.android.artic.repository.remote.response.ArticResponse
-import com.android.artic.repository.remote.response.ArticleResponse
+import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.ui.search.data.RecommendWordData
 import retrofit2.Call
 import retrofit2.Callback
@@ -38,7 +37,8 @@ class ArticRepository (
         remote.getCategoryList().enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    it.data.map { res->
+                    if (it.data == null) listOf()
+                    else it.data.map { res->
                         Category(
                             id = res.category_idx,
                             name = res.category_title
@@ -70,7 +70,7 @@ class ArticRepository (
         remote.getArticle(articleId).enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    it.data.let { res ->
+                    it.data!!.let { res ->
                         Article(
                             id = res.article_idx,
                             like = res.hits,
@@ -100,7 +100,8 @@ class ArticRepository (
         remote.getArticPickList().enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    it.data.map { res ->
+                    if (it.data == null) listOf()
+                    else it.data.map { res ->
                         Article(
                             id = res.article_idx,
                             like = res.hits,
@@ -155,7 +156,8 @@ class ArticRepository (
         remote.getNewArchiveList().enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    it.data.map { res -> Archive(
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Archive(
                         id = res.archive_idx,
                         categories = res.category_all.map { cate -> cate.category_title },
                         category_ids = listOf(res.category_idx),
@@ -183,7 +185,8 @@ class ArticRepository (
         remote.getNewArticleList().enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    it.data.map { res -> Article(
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Article(
                         id = res.article_idx,
                         like = res.hits,
                         title_img_url = res.thumnail,
@@ -293,7 +296,7 @@ class ArticRepository (
      * @param statusCallback will be called when server interaction with no error
      * @author greedy0110
      * */
-    private fun <UI, SERVER: ArticResponse<*>>createFromRemoteCallback(
+    private fun <UI, SERVER: BaseResponse<*>>createFromRemoteCallback(
         mapper: (SERVER) -> UI,
         successCallback: (UI) -> Unit,
         failCallback: ((Throwable) -> Unit)? = null,
