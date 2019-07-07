@@ -71,6 +71,9 @@ class LoginActivity : BaseActivity() {
                 else {
                     var intent = Intent(this, NavigationActivity::class.java)
 
+                    intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
+
                     startActivity(intent)
                 }
             }
@@ -96,6 +99,9 @@ class LoginActivity : BaseActivity() {
 
                         else {
                             var intent = Intent(this@LoginActivity, NavigationActivity::class.java)
+
+                            intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
+                            intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
                             this@LoginActivity.startActivity(intent)
                         }

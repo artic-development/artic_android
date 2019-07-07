@@ -51,8 +51,16 @@ class ArchiveListFragment(
 
                 override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
                     response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
+                        if(it.isNotEmpty()) {
+                            adapter.dataList = it
+                            adapter.notifyDataSetChanged()
+
+                            rv_search_result_archive.visibility = View.VISIBLE
+                            archive_result_empty.visibility = View.GONE
+                        } else{
+                            rv_search_result_archive.visibility=View.GONE
+                            archive_result_empty.visibility=View.VISIBLE
+                        }
                     }
                 }
             }
