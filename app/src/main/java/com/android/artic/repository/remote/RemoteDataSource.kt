@@ -12,4 +12,5 @@ interface RemoteDataSource {
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
     fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>>
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
+    fun getCategoryArchiveList(categoryIdx : Int) : Call<BaseResponse<List<ArchiveResponse>>>
 }

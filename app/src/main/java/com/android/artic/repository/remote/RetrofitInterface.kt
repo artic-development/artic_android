@@ -1,11 +1,13 @@
 package com.android.artic.repository.remote
 
+import com.android.artic.data.Archive
 import com.android.artic.repository.remote.response.ArchiveResponse
 import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.repository.remote.response.ArticleResponse
 import com.android.artic.repository.remote.response.CategoryResponse
 import retrofit2.Call
 import retrofit2.http.GET
+import retrofit2.http.POST
 import retrofit2.http.Path
 
 interface RetrofitInterface {
@@ -25,4 +27,9 @@ interface RetrofitInterface {
 
     @GET("/category")
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
+
+    @GET("/category/{category_idx}/archives")
+    fun getCategoryArchiveList(
+        @Path("category_idx") categoryIdx: Int
+    ) : Call<BaseResponse<List<ArchiveResponse>>>
 }
