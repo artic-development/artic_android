@@ -11,6 +11,7 @@ import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
+import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
@@ -65,10 +66,7 @@ class ArticleAboutActivity : BaseActivity() {
                     .into(img_article_about)
 
                 btn_article_about_read.setOnClickListener {
-                    // TODO 아티클 읽기 구현해야함!
-                    var intent = Intent(this@ArticleAboutActivity, ArticleWebViewActivity::class.java)
-
-                    startActivity(intent)
+                    startActivity<ArticleWebViewActivity>("articleId" to it.id)
                 }
             },
             failCallback = {

@@ -5,24 +5,31 @@ import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.widget.LinearLayout
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.recyclerview.widget.RecyclerView
+import androidx.fragment.app.FragmentActivity
+import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
+import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.HeightWrappingViewPager
+import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
+import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.my_page_tablayout.*
 import org.jetbrains.anko.startActivity
 
-class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
+
+class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     private lateinit var adapter: MyPageTabLayoutAdapter
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+
             adapter = MyPageTabLayoutAdapter(supportFragmentManager)
             vp_my_page.adapter = adapter
             tl_my_page.setupWithViewPager(vp_my_page)
@@ -41,10 +48,15 @@ class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
                     }
                 }
             )
+
             selectScrapTab() // 초기에는 scrap tab을 선택한다.
 
             btn_my_page_setting.setOnClickListener {
                 startActivity<SettingActivity>()
+            }
+
+            mypage_plus_btn.setOnClickListener{
+                startActivity<MakeNewArchiveActivity>()
             }
         }
     }
@@ -56,6 +68,8 @@ class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
 
             txt_my_page_tablayout_me.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
             img_my_page_tablayout_me.visibility = View.INVISIBLE
+
+
         }
     }
 
@@ -64,6 +78,7 @@ class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
             initAllTabItem()
             txt_my_page_tablayout_scrap.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
             img_my_page_tablayout_scrap.visibility = View.VISIBLE
+            mypage_plus_btn.visibility = View.GONE
         }
     }
 
@@ -72,6 +87,11 @@ class MyPageFragment : BaseFragment(R.layout.fragment_my_page) {
             initAllTabItem()
             txt_my_page_tablayout_me.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
             img_my_page_tablayout_me.visibility = View.VISIBLE
+
+
         }
     }
+
+    //TODO mypage_plus_btn 내 아카이브 탭 눌렀을 때 데이타가 있을 때만 visible하게 하기
 }
+

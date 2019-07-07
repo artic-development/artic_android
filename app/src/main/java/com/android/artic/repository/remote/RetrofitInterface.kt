@@ -13,6 +13,7 @@ import retrofit2.http.Path
 import retrofit2.http.*
 
 interface RetrofitInterface {
+
     @GET("/home/article/articles/new")
     fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>>
 
@@ -81,4 +82,13 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Query("keyword") keyword: String
     ): Call<BaseResponse<List<ArchiveResponse>>>
+
+    @POST("/archive/article/{article_idx}/history")
+    fun postArticleRead(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token:String,
+        @Path("article_idx") articleIdx: Int
+    ): Call<BaseResponse<Int>>
+
+
 }
