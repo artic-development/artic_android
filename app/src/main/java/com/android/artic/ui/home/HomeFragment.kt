@@ -12,6 +12,7 @@ import com.android.artic.ui.home.reading_history.ReadingHistoryFragment
 import com.android.artic.ui.search.SearchActivity
 import kotlinx.android.synthetic.main.fragment_home.*
 
+// TODO 비동기 데이터를 받아온 후 로드 & 순서대로 로
 /**
  * 1. Home Fragment 들을 관리할 것
  * 2. Fragment 들의 위치는 유동적으로 변경가능 하며 HomeFragment 가 관리할 것

@@ -33,19 +33,13 @@ class ArticPickActivity : BaseActivity() {
         var spaceItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
         rv_artic_pick.addItemDecoration(spaceItemDecoration)
 
-        repository.getArticPickList().enqueue(
-            object : Callback<List<Article>> {
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<Article>>, response: Response<List<Article>>) {
-                    response.body()?.let {
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
-                    }
-
-                }
+        repository.getArticPickList(
+            successCallback = {
+                adapter.dataList = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
 
