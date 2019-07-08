@@ -25,8 +25,8 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getNewArchiveList()
     }
 
-    override fun getArticle(articleIdx: Int): Call<BaseResponse<ArticleResponse>> {
-        return retrofit.getArticle(articleIdx)
+    override fun getArticle(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<ArticleResponse>> {
+        return retrofit.getArticle(contentType, token, articleIdx)
     }
 
     // 아티클 좋아요 누르기

@@ -17,8 +17,10 @@ interface RetrofitInterface {
 
     @GET("/home/article/{article_idx}/new")
     fun getArticle(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
-    ): Call<BaseResponse<ArticleResponse>> // TODO 2019.07.07 현재 신규 아티클이 size 1개의 배열로 오고 있다. 수정후 적용 필요 - 승
+    ): Call<BaseResponse<ArticleResponse>>
 
     @GET("/home/archive/archives/new")
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
