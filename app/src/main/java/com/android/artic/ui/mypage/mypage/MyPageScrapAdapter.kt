@@ -35,7 +35,7 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
             holder.container?.setOnClickListener {
                 var intent = Intent(ctx, ArticleActivity::class.java)
 
-                intent.putExtra("archive_idx", data[position].id)
+                intent.putExtra("archiveId", data[position].id)
 
                 ctx.startActivity(intent)
             }

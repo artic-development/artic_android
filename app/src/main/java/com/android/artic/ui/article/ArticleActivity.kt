@@ -18,7 +18,7 @@ import org.koin.android.ext.android.inject
  * */
 class ArticleActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
-//    private var archiveId: Int = -1
+    private var archiveId: Int = -1
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
 
 
@@ -26,20 +26,16 @@ class ArticleActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article)
 
-//        var archive_idx = intent.getIntExtra("archive_idx", -1)
-//        var archive_idx = intent.getIntExtra("archive_idx", -1)
-
-
         tv_act_link_archive_title.text = intent.getStringExtra("categoryTitle")
         link_title.text = intent.getStringExtra("archiveTitle")
-        var archive_idx = intent.getIntExtra("", -1)
+        archiveId = intent.getIntExtra("archiveId", -1)
 
-        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
+        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         repository.getArticleListGivenArchive(
-            archiveId = archive_idx,
+            archiveId = archiveId,
             successCallback = {
                 adapter.dataList = it
                 adapter.notifyDataSetChanged()

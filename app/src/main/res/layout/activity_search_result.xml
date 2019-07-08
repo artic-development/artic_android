@@ -38,18 +38,19 @@
         android:textSize="21sp"
         android:layout_marginTop="28dp"
         android:layout_marginLeft="20dp" />
-     <TextView
-         android:id="@+id/search_result_number"
-         android:layout_width="wrap_content"
-         android:layout_height="wrap_content"
-         android:text="32"
-         android:layout_marginLeft="20dp"
-         android:layout_marginTop="10dp"
-         android:includeFontPadding="false"
-         android:fontFamily="@font/nanum_square_regular"
-         android:textStyle="bold"
-         android:layout_below="@id/search_result_category_name"
-         android:textColor="@color/soft_blue"/>
+
+        <TextView
+            android:id="@+id/search_result_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_result_category_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="@color/soft_blue"
+            android:textStyle="bold" />
 
         <TextView
             android:layout_width="wrap_content"

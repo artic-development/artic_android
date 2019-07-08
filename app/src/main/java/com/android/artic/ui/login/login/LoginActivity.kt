@@ -13,9 +13,11 @@ import com.android.artic.data.auth.Signin
 import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
+import com.jakewharton.rxbinding3.widget.textChanges
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
+import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
@@ -87,6 +89,7 @@ class LoginActivity : BaseActivity() {
     private fun signin() {
         // 유효성 검사
         // 이메일
+        et_login_email.setText(et_login_email.text.trim())
         val emailStr = et_login_email.text.toString()
         val emailMatcher = emailPattern.matcher(emailStr)
 

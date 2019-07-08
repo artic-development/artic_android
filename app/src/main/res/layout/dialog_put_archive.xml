@@ -93,7 +93,7 @@
         android:layout_height="0.5dp"
         android:background="#cdcdcd"/>
 
-    <Button
+    <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_rv_dialog_put_archive_complete"
         android:layout_width="match_parent"
         android:layout_height="84dp"

@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.activity_search.*
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
@@ -21,6 +22,12 @@ class SearchResultActivity : BaseActivity() {
     private val logger: Logger by inject()
     private var searchKeyword = ""
     private lateinit var adapter: SearchResultAdapter
+    private lateinit var archiveListFragment: ArchiveListFragment
+    private lateinit var linkResultFragment: LinkResultFragment
+    private lateinit var searchNumberDisposable: Disposable
+    private val searchNumberTask: (Int)-> Unit = {
+        search_result_number.text = it.toString()
+    }
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -29,11 +36,10 @@ class SearchResultActivity : BaseActivity() {
         searchKeyword = intent.getStringExtra("searchKeyword")
         search_result_category_name.text = searchKeyword
 
-        adapter = SearchResultAdapter(supportFragmentManager, 2, searchKeyword).apply {
-            searchCount.subscribe {
-                search_result_number.text = it.toString()
-            }
-        }
+        archiveListFragment = ArchiveListFragment(searchKeyword)
+        linkResultFragment = LinkResultFragment(searchKeyword)
+
+        adapter = SearchResultAdapter(supportFragmentManager, listOf(archiveListFragment, linkResultFragment))
         search_result_viewpager.adapter = adapter
         search_result_viewpager.offscreenPageLimit=2
 
@@ -77,6 +83,7 @@ class SearchResultActivity : BaseActivity() {
         selectArchiveTab() // 초기에는 archive tab이 선택되어 있다.
     }
 
+
     // TODO 유틸로 뺄 수 있니?
     private fun initAllTabItem() {
         tv_search_result_tab_archive.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
@@ -91,11 +98,14 @@ class SearchResultActivity : BaseActivity() {
         tv_search_result_tab_archive.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
         img_search_result_tab_archive.visibility = View.VISIBLE
 
+        searchNumberDisposable = archiveListFragment.searchNumber.subscribe(searchNumberTask)
     }
 
     private fun selectArticleTab() {
         initAllTabItem()
         tv_search_result_tab_article.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
         img_search_result_tab_article.visibility = View.VISIBLE
+
+        searchNumberDisposable = linkResultFragment.searchNumber.subscribe(searchNumberTask)
     }
 }
