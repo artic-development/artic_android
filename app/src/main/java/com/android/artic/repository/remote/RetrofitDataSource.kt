@@ -1,10 +1,7 @@
 package com.android.artic.repository.remote
 
 import com.android.artic.auth.Auth
-import com.android.artic.repository.remote.response.ArchiveResponse
-import com.android.artic.repository.remote.response.ArticleResponse
-import com.android.artic.repository.remote.response.BaseResponse
-import com.android.artic.repository.remote.response.CategoryResponse
+import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -65,6 +62,16 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getReadingHistoryArticle(contentType, token)
     }
 
+    // @수민) 아티클 담기
+    override fun postCollectArticleInArchive(
+        contentType: String,
+        token: String,
+        archiveIdx: Int,
+        articleIdx: Int
+    ): Call<BaseResponse<Int>> {
+        return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
+    }
+
     override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
         return retrofit.postRegisterArchive(contentType, token, body)
     }
@@ -77,6 +84,10 @@ class RetrofitDataSource : RemoteDataSource {
     }
     override fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+    }
+
+    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<List<MyPageResponse>>> {
+        return retrofit.getMyPageInfo(contentType, token)
     }
 
     override fun getSearchArticleList(

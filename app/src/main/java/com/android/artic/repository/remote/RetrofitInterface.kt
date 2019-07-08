@@ -2,10 +2,7 @@ package com.android.artic.repository.remote
 
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
-import com.android.artic.repository.remote.response.ArchiveResponse
-import com.android.artic.repository.remote.response.BaseResponse
-import com.android.artic.repository.remote.response.ArticleResponse
-import com.android.artic.repository.remote.response.CategoryResponse
+import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.GET
@@ -37,6 +34,15 @@ interface RetrofitInterface {
     fun getCategoryArchiveList(
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
+
+    // @수민) 아티클 담기
+    @POST("/archive/{archive_idx}/article/{article_idx}")
+    fun postCollectArticleInArchive(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("archive_idx") archiveId: Int,
+        @Path("article_idx") articleIdx: Int
+    ) : Call<BaseResponse<Int>>
 
     // @수민) 아티클 좋아요
     @POST("/archive/article/{article_idx}/like")
@@ -101,17 +107,23 @@ interface RetrofitInterface {
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<Int>>
 
-    @GET("mypage/archive/scrap")
+    @GET("/mypage/archive/scrap")
     fun getScrapArchiveList(
         @Header("Content-Type") contentType: String,
         @Header("token") token:String
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
-    @GET("home/article/history")
+    @GET("/home/article/history")
     fun getReadingHistoryArticle(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
     ): Call<BaseResponse<List<ArticleResponse>>>
+
+    @GET("/mypage")
+    fun getMyPageInfo(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ) : Call<BaseResponse<List<MyPageResponse>>>
 
 
 }

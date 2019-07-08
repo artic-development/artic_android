@@ -3,6 +3,7 @@ package com.android.artic.ui.adapter.article
 
 
 import android.content.Intent
+import android.os.Bundle
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
@@ -19,7 +20,6 @@ import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent.inject
 
 
 class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
@@ -46,7 +46,12 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
 
         // @수민 담기 버튼 리스너
         p0.btn_put.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putInt("article_idx", dataList[p1].id)
+
             var putFragment = CollectArchiveDialogFragment()
+
+            putFragment.arguments = bundle
 
             putFragment.show(ctx.supportFragmentManager, putFragment.tag)
         }
@@ -63,7 +68,8 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         p0.toggle_btn_like.setOnClickListener {
 
 
-            repository.postArticleLike(articleIdx = dataList[p1].id,
+            repository.postArticleLike(
+                articleIdx = dataList[p1].id,
                 successCallback = {
                 },
                 failCallback = {
