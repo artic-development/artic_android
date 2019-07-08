@@ -3,6 +3,7 @@ package com.android.artic.repository.local
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
+import com.android.artic.data.MyPage
 import com.android.artic.data.notification.*
 import com.android.artic.ui.search.data.RecommendWordData
 import khronos.Dates
@@ -215,6 +216,12 @@ class MockLocalDataSource : LocalDataSource {
 
     }
 
+    override fun getMyPageInfo(): MyPage {
+        return MyPage(name="kyunghee",id="song",profile_img ="",my_info = "")
+    }
+
+
+
     override fun getNewArchiveList(): List<Archive> {
         return listOf(
                 Archive(
@@ -253,6 +260,7 @@ class MockLocalDataSource : LocalDataSource {
             )
 
     }
+
 
     override fun getNewArticleList(): List<Article> {
         return listOf(

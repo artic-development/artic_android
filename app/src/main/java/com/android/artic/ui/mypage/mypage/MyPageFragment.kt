@@ -11,19 +11,27 @@ import androidx.fragment.app.FragmentActivity
 import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
+import com.android.artic.logger.Logger
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.HeightWrappingViewPager
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
+import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.my_page_tablayout.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.support.v4.ctx
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 
 
 class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     private lateinit var adapter: MyPageTabLayoutAdapter
+    private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -58,6 +66,26 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             mypage_plus_btn.setOnClickListener{
                 startActivity<MakeNewArchiveActivity>()
             }
+
+            repository.getMyInfo(
+                successCallback = {
+                    logger.log("mypage info success $it")
+                    txt_my_page_name.text= it.name
+                    txt__my_page_email.text=it.id
+                    val img=it.profile_img
+                    img_my_page_profile?.let{
+                        Glide.with(ctx)
+                            .load(img)
+                            .into(it)
+                    }
+                    txt_my_page_introduce.text=it.my_info
+                },
+                failCallback = {
+                    toast(R.string.network_error)
+                }
+            )
+
+
         }
     }
 
