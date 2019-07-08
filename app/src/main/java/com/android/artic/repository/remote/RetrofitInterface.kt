@@ -38,7 +38,7 @@ interface RetrofitInterface {
     ) : Call<BaseResponse<List<ArchiveResponse>>>
 
     // @수민) 아티클 좋아요
-    @POST("/article/{article_idx}/like")
+    @POST("/archive/article/{article_idx}/like")
     fun postArticleLike(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,

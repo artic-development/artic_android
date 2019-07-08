@@ -93,11 +93,11 @@ class LoginActivity : BaseActivity() {
         // 비밀번호
         val passwordStr = et_login_password.text.toString()
         val passwordMatcher = passwordPattern.matcher(passwordStr)
-        if (!emailMatcher.find() || !passwordMatcher.find()) {
-            toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
-        }
-
-        else {
+//        if (!emailMatcher.find() || !passwordMatcher.find()) {
+//            toast("이메일과 비밀번호를 형식에 맞게 입력해주세요.")
+//        }
+//
+//        else {
             logger.log("request signin")
             // TODO 로그인 구현이 되어야함!
             api.requestSignin(
@@ -120,6 +120,6 @@ class LoginActivity : BaseActivity() {
                     }
                 }
             )
-        }
+//        }
     }
 }

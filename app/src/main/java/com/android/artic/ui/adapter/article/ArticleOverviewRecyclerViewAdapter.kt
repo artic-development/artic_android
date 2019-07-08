@@ -67,15 +67,31 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
                 successCallback = {
                 },
                 failCallback = {
-                    Log.d("seungmin", "fail?")
+                    ctx.toast(R.string.network_error)
                 },
                 statusCallback = {status, success, message ->
                     run {
 
-                        when (status) {
-                            200 -> ctx.toast(message)
-                            400 -> ctx.toast(message)
-                            else -> ctx.toast("오잉")
+                        if (status == 200) {
+
+                            var like_number_int = Integer.parseInt(p0.like_number.text.toString())
+
+                            if (message == "아티클 좋아요 성공") { // 좋아요 성공
+                                p0.like_number.text = (like_number_int + 1).toString()
+                                p0.toggle_btn_like.isChecked = true
+                            }
+                            else { // 좋아요 취소 성공
+                                p0.like_number.text = (like_number_int - 1).toString()
+                                p0.toggle_btn_like.isChecked = false
+                            }
+
+                            ctx.toast(message)
+                        }
+                        else if (status == 400) {
+                            ctx.toast(message)
+                        }
+                        else {
+                            ctx.toast("오잉")
                         }
                     }
                 }

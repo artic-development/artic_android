@@ -12,8 +12,10 @@ import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.util.dpToPx
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
 import kotlinx.android.synthetic.main.dialog_put_archive.*
+import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
 import retrofit2.Callback
@@ -72,30 +74,43 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
             HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
         rv_dialog_put_archive_my_archive_list.addItemDecoration(spacesItemDecoration)
 
-        repository.getMyArchiveList().enqueue(
-            object : Callback<List<Archive>> {
-                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                    toast(R.string.network_error)
+        repository.getMyPageMe(
+            successCallback = {
+                if(it.isNotEmpty()) {
+                    toast(" 성 공 옹 옹 ")
+                    collectArchiveListAdapter.dataList = it
+                    collectArchiveListAdapter.notifyDataSetChanged()
                 }
-
-                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-                    response.body()?.let {
-                        collectArchiveListAdapter.dataList = it
-                        val checkedList = mutableListOf<Boolean>()
-                        it.forEach { checkedList.add(false) }
-                        collectArchiveListAdapter.checkedList = checkedList
-
-                        if (it.isEmpty()) {
-                            linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
-                        }
-                        else {
-                            linear_dialog_put_archive_make_new_archive.visibility = View.GONE
-                        }
-
-                        collectArchiveListAdapter.notifyDataSetChanged()
-                    }
-                }
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
+
+//        repository.getMyArchiveList().enqueue(
+//            object : Callback<List<Archive>> {
+//                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
+//                    toast(R.string.network_error)
+//                }
+//
+//                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
+//                    response.body()?.let {
+//                        collectArchiveListAdapter.dataList = it
+//                        val checkedList = mutableListOf<Boolean>()
+//                        it.forEach { checkedList.add(false) }
+//                        collectArchiveListAdapter.checkedList = checkedList
+//
+//                        if (it.isEmpty()) {
+//                            linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
+//                        }
+//                        else {
+//                            linear_dialog_put_archive_make_new_archive.visibility = View.GONE
+//                        }
+//
+//                        collectArchiveListAdapter.notifyDataSetChanged()
+//                    }
+//                }
+//            }
+//        )
     }
 }

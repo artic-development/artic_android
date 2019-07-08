@@ -320,7 +320,7 @@ class ArticRepository (
         }
     }
 
-    // @수민
+    // TODO (@수민) 내 아카이브 조회 아래 걸로 바꾼 후에 이거 지우긴
     fun getMyArchiveList() : Call<List<Archive>> {
         return Calls.response(local.getMyArchiveList())
     }
@@ -335,7 +335,7 @@ class ArticRepository (
         return Calls.response(local.getMyPageScrap())
     }
 
-
+    // 나의 아카이브 조회
     fun getMyPageMe(
         successCallback: (List<Archive>) -> Unit,
         failCallback: ((Throwable) -> Unit)? = null,
