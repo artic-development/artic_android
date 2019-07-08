@@ -16,6 +16,7 @@ interface RemoteDataSource {
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
     fun getCategoryArchiveList(categoryIdx : Int) : Call<BaseResponse<List<ArchiveResponse>>>
     fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>>
+    fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
     fun getScrapArchiveList(contentType: String, token:String): Call<BaseResponse<List<ArchiveResponse>>>
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
