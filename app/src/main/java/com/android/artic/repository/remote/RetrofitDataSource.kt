@@ -62,6 +62,16 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getReadingHistoryArticle(contentType, token)
     }
 
+    // @수민) 아티클 담기
+    override fun postCollectArticleInArchive(
+        contentType: String,
+        token: String,
+        archiveIdx: Int,
+        articleIdx: Int
+    ): Call<BaseResponse<Int>> {
+        return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
+    }
+
     override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
         return retrofit.postRegisterArchive(contentType, token, body)
     }
