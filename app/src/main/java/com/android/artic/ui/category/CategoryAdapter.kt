@@ -34,7 +34,7 @@ class CategoryAdapter(
                 var intent = Intent(context, ArchiveActivity::class.java)
 
                 intent.putExtra("category_idx", cur.id)
-                intent.putExtra("category_name", cur.name)s
+                intent.putExtra("category_name", cur.name)
 
                 context.startActivity(intent)
             }
