@@ -35,7 +35,7 @@ class LinkResultFragment(
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
-        adapter= ArticleOverviewRecyclerViewAdapter(activity!!, listOf())
+        adapter= ArticleOverviewRecyclerViewAdapter(activity!!, listOf(), false)
         rv_search_result_link.adapter=adapter
         rv_search_result_link.layoutManager= LinearLayoutManager(context!!, RecyclerView.VERTICAL,false)
 

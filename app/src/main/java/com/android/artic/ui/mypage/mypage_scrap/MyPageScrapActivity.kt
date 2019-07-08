@@ -26,7 +26,7 @@ class MyPageScrapActivity : BaseActivity() {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_my_page_scrap)
 
-        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
+        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         rv_mypage_scrap_link.adapter=adapter
         rv_mypage_scrap_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
@@ -39,6 +39,6 @@ class MyPageScrapActivity : BaseActivity() {
             failCallback = {
                 toast(R.string.network_error)
             }
-            )
+        )
     }
 }
