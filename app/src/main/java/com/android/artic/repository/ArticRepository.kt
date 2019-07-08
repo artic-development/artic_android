@@ -1,6 +1,7 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
+import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -325,9 +326,7 @@ class ArticRepository (
         return Calls.response(local.getMyArchiveList())
     }
 
-    fun getScrapArchiveList(): Call<List<Archive>> {
-        return Calls.response(local.getScrapArchiveList())
-    }
+
 
     fun getRecommendWordList() : Call<List<RecommendWordData>> {
         return Calls.response(local.getRecommendWordList())
@@ -536,6 +535,33 @@ class ArticRepository (
             )
         }
     }
+    fun readingHistoryArticle(
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+
+        Auth.token?.let{token->
+        remote.getReadingHistoryArticle("application/json", token).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Article(
+                        id = res.article_idx,
+                        like = res.like_cnt?:0,
+                        title_img_url = res.thumnail,
+                        title = res.article_title,
+                        url = res.link)
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+        }
+    }
+
+
 
     /**
      * @param mapper transform server data to UI data

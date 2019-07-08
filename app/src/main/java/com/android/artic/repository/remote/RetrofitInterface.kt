@@ -1,6 +1,7 @@
 package com.android.artic.repository.remote
 
 import com.android.artic.data.Archive
+import com.android.artic.data.Article
 import com.android.artic.repository.remote.response.ArchiveResponse
 import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.repository.remote.response.ArticleResponse
@@ -105,6 +106,12 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token:String
     ): Call<BaseResponse<List<ArchiveResponse>>>
+
+    @GET("home/article/history")
+    fun getReadingHistoryArticle(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ): Call<BaseResponse<List<ArticleResponse>>>
 
 
 }
