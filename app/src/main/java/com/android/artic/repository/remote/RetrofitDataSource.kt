@@ -32,6 +32,11 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getArticle(articleIdx)
     }
 
+    // 아티클 좋아요 누르기
+    override fun postArticleLike(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<Int>> {
+        return retrofit.postArticleLike(contentType, token, articleIdx)
+    }
+
     override fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticPickList()
     }

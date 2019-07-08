@@ -3,24 +3,29 @@ package com.android.artic.ui.adapter.article
 
 
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
-import android.widget.ImageView
-import android.widget.RelativeLayout
-import android.widget.TextView
+import android.widget.*
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
+import org.koin.java.KoinJavaComponent.inject
 
 
 class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
+
+    private val repository : ArticRepository by ctx.inject()
+
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_link_list,p0,false)
         return Holder(view)
@@ -50,6 +55,49 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         p0.relative_article_item_card.setOnClickListener {
             ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
         }
+
+        // @수민) 아티클의 체크 여부에 따라 토글버튼을 바꿔준다.
+        p0.toggle_btn_like.isChecked = dataList[p1].isLiked!!
+
+        // @수민) 좋아요 통신
+        p0.toggle_btn_like.setOnClickListener {
+
+
+            repository.postArticleLike(articleIdx = dataList[p1].id,
+                successCallback = {
+                },
+                failCallback = {
+                    ctx.toast(R.string.network_error)
+                },
+                statusCallback = {status, success, message ->
+                    run {
+
+                        if (status == 200) {
+
+                            var like_number_int = Integer.parseInt(p0.like_number.text.toString())
+
+                            if (message == "아티클 좋아요 성공") { // 좋아요 성공
+                                p0.like_number.text = (like_number_int + 1).toString()
+                                p0.toggle_btn_like.isChecked = true
+                            }
+                            else { // 좋아요 취소 성공
+                                p0.like_number.text = (like_number_int - 1).toString()
+                                p0.toggle_btn_like.isChecked = false
+                            }
+
+                            ctx.toast(message)
+                        }
+                        else if (status == 400) {
+                            ctx.toast(message)
+                        }
+                        else {
+                            ctx.toast("오잉")
+                        }
+                    }
+                }
+
+            )
+        }
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -61,5 +109,6 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         // @숨니
         var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
         var relative_article_item_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_link_list)
+        var toggle_btn_like = itemView.findViewById<ToggleButton>(R.id.rv_link_list_like)
     }
 }

@@ -55,6 +55,7 @@
             android:layout_marginBottom="32dp"
             android:layout_marginRight="67dp"
             android:layout_marginLeft="28dp"
+            android:layout_alignParentStart="true"
             android:fontFamily="@font/nanum_barungothic_light"
             android:textSize="21sp"
             android:includeFontPadding="false"

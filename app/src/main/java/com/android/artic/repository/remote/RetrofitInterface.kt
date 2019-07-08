@@ -31,16 +31,26 @@ interface RetrofitInterface {
     @GET("/category")
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
 
+    // @수민) 카테고리별 아카이브 리스트 GET
     @GET("/category/{category_idx}/archives")
     fun getCategoryArchiveList(
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
+
+    // @수민) 아티클 좋아요
+    @POST("/archive/article/{article_idx}/like")
+    fun postArticleLike(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("article_idx") articleIdx: Int
+    ) : Call<BaseResponse<Int>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
 
     @GET("/home/archive/category/{category_idx}")
     fun getArchiveListGivenCategory(
         @Path("category_idx") categoryIdx: Int
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
+    // 내 아카이브 목록 GET
     @GET("/mypage/archive/mine")
     fun getMyArchiveList(
         @Header("Content-Type") contentType: String,
