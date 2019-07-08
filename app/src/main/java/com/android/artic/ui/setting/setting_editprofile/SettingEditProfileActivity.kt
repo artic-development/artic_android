@@ -2,6 +2,8 @@ package com.android.artic.ui.setting.setting_editprofile
 
 import android.content.Intent
 import android.graphics.Bitmap
+import android.graphics.Matrix
+import android.media.ExifInterface
 import android.media.MediaScannerConnection
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
@@ -23,6 +25,7 @@ import java.io.File
 import java.io.FileOutputStream
 import java.io.IOException
 import java.util.*
+import java.util.Collections.rotate
 
 class SettingEditProfileActivity : BaseActivity() {
 
@@ -113,9 +116,11 @@ class SettingEditProfileActivity : BaseActivity() {
                 val contentURI = data!!.data
                 try
                 {
-                    val bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+                    var bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
+
                     val path = saveImage(bitmap)
                     Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
+
                     imageview!!.setImageBitmap(bitmap)
                     edit_profile_finish_btn.isActivated = true
                 }
@@ -129,6 +134,34 @@ class SettingEditProfileActivity : BaseActivity() {
         }
 
     }
+
+
+
+//    private fun exifOrientationToDegrees(exifOrientation:Int): Int {
+//        if(exifOrientation==ExifInterface.ORIENTATION_ROTATE_90) {
+//            return 90
+//        } else if(exifOrientation==ExifInterface.ORIENTATION_ROTATE_180) {
+//            return 180
+//        } else if(exifOrientation==ExifInterface.ORIENTATION_ROTATE_270) {
+//            return 270
+//        }
+//        return 0
+//
+//    }
+
+//    private fun rotate(bitmap:Bitmap, degrees:Int): Bitmap? {
+//       if(degrees!= 0 && bitmap != null) {
+//           val m = Matrix()
+//           m.setRotate(degrees.toFloat(), (bitmap.width/2).toFloat(), (bitmap.height/2).toFloat())
+//
+//
+//               val converted=Bitmap.createBitmap(bitmap, 0,0
+//               , bitmap.width,bitmap.height,m,true)
+//
+//
+//       }
+//        return bitmap
+//    }
 
     //이미지를 저장하는 메소드
     //IMAGE_DIRECTORY는 모든 이미지가 저장 될 폴더 이름
