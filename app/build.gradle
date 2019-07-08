@@ -100,4 +100,7 @@ dependencies {
 
     // android web view
     implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+
+    // google material
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
 }
