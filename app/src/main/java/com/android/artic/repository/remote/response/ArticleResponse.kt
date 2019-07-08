@@ -8,6 +8,7 @@ data class ArticleResponse(
     val date: String,
     val hits: Int,
     val archive_title: String? = null,
+    val archive_idx:Int? = null,
     val like: Boolean? = null,
     val like_cnt: Int? = null
 )

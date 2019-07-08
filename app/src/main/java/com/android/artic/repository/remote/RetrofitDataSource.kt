@@ -61,6 +61,10 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getScrapArchiveList(contentType,token)
     }
 
+    override fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
+        return retrofit.getReadingHistoryArticle(contentType, token)
+    }
+
     // @수민) 아티클 담기
     override fun getCollectArticleInArchive(
         contentType: String,

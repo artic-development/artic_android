@@ -1,6 +1,7 @@
 package com.android.artic.repository.remote
 
 import com.android.artic.data.Archive
+import com.android.artic.data.Article
 import com.android.artic.repository.remote.response.ArchiveResponse
 import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.repository.remote.response.ArticleResponse
@@ -17,7 +18,7 @@ interface RetrofitInterface {
     @GET("/home/article/articles/new")
     fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>>
 
-    @GET("/home/article/{article_idx}")
+    @GET("/home/article/{article_idx}/new")
     fun getArticle(
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<ArticleResponse>> // TODO 2019.07.07 현재 신규 아티클이 size 1개의 배열로 오고 있다. 수정후 적용 필요 - 승
@@ -114,6 +115,12 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token:String
     ): Call<BaseResponse<List<ArchiveResponse>>>
+
+    @GET("home/article/history")
+    fun getReadingHistoryArticle(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ): Call<BaseResponse<List<ArticleResponse>>>
 
 
 }

@@ -13,6 +13,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.ui.search.data.RecommendWordData
 import com.android.artic.ui.search_result.SearchResultActivity
+import org.jetbrains.anko.startActivity
 
 class RecommendWordAdapter(val ctx: Context, var dataList: List<RecommendWordData>): RecyclerView.Adapter<RecommendWordAdapter.Holder>(){
 
@@ -29,9 +30,7 @@ class RecommendWordAdapter(val ctx: Context, var dataList: List<RecommendWordDat
 
         // @수민) 추천 검색어를 누르면 검색 결과 화면으로 이동
         holder.card.setOnClickListener {
-            var intent = Intent(ctx, SearchResultActivity::class.java)
-
-            ctx.startActivity(intent)
+            ctx.startActivity<SearchResultActivity>("searchKeyword" to dataList[position].word)
         }
     }
 

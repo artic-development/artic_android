@@ -24,7 +24,7 @@ import retrofit2.Response
 class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     private val repository: ArticRepository by inject()
-    private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf(), mutableListOf()) }
+    private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf()) }
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)

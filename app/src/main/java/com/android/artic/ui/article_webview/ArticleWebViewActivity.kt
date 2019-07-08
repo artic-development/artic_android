@@ -33,6 +33,7 @@ class ArticleWebViewActivity : AppCompatActivity() {
         setContentView(R.layout.activity_article_web_view)
 
         articleId = intent.getIntExtra("articleId", -1)
+        logger.log("ArticleWebViewActivity articleId : $articleId")
 
         repository.readArticle(
             articleIdx = articleId,
@@ -42,7 +43,8 @@ class ArticleWebViewActivity : AppCompatActivity() {
         )
 
         // article id를 사용해서 데이터를 받아와야함. article url, article isLiked 여부
-        repository.getArticle(articleId = articleId,
+        repository.getArticle(
+            articleId = articleId,
             successCallback = {
                 articleUrl = it.url
                 // 세부적인 내용 처리가 필요하니?

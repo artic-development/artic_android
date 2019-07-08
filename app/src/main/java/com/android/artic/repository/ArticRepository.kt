@@ -1,6 +1,7 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
+import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -134,6 +135,43 @@ class ArticRepository (
                             title = res.article_title,
                             url = res.link
                         )
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+    }
+
+    /**
+     * get an article by async
+     * extra -> archiveIdx: Int, archiveTitle: String
+     * @see Article
+     * @author greedy0110
+     * */
+    fun getArticleWithExtra(
+        articleId: Int,
+        successCallback: (Article, Pair<Int?, String?>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getArticle(articleId).enqueue(
+            createFromRemoteCallbackAddExtra(
+                mapper = {
+                    it.data!!.let { res ->
+                        Article(
+                            id = res.article_idx,
+                            like = res.like_cnt?:0,
+                            title_img_url = res.thumnail,
+                            title = res.article_title,
+                            url = res.link
+                        )
+                    }
+                },
+                extra = {
+                    it.data!!.let { res ->
+                        Pair(res.archive_idx, res.archive_title)
                     }
                 },
                 successCallback = successCallback,
@@ -325,9 +363,7 @@ class ArticRepository (
         return Calls.response(local.getMyArchiveList())
     }
 
-    fun getScrapArchiveList(): Call<List<Archive>> {
-        return Calls.response(local.getScrapArchiveList())
-    }
+
 
     fun getRecommendWordList() : Call<List<RecommendWordData>> {
         return Calls.response(local.getRecommendWordList())
@@ -536,6 +572,33 @@ class ArticRepository (
             )
         }
     }
+    fun readingHistoryArticle(
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+
+        Auth.token?.let{token->
+        remote.getReadingHistoryArticle("application/json", token).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Article(
+                        id = res.article_idx,
+                        like = res.like_cnt?:0,
+                        title_img_url = res.thumnail,
+                        title = res.article_title,
+                        url = res.link)
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+        }
+    }
+
+
 
     /**
      * @param mapper transform server data to UI data
@@ -563,7 +626,47 @@ class ArticRepository (
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
-                    successCallback(mapper(it))
+                    if (it.data != null)
+                        successCallback(mapper(it))
+                    else
+                        logger.error("createFromRemoteCallback data is null")
+                }
+            }
+
+        }
+    }
+
+    /**
+     * @param mapper transform server data to UI data
+     * @param successCallback will be called when server interaction success
+     * @param failCallback will be called when server interaction fail
+     * @param statusCallback will be called when server interaction with no error
+     * @author greedy0110
+     * */
+    private fun <UI, SERVER: BaseResponse<*>, EXTRA>createFromRemoteCallbackAddExtra(
+        mapper: (SERVER) -> UI,
+        extra: (SERVER) -> EXTRA,
+        successCallback: (UI, EXTRA) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
+    {
+        logger.log("call createFromRemoteCallback")
+        return object : Callback<SERVER> {
+            override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                failCallback?.invoke(t)
+            }
+
+            override fun onResponse(
+                call: Call<SERVER>,
+                response: Response<SERVER>
+            ) {
+                response.body()?.let {
+                    logger.log("from SERVER : \n$it")
+                    statusCallback?.invoke(it.status, it.success, it.message)
+                    if (it.data != null)
+                        successCallback(mapper(it), extra(it))
+                    else
+                        logger.error("createFromRemoteCallbackAddExtra data is null")
                 }
             }
 

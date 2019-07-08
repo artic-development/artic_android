@@ -16,7 +16,8 @@ import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 /**
- * it must need categoryId:Int intent["categoryId"]
+ * it must need categoryId:Int intent["category_idx"]
+ * it must need caetgoryName:Int intent["category_name"]
  * @author greedy0110
  * */
 class ArchiveActivity : BaseActivity() {

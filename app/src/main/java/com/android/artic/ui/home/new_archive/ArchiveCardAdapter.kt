@@ -39,7 +39,7 @@ class ArchiveCardAdapter(
 
             val categoryName = if (cur.categories.isNullOrEmpty()) "" else cur.categories[0]
             container?.setOnClickListener {
-                // TODO cur.archive_id 를 사용해서 다른 화면으로 넘어가는 코드 구현
+                // TODO cur.archive_idx 를 사용해서 다른 화면으로 넘어가는 코드 구현
                 context.startActivity<ArticleActivity>(
                     "archiveTitle" to cur.title,
                     "categoryTitle" to categoryName,
