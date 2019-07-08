@@ -73,44 +73,5 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
         var spacesItemDecoration =
             HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
         rv_dialog_put_archive_my_archive_list.addItemDecoration(spacesItemDecoration)
-
-        repository.getMyPageMe(
-            successCallback = {
-                if(it.isNotEmpty()) {
-                    toast(" 성 공 옹 옹 ")
-                    collectArchiveListAdapter.dataList = it
-                    collectArchiveListAdapter.notifyDataSetChanged()
-                }
-            },
-            failCallback = {
-                toast(R.string.network_error)
-            }
-        )
-
-//        repository.getMyArchiveList().enqueue(
-//            object : Callback<List<Archive>> {
-//                override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-//                    toast(R.string.network_error)
-//                }
-//
-//                override fun onResponse(call: Call<List<Archive>>, response: Response<List<Archive>>) {
-//                    response.body()?.let {
-//                        collectArchiveListAdapter.dataList = it
-//                        val checkedList = mutableListOf<Boolean>()
-//                        it.forEach { checkedList.add(false) }
-//                        collectArchiveListAdapter.checkedList = checkedList
-//
-//                        if (it.isEmpty()) {
-//                            linear_dialog_put_archive_make_new_archive.visibility = View.VISIBLE
-//                        }
-//                        else {
-//                            linear_dialog_put_archive_make_new_archive.visibility = View.GONE
-//                        }
-//
-//                        collectArchiveListAdapter.notifyDataSetChanged()
-//                    }
-//                }
-//            }
-//        )
     }
 }

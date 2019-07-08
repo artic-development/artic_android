@@ -37,6 +37,15 @@ interface RetrofitInterface {
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
 
+    // @수민) 아티클 담기
+    @POST("/archive/{archive_idx}/article/{article_idx}")
+    fun getCollectArticleInArchive(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("archive_idx") archiveId: Int,
+        @Path("article_idx") articleIdx: Int
+    ) : Call<BaseResponse<Int>>
+
     // @수민) 아티클 좋아요
     @POST("/archive/article/{article_idx}/like")
     fun postArticleLike(
