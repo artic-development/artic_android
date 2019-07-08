@@ -1,6 +1,7 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
+import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -26,6 +27,31 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 좋아요 통신
+    fun postArticleLike(
+        articleIdx: Int,
+        successCallback: ((Int) -> Unit)? = null,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)
+    ) {
+        Auth.token?.let { token ->
+            remote.postArticleLike(
+                contentType = "application/json",
+                token = token,
+                articleIdx = articleIdx
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback!!,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
     // @수민) 카테고리별 아카이브 리스트
     fun getCategoryArchiveList(
         categoryId: Int,
@@ -319,7 +345,8 @@ class ArticRepository (
                                 like = res.like_cnt?:0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                isLiked = res.like
                             )
                         }
                     },
@@ -331,14 +358,12 @@ class ArticRepository (
         }
     }
 
-    // @수민
+    // TODO (@수민) 내 아카이브 조회 아래 걸로 바꾼 후에 이거 지우긴
     fun getMyArchiveList() : Call<List<Archive>> {
         return Calls.response(local.getMyArchiveList())
     }
 
-    fun getScrapArchiveList(): Call<List<Archive>> {
-        return Calls.response(local.getScrapArchiveList())
-    }
+
 
     fun getRecommendWordList() : Call<List<RecommendWordData>> {
         return Calls.response(local.getRecommendWordList())
@@ -375,7 +400,7 @@ class ArticRepository (
         }
     }
 
-
+    // 나의 아카이브 조회
     fun getMyPageMe(
         successCallback: (List<Archive>) -> Unit,
         failCallback: ((Throwable) -> Unit)? = null,
@@ -547,6 +572,33 @@ class ArticRepository (
             )
         }
     }
+    fun readingHistoryArticle(
+        successCallback: (List<Article>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+
+        Auth.token?.let{token->
+        remote.getReadingHistoryArticle("application/json", token).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res -> Article(
+                        id = res.article_idx,
+                        like = res.like_cnt?:0,
+                        title_img_url = res.thumnail,
+                        title = res.article_title,
+                        url = res.link)
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+        }
+    }
+
+
 
     /**
      * @param mapper transform server data to UI data

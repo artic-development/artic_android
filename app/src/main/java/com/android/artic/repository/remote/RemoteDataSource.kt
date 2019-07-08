@@ -7,6 +7,7 @@ import com.android.artic.repository.remote.response.CategoryResponse
 import com.google.gson.JsonObject
 import retrofit2.Call
 import retrofit2.http.Header
+import retrofit2.http.Path
 
 interface RemoteDataSource {
     fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>>
@@ -16,11 +17,14 @@ interface RemoteDataSource {
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
     fun getCategoryArchiveList(categoryIdx : Int) : Call<BaseResponse<List<ArchiveResponse>>>
     fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>>
+    fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
     fun getScrapArchiveList(contentType: String, token:String): Call<BaseResponse<List<ArchiveResponse>>>
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
     fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
+    fun postArticleLike(contentType: String, token: String, articleIdx: Int) : Call<BaseResponse<Int>>
     fun postArticleRead(contentType: String, token : String, articleIdx: Int) : Call<BaseResponse<Int>>
+
     fun getSearchArticleList(
         contentType: String,
         token: String,
