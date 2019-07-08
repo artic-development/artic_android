@@ -1,21 +1,15 @@
 package com.android.artic.ui.article
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
-import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
-import kotlinx.android.synthetic.main.activity_link.*
+import kotlinx.android.synthetic.main.activity_article.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * it must need archive id intent["archiveId"]: Int
@@ -30,7 +24,7 @@ class ArticleActivity : BaseActivity() {
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
-        setContentView(R.layout.activity_link)
+        setContentView(R.layout.activity_article)
 
         tv_act_link_archive_title.text = intent.getStringExtra("categoryTitle")
         link_title.text = intent.getStringExtra("archiveTitle")
