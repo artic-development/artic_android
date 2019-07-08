@@ -5,6 +5,7 @@ import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
+import com.android.artic.data.MyPage
 import com.android.artic.data.notification.*
 import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
@@ -426,6 +427,34 @@ class ArticRepository (
                     statusCallback = statusCallback
                 )
             )
+        }
+    }
+
+    fun getMyInfo(
+        successCallback: (MyPage) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ){
+        Auth.token?.let{token->
+            remote.getMyPageInfo(
+                "application/json", token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) throw IllegalArgumentException()
+                        else it.data[0].let { res -> MyPage(
+                            name = res.user_name,
+                            id = res.user_id,
+                            profile_img = res.user_img,
+                            my_info = res.user_intro)
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+
         }
     }
 
