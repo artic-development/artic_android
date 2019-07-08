@@ -5,7 +5,6 @@ import android.graphics.Bitmap
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
-import com.android.artic.data.Article
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
@@ -13,9 +12,6 @@ import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_article_web_view.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * it must need article id (Int) intent["articleId"]
@@ -84,7 +80,11 @@ class ArticleWebViewActivity : AppCompatActivity() {
 
                 btn_article_web_view_collect.setOnClickListener {
                     // TODO 담기 Dialog 를 띄워줘야함.
+                    var bundle = Bundle()
+                    bundle.putInt("article_idx", articleId)
+
                     var putFragment = CollectArchiveDialogFragment()
+                    putFragment.arguments = bundle
 
                     putFragment.show(this@ArticleWebViewActivity.supportFragmentManager, putFragment.tag)
                 }

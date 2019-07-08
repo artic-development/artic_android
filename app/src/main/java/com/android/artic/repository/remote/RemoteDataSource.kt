@@ -38,10 +38,10 @@ interface RemoteDataSource {
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
     // @수민) 아티클 담기
-    fun getCollectArticleInArchive(
+    fun postCollectArticleInArchive(
         contentType: String,
         token: String,
-        archiveId: Int,
+        archiveIdx: Int,
         articleIdx: Int
     ): Call<BaseResponse<Int>>
 }

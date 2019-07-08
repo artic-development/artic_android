@@ -1,7 +1,6 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
-import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -27,6 +26,33 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 아티클 담기 통신
+    fun postCollectArticleInArchive(
+        archiveIdx: Int,
+        articleIdx: Int,
+        successCallback: ((Int) -> Unit)? = null,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)
+    ) {
+        Auth.token?.let {token ->
+            remote.postCollectArticleInArchive(
+                contentType = "application/json",
+                token = token,
+                archiveIdx = archiveIdx,
+                articleIdx = articleIdx
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback!!,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
     // @수민) 좋아요 통신
     fun postArticleLike(
         articleIdx: Int,
@@ -362,7 +388,6 @@ class ArticRepository (
     fun getMyArchiveList() : Call<List<Archive>> {
         return Calls.response(local.getMyArchiveList())
     }
-
 
 
     fun getRecommendWordList() : Call<List<RecommendWordData>> {

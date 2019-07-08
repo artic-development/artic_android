@@ -44,7 +44,9 @@
             android:includeFontPadding="false"
             android:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 "
             android:textColor="@color/black"
-            android:textSize="16sp" />
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="2" />
 
 
         <ImageView

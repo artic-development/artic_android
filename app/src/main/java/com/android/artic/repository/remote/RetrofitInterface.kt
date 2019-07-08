@@ -40,7 +40,7 @@ interface RetrofitInterface {
 
     // @수민) 아티클 담기
     @POST("/archive/{archive_idx}/article/{article_idx}")
-    fun getCollectArticleInArchive(
+    fun postCollectArticleInArchive(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("archive_idx") archiveId: Int,

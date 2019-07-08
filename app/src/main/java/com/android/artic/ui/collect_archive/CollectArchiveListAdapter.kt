@@ -3,6 +3,7 @@ package com.android.artic.ui.collect_archive
 import android.content.Context
 import android.graphics.Color
 import android.opengl.Visibility
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -21,7 +22,10 @@ class CollectArchiveListAdapter(
     private val parentFragment : CollectArchiveDialogFragment,
     dataList: List<Archive>
 ): RecyclerView.Adapter<CollectArchiveListAdapter.Holder>(){
+
     private var checkedList = MutableList(dataList.size) {false}
+    var selectArchiveId = -100
+
     var dataList: List<Archive> = dataList
         set(value) {
             field = value
@@ -79,6 +83,9 @@ class CollectArchiveListAdapter(
                 parentFragment.btn_rv_dialog_put_archive_complete.setTextColor(Color.parseColor("#4f80ff"))
                 parentFragment.btn_rv_dialog_put_archive_complete.text = "완료"
             }
+
+            val selectArchivePosition = checkedList.indexOf(true)
+            selectArchiveId = dataList[selectArchivePosition].id
         }
     }
 

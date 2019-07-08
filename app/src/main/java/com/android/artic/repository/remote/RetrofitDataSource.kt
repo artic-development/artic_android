@@ -66,13 +66,13 @@ class RetrofitDataSource : RemoteDataSource {
     }
 
     // @수민) 아티클 담기
-    override fun getCollectArticleInArchive(
+    override fun postCollectArticleInArchive(
         contentType: String,
         token: String,
-        archiveId: Int,
+        archiveIdx: Int,
         articleIdx: Int
     ): Call<BaseResponse<Int>> {
-        return retrofit.getCollectArticleInArchive(contentType, token, archiveId, articleIdx)
+        return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
     }
 
     override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {

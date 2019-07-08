@@ -1,20 +1,12 @@
 package com.android.artic.ui.mypage.mypage
 
 import android.os.Bundle
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
-import android.widget.LinearLayout
-import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
-import androidx.fragment.app.FragmentActivity
-import androidx.fragment.app.FragmentTransaction
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
-import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.BaseFragment
-import com.android.artic.ui.HeightWrappingViewPager
-import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
 import kotlinx.android.synthetic.main.fragment_my_page.*
