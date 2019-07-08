@@ -45,7 +45,7 @@ class NavigationActivity : AppCompatActivity() {
     private val logger: Logger by inject()
     private fun dummyAuth() {
         auth.requestSignin(
-            Signin("greedy0110@gmail.com", "greedy0110"),
+            Signin("soom9611@gmail.com", "wlgns2642"),
             successCallback = {
                 logger.info("get dummy token ${it.token}")
             }
