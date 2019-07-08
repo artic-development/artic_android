@@ -3,6 +3,7 @@ package com.android.artic.repository.local
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
+import com.android.artic.data.MyPage
 import com.android.artic.data.notification.AppNotification
 import com.android.artic.ui.search.data.RecommendWordData
 import retrofit2.Call
@@ -83,6 +84,8 @@ interface LocalDataSource {
 
     // @수민
     fun getMyArchiveList() : List<Archive>
+
+    fun getMyPageInfo() : MyPage
 
     fun getScrapArchiveList() : List<Archive>
 
