@@ -146,6 +146,43 @@ class ArticRepository (
     }
 
     /**
+     * get an article by async
+     * extra -> archiveIdx: Int, archiveTitle: String
+     * @see Article
+     * @author greedy0110
+     * */
+    fun getArticleWithExtra(
+        articleId: Int,
+        successCallback: (Article, Pair<Int?, String?>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        remote.getArticle(articleId).enqueue(
+            createFromRemoteCallbackAddExtra(
+                mapper = {
+                    it.data!!.let { res ->
+                        Article(
+                            id = res.article_idx,
+                            like = res.like_cnt?:0,
+                            title_img_url = res.thumnail,
+                            title = res.article_title,
+                            url = res.link
+                        )
+                    }
+                },
+                extra = {
+                    it.data!!.let { res ->
+                        Pair(res.archive_idx, res.archive_title)
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
+    }
+
+    /**
      * get article list which is selected by team artic by async
      * @see Article
      * @author greedy0110
@@ -618,7 +655,47 @@ class ArticRepository (
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
-                    successCallback(mapper(it))
+                    if (it.data != null)
+                        successCallback(mapper(it))
+                    else
+                        logger.error("createFromRemoteCallback data is null")
+                }
+            }
+
+        }
+    }
+
+    /**
+     * @param mapper transform server data to UI data
+     * @param successCallback will be called when server interaction success
+     * @param failCallback will be called when server interaction fail
+     * @param statusCallback will be called when server interaction with no error
+     * @author greedy0110
+     * */
+    private fun <UI, SERVER: BaseResponse<*>, EXTRA>createFromRemoteCallbackAddExtra(
+        mapper: (SERVER) -> UI,
+        extra: (SERVER) -> EXTRA,
+        successCallback: (UI, EXTRA) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
+    {
+        logger.log("call createFromRemoteCallback")
+        return object : Callback<SERVER> {
+            override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                failCallback?.invoke(t)
+            }
+
+            override fun onResponse(
+                call: Call<SERVER>,
+                response: Response<SERVER>
+            ) {
+                response.body()?.let {
+                    logger.log("from SERVER : \n$it")
+                    statusCallback?.invoke(it.status, it.success, it.message)
+                    if (it.data != null)
+                        successCallback(mapper(it), extra(it))
+                    else
+                        logger.error("createFromRemoteCallbackAddExtra data is null")
                 }
             }
 

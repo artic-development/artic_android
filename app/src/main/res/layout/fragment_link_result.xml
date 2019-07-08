@@ -11,10 +11,10 @@
         android:id="@+id/rv_search_result_link"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:visibility="visible"/>
+        android:visibility="gone" />
 
     <include
-        android:visibility="gone"
         android:id="@+id/link_result_empty"
-        layout="@layout/mypage_my_empty"/>
+        layout="@layout/search_result_empty"
+        android:visibility="visible" />
 </LinearLayout>

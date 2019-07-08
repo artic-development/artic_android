@@ -19,9 +19,14 @@ import kotlinx.android.synthetic.main.dialog_put_archive.*
 class CollectArchiveListAdapter(
     private val ctx: Context,
     private val parentFragment : CollectArchiveDialogFragment,
-    var dataList: List<Archive>,
-    var checkedList: MutableList<Boolean>
+    dataList: List<Archive>
 ): RecyclerView.Adapter<CollectArchiveListAdapter.Holder>(){
+    private var checkedList = MutableList(dataList.size) {false}
+    var dataList: List<Archive> = dataList
+        set(value) {
+            field = value
+            checkedList = MutableList(field.size) {false}
+        }
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_archive_select_my_archive, viewGroup, false)
@@ -75,10 +80,6 @@ class CollectArchiveListAdapter(
                 parentFragment.btn_rv_dialog_put_archive_complete.text = "완료"
             }
         }
-    }
-
-    private fun setDialogSelect(position: Int) {
-
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
