@@ -151,24 +151,30 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
-        remote.getArticle(articleId).enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    it.data!!.let { res ->
-                        Article(
-                            id = res.article_idx,
-                            like = res.like_cnt?:0,
-                            title_img_url = res.thumnail,
-                            title = res.article_title,
-                            url = res.link
-                        )
-                    }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let {token ->
+            remote.getArticle(
+                articleIdx = articleId,
+                contentType = "application/json",
+                token = token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.data!!.let { res ->
+                            Article(
+                                id = res.article_idx,
+                                like = res.like_cnt?:0,
+                                title_img_url = res.thumnail,
+                                title = res.article_title,
+                                url = res.link
+                            )
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
     }
 
     /**
@@ -183,29 +189,35 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
-        remote.getArticle(articleId).enqueue(
-            createFromRemoteCallbackAddExtra(
-                mapper = {
-                    it.data!!.let { res ->
-                        Article(
-                            id = res.article_idx,
-                            like = res.like_cnt?:0,
-                            title_img_url = res.thumnail,
-                            title = res.article_title,
-                            url = res.link
-                        )
-                    }
-                },
-                extra = {
-                    it.data!!.let { res ->
-                        Pair(res.archive_idx, res.archive_title)
-                    }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let { token ->
+            remote.getArticle(
+                articleIdx = articleId,
+                contentType = "application/json",
+                token = token
+            ).enqueue(
+                createFromRemoteCallbackAddExtra(
+                    mapper = {
+                        it.data!!.let { res ->
+                            Article(
+                                id = res.article_idx,
+                                like = res.like_cnt ?: 0,
+                                title_img_url = res.thumnail,
+                                title = res.article_title,
+                                url = res.link
+                            )
+                        }
+                    },
+                    extra = {
+                        it.data!!.let { res ->
+                            Pair(res.archive_idx, res.archive_title)
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
     }
 
     /**

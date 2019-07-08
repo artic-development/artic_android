@@ -8,7 +8,7 @@ import retrofit2.http.Path
 
 interface RemoteDataSource {
     fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>>
-    fun getArticle(articleIdx: Int): Call<BaseResponse<ArticleResponse>>
+    fun getArticle(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<ArticleResponse>>
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
     fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>>
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
