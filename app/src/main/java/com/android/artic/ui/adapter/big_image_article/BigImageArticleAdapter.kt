@@ -6,6 +6,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
+import android.widget.RelativeLayout
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
@@ -24,8 +25,6 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
-//        var params =
-
         holder.img_url?.clipToOutline = true
 
 
@@ -39,6 +38,8 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
         holder.container?.setOnClickListener {
             ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[position].id)
         }
+
+//        holder.bottom_card.hei/**/
     }
 
     override fun getItemCount(): Int =dataList.size
@@ -50,5 +51,8 @@ class BigImageArticleAdapter (val ctx: Context, var dataList:List<Article>):Recy
         }
         val title=itemView.findViewById<TextView?>(R.id.rv_big_image_article_txt)
         val artic_pick_url=itemView.findViewById<TextView?>(R.id.rv_big_image_article_url)
+
+        // @수민) 추가
+        var bottom_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_big_image_article_bottom)
     }
 }

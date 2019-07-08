@@ -192,7 +192,8 @@ class ArticRepository (
                             like = res.like_cnt?:0,
                             title_img_url = res.thumnail,
                             title = res.article_title,
-                            url = res.link
+                            url = res.link,
+                            isLiked = res.like
                         )
                     }
                 },

@@ -24,6 +24,7 @@
                 android:background="@drawable/top_round" />
 
             <RelativeLayout
+                android:id="@+id/relative_rv_item_big_image_article_bottom"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
                 android:background="@drawable/back_transparent_round_card_grey">
