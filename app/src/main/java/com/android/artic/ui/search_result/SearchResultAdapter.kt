@@ -14,48 +14,16 @@ import org.koin.java.KoinJavaComponent.inject
 // TODO 얘가 search result 결과를 전부 받아서 그려주기만 해야한다. 즉, Search Result Activity 에서 전부 데이터 통신이 끝나고 데이터를 넘겨주면 다시 적용하도록 구성해야 한다?
 class SearchResultAdapter (
     fm:FragmentManager,
-    private val num_fragmnet:Int,
-    private val searchKeyword: String
+    private val fragments: List<BaseFragment>
 ) : FragmentStatePagerAdapter(fm) {
-    val searchCount = BehaviorSubject.createDefault(0)
-
-    companion object{
-        private var archiveResultFragment: ArchiveListFragment?=null
-        private var linkResultFragment: LinkResultFragment?=null
-    }
-
-    fun getArchiveResultFragment () : ArchiveListFragment {
-        if(archiveResultFragment ==null)
-            archiveResultFragment = ArchiveListFragment(searchKeyword)
-        return archiveResultFragment!!
-    }
-
-    fun getLinkReultFragment () : LinkResultFragment {
-        if(linkResultFragment ==null)
-            linkResultFragment = LinkResultFragment(searchKeyword)
-        return linkResultFragment!!
-    }
-
     override fun getItem(position: Int): BaseFragment {
         return when(position) {
-            0-> ArchiveListFragment(searchKeyword).apply {
-                searchCount.subscribe {
-                    this@SearchResultAdapter.searchCount.onNext(it)
-                }
-            }
-            1-> LinkResultFragment(searchKeyword).apply {
-                searchCount.subscribe {
-                    this@SearchResultAdapter.searchCount.onNext(it)
-                }
-            }
+            in 0..fragments.size -> fragments[position]
             else -> throw IllegalArgumentException()
         }
 
     }
 
-    override fun getCount(): Int {
-        return num_fragmnet
-
-            }
+    override fun getCount(): Int = fragments.size
 
 }
