@@ -103,7 +103,7 @@ class SignupLoginActivity : BaseActivity() {
     }
 
     private fun goNext() {
-        val id = signup_login_edit_email.text.toString()
+        val id = signup_login_edit_email.text.trim().toString()
         val pw = signup_login_edit_password.text.toString()
         if (id.isNotEmpty() && pw.isNotEmpty()) {
             startActivity<SignupPrivateActivity>("id" to id, "pw" to pw)

@@ -108,7 +108,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/txt_article_about_url"
                 tools:text="디자이너가 알아두면 좋은 인하우스와 에이전  에이전시의 차이점랜딩은 린(lean)하게, " />
 
-            <Button
+            <androidx.appcompat.widget.AppCompatButton
                 android:id="@+id/btn_article_about_read"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
