@@ -57,6 +57,10 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getMyArchiveList(contentType, token)
     }
 
+    override fun getScrapArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getScrapArchiveList(contentType,token)
+    }
+
     override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
         return retrofit.postRegisterArchive(contentType, token, body)
     }

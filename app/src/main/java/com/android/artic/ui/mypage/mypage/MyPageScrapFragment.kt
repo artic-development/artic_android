@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.deco.GridItemDecoration
 import com.android.artic.ui.adapter.deco.GridSpacesItemDecoration
@@ -33,6 +34,7 @@ import retrofit2.Response
 class MyPageScrapFragment : Fragment() {
     private val repository: ArticRepository by inject()
     private lateinit var adapter: MyPageScrapAdapter
+    private val logger: Logger by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -66,30 +68,22 @@ class MyPageScrapFragment : Fragment() {
     override fun onResume() {
         super.onResume()
         activity?.run {
-            repository.getMyPageScrap().enqueue(
-                object : Callback<List<Archive>> {
-                    override fun onFailure(call: Call<List<Archive>>, t: Throwable) {
-                        toast(R.string.network_error)
+            repository.getMyPageScrap(
+                successCallback = {
+                    logger.log("scrap archive list")
+                    if(it.isNotEmpty()) {
+                        adapter.data = it
+                        adapter.notifyDataSetChanged()
+                        rv_mypage_scrap.visibility = View.VISIBLE
+                        mypage_scrap_empty_view.visibility = View.GONE
+
+                    } else{
+                        rv_mypage_scrap.visibility=View.GONE
+                        mypage_scrap_empty_view.visibility=View.VISIBLE
                     }
-
-                    override fun onResponse(
-                        call: Call<List<Archive>>,
-                        response: Response<List<Archive>>
-                    ) {
-                        response.body()?.let {
-                            if(it.isNotEmpty()) {
-                                adapter.data = it
-                                adapter.notifyDataSetChanged()
-
-                                rv_mypage_scrap.visibility=View.VISIBLE
-                                mypage_scrap_empty_view.visibility=View.GONE
-
-                            } else{
-                                rv_mypage_scrap.visibility=View.GONE
-                                mypage_scrap_empty_view.visibility=View.VISIBLE
-                            }
-                            }
-                    }
+                },
+                failCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }
