@@ -17,8 +17,10 @@ interface RetrofitInterface {
 
     @GET("/home/article/{article_idx}/new")
     fun getArticle(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
-    ): Call<BaseResponse<ArticleResponse>> // TODO 2019.07.07 현재 신규 아티클이 size 1개의 배열로 오고 있다. 수정후 적용 필요 - 승
+    ): Call<BaseResponse<ArticleResponse>>
 
     @GET("/home/archive/archives/new")
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
@@ -34,6 +36,15 @@ interface RetrofitInterface {
     fun getCategoryArchiveList(
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
+
+    // @수민) 아티클 담기
+    @POST("/archive/{archive_idx}/article/{article_idx}")
+    fun postCollectArticleInArchive(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("archive_idx") archiveId: Int,
+        @Path("article_idx") articleIdx: Int
+    ) : Call<BaseResponse<Int>>
 
     // @수민) 아티클 좋아요
     @POST("/archive/article/{article_idx}/like")

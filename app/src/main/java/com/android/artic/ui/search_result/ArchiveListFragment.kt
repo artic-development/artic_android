@@ -6,6 +6,7 @@ import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
@@ -31,7 +32,7 @@ class ArchiveListFragment(
     private val repository: ArticRepository by inject()
     private val logger: Logger by inject()
     lateinit var adapter: ArchiveListAdapter
-    val searchCount = BehaviorSubject.createDefault(0)
+    val searchNumber = BehaviorSubject.createDefault(0)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -46,11 +47,9 @@ class ArchiveListFragment(
         repository.getSearchArchiveList(
             keyword = keyword,
             successCallback = {
-                // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
-                searchCount.onNext(it.size)
                 if(it.isNotEmpty()) {
-
                     adapter.dataList = it
+                    searchNumber.onNext(it.size)
                     adapter.notifyDataSetChanged()
 
                     rv_search_result_archive.visibility = View.VISIBLE
@@ -70,8 +69,7 @@ class ArchiveListFragment(
     override fun onResumeFragment() {
         super.onResumeFragment()
 
-        // 필요하면 해당 subject 를 구독해서 정보 갱신됬을때 ui 변경할 수 있다.
-        if (::adapter.isInitialized)
-            searchCount.onNext(adapter.dataList.size)
+        activity?.run {
+        }
     }
 }

@@ -1,9 +1,6 @@
 package com.android.artic.ui.adapter.article
 
-
-
-import android.content.Intent
-import android.util.Log
+import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -14,15 +11,20 @@ import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.article_about.ArticleAboutActivity
+import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent.inject
 
 
-class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList:List<Article> ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
+class ArticleOverviewRecyclerViewAdapter(
+    val ctx: FragmentActivity,
+    var dataList:List<Article>,
+    val isDirectWebView: Boolean
+
+): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
 
     private val repository : ArticRepository by ctx.inject()
 
@@ -46,14 +48,22 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
 
         // @수민 담기 버튼 리스너
         p0.btn_put.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putInt("article_idx", dataList[p1].id)
+
             var putFragment = CollectArchiveDialogFragment()
+
+            putFragment.arguments = bundle
 
             putFragment.show(ctx.supportFragmentManager, putFragment.tag)
         }
 
         // @수민) 아티클 상세보기로
         p0.relative_article_item_card.setOnClickListener {
-            ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
+            if (isDirectWebView)
+                ctx.startActivity<ArticleWebViewActivity>("articleId" to dataList[p1].id)
+            else
+                ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
         }
 
         // @수민) 아티클의 체크 여부에 따라 토글버튼을 바꿔준다.
@@ -63,7 +73,8 @@ class ArticleOverviewRecyclerViewAdapter(val ctx: FragmentActivity, var dataList
         p0.toggle_btn_like.setOnClickListener {
 
 
-            repository.postArticleLike(articleIdx = dataList[p1].id,
+            repository.postArticleLike(
+                articleIdx = dataList[p1].id,
                 successCallback = {
                 },
                 failCallback = {

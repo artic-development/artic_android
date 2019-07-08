@@ -30,7 +30,7 @@ class ArticleActivity : BaseActivity() {
         link_title.text = intent.getStringExtra("archiveTitle")
         archiveId = intent.getIntExtra("archiveId", -1)
 
-        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf())
+        adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
