@@ -10,6 +10,7 @@ import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.startActivity
@@ -53,6 +54,7 @@ class ArticleAboutActivity : BaseActivity() {
                 txt_article_about_title.text = title
                 Glide.with(this@ArticleAboutActivity)
                     .load(article.title_img_url)
+                    .apply(defaultHolderOptions)
                     .into(img_article_about)
 
                 btn_article_about_read.setOnClickListener {

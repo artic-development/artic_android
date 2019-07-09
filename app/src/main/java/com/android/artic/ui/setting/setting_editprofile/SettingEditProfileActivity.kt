@@ -19,6 +19,7 @@ import androidx.core.content.ContextCompat
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.ui.BaseActivity
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
@@ -121,6 +122,7 @@ class SettingEditProfileActivity : BaseActivity() {
                 logger.log("$contentURI ${contentURI.path}")
                 Glide.with(this)
                     .load(contentURI)
+                    .apply(defaultHolderOptions)
                     .listener(object : RequestListener<Drawable> {
                         override fun onLoadFailed(
                             e: GlideException?,
