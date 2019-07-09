@@ -23,7 +23,6 @@ class ArticleOverviewRecyclerViewAdapter(
     val ctx: FragmentActivity,
     var dataList:List<Article>,
     val isDirectWebView: Boolean
-
 ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
 
     private val repository : ArticRepository by ctx.inject()
@@ -42,7 +41,7 @@ class ArticleOverviewRecyclerViewAdapter(
         Glide.with(ctx)
             .load(dataList[p1].title_img_url)
             .into(p0.img_url)
-        p0.archive_url.text=dataList[p1].url
+        p0.archive_url.text=dataList[p1].domain_url
         p0.like_number.text=dataList[p1].like.toString()
         p0.link_title.text=dataList[p1].title
 
@@ -67,7 +66,6 @@ class ArticleOverviewRecyclerViewAdapter(
         }
 
         // @수민) 아티클의 체크 여부에 따라 토글버튼을 바꿔준다.
-        p0.toggle_btn_like.isChecked = dataList[p1].isLiked!!
 
         // @수민) 좋아요 통신
         p0.toggle_btn_like.setOnClickListener {

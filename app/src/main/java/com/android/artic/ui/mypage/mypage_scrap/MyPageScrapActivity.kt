@@ -29,6 +29,9 @@ class MyPageScrapActivity : BaseActivity() {
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         var archiveId = intent.getIntExtra("archive_idx", -1)
+        var archiveTitle = intent.getStringExtra("archive_title") // 아카이브 이름 받아오기
+
+        mypage_scrap_link_title.text = archiveTitle // 아카이브 이름 설정
 
         rv_mypage_scrap_link.adapter=adapter
         rv_mypage_scrap_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)

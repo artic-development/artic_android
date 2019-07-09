@@ -44,7 +44,7 @@ class RetrofitDataSource : RemoteDataSource {
 
     // @수민) 카테고리에 따른 아카이브 리스트
     override fun getCategoryArchiveList(contentType: String, token: String, categoryIdx : Int): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getCategoryArchiveList(categoryIdx)
+        return retrofit.getCategoryArchiveList(contentType, token, categoryIdx)
     }
     override fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>> {
         return retrofit.getArchiveListGivenCategory(categoryIdx)
@@ -104,5 +104,9 @@ class RetrofitDataSource : RemoteDataSource {
         keyword: String
     ): Call<BaseResponse<List<ArchiveResponse>>> {
         return retrofit.getSearchArchiveList(contentType, token, keyword)
+    }
+
+    override fun postArchiveScrap(contentType: String, token: String, archiveIdx: Int): Call<BaseResponse<Any>> {
+        return retrofit.postArchiveScrap(contentType, token, archiveIdx)
     }
 }

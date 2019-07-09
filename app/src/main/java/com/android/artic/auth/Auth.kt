@@ -1,5 +1,8 @@
 package com.android.artic.auth
 
+import android.content.Context
+import android.content.Context.MODE_PRIVATE
+import android.content.SharedPreferences
 import com.android.artic.auth.response.SigninResponse
 import com.android.artic.auth.response.SignupResponse
 import com.android.artic.data.auth.Signin
@@ -7,6 +10,7 @@ import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
 import com.android.artic.repository.remote.response.BaseResponse
 import com.google.gson.JsonObject
+import io.reactivex.Observable
 import khronos.toString
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -16,6 +20,7 @@ import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
 class Auth (
+    private val context: Context,
     private val logger: Logger
 ) {
     companion object {
@@ -29,6 +34,43 @@ class Auth (
             .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(AuthInterface::class.java)
+    }
+
+    fun logout(
+        callback: () -> Unit
+    ) {
+        val pref = context.getSharedPreferences("login", MODE_PRIVATE)
+        pref.edit().apply {
+            putString("www", "")
+            putString("ww", "")
+        }.apply()
+        callback()
+    }
+
+    /**
+     * it is called where app start
+     * */
+    fun autoLogin(
+        successCallback: (SigninResponse) -> Unit,
+        failCallback: () -> Unit
+    ) {
+        val pref = context.getSharedPreferences("login", MODE_PRIVATE)
+        val www = pref.getString("www", "")
+        val ww = pref.getString("ww", "")
+        if (www.isNullOrEmpty() || ww.isNullOrEmpty()) {
+            failCallback()
+            return
+        }
+        requestSignin(
+            data = Signin(www,ww),
+            successCallback = successCallback,
+            failCallback = {
+                failCallback()
+            },
+            statusCallback = { _, success, _ ->
+                if (!success) failCallback()
+            }
+        )
     }
 
     fun requestSignin(
@@ -57,6 +99,11 @@ class Auth (
                         statusCallback?.invoke(it.status, it.success, it.message)
                         it.data?.let(successCallback)
                         it.data?.let { res->
+                            val pref = context.getSharedPreferences("login", MODE_PRIVATE)
+                            pref.edit().apply {
+                                putString("www", data.id)
+                                putString("ww", data.pw)
+                            }.apply()
                             token = res.token // 서버에서 받아온 토큰의 저장
                         }
                     }

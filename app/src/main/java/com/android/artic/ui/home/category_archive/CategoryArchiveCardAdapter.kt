@@ -2,6 +2,7 @@ package com.android.artic.ui.home.category_archive
 
 import android.content.Context
 import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -25,6 +26,9 @@ class CategoryArchiveCardAdapter(
     }
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
+
+        Log.v("soomin soomin", "position = $position || scrap = ${data[position].scrap}")
+
         holder.run {
             val cur = data[position]
             img_background?.let{
@@ -42,7 +46,8 @@ class CategoryArchiveCardAdapter(
                 context.startActivity<ArticleActivity>(
                     "archiveTitle" to cur.title,
                     "categoryTitle" to categoryName,
-                    "archiveId" to cur.id
+                    "archiveId" to cur.id,
+                    "archiveScraped" to cur.scrap
                 )
             }
         }

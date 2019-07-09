@@ -9,7 +9,8 @@ data class ArchiveResponse(
     val category_idx: Int,
     val date: String,
     val user_idx: Int,
-    val category_title: String? = null
+    val category_title: String? = null,
+    val scrap : Boolean
 )
 
 data class CategoryAll(

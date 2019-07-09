@@ -37,6 +37,7 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
                 var intent = Intent(ctx, MyPageScrapActivity::class.java)
 
                 intent.putExtra("archive_idx", data[position].id)
+                intent.putExtra("archive_title", data[position].title)
 
                 ctx.startActivity(intent)
             }

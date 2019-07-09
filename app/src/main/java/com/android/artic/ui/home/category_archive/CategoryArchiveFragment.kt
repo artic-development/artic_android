@@ -73,6 +73,9 @@ class CategoryArchiveFragment(
             containerArchive.setOnClickListener {
                 var intent = Intent(this, ArchiveActivity::class.java)
 
+                intent.putExtra("category_idx", categoryId)
+                intent.putExtra("category_name", categoryName)
+
                 startActivity(intent)
             }
 

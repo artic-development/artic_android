@@ -1,8 +1,6 @@
 package com.android.artic.repository
 
-import android.util.Log
 import com.android.artic.auth.Auth
-import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -29,6 +27,31 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 아카이브 스크랩 통신
+    fun postArchiveScrap(
+        archiveIdx: Int,
+        successCallback: ((Int) -> Unit)? = null,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)
+    ) {
+        Auth.token?.let { token ->
+            remote.postArchiveScrap(
+                contentType = "application/json",
+                token = token,
+                archiveIdx = archiveIdx
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback!!,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
     // @수민) 아티클 담기 통신
     fun postCollectArticleInArchive(
         archiveIdx: Int,
@@ -89,9 +112,6 @@ class ArticRepository (
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
-
-            Log.v("soomin token", token)
-
             remote.getCategoryArchiveList(
                 contentType = "application/json",
                 token = token,
@@ -105,7 +125,8 @@ class ArticRepository (
                             title_img_url = res.archive_img,
                             category_idx = res.category_idx,
                             num_article = res.article_cnt,
-                            categories = res.category_all!!.map { cate -> cate.category_title }
+                            categories = res.category_all!!.map { cate -> cate.category_title },
+                            scrap = res.scrap
                         ) }
                     },
                     successCallback = successCallback,
@@ -133,7 +154,7 @@ class ArticRepository (
             createFromRemoteCallback(
                 mapper = {
                     if (it.data == null) listOf()
-                    else it.data!!.map { res->
+                    else it.data.map { res->
                         Category(
                             id = res.category_idx,
                             name = res.category_title
@@ -177,6 +198,7 @@ class ArticRepository (
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
                                 url = res.link,
+                                domain_url = res.domain?:"",
                                 isLiked = res.like
                             )
                         }
@@ -215,7 +237,8 @@ class ArticRepository (
                                 like = res.like_cnt ?: 0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -252,7 +275,8 @@ class ArticRepository (
                             like = res.like_cnt?:0,
                             title_img_url = res.thumnail,
                             title = res.article_title,
-                            url = res.link
+                            url = res.link,
+                            domain_url = res.domain?:""
                         )
                     }
                 },
@@ -358,7 +382,9 @@ class ArticRepository (
                         like = res.like_cnt?:0,
                         title_img_url = res.thumnail,
                         title = res.article_title,
-                        url = res.link)
+                        url = res.link,
+                        domain_url = res.domain?:""
+                    )
                     }
                 },
                 successCallback = successCallback,
@@ -397,7 +423,8 @@ class ArticRepository (
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
                                 url = res.link,
-                                isLiked = res.like
+                                isLiked = res.like,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -554,7 +581,8 @@ class ArticRepository (
                                 isLiked = res.like,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -665,7 +693,8 @@ class ArticRepository (
                         like = res.like_cnt?:0,
                         title_img_url = res.thumnail,
                         title = res.article_title,
-                        url = res.link)
+                        url = res.link,
+                        domain_url = res.domain?:"")
                     }
                 },
                 successCallback = successCallback,
@@ -694,6 +723,7 @@ class ArticRepository (
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                logger.error("createFromRemoteCallback error ${t.message}")
                 failCallback?.invoke(t)
             }
 
@@ -731,6 +761,7 @@ class ArticRepository (
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                logger.error("createFromRemoteCallback error ${t.message}")
                 failCallback?.invoke(t)
             }
 

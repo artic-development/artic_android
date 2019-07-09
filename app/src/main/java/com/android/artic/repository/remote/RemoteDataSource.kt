@@ -42,4 +42,11 @@ interface RemoteDataSource {
         archiveIdx: Int,
         articleIdx: Int
     ): Call<BaseResponse<Int>>
+
+    // @수민) 아카이브 스크랩
+    fun postArchiveScrap(
+        contentType: String,
+        token: String,
+        archiveIdx: Int
+    ) : Call<BaseResponse<Any>>
 }

@@ -3,11 +3,13 @@ package com.android.artic.ui.home.new_archive
 
 import android.content.Intent
 import android.os.Bundle
+import android.view.Gravity
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 
 import com.android.artic.R
 import com.android.artic.data.Archive
@@ -51,6 +53,7 @@ class NewArchiveFragment : Fragment() {
                 startActivity(intent)
             }
 
+            LinearSnapHelper().attachToRecyclerView(rv_archive_card)
             rv_archive_card.adapter = adapter
             rv_archive_card.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
