@@ -1,10 +1,7 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
-import com.android.artic.data.Archive
-import com.android.artic.data.Article
-import com.android.artic.data.Category
-import com.android.artic.data.MyPage
+import com.android.artic.data.*
 import com.android.artic.data.notification.*
 import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
@@ -485,11 +482,11 @@ class ArticRepository (
                 createFromRemoteCallback(
                     mapper = {
                         if (it.data == null) throw IllegalArgumentException()
-                        else it.data[0].let { res -> MyPage(
-                            name = res.user_name,
-                            id = res.user_id,
-                            profile_img = res.user_img,
-                            my_info = res.user_intro)
+                        else it.data.let { res -> MyPage(
+                            name = res.userName,
+                            id = res.userId,
+                            profile_img = res.userImg,
+                            my_info = res.userIntro)
                         }
                     },
                     successCallback = successCallback,
@@ -612,6 +609,32 @@ class ArticRepository (
             ).enqueue(
                 createFromRemoteCallback(
                     mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
+    fun changeMyInfo(
+        data:MyPageRequest,
+        successCallback: (Int) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ){
+        Auth.token?.let{token->
+            remote.putMyPageInfo("application/json",token,
+                JsonObject().apply{
+                    addProperty("profile_img",data.profile_img)
+                    addProperty("name", data.name)
+                    addProperty("my_info",data.my_info)
+                }
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper={
                         it.status
                     },
                     successCallback = successCallback,

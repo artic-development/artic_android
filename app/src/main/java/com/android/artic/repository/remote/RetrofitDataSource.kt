@@ -86,7 +86,14 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
     }
 
-    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<List<MyPageResponse>>> {
+    override fun putMyPageInfo(
+        contentType: String,
+        token: String,
+        body: JsonObject
+    ): Call<BaseResponse<List<MyPageResponse>>> {
+        return retrofit.putMyPageInfo(contentType, token, body)
+    }
+    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<MyPageResponse>> {
         return retrofit.getMyPageInfo(contentType, token)
     }
 

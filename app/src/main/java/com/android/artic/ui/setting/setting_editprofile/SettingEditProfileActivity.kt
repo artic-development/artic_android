@@ -17,7 +17,10 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.android.artic.R
+import com.android.artic.data.MyPage
+import com.android.artic.data.MyPageRequest
 import com.android.artic.logger.Logger
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
@@ -39,6 +42,10 @@ import java.util.*
 class SettingEditProfileActivity : BaseActivity() {
     private val logger: Logger by inject()
     private val rxPermission by lazy { RxPermissions(this) }
+    private val repository: ArticRepository by inject()
+    private var btn: TextView?= null
+    private var imageview: ImageView? = null
+    private var path: String="https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg"
 
     private val GALLERY=1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +95,20 @@ class SettingEditProfileActivity : BaseActivity() {
         })
 
         edit_profile_finish_btn.setOnClickListener {
+
+            val name=edit_profile_name_et.text.toString()
+            val my_info=edit_profile_myinfo_et.text.toString()
+            repository.changeMyInfo(data= MyPageRequest(path, name, my_info),
+                successCallback = {
+                    logger.log("token data : $it")
+                    toast("success")
+                },
+                failCallback = {
+                    toast(R.string.network_error)
+                }
+            )
+
+
             finish()
         }
     }
@@ -119,6 +140,7 @@ class SettingEditProfileActivity : BaseActivity() {
         if (requestCode == GALLERY)
         {
             data?.data?.let {contentURI ->
+                path= contentURI.path
                 logger.log("$contentURI ${contentURI.path}")
                 Glide.with(this)
                     .load(contentURI)

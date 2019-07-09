@@ -20,7 +20,7 @@ class NavigationActivity : AppCompatActivity() {
         setContentView(R.layout.activity_navigation)
 
         // TODO 테스트 용이다. 릴리즈 할때는 제거해야함!
-        dummyAuth()
+        //dummyAuth()
 
         pagerAdapter = NavigationTabPagerAdapter(supportFragmentManager)
 
