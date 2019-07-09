@@ -24,6 +24,31 @@ class ArticRepository (
     private val local: LocalDataSource,
     private val remote: RemoteDataSource
 ) {
+    // @수민) 아카이브 스크랩 통신
+    fun postArchiveScrap(
+        archiveIdx: Int,
+        successCallback: ((Int) -> Unit)? = null,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)
+    ) {
+        Auth.token?.let { token ->
+            remote.postArchiveScrap(
+                contentType = "application/json",
+                token = token,
+                archiveIdx = archiveIdx
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback!!,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
     // @수민) 아티클 담기 통신
     fun postCollectArticleInArchive(
         archiveIdx: Int,
@@ -83,24 +108,31 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
-        remote.getCategoryArchiveList(categoryId).enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    if (it.data == null) listOf()
-                    else it.data.map { res -> Archive(
-                        id = res.archive_idx,
-                        title = res.archive_title,
-                        title_img_url = res.archive_img,
-                        category_idx = res.category_idx,
-                        num_article = res.article_cnt,
-                        categories = res.category_all!!.map { cate -> cate.category_title }
-                    ) }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let { token ->
+            remote.getCategoryArchiveList(
+                contentType = "application/json",
+                token = token,
+                categoryIdx = categoryId).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            category_idx = res.category_idx,
+                            num_article = res.article_cnt,
+                            categories = res.category_all!!.map { cate -> cate.category_title },
+                            scrap = res.scrap
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
+
 
     }
 
@@ -163,7 +195,8 @@ class ArticRepository (
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
                                 url = res.link,
-                                domain_url = res.domain?:""
+                                domain_url = res.domain?:"",
+                                isLiked = res.like
                             )
                         }
                     },
@@ -289,7 +322,8 @@ class ArticRepository (
                         category_ids = listOf(res.category_idx),
                         title = res.archive_title,
                         title_img_url = res.archive_img,
-                        num_article = res.article_cnt
+                        num_article = res.article_cnt,
+                        scrap = res.scrap
                     ) }
                 },
                 successCallback = successCallback,
@@ -318,7 +352,8 @@ class ArticRepository (
                         category_ids = listOf(res.category_idx),
                         title = res.archive_title,
                         title_img_url = res.archive_img,
-                        num_article = res.article_cnt
+                        num_article = res.article_cnt,
+                        scrap = res.scrap
                     ) }
                 },
                 successCallback = successCallback,
@@ -450,7 +485,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
                         )}
                     },
                     successCallback = successCallback,
@@ -480,7 +516,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
                         ) }
                     },
                     successCallback = successCallback,
@@ -541,7 +578,7 @@ class ArticRepository (
 
     /**
      * get search article list given search keyword
-     * @see Archive
+     * @see Article
      * @author greedy0110
      * */
     fun getSearchArticleList(
@@ -603,7 +640,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
                         ) }
                     },
                     successCallback = successCallback,
@@ -732,6 +770,7 @@ class ArticRepository (
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                logger.error("createFromRemoteCallback error ${t.message}")
                 failCallback?.invoke(t)
             }
 
@@ -769,6 +808,7 @@ class ArticRepository (
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
+                logger.error("createFromRemoteCallback error ${t.message}")
                 failCallback?.invoke(t)
             }
 

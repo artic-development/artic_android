@@ -132,6 +132,12 @@ class Auth (
         )
     }
 
+    fun requestKakaoLogin(
+
+    ) {
+
+    }
+
     /**
      * @param mapper transform server data to UI data
      * @param successCallback will be called when server interaction success

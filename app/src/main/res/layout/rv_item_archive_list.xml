@@ -32,7 +32,7 @@
             android:background="@drawable/toggle_btn_scrap"
             android:textOff=""
             android:textOn=""
-            android:checked="true"
+            android:checked="false"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"/>

@@ -1,8 +1,8 @@
 package com.android.artic.ui.login.login_start
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.webkit.WebViewClient
 import com.android.artic.R
 import com.android.artic.auth.Auth
 import com.android.artic.ui.BaseActivity
@@ -10,10 +10,7 @@ import com.android.artic.ui.login.login.LoginActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import com.android.artic.ui.signup.signup_start.SignupStartActivity
 import kotlinx.android.synthetic.main.activity_login_start.*
-import org.jetbrains.anko.clearTask
-import org.jetbrains.anko.intentFor
-import org.jetbrains.anko.newTask
-import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.*
 import org.koin.android.ext.android.inject
 
 class LoginStartActivity : BaseActivity() {
@@ -52,6 +49,15 @@ class LoginStartActivity : BaseActivity() {
             var intent = Intent(this, SignupStartActivity::class.java)
 
             startActivity(intent)
+        }
+
+        relative_act_login_start_facebook_login.setOnClickListener {
+            webView().apply {
+                settings.javaScriptEnabled = true
+                webViewClient = WebViewClient()
+                loadUrl("http://15.164.11.203:3000/auth/social/login/kakao")
+            }
+
         }
     }
 }

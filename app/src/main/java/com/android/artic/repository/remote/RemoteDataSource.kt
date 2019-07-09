@@ -13,7 +13,7 @@ interface RemoteDataSource {
     fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>>
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
     fun getMyPageInfo(contentType:String, token: String) : Call<BaseResponse<MyPageResponse>>
-    fun getCategoryArchiveList(categoryIdx : Int) : Call<BaseResponse<List<ArchiveResponse>>>
+    fun getCategoryArchiveList(contentType: String, token: String, categoryIdx : Int): Call<BaseResponse<List<ArchiveResponse>>>
     fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>>
     fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
@@ -47,4 +47,11 @@ interface RemoteDataSource {
     fun getSearchRecommendation(
         @Header("Content-Type") contentType: String
     ): Call<BaseResponse<List<RecommendationResponse>>>
+
+    // @수민) 아카이브 스크랩
+    fun postArchiveScrap(
+        contentType: String,
+        token: String,
+        archiveIdx: Int
+    ) : Call<BaseResponse<Any>>
 }

@@ -77,7 +77,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/txt_article_about_url"
+                android:id="@+id/txt_article_about_domain"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="30dp"
@@ -104,8 +104,8 @@
                 android:lineSpacingExtra="7sp"
                 android:textColor="@color/black"
                 app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="@+id/txt_article_about_url"
-                app:layout_constraintTop_toBottomOf="@+id/txt_article_about_url"
+                app:layout_constraintStart_toStartOf="@+id/txt_article_about_domain"
+                app:layout_constraintTop_toBottomOf="@+id/txt_article_about_domain"
                 tools:text="디자이너가 알아두면 좋은 인하우스와 에이전  에이전시의 차이점랜딩은 린(lean)하게, " />
 
             <androidx.appcompat.widget.AppCompatButton

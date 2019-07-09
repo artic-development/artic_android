@@ -34,6 +34,7 @@ interface RetrofitInterface {
      * 신규 아카이브 더보기 (https://github.com/artic-development/artic_server/wiki/%EC%8B%A0%EA%B7%9C-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EB%8D%94%EB%B3%B4%EA%B8%B0)
      * @author greedy0110
      * */
+    // 신규 아카이브 받아오기
     @GET("/home/archive/archives/new")
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
 
@@ -58,6 +59,8 @@ interface RetrofitInterface {
      * */
     @GET("/category/{category_idx}/archives")
     fun getCategoryArchiveList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
         @Path("category_idx") categoryIdx: Int
     ) : Call<BaseResponse<List<ArchiveResponse>>>
 
@@ -85,6 +88,15 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
     ) : Call<BaseResponse<Int>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
+
+
+    // @수민) 아카이브 스크랩
+    @POST("/archive/add/{archive_idx}")
+    fun postArchiveScrap(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Path("archive_idx") archiveIdx: Int
+    ) : Call<BaseResponse<Any>>
 
     /**
      * 홈 카테고리별 아카이브 (https://github.com/artic-development/artic_server/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EC%A1%B0%ED%9A%8C)

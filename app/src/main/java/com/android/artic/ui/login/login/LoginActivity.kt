@@ -106,7 +106,7 @@ class LoginActivity : BaseActivity() {
             api.requestSignin(
                 data = Signin(emailStr, passwordStr),
                 successCallback = {
-                    // TODO 응답 받은 토큰을 저장할 것
+                    // TODO 응답 받은 토큰을 저장할 것s
                     logger.log("token data : $it")
 
                     val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
