@@ -107,4 +107,8 @@ dependencies {
     // recylcer view snapHelper
     // AndroidX
     implementation 'com.github.rubensousa:gravitysnaphelper:2.0'
+
+    // https://github.com/tbruyelle/RxPermissions
+    // rx permissions
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
 }
