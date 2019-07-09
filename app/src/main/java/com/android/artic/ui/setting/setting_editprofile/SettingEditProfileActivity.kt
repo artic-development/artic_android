@@ -17,9 +17,15 @@ import android.widget.*
 import androidx.appcompat.app.AlertDialog
 import androidx.core.content.ContextCompat
 import com.android.artic.R
+import com.android.artic.data.MyPage
+import com.android.artic.data.MyPageRequest
+import com.android.artic.logger.Logger
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.BaseActivity
 import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 import java.io.ByteArrayOutputStream
 import java.io.File
 import java.io.FileOutputStream
@@ -28,9 +34,11 @@ import java.util.*
 import java.util.Collections.rotate
 
 class SettingEditProfileActivity : BaseActivity() {
-
+    private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
     private var btn: TextView?= null
     private var imageview: ImageView? = null
+    private lateinit var path: String
 
     private val GALLERY=1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -88,6 +96,20 @@ class SettingEditProfileActivity : BaseActivity() {
         })
 
         edit_profile_finish_btn.setOnClickListener {
+            val profile_img=path
+            val name=edit_profile_name_et.text.toString()
+            val my_info=edit_profile_myinfo_et.text.toString()
+            repository.changeMyInfo(data= MyPageRequest(profile_img, name, my_info),
+                successCallback = {
+                    logger.log("token data : $it")
+                    toast("success")
+                },
+                failCallback = {
+                    toast(R.string.network_error)
+                }
+            )
+
+
             finish()
         }
     }
@@ -118,7 +140,7 @@ class SettingEditProfileActivity : BaseActivity() {
                 {
                     var bitmap = MediaStore.Images.Media.getBitmap(this.contentResolver, contentURI)
 
-                    val path = saveImage(bitmap)
+                    path = saveImage(bitmap)
                     Toast.makeText(this, "Image Saved!", Toast.LENGTH_SHORT).show()
 
                     imageview!!.setImageBitmap(bitmap)

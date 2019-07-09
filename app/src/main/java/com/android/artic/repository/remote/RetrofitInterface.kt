@@ -127,11 +127,12 @@ interface RetrofitInterface {
         @Header("token") token: String
     ) : Call<BaseResponse<List<MyPageResponse>>>
 
-//    @PUT("/mypage")
-//    fun putMyPageInfo(
-//        @Header("Content-Type") contentType: String,
-//        @Header("token") token: String
-//    ): Call<BaseResponse>
+    @PUT("/mypage")
+    fun putMyPageInfo(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
+        @Body body:JsonObject
+    ): Call<BaseResponse<List<MyPageResponse>>>
 
 
 }

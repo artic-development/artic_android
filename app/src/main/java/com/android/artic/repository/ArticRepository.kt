@@ -1,10 +1,7 @@
 package com.android.artic.repository
 
 import com.android.artic.auth.Auth
-import com.android.artic.data.Archive
-import com.android.artic.data.Article
-import com.android.artic.data.Category
-import com.android.artic.data.MyPage
+import com.android.artic.data.*
 import com.android.artic.data.notification.*
 import com.android.artic.logger.Logger
 import com.android.artic.repository.local.LocalDataSource
@@ -605,6 +602,32 @@ class ArticRepository (
             ).enqueue(
                 createFromRemoteCallback(
                     mapper = {
+                        it.status
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
+    fun changeMyInfo(
+        data:MyPageRequest,
+        successCallback: (Int) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ){
+        Auth.token?.let{token->
+            remote.putMyPageInfo("application/json",token,
+                JsonObject().apply{
+                    addProperty("profile_img",data.profile_img)
+                    addProperty("name", data.name)
+                    addProperty("my_info",data.my_info)
+                }
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper={
                         it.status
                     },
                     successCallback = successCallback,

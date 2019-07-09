@@ -10,5 +10,13 @@ data class MyPageResponse (
     val user_birth: String,
     val user_name: String,
     val token: String?,
-    val salt: String
+    val salt: String,
+    val fieldCount: Int,
+    val affectedRows: Int,
+    val insertId: Int,
+    val serverStatus: Int,
+    val warningCount: Int,
+    val message: String,
+    val protocol41: Boolean,
+    val changedRows: Int
 )
