@@ -10,6 +10,9 @@ import com.android.artic.ui.login.login.LoginActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import com.android.artic.ui.signup.signup_start.SignupStartActivity
 import kotlinx.android.synthetic.main.activity_login_start.*
+import org.jetbrains.anko.clearTask
+import org.jetbrains.anko.intentFor
+import org.jetbrains.anko.newTask
 import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
 
@@ -26,7 +29,8 @@ class LoginStartActivity : BaseActivity() {
         auth.autoLogin(
             successCallback = {
                 // 자동 로그인이 완료되면 Navigation 화면으로 이동하자!
-                startActivity<NavigationActivity>()
+                // 전 activity 로그를 날려야한다.
+                startActivity(intentFor<NavigationActivity>().clearTask().newTask())
             },
             failCallback = {
                 // TODO 실제 스플래시 화면에서는 자동 로그인 실패시 LoginStartActivity 로 넘어가야함 - 2019.07.09 승민
