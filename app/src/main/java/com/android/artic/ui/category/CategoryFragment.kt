@@ -24,10 +24,9 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
         super.onCreate(savedInstanceState)
 
         activity?.run {
-            adapter = CategoryAdapter(this, listOf())
+            adapter = CategoryAdapter(this, listOf(), 0.1f)
             rv_category.adapter = adapter
             rv_category.layoutManager = LinearLayoutManager(this)
-            rv_category.addItemDecoration(VerticalSpaceItemDecoration(this, 26.dpToPx()))
 
             repository.getCategoryList(
                 successCallback = {

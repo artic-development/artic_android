@@ -4,18 +4,35 @@ import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
+import com.android.artic.auth.Auth
 import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.login.login.LoginActivity
+import com.android.artic.ui.navigation.NavigationActivity
 import com.android.artic.ui.signup.signup_start.SignupStartActivity
 import kotlinx.android.synthetic.main.activity_login_start.*
+import org.jetbrains.anko.startActivity
+import org.koin.android.ext.android.inject
 
 class LoginStartActivity : BaseActivity() {
+    private val auth: Auth by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_login_start)
 
         setButtonClickListener()
+
+        // TODO 자동 로그인을 구현한다. 하지만 이 부분은 맨 처음 켜지는 화면, 즉 스플레시 화면에서 하는게 맞을것 - 2019.07.09 승민
+        auth.autoLogin(
+            successCallback = {
+                // 자동 로그인이 완료되면 Navigation 화면으로 이동하자!
+                startActivity<NavigationActivity>()
+            },
+            failCallback = {
+                // TODO 실제 스플래시 화면에서는 자동 로그인 실패시 LoginStartActivity 로 넘어가야함 - 2019.07.09 승민
+                //startActivity<LoginStartActivity>()
+            }
+        )
     }
 
     private fun setButtonClickListener() {
