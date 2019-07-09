@@ -1,6 +1,7 @@
 package com.android.artic.ui.mypage.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.util.defaultHolderOptions
+import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
 
 class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerView.Adapter <MyPageScrapAdapter.Holder>(){
@@ -33,8 +35,12 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
         scrap_title?.text=cur.title
         scrap_category?.text=cur.categories?.elementAt(0)
         holder.container?.setOnClickListener {
+            var intent = Intent(ctx, ArticleActivity::class.java)
 
-        }
+                intent.putExtra("archiveId", data[position].id)
+
+                ctx.startActivity(intent)
+            }
         }
     }
 
