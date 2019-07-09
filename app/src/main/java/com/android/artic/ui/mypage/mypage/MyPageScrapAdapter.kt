@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.util.defaultHolderOptions
 import com.android.artic.ui.article.ArticleActivity
 import com.bumptech.glide.Glide
 
@@ -26,14 +27,15 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
 
             val cur= data[position]
             img_url?.let{
-                Glide.with(ctx)
-                    .load(cur.title_img_url)
-                    .into(it)
-            }
-            scrap_title?.text=cur.title
-            scrap_category?.text=cur.categories?.elementAt(0)
-            holder.container?.setOnClickListener {
-                var intent = Intent(ctx, ArticleActivity::class.java)
+            Glide.with(ctx)
+                .load(cur.title_img_url)
+                .apply(defaultHolderOptions)
+                .into(it)
+        }
+        scrap_title?.text=cur.title
+        scrap_category?.text=cur.categories?.elementAt(0)
+        holder.container?.setOnClickListener {
+            var intent = Intent(ctx, ArticleActivity::class.java)
 
                 intent.putExtra("archiveId", data[position].id)
 

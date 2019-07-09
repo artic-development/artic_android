@@ -10,6 +10,7 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.util.defaultHolderOptions
 import com.android.artic.ui.mypage.mypage_scrap.MyPageScrapActivity
 import com.bumptech.glide.Glide
 
@@ -27,6 +28,7 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
             img_url?.let {
                 Glide.with(ctx)
                     .load(cur.title_img_url)
+                    .apply(defaultHolderOptions)
                     .into(it)
 
             }

@@ -12,13 +12,14 @@ interface RemoteDataSource {
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
     fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>>
     fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>>
-    fun getMyPageInfo(contentType:String, token: String) : Call<BaseResponse<List<MyPageResponse>>>
+    fun getMyPageInfo(contentType:String, token: String) : Call<BaseResponse<MyPageResponse>>
     fun getCategoryArchiveList(contentType:String, token: String, categoryIdx : Int) : Call<BaseResponse<List<ArchiveResponse>>>
     fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>>
     fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
     fun getScrapArchiveList(contentType: String, token:String): Call<BaseResponse<List<ArchiveResponse>>>
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
+    fun putMyPageInfo(contentType: String, token:String, body: JsonObject) : Call<BaseResponse<List<MyPageResponse>>>
     fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun postArticleLike(contentType: String, token: String, articleIdx: Int) : Call<BaseResponse<Int>>
     fun postArticleRead(contentType: String, token : String, articleIdx: Int) : Call<BaseResponse<Int>>

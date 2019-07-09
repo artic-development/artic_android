@@ -12,6 +12,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.ui.article.ArticleActivity
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 
@@ -34,6 +35,7 @@ class CategoryArchiveCardAdapter(
             img_background?.let{
                 Glide.with(context)
                     .load(cur.title_img_url)
+                    .apply(defaultHolderOptions)
                     .into(it)
             }
             txt_title?.text = cur.title

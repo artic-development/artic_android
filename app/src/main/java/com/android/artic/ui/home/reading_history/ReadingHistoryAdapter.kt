@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.article_about.ArticleAboutActivity
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 
 class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
@@ -29,6 +30,7 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
         holder.img_url?.let {
             Glide.with(ctx)
             .load(dataList[position].title_img_url)
+                .apply(defaultHolderOptions)
                 .into(it)
         }
         holder.reading_history_url?.text=dataList[position].url

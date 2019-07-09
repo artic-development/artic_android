@@ -12,6 +12,7 @@ import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
+import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.adapter.deco.GridItemDecoration
 import com.android.artic.ui.adapter.deco.GridSpacesItemDecoration
 import com.android.artic.util.dpToPx
@@ -31,18 +32,10 @@ import retrofit2.Response
  * A simple [Fragment] subclass.
  *
  */
-class MyPageScrapFragment : Fragment() {
+class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
     private val repository: ArticRepository by inject()
     private lateinit var adapter: MyPageScrapAdapter
     private val logger: Logger by inject()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_my_page_scrap, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
