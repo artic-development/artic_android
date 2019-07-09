@@ -112,4 +112,8 @@ class RetrofitDataSource : RemoteDataSource {
     ): Call<BaseResponse<List<ArchiveResponse>>> {
         return retrofit.getSearchArchiveList(contentType, token, keyword)
     }
+
+    override fun getSearchRecommendation(contentType: String): Call<BaseResponse<List<RecommendationResponse>>> {
+        return retrofit.getSearchRecommendation(contentType)
+    }
 }

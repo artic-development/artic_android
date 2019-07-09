@@ -405,9 +405,30 @@ class ArticRepository (
         return Calls.response(local.getMyArchiveList())
     }
 
-
-    fun getRecommendWordList() : Call<List<RecommendWordData>> {
-        return Calls.response(local.getRecommendWordList())
+    /**
+     * 추천 검색어 (https://github.com/artic-development/artic_server/wiki/%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4)
+     * @author greedy0110
+     * */
+    fun getRecommendWordList(
+        successCallback: (List<RecommendWordData>) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ) {
+        remote.getSearchRecommendation(
+            "application/json"
+        ).enqueue(
+            createFromRemoteCallback(
+                mapper = {
+                    if (it.data == null) listOf()
+                    else it.data.map { res ->
+                        RecommendWordData(res.search_word)
+                    }
+                },
+                successCallback = successCallback,
+                failCallback = failCallback,
+                statusCallback = statusCallback
+            )
+        )
     }
 
 
@@ -694,8 +715,6 @@ class ArticRepository (
         )
         }
     }
-
-
 
     /**
      * @param mapper transform server data to UI data

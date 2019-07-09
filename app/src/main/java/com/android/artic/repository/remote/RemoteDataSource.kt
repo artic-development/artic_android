@@ -43,4 +43,8 @@ interface RemoteDataSource {
         archiveIdx: Int,
         articleIdx: Int
     ): Call<BaseResponse<Int>>
+
+    fun getSearchRecommendation(
+        @Header("Content-Type") contentType: String
+    ): Call<BaseResponse<List<RecommendationResponse>>>
 }

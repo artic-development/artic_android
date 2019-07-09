@@ -134,5 +134,12 @@ interface RetrofitInterface {
         @Body body:JsonObject
     ): Call<BaseResponse<List<MyPageResponse>>>
 
-
+    /**
+     * 추천 검색어 (https://github.com/artic-development/artic_server/wiki/%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4)
+     * @author greedy0110
+     * */
+    @GET("/search/recommendation")
+    fun getSearchRecommendation(
+        @Header("Content-Type") contentType: String
+    ): Call<BaseResponse<List<RecommendationResponse>>>
 }

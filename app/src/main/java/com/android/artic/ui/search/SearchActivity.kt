@@ -41,18 +41,13 @@ class SearchActivity : BaseActivity() {
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
-        repository.getRecommendWordList().enqueue(
-            object  : Callback<List<RecommendWordData>> {
-                override fun onFailure(call: Call<List<RecommendWordData>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(call: Call<List<RecommendWordData>>, response: Response<List<RecommendWordData>>) {
-                    response.body()?.let {
-                        recommendWordAdapter.dataList = it
-                        recommendWordAdapter.notifyDataSetChanged()
-                    }
-                }
+        repository.getRecommendWordList(
+            successCallback = {
+                recommendWordAdapter.dataList = it
+                recommendWordAdapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
     }
