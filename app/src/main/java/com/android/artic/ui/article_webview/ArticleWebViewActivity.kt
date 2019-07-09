@@ -71,11 +71,43 @@ class ArticleWebViewActivity : AppCompatActivity() {
 
                 wv_article_web_view.loadUrl(articleUrl)
 
-                btn_article_web_view_like.isSelected = it.isLiked?:false
+                btn_article_web_view_like.isSelected = it.isLiked!!
 
                 btn_article_web_view_like.setOnClickListener {
-                    it.isSelected = !it.isSelected // toggle 구현
-                    // TODO 토글 여부에 따라 해당 article 좋아요 설정 및 해제
+//                    it.isSelected = !it.isSelected // toggle 구현
+
+                    repository.postArticleLike(
+                        articleIdx = articleId,
+                        successCallback = {
+                        },
+                        failCallback = {
+                            toast(R.string.network_error)
+                        },
+                        statusCallback = {status, success, message ->
+                            run {
+
+                                if (status == 200) {
+
+                                    if (message == "아티클 좋아요 성공") { // 좋아요 성공
+                                        btn_article_web_view_like.isSelected = true
+                                    }
+                                    else { // 좋아요 취소 성공
+                                        btn_article_web_view_like.isSelected = false
+                                    }
+
+                                    toast(message)
+                                }
+                                else if (status == 400) {
+                                    toast(message)
+                                }
+                                else {
+                                    toast("오잉")
+                                }
+                            }
+                        }
+
+                    )
+
                 }
 
                 btn_article_web_view_collect.setOnClickListener {

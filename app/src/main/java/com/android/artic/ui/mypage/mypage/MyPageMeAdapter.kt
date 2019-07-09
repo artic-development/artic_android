@@ -1,6 +1,7 @@
 package com.android.artic.ui.mypage.mypage
 
 import android.content.Context
+import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
 import com.android.artic.util.defaultHolderOptions
+import com.android.artic.ui.mypage.mypage_scrap.MyPageScrapActivity
 import com.bumptech.glide.Glide
 
 class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Adapter<MyPageMeAdapter.Holder>() {
@@ -31,9 +33,16 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
 
             }
 
-        directory_name?.text=cur.title
-        holder.container?.setOnClickListener {
-        }
+            directory_name?.text=cur.title
+            holder.container?.setOnClickListener {
+                // @수민) 나의 아카이브(아티클 리스트가 있는 액티비티)로 이동
+                var intent = Intent(ctx, MyPageScrapActivity::class.java)
+
+                intent.putExtra("archive_idx", data[position].id)
+                intent.putExtra("archive_title", data[position].title)
+
+                ctx.startActivity(intent)
+            }
         }
     }
 

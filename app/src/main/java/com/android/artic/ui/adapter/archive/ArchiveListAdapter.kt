@@ -1,24 +1,30 @@
 package com.android.artic.ui.adapter.archive
 
 import android.content.Context
-import android.content.Intent
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.ToggleButton
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.util.dpToPx
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
+import org.koin.java.KoinJavaComponent.inject
 
-class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): RecyclerView.Adapter<ArchiveListAdapter.Holder>(){
+class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>): RecyclerView.Adapter<ArchiveListAdapter.Holder>(){
 
+    private val repository : ArticRepository by ctx.inject()
     lateinit var detailNewArchiveCategoryAdapter: ArchiveCategoryAdapter
 
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
@@ -31,9 +37,26 @@ class ArchiveListAdapter(val ctx: Context, var dataList: List<Archive>): Recycle
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.tv_title.text = dataList[position].title
+
+        // 스크랩 버튼 select 설정
+        holder.ibtn_scrap.isChecked = dataList[position].scrap!!
+
+        Log.v("soominsoomin", dataList[position].toString())
+
         holder.ibtn_scrap.setOnClickListener{
             // 스크랩 버튼 서버 통신
+            repository.postArchiveScrap(
+                archiveIdx = dataList[position].id,
+                successCallback = {
+                },
+                failCallback = {
 
+                },
+                statusCallback = { status, success, message ->
+                    ctx.toast(message)
+                    notifyItemChanged(dataList[position].id)
+                }
+            )
         }
         holder.tv_article_num.text = dataList[position].num_article.toString()
 

@@ -178,7 +178,7 @@
         android:textSize="14sp"
         android:fontFamily="@font/nanum_barungothic_light"
         android:includeFontPadding="false"
-        android:inputType="date"
+        android:inputType="phone"
         android:singleLine ="true"/>
 
     <RelativeLayout
