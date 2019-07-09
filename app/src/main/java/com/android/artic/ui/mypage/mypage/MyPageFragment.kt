@@ -75,6 +75,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                 },
                 failCallback = {
                     toast(R.string.network_error)
+                    logger.log("mypage fail")
                 }
             )
 

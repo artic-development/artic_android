@@ -125,7 +125,7 @@ interface RetrofitInterface {
     fun getMyPageInfo(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
-    ) : Call<BaseResponse<List<MyPageResponse>>>
+    ) : Call<BaseResponse<MyPageResponse>>
 
     @PUT("/mypage")
     fun putMyPageInfo(

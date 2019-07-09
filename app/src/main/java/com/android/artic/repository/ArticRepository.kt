@@ -482,11 +482,11 @@ class ArticRepository (
                 createFromRemoteCallback(
                     mapper = {
                         if (it.data == null) throw IllegalArgumentException()
-                        else it.data[0].let { res -> MyPage(
-                            name = res.user_name,
-                            id = res.user_id,
-                            profile_img = res.user_img,
-                            my_info = res.user_intro)
+                        else it.data.let { res -> MyPage(
+                            name = res.userName,
+                            id = res.userId,
+                            profile_img = res.userImg,
+                            my_info = res.userIntro)
                         }
                     },
                     successCallback = successCallback,

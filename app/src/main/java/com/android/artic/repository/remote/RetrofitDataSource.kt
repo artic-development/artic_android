@@ -93,7 +93,7 @@ class RetrofitDataSource : RemoteDataSource {
     ): Call<BaseResponse<List<MyPageResponse>>> {
         return retrofit.putMyPageInfo(contentType, token, body)
     }
-    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<List<MyPageResponse>>> {
+    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<MyPageResponse>> {
         return retrofit.getMyPageInfo(contentType, token)
     }
 

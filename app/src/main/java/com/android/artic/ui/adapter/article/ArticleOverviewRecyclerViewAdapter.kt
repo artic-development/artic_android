@@ -66,7 +66,7 @@ class ArticleOverviewRecyclerViewAdapter(
         }
 
         // @수민) 아티클의 체크 여부에 따라 토글버튼을 바꿔준다.
-        p0.toggle_btn_like.isChecked = dataList[p1].isLiked!!
+       // p0.toggle_btn_like.isChecked = dataList[p1].isLiked!!
 
         // @수민) 좋아요 통신
         p0.toggle_btn_like.setOnClickListener {
