@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
+import com.android.artic.util.defaultHolderOptions
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
@@ -32,6 +33,7 @@ class ArticleAdapter(
             img?.let {
                 Glide.with(context)
                     .load(cur.title_img_url)
+                    .apply(defaultHolderOptions)
                     .into(it)
             }
             txt_title?.text = cur.title

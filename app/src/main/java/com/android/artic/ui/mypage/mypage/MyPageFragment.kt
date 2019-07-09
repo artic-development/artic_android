@@ -12,6 +12,7 @@ import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_my_page.*
@@ -88,6 +89,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                     img_my_page_profile?.let{
                         Glide.with(ctx)
                             .load(img)
+                            .apply(defaultHolderOptions)
                             .into(it)
                     }
                     txt_my_page_introduce.text=it.my_info

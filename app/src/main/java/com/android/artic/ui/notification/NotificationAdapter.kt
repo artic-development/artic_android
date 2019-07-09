@@ -11,10 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.notification.*
 import com.android.artic.ui.archive.ArchiveActivity
-import com.android.artic.util.dpToPx
-import com.android.artic.util.howMuchPreviousFrom
-import com.android.artic.util.setLeftRound
-import com.android.artic.util.setRightRound
+import com.android.artic.util.*
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 import java.util.*
@@ -47,6 +44,7 @@ class NotificationAdapter(
                     img?.apply {
                         Glide.with(context)
                             .load(cur.img_url)
+                            .apply(defaultHolderOptions)
                             .into(this)
                     }
                     txt_date?.text = Date().howMuchPreviousFrom(cur.date)
@@ -66,6 +64,7 @@ class NotificationAdapter(
                     img?.apply {
                         Glide.with(context)
                             .load(cur.img_url)
+                            .apply(defaultHolderOptions)
                             .into(this)
                     }
                     txt_date?.text = Date().howMuchPreviousFrom(cur.date)
@@ -85,6 +84,7 @@ class NotificationAdapter(
                     img?.apply {
                         Glide.with(context)
                             .load(cur.img_url)
+                            .apply(defaultHolderOptions)
                             .into(this)
                     }
                     txt_date?.text = Date().howMuchPreviousFrom(cur.date)
@@ -96,6 +96,7 @@ class NotificationAdapter(
                         img_article_list[i]?.apply {
                             Glide.with(context)
                                 .load(cur.articleImgUrls[i])
+                                .apply(defaultHolderOptions)
                                 .into(this)
                         }
                     }

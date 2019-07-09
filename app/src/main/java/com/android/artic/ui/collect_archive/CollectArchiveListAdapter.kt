@@ -14,6 +14,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Archive
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.dialog_put_archive.*
 
@@ -49,6 +50,7 @@ class CollectArchiveListAdapter(
         Glide
             .with(ctx)
             .load(dataList[position].title_img_url)
+            .apply(defaultHolderOptions)
             .into(holder.img_my_archive_thumbnail)
         holder.tv_my_archive_name.text = dataList[position].title
 
