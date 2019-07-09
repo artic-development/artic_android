@@ -30,7 +30,9 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
+import kotlinx.android.synthetic.main.fragment_my_page.*
 import org.jetbrains.anko.backgroundColor
+import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import java.io.ByteArrayOutputStream
@@ -58,6 +60,28 @@ class SettingEditProfileActivity : BaseActivity() {
         edit_profile_img_change_btn.setOnClickListener{
             choosePhotoFromGallary()
         }
+
+        repository.getMyInfo(
+            successCallback = {
+                logger.log("mypage edit success $it")
+                edit_profile_name_et.setText(it.name)
+              //  txt__my_page_email.text=it.id
+                val img=it.profile_img
+                img_my_page_profile?.let{
+                    Glide.with(this)
+                        .load(img)
+                        .apply(defaultHolderOptions)
+                        .into(it)
+                }
+                edit_profile_myinfo_et.setText(it.my_info)
+            },
+            failCallback = {
+                toast(R.string.network_error)
+                logger.log("mypage edit fail")
+            }
+        )
+
+
     }
 
     private fun setListener() {
