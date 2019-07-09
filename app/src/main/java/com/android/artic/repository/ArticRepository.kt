@@ -165,7 +165,8 @@ class ArticRepository (
                                 like = res.like_cnt?:0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -203,7 +204,8 @@ class ArticRepository (
                                 like = res.like_cnt ?: 0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -240,7 +242,8 @@ class ArticRepository (
                             like = res.like_cnt?:0,
                             title_img_url = res.thumnail,
                             title = res.article_title,
-                            url = res.link
+                            url = res.link,
+                            domain_url = res.domain?:""
                         )
                     }
                 },
@@ -346,7 +349,9 @@ class ArticRepository (
                         like = res.like_cnt?:0,
                         title_img_url = res.thumnail,
                         title = res.article_title,
-                        url = res.link)
+                        url = res.link,
+                        domain_url = res.domain?:""
+                    )
                     }
                 },
                 successCallback = successCallback,
@@ -385,7 +390,8 @@ class ArticRepository (
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
                                 url = res.link,
-                                isLiked = res.like
+                                isLiked = res.like,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -542,7 +548,8 @@ class ArticRepository (
                                 isLiked = res.like,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                domain_url = res.domain?:""
                             )
                         }
                     },
@@ -653,7 +660,8 @@ class ArticRepository (
                         like = res.like_cnt?:0,
                         title_img_url = res.thumnail,
                         title = res.article_title,
-                        url = res.link)
+                        url = res.link,
+                        domain_url = res.domain?:"")
                     }
                 },
                 successCallback = successCallback,

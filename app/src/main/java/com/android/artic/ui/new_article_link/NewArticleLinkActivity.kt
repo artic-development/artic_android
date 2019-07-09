@@ -33,22 +33,13 @@ class NewArticleLinkActivity : BaseActivity() {
         var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
         rv_new_article_link.addItemDecoration(spacesItemDecoration)
 
-        repository.getDummyArticleList().enqueue(
-            object : Callback<List<Article>> {
-                override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-                    toast(R.string.network_error)
-                }
-
-                override fun onResponse(
-                    call: Call<List<Article>>,
-                    response: Response<List<Article>>
-                ) {
-                    response.body()?.let{
-                        adapter.dataList = it
-                        adapter.notifyDataSetChanged()
-                    }
-                }
-
+        repository.getNewArticleList(
+            successCallback = {
+                adapter.dataList = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
             }
         )
     }
