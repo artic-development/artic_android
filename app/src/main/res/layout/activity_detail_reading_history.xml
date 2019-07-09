@@ -32,8 +32,16 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_act_detail_reading_history"
         android:layout_width="match_parent"
-        android:layout_height="wrap_content">
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
 
     </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:visibility="visible"
+        android:id="@+id/empty_view_act_detail_reading_history"
+        layout="@layout/search_result_empty"
+        />
 
 </LinearLayout>

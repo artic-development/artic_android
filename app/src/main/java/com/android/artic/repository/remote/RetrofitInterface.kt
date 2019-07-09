@@ -22,6 +22,7 @@ interface RetrofitInterface {
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<ArticleResponse>>
 
+    // 신규 아카이브 받아오기
     @GET("/home/archive/archives/new")
     fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
 

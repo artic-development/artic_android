@@ -1,6 +1,8 @@
 package com.android.artic.repository
 
+import android.util.Log
 import com.android.artic.auth.Auth
+import com.android.artic.auth.Auth.Companion.token
 import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.data.Category
@@ -86,24 +88,33 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
-        remote.getCategoryArchiveList(categoryId).enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    if (it.data == null) listOf()
-                    else it.data.map { res -> Archive(
-                        id = res.archive_idx,
-                        title = res.archive_title,
-                        title_img_url = res.archive_img,
-                        category_idx = res.category_idx,
-                        num_article = res.article_cnt,
-                        categories = res.category_all!!.map { cate -> cate.category_title }
-                    ) }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let { token ->
+
+            Log.v("soomin token", token)
+
+            remote.getCategoryArchiveList(
+                contentType = "application/json",
+                token = token,
+                categoryIdx = categoryId).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            category_idx = res.category_idx,
+                            num_article = res.article_cnt,
+                            categories = res.category_all!!.map { cate -> cate.category_title }
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
+
 
     }
 
@@ -122,7 +133,7 @@ class ArticRepository (
             createFromRemoteCallback(
                 mapper = {
                     if (it.data == null) listOf()
-                    else it.data.map { res->
+                    else it.data!!.map { res->
                         Category(
                             id = res.category_idx,
                             name = res.category_title
@@ -165,7 +176,8 @@ class ArticRepository (
                                 like = res.like_cnt?:0,
                                 title_img_url = res.thumnail,
                                 title = res.article_title,
-                                url = res.link
+                                url = res.link,
+                                isLiked = res.like
                             )
                         }
                     },

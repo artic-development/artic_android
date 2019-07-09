@@ -2,6 +2,7 @@ package com.android.artic.ui.detail_reading_history
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
@@ -48,6 +49,16 @@ class DetailReadingHistoryActivity : BaseActivity() {
 
         repository.readingHistoryArticle(
             successCallback = {
+
+                if (it.isEmpty()) {
+                    empty_view_act_detail_reading_history.visibility = View.VISIBLE
+                    rv_act_detail_reading_history.visibility = View.GONE
+                }
+                else {
+                    empty_view_act_detail_reading_history.visibility = View.GONE
+                    rv_act_detail_reading_history.visibility = View.VISIBLE
+                }
+
                 logger.log("recent reading article list")
                 adapter.dataList = it
                 adapter.notifyDataSetChanged()
