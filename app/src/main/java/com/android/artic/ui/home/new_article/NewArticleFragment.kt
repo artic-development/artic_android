@@ -44,9 +44,10 @@ class NewArticleFragment : Fragment() {
                 startActivity(intent)
             }
 
-            articleCardAdapter = BigImageArticleAdapter(this, listOf())
+            articleCardAdapter = BigImageArticleAdapter(this, listOf(), 0.8f)
 
-            GravitySnapHelper(Gravity.END).attachToRecyclerView(rv_frag_home_new_article)
+            // 리사이클러뷰 아이템들 정렬
+            LinearSnapHelper().attachToRecyclerView(rv_frag_home_new_article)
             rv_frag_home_new_article.adapter = articleCardAdapter
             rv_frag_home_new_article.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 

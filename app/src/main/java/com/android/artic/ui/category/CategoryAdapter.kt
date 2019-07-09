@@ -15,10 +15,14 @@ import com.android.artic.ui.archive.ArchiveActivity
 
 class CategoryAdapter(
     private val context: Context,
-    var data: List<Category>
+    var data: List<Category>,
+    private val heightRaito: Float = 1f
 ) : RecyclerView.Adapter<CategoryAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
-        val view = LayoutInflater.from(context).inflate(R.layout.rv_item_category, parent, false)
+        val view = LayoutInflater.from(context).inflate(R.layout.rv_item_category, parent, false).apply {
+            // 여기서 부모 대비 비율을 지정할 수 있다.
+            layoutParams.height = (parent.height * heightRaito).toInt()
+        }
         return Holder(view)
     }
 

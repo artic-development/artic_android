@@ -6,7 +6,7 @@
     android:id="@+id/img_rv_item_home_new_article_background"
     android:layout_width="match_parent"
     android:layout_height="173dp"
-    android:background="@drawable/top_round"
+    android:background="@drawable/very_light_pink_round"
     android:scaleType="centerCrop"/>
 
     <RelativeLayout

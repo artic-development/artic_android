@@ -7,6 +7,7 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
@@ -40,8 +41,9 @@ class ArticPickFragment : Fragment() {
                 startActivity(intent)
             }
 
-            adapter = BigImageArticleAdapter(this, listOf())
+            adapter = BigImageArticleAdapter(this, listOf(), 0.8f)
 
+            LinearSnapHelper().attachToRecyclerView(rv_frag_home_artic_pick)
             rv_frag_home_artic_pick.adapter = adapter
             rv_frag_home_artic_pick.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 

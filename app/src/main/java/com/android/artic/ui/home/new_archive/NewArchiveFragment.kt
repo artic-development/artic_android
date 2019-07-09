@@ -9,6 +9,7 @@ import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
+import androidx.recyclerview.widget.LinearSnapHelper
 
 import com.android.artic.R
 import com.android.artic.data.Archive
@@ -53,7 +54,7 @@ class NewArchiveFragment : Fragment() {
                 startActivity(intent)
             }
 
-            GravitySnapHelper(Gravity.START, true).attachToRecyclerView(rv_archive_card)
+            LinearSnapHelper().attachToRecyclerView(rv_archive_card)
             rv_archive_card.adapter = adapter
             rv_archive_card.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
