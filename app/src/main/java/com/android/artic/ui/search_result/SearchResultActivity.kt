@@ -17,6 +17,7 @@ import org.koin.android.ext.android.inject
 
 /**
  * it must need searchWord intent["searchKeyword"]
+ *
  */
 class SearchResultActivity : BaseActivity() {
     private val logger: Logger by inject()
@@ -24,8 +25,8 @@ class SearchResultActivity : BaseActivity() {
     private lateinit var adapter: SearchResultAdapter
     private lateinit var archiveListFragment: ArchiveListFragment
     private lateinit var linkResultFragment: LinkResultFragment
-    private lateinit var searchNumberDisposable: Disposable
     private val searchNumberTask: (Int)-> Unit = {
+        logger.log("search result number $it")
         search_result_number.text = it.toString()
     }
 
@@ -83,8 +84,6 @@ class SearchResultActivity : BaseActivity() {
         selectArchiveTab() // 초기에는 archive tab이 선택되어 있다.
     }
 
-
-    // TODO 유틸로 뺄 수 있니?
     private fun initAllTabItem() {
         tv_search_result_tab_archive.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
         img_search_result_tab_archive.visibility = View.INVISIBLE
@@ -98,7 +97,7 @@ class SearchResultActivity : BaseActivity() {
         tv_search_result_tab_archive.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
         img_search_result_tab_archive.visibility = View.VISIBLE
 
-        searchNumberDisposable = archiveListFragment.searchNumber.subscribe(searchNumberTask)
+        archiveListFragment.searchNumber.subscribe(searchNumberTask).apply { addDisposable(this) }
     }
 
     private fun selectArticleTab() {
@@ -106,6 +105,6 @@ class SearchResultActivity : BaseActivity() {
         tv_search_result_tab_article.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
         img_search_result_tab_article.visibility = View.VISIBLE
 
-        searchNumberDisposable = linkResultFragment.searchNumber.subscribe(searchNumberTask)
+        linkResultFragment.searchNumber.subscribe(searchNumberTask).apply { addDisposable(this) }
     }
 }

@@ -13,6 +13,7 @@ import com.android.artic.ui.BaseFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
 import com.bumptech.glide.Glide
+import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.my_page_tablayout.*
 import org.jetbrains.anko.startActivity
@@ -25,13 +26,25 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     private lateinit var adapter: MyPageTabLayoutAdapter
     private val repository: ArticRepository by inject()
     private val logger: Logger by inject()
+    private lateinit var scrapFragment: MyPageScrapFragment
+    private lateinit var meFragment: MyPageMeFragment
+
+    private val archiveAddButtonShowTask: (Boolean)-> Unit = {
+        logger.log("archive add button $it")
+        if (it)
+            mypage_plus_btn.visibility = View.VISIBLE
+        else
+            mypage_plus_btn.visibility = View.INVISIBLE
+    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
+            scrapFragment = MyPageScrapFragment()
+            meFragment = MyPageMeFragment()
 
-            adapter = MyPageTabLayoutAdapter(supportFragmentManager)
+            adapter = MyPageTabLayoutAdapter(supportFragmentManager, listOf(scrapFragment, meFragment))
             vp_my_page.adapter = adapter
             tl_my_page.setupWithViewPager(vp_my_page)
 
@@ -41,8 +54,14 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
 
             vp_my_page.addOnPageChangeListener(
                 object : ViewPager.SimpleOnPageChangeListener() {
+                    private var currentPosition = 0
+
                     override fun onPageSelected(position: Int) {
-                        when(position) {
+                        adapter.getItem(currentPosition).onPauseFragment()
+                        adapter.getItem(position).onResumeFragment()
+                        currentPosition = position
+
+                        when (position) {
                             0 -> selectScrapTab()
                             1 -> selectMeTab()
                         }
@@ -89,8 +108,6 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
 
             txt_my_page_tablayout_me.setTextColor(ContextCompat.getColor(this, R.color.brown_grey))
             img_my_page_tablayout_me.visibility = View.INVISIBLE
-
-
         }
     }
 
@@ -109,7 +126,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             txt_my_page_tablayout_me.setTextColor(ContextCompat.getColor(this, R.color.soft_blue))
             img_my_page_tablayout_me.visibility = View.VISIBLE
 
-
+            meFragment.requireAddArchiveButton.subscribe(archiveAddButtonShowTask)
         }
     }
 
