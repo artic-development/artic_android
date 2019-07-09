@@ -13,6 +13,7 @@ import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.ui.collect_archive.CollectArchiveDialogFragment
+import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
@@ -40,6 +41,7 @@ class ArticleOverviewRecyclerViewAdapter(
 
         Glide.with(ctx)
             .load(dataList[p1].title_img_url)
+            .apply(defaultHolderOptions)
             .into(p0.img_url)
         p0.archive_url.text=dataList[p1].domain_url
         p0.like_number.text=dataList[p1].like.toString()

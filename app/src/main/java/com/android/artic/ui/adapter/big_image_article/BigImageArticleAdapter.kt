@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.Article
 import com.android.artic.ui.article_about.ArticleAboutActivity
+import com.android.artic.util.defaultHolderOptions
 import com.android.artic.util.dpToPx
 import com.android.artic.util.setTopRound
 import com.bumptech.glide.Glide
@@ -35,6 +36,7 @@ class BigImageArticleAdapter (
         holder.img_url?.let{
               Glide.with(ctx)
                   .load(dataList[position].title_img_url)
+                  .apply(defaultHolderOptions)
                   .into(it)
         }
         holder.artic_pick_url?.text=dataList[position].domain_url
