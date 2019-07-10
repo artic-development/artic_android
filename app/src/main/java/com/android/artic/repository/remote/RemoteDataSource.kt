@@ -2,6 +2,8 @@ package com.android.artic.repository.remote
 
 import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.Header
 import retrofit2.http.Path
@@ -19,7 +21,7 @@ interface RemoteDataSource {
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
     fun getScrapArchiveList(contentType: String, token:String): Call<BaseResponse<List<ArchiveResponse>>>
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
-    fun putMyPageInfo(contentType: String, token:String, body: JsonObject) : Call<BaseResponse<List<MyPageResponse>>>
+    fun putMyPageInfo(token: String, name: RequestBody, intro:RequestBody, img: MultipartBody.Part) : Call<BaseResponse<Int>>
     fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun postArticleLike(contentType: String, token: String, articleIdx: Int) : Call<BaseResponse<Int>>
     fun postArticleRead(contentType: String, token : String, articleIdx: Int) : Call<BaseResponse<Int>>
