@@ -39,9 +39,9 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
         holder.tv_title.text = dataList[position].title
 
         // 스크랩 버튼 select 설정
-        holder.ibtn_scrap.isChecked = dataList[position].scrap!!
-//        (dataList[position].scrap).let {
-//        }
+        (dataList[position].scrap)?.let {
+            holder.ibtn_scrap.isChecked = it
+        }
 
         Log.v("soominsoomin", dataList[position].toString())
 

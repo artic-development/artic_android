@@ -353,7 +353,8 @@ class ArticRepository (
                         category_ids = listOf(res.category_idx),
                         title = res.archive_title,
                         title_img_url = res.archive_img,
-                        num_article = res.article_cnt
+                        num_article = res.article_cnt,
+                        scrap = res.scrap
                     ) }
                 },
                 successCallback = successCallback,
