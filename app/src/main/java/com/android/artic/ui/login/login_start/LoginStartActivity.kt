@@ -55,6 +55,8 @@ class LoginStartActivity : BaseActivity() {
 
     }
 
+
+    // https://developers.facebook.com/docs/facebook-login/android 참고 자료
     private fun setFacebookLogin() {
         callbackManager = CallbackManager.Factory.create()
 
@@ -71,6 +73,7 @@ class LoginStartActivity : BaseActivity() {
                             val id = it.getString("id")
                             val name = it.getString("name")
                             logger.log("id: $id, name: $name, email: $email\npicture: $picture")
+                            toast("facebook login success $name")
                         }
                     }
                 })
