@@ -127,24 +127,28 @@ interface RetrofitInterface {
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<Int>>
 
+    //@경희)마이페이지 스크랩한 아카이브 get
     @GET("/mypage/archive/scrap")
     fun getScrapArchiveList(
         @Header("Content-Type") contentType: String,
         @Header("token") token:String
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
+    //@경희)최근읽은 아티클 get
     @GET("/home/article/history")
     fun getReadingHistoryArticle(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
     ): Call<BaseResponse<List<ArticleResponse>>>
 
+    //@경희) 마이페이지 조회
     @GET("/mypage")
     fun getMyPageInfo(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
     ) : Call<BaseResponse<MyPageResponse>>
 
+    //@경희) 마이페이지 수정
     @Multipart
     @PUT("/mypage")
     fun putMyPageInfo(
