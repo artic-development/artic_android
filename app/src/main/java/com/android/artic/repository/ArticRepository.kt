@@ -697,7 +697,7 @@ class ArticRepository (
 
     fun readArticle(
         articleIdx: Int,
-        successCallback: (Int) -> Unit,
+        successCallback: (Any) -> Unit,
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
     ) {
@@ -709,7 +709,6 @@ class ArticRepository (
             ).enqueue(
                 createFromRemoteCallback(
                     mapper = {
-                        it.status
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
@@ -771,6 +770,7 @@ class ArticRepository (
                 call: Call<SERVER>,
                 response: Response<SERVER>
             ) {
+                logger.log("on response")
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)

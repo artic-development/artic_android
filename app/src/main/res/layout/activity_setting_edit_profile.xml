@@ -32,7 +32,7 @@
             android:text="완료"
             android:textSize="17sp"
             android:layout_marginRight="20dp"
-            android:textColor="@drawable/edit_profile_complete_btn"
+            android:textColor="#707070"
             android:includeFontPadding="false"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:layout_alignParentRight="true"

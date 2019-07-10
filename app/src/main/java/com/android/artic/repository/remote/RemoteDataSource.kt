@@ -21,7 +21,7 @@ interface RemoteDataSource {
     fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>>
     fun getScrapArchiveList(contentType: String, token:String): Call<BaseResponse<List<ArchiveResponse>>>
     fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>>
-    fun putMyPageInfo(token: String, name: RequestBody, intro:RequestBody, img: MultipartBody.Part) : Call<BaseResponse<Int>>
+    fun putMyPageInfo(token: String, name: RequestBody, intro:RequestBody, img: MultipartBody.Part) : Call<BaseResponse<Any>>
     fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>>
     fun postArticleLike(contentType: String, token: String, articleIdx: Int) : Call<BaseResponse<Int>>
     fun postArticleRead(contentType: String, token : String, articleIdx: Int) : Call<BaseResponse<Int>>

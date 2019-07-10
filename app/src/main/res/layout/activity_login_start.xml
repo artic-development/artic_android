@@ -9,25 +9,24 @@
 
     <ImageView
         android:id="@+id/img_act_login_start_logo"
-        android:layout_width="143dp"
-        android:layout_height="50dp"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
         android:layout_marginTop="205dp"
         android:src="@drawable/artic_logo"
-        android:layout_marginStart="108dp"
-        android:layout_marginEnd="108dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
 
     <RelativeLayout
         android:id="@+id/relative_act_login_start_email_login"
-        android:layout_width="205dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="78dp"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="148dp"
-        android:layout_marginEnd="77dp"
+        android:layout_marginEnd="85dp"
         android:background="@drawable/round_email_login_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/img_act_login_start_logo">
 
@@ -36,16 +35,14 @@
             android:layout_height="wrap_content"
             android:orientation="horizontal"
             android:gravity="center_vertical"
-            android:layout_marginLeft="17dp"
-            android:layout_marginTop="11dp"
+            android:layout_marginTop="10dp"
             android:layout_marginBottom="10dp"
-            android:layout_marginRight="50dp"
-            >
+            android:layout_centerInParent="true">
 
             <ImageView
                 android:id="@+id/img_ic_mail"
-                android:layout_width="20dp"
-                android:layout_height="20dp"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
                 android:src="@drawable/ic_mail" />
 
             <TextView
@@ -65,14 +62,15 @@
     </RelativeLayout>
 
     <RelativeLayout
-        android:id="@+id/relative_act_login_start_kakao_login"
-        android:layout_width="205dp"
-        android:layout_height="37dp"
-        android:layout_marginStart="78dp"
+        android:id="@+id/relative_act_login_start_facebook_login"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="85dp"
         android:layout_marginTop="14dp"
-        android:layout_marginEnd="77dp"
+        android:layout_marginEnd="85dp"
         android:background="@drawable/round_kakao_login_background"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/relative_act_login_start_email_login">
 
@@ -80,26 +78,26 @@
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:orientation="horizontal"
+            android:layout_marginStart="23dp"
+            android:layout_marginTop="3dp"
+            android:layout_marginBottom="4dp"
             android:gravity="center_vertical"
-            android:layout_marginLeft="13dp"
-            android:layout_marginTop="11dp"
-            android:layout_marginBottom="10dp"
-            android:layout_marginRight="50dp">
+            android:layout_centerInParent="true">
 
             <ImageView
-                android:id="@+id/img_ic_kakao"
+                android:id="@+id/img_ic_facebook"
                 android:layout_width="28dp"
                 android:layout_height="28dp"
-                android:src="@drawable/kakao" />
+                android:src="@drawable/ic_facebook" />
 
             <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginLeft="22dp"
+                android:layout_marginLeft="26dp"
                 android:fontFamily="@font/nanum_barungothic_light"
                 android:includeFontPadding="false"
                 android:text="카카오로 로그인"
-                android:textColor="@color/black"
+                android:textColor="@color/white"
                 android:textSize="14sp" />
 
         </LinearLayout>
@@ -114,7 +112,7 @@
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@id/relative_act_login_start_kakao_login">
+        app:layout_constraintTop_toBottomOf="@id/relative_act_login_start_facebook_login">
 
         <TextView
             android:layout_width="wrap_content"

@@ -152,12 +152,13 @@ interface RetrofitInterface {
     @Multipart
     @PUT("/mypage")
     fun putMyPageInfo(
+
         @Header("token") token: String,
 
         @Part("name") name: RequestBody,
         @Part("intro") intro:RequestBody,
         @Part img: MultipartBody.Part
-    ): Call<BaseResponse<Int>>
+    ): Call<BaseResponse<Any>>
 
 
 }
