@@ -38,6 +38,8 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
         holder.container?.setOnClickListener {
             var intent = Intent(ctx, ArticleAboutActivity::class.java)
 
+            intent.putExtra("articleId", dataList[position].id)
+
             ctx.startActivity(intent)
         }
     }

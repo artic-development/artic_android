@@ -80,14 +80,23 @@ class CategoryArchiveFragment(
                 startActivity(intent)
             }
 
+
+        }
+    }
+
+    // 홈으로 다시 돌아왔을 때 카테고리별 갱신
+    override fun onResume() {
+        super.onResume()
+
+        activity?.run {
             logger.log("category fragment $categoryId $categoryName")
             repository.getArchiveListGivenCategory(
                 categoryId = categoryId,
                 successCallback = {
 
                     if (it.isEmpty()) {
+                        logger.log("category empty $categoryName")
                         supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
-                        adapter.notifyDataSetChanged()
                     }
                     // 최신 4개의 archive 만 가져온다!
                     it.take(4).let { cut->
@@ -97,29 +106,10 @@ class CategoryArchiveFragment(
 
                     // 데이터가 왜 다 똑같이 나오지?
                     Log.v("숨니데이터 $categoryId + $categoryName", it.toString())
-                }
-            )
-        }
-    }
-
-    // 홈으로 다시 돌아왔을 때 카테고리별 갱신
-    override fun onResume() {
-        super.onResume()
-
-        activity?.run {
-            repository.getArchiveListGivenCategory(
-                categoryId = categoryId,
-                successCallback = {
-
-                    if (it.isEmpty()) {
-                        supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
-                        adapter.notifyDataSetChanged()
-                    }
-                    // 최신 4개의 archive 만 가져온다!
-                    it.take(4).let { cut ->
-                        adapter.data = cut
-                        adapter.notifyDataSetChanged()
-                    }
+                },
+                failCallback = {
+                    logger.error("category empty $categoryName")
+                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                 }
             )
         }

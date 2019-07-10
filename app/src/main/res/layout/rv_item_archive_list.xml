@@ -25,14 +25,11 @@
             android:fontFamily="@font/nanum_barungothic_light"
             android:includeFontPadding="false"/>
 
-        <ToggleButton
+        <ImageButton
             android:id="@+id/ibtn_rv_item_archive_list_scrap"
             android:layout_width="24dp"
             android:layout_height="24dp"
-            android:background="@drawable/toggle_btn_scrap"
-            android:textOff=""
-            android:textOn=""
-            android:checked="false"
+            android:background="@drawable/btn_scrap_filled_big"
             android:layout_alignParentEnd="true"
             android:layout_marginTop="30dp"
             android:layout_marginEnd="20dp"/>

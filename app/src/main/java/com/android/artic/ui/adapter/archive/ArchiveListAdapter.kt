@@ -56,7 +56,7 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
                 },
                 statusCallback = { status, success, message ->
                     ctx.toast(message)
-//                    notifyItemChanged(dataList[position].id)
+                    notifyItemChanged(dataList[position].id)
                 }
             )
         }

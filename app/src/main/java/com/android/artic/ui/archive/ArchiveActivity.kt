@@ -36,6 +36,13 @@ class ArchiveActivity : BaseActivity() {
         // CategoryAdapter 에서 온 부분
         // CategoryAdapter에서 받은 category_id를 사용하여 해당 카테고리에 있는 아카이브 리스트들을 가져온다.
 
+
+    }
+
+    override fun onResume() {
+        super.onResume()
+
+        // onCreate에서 여기로 옮겨옴
         // category_id 받아오기
         val categoryId = intent.getIntExtra("category_idx", -1)
         val categoryName = intent.getStringExtra("category_name")
