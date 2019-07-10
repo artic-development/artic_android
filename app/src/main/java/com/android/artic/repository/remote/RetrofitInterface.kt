@@ -4,6 +4,8 @@ import com.android.artic.data.Archive
 import com.android.artic.data.Article
 import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -138,12 +140,15 @@ interface RetrofitInterface {
         @Header("token") token: String
     ) : Call<BaseResponse<MyPageResponse>>
 
+    @Multipart
     @PUT("/mypage")
     fun putMyPageInfo(
-        @Header("Content-Type") contentType: String,
         @Header("token") token: String,
-        @Body body:JsonObject
-    ): Call<BaseResponse<List<MyPageResponse>>>
+
+        @Part("name") name: RequestBody,
+        @Part("intro") intro:RequestBody,
+        @Part img: MultipartBody.Part
+    ): Call<BaseResponse<Int>>
 
 
 }

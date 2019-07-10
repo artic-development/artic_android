@@ -3,7 +3,9 @@ package com.android.artic.repository.remote
 import com.android.artic.auth.Auth
 import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
@@ -88,11 +90,12 @@ class RetrofitDataSource : RemoteDataSource {
     }
 
     override fun putMyPageInfo(
-        contentType: String,
         token: String,
-        body: JsonObject
-    ): Call<BaseResponse<List<MyPageResponse>>> {
-        return retrofit.putMyPageInfo(contentType, token, body)
+        name: RequestBody,
+        intro:RequestBody,
+        img: MultipartBody.Part
+    ): Call<BaseResponse<Int>> {
+        return retrofit.putMyPageInfo( token,name,intro,img)
     }
     override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<MyPageResponse>> {
         return retrofit.getMyPageInfo(contentType, token)
