@@ -63,7 +63,13 @@ class SearchActivity : BaseActivity() {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_SEARCH) {
                     val keyword = v.text.toString()
-                    startActivity<SearchResultActivity>("searchKeyword" to keyword)
+
+                    if (keyword == "") {
+                        toast("검색어를 입력해주세요")
+                    }
+                    else {
+                        startActivity<SearchResultActivity>("searchKeyword" to keyword)
+                    }
 
                     return true
                 }
