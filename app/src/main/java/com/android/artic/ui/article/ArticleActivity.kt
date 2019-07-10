@@ -40,7 +40,7 @@ class ArticleActivity : BaseActivity() {
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
 
-
+        // 아카이브 아이디로 아티클 리스트 받아오기
         repository.getArticleListGivenArchive(
             archiveId = archiveId,
             successCallback = {

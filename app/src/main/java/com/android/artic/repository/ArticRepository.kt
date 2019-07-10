@@ -112,7 +112,8 @@ class ArticRepository (
             remote.getCategoryArchiveList(
                 contentType = "application/json",
                 token = token,
-                categoryIdx = categoryId).enqueue(
+                categoryIdx = categoryId
+            ).enqueue(
                 createFromRemoteCallback(
                     mapper = {
                         if (it.data == null) listOf()
@@ -322,7 +323,8 @@ class ArticRepository (
                         category_ids = listOf(res.category_idx),
                         title = res.archive_title,
                         title_img_url = res.archive_img,
-                        num_article = res.article_cnt
+                        num_article = res.article_cnt,
+                        scrap = res.scrap
                     ) }
                 },
                 successCallback = successCallback,
@@ -462,7 +464,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            category_title = res.category_title
                         )}
                     },
                     successCallback = successCallback,

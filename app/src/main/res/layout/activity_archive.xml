@@ -28,6 +28,12 @@
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/rv_archive"
         android:layout_width="match_parent"
-        android:layout_height="match_parent" />
+        android:layout_height="match_parent"
+        android:visibility="gone"/>
+
+    <include
+        android:id="@+id/empty_view_act_archive"
+        android:visibility="visible"
+        layout="@layout/search_result_empty" />
 
 </LinearLayout>

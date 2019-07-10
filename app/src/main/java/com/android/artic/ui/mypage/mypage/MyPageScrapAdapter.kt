@@ -33,11 +33,16 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
                 .into(it)
         }
         scrap_title?.text=cur.title
-        scrap_category?.text=cur.categories?.elementAt(0)
-        holder.container?.setOnClickListener {
+//        scrap_category?.text=cur.categories?.elementAt(0)
+        scrap_category?.text = cur.category_title
+
+            holder.container?.setOnClickListener {
             var intent = Intent(ctx, ArticleActivity::class.java)
 
                 intent.putExtra("archiveId", data[position].id)
+                intent.putExtra("archiveScraped", true)
+                intent.putExtra("archiveTitle", data[position].title)
+                intent.putExtra("categoryTitle", data[position].category_title)
 
                 ctx.startActivity(intent)
             }

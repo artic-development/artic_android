@@ -3,6 +3,7 @@ package com.android.artic.ui.archive
 import android.content.Intent
 import android.os.Bundle
 import android.util.Log
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
@@ -43,10 +44,23 @@ class ArchiveActivity : BaseActivity() {
             toast("카테고리 아이디를 받아오지 못했습니다.")
         }
         else { // 카테고리 아이디를 제대로 받아온 경우
-            repository.getCategoryArchiveList(categoryId = categoryId,
+            repository.getCategoryArchiveList(
+                categoryId = categoryId,
                 successCallback = {
+
+                    if (it.isNotEmpty()) {
+                        empty_view_act_archive.visibility = View.GONE
+                        rv_archive.visibility = View.VISIBLE
+                    }
+                    else {
+                        empty_view_act_archive.visibility = View.VISIBLE
+                        rv_archive.visibility = View.GONE
+                    }
+
                     adapter.dataList = it
                     adapter.notifyDataSetChanged()
+
+                    Log.v("숨니 숨니", it.toString())
                 },
                 failCallback = {
                     toast(R.string.network_error)

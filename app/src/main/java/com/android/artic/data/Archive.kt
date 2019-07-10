@@ -9,5 +9,6 @@ data class Archive (
     val article_ids: List<Int>? = null, // query
     val categories: List<String>? = null, // do you wanna get this. please query
     val scrap: Boolean? = null, // user data
-    val category_idx : Int? = null //
+    val category_idx : Int? = null, //
+    val category_title : String? = null
 )
