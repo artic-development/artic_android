@@ -8,13 +8,11 @@ import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import com.android.artic.ui.setting.setting.SettingActivity
 import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
-import io.reactivex.disposables.Disposable
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.my_page_tablayout.*
 import org.jetbrains.anko.startActivity

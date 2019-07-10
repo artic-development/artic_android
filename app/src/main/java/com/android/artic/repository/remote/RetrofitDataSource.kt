@@ -1,6 +1,7 @@
 package com.android.artic.repository.remote
 
 import com.android.artic.auth.Auth
+import com.android.artic.logger.Logger
 import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
 import okhttp3.OkHttpClient
@@ -8,11 +9,12 @@ import retrofit2.Call
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitDataSource : RemoteDataSource {
+class RetrofitDataSource(
+    private val logger: Logger
+) : RemoteDataSource {
     private val retrofit: RetrofitInterface by lazy {
         Retrofit.Builder()
             .baseUrl(Auth.BASE_URL)
-            .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
             .build().create(RetrofitInterface::class.java)
     }
@@ -114,8 +116,8 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getSearchArchiveList(contentType, token, keyword)
     }
 
-    override fun getSearchRecommendation(contentType: String): Call<BaseResponse<List<RecommendationResponse>>> {
-        return retrofit.getSearchRecommendation(contentType)
+    override fun getSearchRecommendation(contentType: String, token: String): Call<BaseResponse<List<RecommendationResponse>>> {
+        return retrofit.getSearchRecommendation(contentType, token)
     }
 
     override fun postArchiveScrap(contentType: String, token: String, archiveIdx: Int): Call<BaseResponse<Any>> {

@@ -224,6 +224,7 @@ interface RetrofitInterface {
      * */
     @GET("/search/recommendation")
     fun getSearchRecommendation(
-        @Header("Content-Type") contentType: String
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
     ): Call<BaseResponse<List<RecommendationResponse>>>
 }

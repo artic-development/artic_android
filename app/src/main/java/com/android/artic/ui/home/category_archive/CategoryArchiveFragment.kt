@@ -79,10 +79,10 @@ class CategoryArchiveFragment(
                 startActivity(intent)
             }
 
-            logger.log("category fragment $categoryId $categoryName")
             repository.getArchiveListGivenCategory(
                 categoryId = categoryId,
                 successCallback = {
+                    logger.log("category fragment $categoryId $categoryName ${it.take(4)}")
                     if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                     // 최신 4개의 archive 만 가져온다!
                     it.take(4).let { cut->

@@ -1,17 +1,12 @@
 package com.android.artic.ui.archive
 
-import android.content.Intent
 import android.os.Bundle
-import android.util.Log
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
-import com.android.artic.ui.article_webview.ArticleWebViewActivity
-import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_archive.*
-import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 

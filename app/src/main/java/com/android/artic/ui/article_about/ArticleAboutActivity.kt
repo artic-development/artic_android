@@ -5,7 +5,7 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.util.defaultHolderOptions

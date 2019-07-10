@@ -44,9 +44,7 @@ interface RemoteDataSource {
         articleIdx: Int
     ): Call<BaseResponse<Int>>
 
-    fun getSearchRecommendation(
-        @Header("Content-Type") contentType: String
-    ): Call<BaseResponse<List<RecommendationResponse>>>
+    fun getSearchRecommendation(contentType: String, token: String): Call<BaseResponse<List<RecommendationResponse>>>
 
     // @수민) 아카이브 스크랩
     fun postArchiveScrap(

@@ -1,10 +1,9 @@
 package com.android.artic.ui.signup.signup_start
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.android.artic.R
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.signup.signup.SignupLoginActivity
 import kotlinx.android.synthetic.main.activity_signup_start.*
 

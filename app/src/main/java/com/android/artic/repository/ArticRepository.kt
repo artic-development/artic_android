@@ -315,7 +315,7 @@ class ArticRepository (
         remote.getArchiveListGivenCategory(categoryId).enqueue(
             createFromRemoteCallback(
                 mapper = {
-                    logger.log("get archive list ${it.data}")
+                    logger.log("get archive list $categoryId ${it.data}")
                     if (it.data == null) listOf()
                     else it.data.map { res -> Archive(
                         id = res.archive_idx,
@@ -449,21 +449,24 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)?=null,
         statusCallback: ((Int, Boolean, String) -> Unit)?=null
     ) {
-        remote.getSearchRecommendation(
-            "application/json"
-        ).enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    if (it.data == null) listOf()
-                    else it.data.map { res ->
-                        RecommendWordData(res.search_word)
-                    }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let { token ->
+            remote.getSearchRecommendation(
+                "application/json",
+                token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            RecommendWordData(res.search_word)
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
     }
 
 

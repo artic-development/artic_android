@@ -10,6 +10,6 @@ val module = module {
     // design singleton for same accessibility in every where in this app
     single { ArticRepository(get(), get(), get()) }
 
-    single { RetrofitDataSource() as RemoteDataSource }
+    single { RetrofitDataSource(get()) as RemoteDataSource }
     single { MockLocalDataSource() as LocalDataSource }
 }

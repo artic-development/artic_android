@@ -1,4 +1,4 @@
-package com.android.artic.ui
+package com.android.artic.ui.base
 
 import android.graphics.Color
 import android.os.Build

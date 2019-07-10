@@ -2,26 +2,17 @@ package com.android.artic.ui.setting.setting_editprofile
 
 import android.Manifest
 import android.content.Intent
-import android.graphics.Bitmap
 import android.graphics.drawable.Drawable
-import android.media.MediaScannerConnection
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import android.os.Environment
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.util.Log
-import android.view.View
 import android.widget.*
-import androidx.appcompat.app.AlertDialog
-import androidx.core.content.ContextCompat
 import com.android.artic.R
-import com.android.artic.data.MyPage
 import com.android.artic.data.MyPageRequest
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
@@ -30,14 +21,8 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
-import org.jetbrains.anko.backgroundColor
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import java.io.ByteArrayOutputStream
-import java.io.File
-import java.io.FileOutputStream
-import java.io.IOException
-import java.util.*
 
 class SettingEditProfileActivity : BaseActivity() {
     private val logger: Logger by inject()

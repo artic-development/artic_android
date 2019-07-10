@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import kotlinx.android.synthetic.main.activity_article.*
 import org.jetbrains.anko.toast

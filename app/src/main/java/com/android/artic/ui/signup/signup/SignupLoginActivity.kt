@@ -1,6 +1,5 @@
 package com.android.artic.ui.signup.signup
 
-import android.content.Intent
 import android.graphics.Color
 import android.os.Bundle
 import android.text.Editable
@@ -10,7 +9,7 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.android.artic.R
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_signup_login.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast

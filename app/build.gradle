@@ -111,4 +111,12 @@ dependencies {
     // https://github.com/tbruyelle/RxPermissions
     // rx permissions
     implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    // kakao
+    def kakao_version = '1.19.0'
+
+    implementation "com.kakao.sdk:usermgmt:$kakao_version"
+
+    // facebook
+    implementation 'com.facebook.android:facebook-login:[5,6)'
 }
