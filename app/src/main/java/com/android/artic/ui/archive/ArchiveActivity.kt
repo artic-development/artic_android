@@ -1,8 +1,10 @@
 package com.android.artic.ui.archive
 
 import android.os.Bundle
+import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
@@ -17,6 +19,7 @@ import org.koin.android.ext.android.inject
  * */
 class ArchiveActivity : BaseActivity() {
 //    private var categoryId: Int = -1
+    private val logger: Logger by inject()
     private val repository: ArticRepository by inject()
     private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
 
@@ -38,10 +41,23 @@ class ArchiveActivity : BaseActivity() {
             toast("카테고리 아이디를 받아오지 못했습니다.")
         }
         else { // 카테고리 아이디를 제대로 받아온 경우
-            repository.getCategoryArchiveList(categoryId = categoryId,
+            repository.getCategoryArchiveList(
+                categoryId = categoryId,
                 successCallback = {
+
+                    if (it.isNotEmpty()) {
+                        empty_view_act_archive.visibility = View.GONE
+                        rv_archive.visibility = View.VISIBLE
+                    }
+                    else {
+                        empty_view_act_archive.visibility = View.VISIBLE
+                        rv_archive.visibility = View.GONE
+                    }
+
                     adapter.dataList = it
                     adapter.notifyDataSetChanged()
+
+                    logger.log(it.toString())
                 },
                 failCallback = {
                     toast(R.string.network_error)

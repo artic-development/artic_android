@@ -3,6 +3,7 @@ package com.android.artic.ui.home.category_archive
 
 import android.content.Intent
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -78,10 +79,22 @@ class CategoryArchiveFragment(
 
                 startActivity(intent)
             }
+        }
+    }
 
+    // 홈으로 다시 돌아왔을 때 카테고리별 갱신
+    override fun onResume() {
+        super.onResume()
+
+        activity?.run {
             repository.getArchiveListGivenCategory(
                 categoryId = categoryId,
                 successCallback = {
+
+                    if (it.isEmpty()) {
+                        supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+                        adapter.notifyDataSetChanged()
+                    }
                     logger.log("category fragment $categoryId $categoryName ${it.take(4)}")
                     if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                     // 최신 4개의 archive 만 가져온다!

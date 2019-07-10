@@ -64,15 +64,17 @@ class ArticleAboutActivity : BaseActivity() {
                     repository.getArticleListGivenArchive(
                         archiveId = archiveId,
                         successCallback = {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-                            rv_article_about_another_article.requestLayout()
+                            it.take(4).let {cut->
+                                adapter.data = cut
+                                adapter.notifyDataSetChanged()
+                            }
 
                             btn_article_about_show_all.setOnClickListener {
                                 startActivity<ArticleActivity>(
                                     "archiveId" to archiveId,
                                     "categoryTitle" to "", // TODO category Title 도 받아와야하나?
                                     "archiveTitle" to archivePair.second
+//                                    "archiveScraped" to
                                 )
                             }
                         },

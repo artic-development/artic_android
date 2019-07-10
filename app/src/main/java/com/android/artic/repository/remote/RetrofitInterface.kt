@@ -1,9 +1,9 @@
 package com.android.artic.repository.remote
 
-import com.android.artic.data.Archive
-import com.android.artic.data.Article
 import com.android.artic.repository.remote.response.*
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.http.GET
 import retrofit2.http.POST
@@ -36,7 +36,10 @@ interface RetrofitInterface {
      * */
     // 신규 아카이브 받아오기
     @GET("/home/archive/archives/new")
-    fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
+    fun getNewArchiveList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ): Call<BaseResponse<List<ArchiveResponse>>>
 
     /**
      * 아틱의 추천 (https://github.com/artic-development/artic_server/wiki/%EC%95%84%ED%8B%B1%EC%9D%98-%EC%B6%94%EC%B2%9C)
@@ -104,6 +107,8 @@ interface RetrofitInterface {
      * */
     @GET("/home/archive/category/{category_idx}")
     fun getArchiveListGivenCategory(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
         @Path("category_idx") categoryIdx: Int
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
@@ -211,12 +216,15 @@ interface RetrofitInterface {
      * 마이페이지 수정 (https://github.com/artic-development/artic_server/wiki/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%88%98%EC%A0%95)
      * @author 경희
      * */
+    @Multipart
     @PUT("/mypage")
     fun putMyPageInfo(
-        @Header("Content-Type") contentType: String,
         @Header("token") token: String,
-        @Body body:JsonObject
-    ): Call<BaseResponse<List<MyPageResponse>>>
+
+        @Part("name") name: RequestBody,
+        @Part("intro") intro:RequestBody,
+        @Part img: MultipartBody.Part
+    ): Call<BaseResponse<Int>>
 
     /**
      * 추천 검색어 (https://github.com/artic-development/artic_server/wiki/%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4)

@@ -28,7 +28,7 @@ class CategoryArchiveCardAdapter(
 
     override fun onBindViewHolder(holder: Holder, position: Int) {
 
-        Log.v("soomin soomin", "position = $position || scrap = ${data[position].scrap}")
+        Log.v("soomsoom", "position = $position || scrap = ${data[position].scrap}")
 
         holder.run {
             val cur = data[position]

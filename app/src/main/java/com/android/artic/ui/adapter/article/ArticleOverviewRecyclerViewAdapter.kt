@@ -48,6 +48,16 @@ class ArticleOverviewRecyclerViewAdapter(
         p0.link_title.text=dataList[p1].title
 
         // @수민 담기 버튼 리스너
+        p0.txt_put.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putInt("article_idx", dataList[p1].id)
+
+            var putFragment = CollectArchiveDialogFragment()
+
+            putFragment.arguments = bundle
+
+            putFragment.show(ctx.supportFragmentManager, putFragment.tag)
+        }
         p0.btn_put.setOnClickListener {
             var bundle = Bundle()
             bundle.putInt("article_idx", dataList[p1].id)
@@ -67,8 +77,13 @@ class ArticleOverviewRecyclerViewAdapter(
                 ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[p1].id)
         }
 
+        p0.toggle_btn_like.isChecked = false
+
         // @수민) 아티클의 체크 여부에 따라 토글버튼을 바꿔준다.
-       // p0.toggle_btn_like.isChecked = dataList[p1].isLiked!!
+        dataList[p1].isLiked?.let { // dataList[p1].isLiked가 null이 아닐 때 처리
+            p0.toggle_btn_like.isChecked = it
+        }
+
 
         // @수민) 좋아요 통신
         p0.toggle_btn_like.setOnClickListener {
@@ -90,11 +105,9 @@ class ArticleOverviewRecyclerViewAdapter(
 
                             if (message == "아티클 좋아요 성공") { // 좋아요 성공
                                 p0.like_number.text = (like_number_int + 1).toString()
-                                p0.toggle_btn_like.isChecked = true
                             }
                             else { // 좋아요 취소 성공
                                 p0.like_number.text = (like_number_int - 1).toString()
-                                p0.toggle_btn_like.isChecked = false
                             }
 
                             ctx.toast(message)
@@ -122,5 +135,7 @@ class ArticleOverviewRecyclerViewAdapter(
         var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
         var relative_article_item_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_link_list)
         var toggle_btn_like = itemView.findViewById<ToggleButton>(R.id.rv_link_list_like)
+        var txt_put=itemView.findViewById<RelativeLayout>(R.id.rv_link_list_storage_txt)
+
     }
 }

@@ -2,14 +2,16 @@ package com.android.artic.ui.setting.setting_editprofile
 
 import android.Manifest
 import android.content.Intent
+import android.graphics.Bitmap
+import android.graphics.BitmapFactory
 import android.graphics.drawable.Drawable
+import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import com.android.artic.R
-import com.android.artic.data.MyPageRequest
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.base.BaseActivity
@@ -21,8 +23,12 @@ import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.Target
 import com.tbruyelle.rxpermissions2.RxPermissions
 import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
+import okhttp3.MediaType
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
+import java.io.*
 
 class SettingEditProfileActivity : BaseActivity() {
     private val logger: Logger by inject()
@@ -30,7 +36,7 @@ class SettingEditProfileActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private var btn: TextView?= null
     private var imageview: ImageView? = null
-    private var path: String="https://pixel.nymag.com/imgs/daily/vulture/2019/03/13/13-captain-marvel-flerken-cat.w700.h700.jpg"
+    lateinit var selectedPicUri: Uri
 
     private val GALLERY=1
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -43,6 +49,28 @@ class SettingEditProfileActivity : BaseActivity() {
         edit_profile_img_change_btn.setOnClickListener{
             choosePhotoFromGallary()
         }
+
+        repository.getMyInfo(
+            successCallback = {
+                logger.log("mypage success $it")
+                edit_profile_name_et.setText(it.name)
+              //  txt__my_page_email.text=it.id
+                val img=it.profile_img
+                edit_profile_img?.let{
+                    Glide.with(this)
+                        .load(img)
+                        .apply(defaultHolderOptions)
+                        .into(it)
+                }
+                edit_profile_myinfo_et.setText(it.my_info)
+            },
+            failCallback = {
+                toast(R.string.network_error)
+                logger.log("mypage edit fail")
+            }
+        )
+
+
     }
 
     private fun setListener() {
@@ -83,18 +111,41 @@ class SettingEditProfileActivity : BaseActivity() {
 
             val name=edit_profile_name_et.text.toString()
             val my_info=edit_profile_myinfo_et.text.toString()
-            repository.changeMyInfo(data= MyPageRequest(path, name, my_info),
+
+            val name_rb=RequestBody.create(MediaType.parse("text/plain"),name)
+            val my_info_rb=RequestBody.create(MediaType.parse("text/plain"),my_info)
+
+            //Encoding->이미지 파일을 서버로 전송 가능한 형태로 변환하는 부분
+            val options=BitmapFactory.Options()
+            val inputStream: InputStream =contentResolver.openInputStream(selectedPicUri)
+            val bitmap=BitmapFactory.decodeStream(inputStream,null,options)
+            val byteArrayOutputStream=ByteArrayOutputStream()
+            bitmap.compress(Bitmap.CompressFormat.JPEG,20,byteArrayOutputStream)
+            val photoBody=RequestBody.create(MediaType.parse("image/jpg"),byteArrayOutputStream.toByteArray())
+
+            val picture_rb=MultipartBody.Part.createFormData("img",File(selectedPicUri.toString()).name,photoBody)
+
+
+//            val name_rb=RequestBody.create(
+//                MediaType.parse("text/plain"),name)
+//            val my_info_rb=RequestBody.create(MediaType.parse("text/plain"),my_info)
+
+
+
+            repository.changeMyInfo(name_rb, my_info_rb,picture_rb,
                 successCallback = {
                     logger.log("token data : $it")
                     toast("success")
+
                 },
                 failCallback = {
-                    toast(R.string.network_error)
+                    toast("mypage change fail")
+                    logger.log("mypage change fail")
                 }
             )
 
-
             finish()
+
         }
     }
 
@@ -104,7 +155,7 @@ class SettingEditProfileActivity : BaseActivity() {
         rxPermission
             .request(Manifest.permission.READ_EXTERNAL_STORAGE)
             .subscribe{ granted ->
-                if (granted) { // 외ㅂ 저장소 권한 설정
+                if (granted) { // 외부 저장소 권한 설정
                     val galleryIntent = Intent(Intent.ACTION_PICK,
                         MediaStore.Images.Media.EXTERNAL_CONTENT_URI)
 
@@ -125,7 +176,7 @@ class SettingEditProfileActivity : BaseActivity() {
         if (requestCode == GALLERY)
         {
             data?.data?.let {contentURI ->
-                path= contentURI.path
+                selectedPicUri=contentURI
                 logger.log("$contentURI ${contentURI.path}")
                 Glide.with(this)
                     .load(contentURI)

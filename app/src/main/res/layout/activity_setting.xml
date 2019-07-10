@@ -143,14 +143,7 @@
         android:textStyle="bold"
          />
 
-    <ImageView
-        android:id="@+id/setting_login_btn"
-        android:layout_width="21dp"
-        android:layout_height="21dp"
-        android:layout_marginTop="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_alignParentRight="true"
-        android:src="@drawable/btn_setting_rightarrow"
+
          />
     </RelativeLayout>
 
@@ -162,7 +155,7 @@
         android:layout_marginTop="10dp"
         android:fontFamily="@font/nanum_barungothic_light"
         android:includeFontPadding="false"
-        android:text="articcrew 계정 로그아웃"
+        android:text="계정 로그아웃"
         android:textColor="@color/soft_blue"
         android:textSize="14sp"
         />

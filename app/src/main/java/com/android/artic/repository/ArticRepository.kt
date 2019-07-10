@@ -10,6 +10,8 @@ import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.ui.new_archive.MakeNewArchiveData
 import com.android.artic.ui.search.data.RecommendWordData
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -112,7 +114,8 @@ class ArticRepository (
             remote.getCategoryArchiveList(
                 contentType = "application/json",
                 token = token,
-                categoryIdx = categoryId).enqueue(
+                categoryIdx = categoryId
+            ).enqueue(
                 createFromRemoteCallback(
                     mapper = {
                         if (it.data == null) listOf()
@@ -312,25 +315,31 @@ class ArticRepository (
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null
         ){
-        remote.getArchiveListGivenCategory(categoryId).enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    logger.log("get archive list $categoryId ${it.data}")
-                    if (it.data == null) listOf()
-                    else it.data.map { res -> Archive(
-                        id = res.archive_idx,
-                        category_ids = listOf(res.category_idx),
-                        title = res.archive_title,
-                        title_img_url = res.archive_img,
-                        num_article = res.article_cnt,
-                        scrap = res.scrap
-                    ) }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let {token ->
+            remote.getArchiveListGivenCategory(
+                contentType = "application/json",
+                token = token,
+                categoryIdx = categoryId
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        logger.log("get archive list ${it.data}")
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            category_ids = listOf(res.category_idx),
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
     }
 
     /**
@@ -342,25 +351,30 @@ class ArticRepository (
         successCallback: (List<Archive>) -> Unit,
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
-        remote.getNewArchiveList().enqueue(
-            createFromRemoteCallback(
-                mapper = {
-                    if (it.data == null) listOf()
-                    else it.data.map { res -> Archive(
-                        id = res.archive_idx,
-                        categories = res.category_all!!.map { cate -> cate.category_title },
-                        category_ids = listOf(res.category_idx),
-                        title = res.archive_title,
-                        title_img_url = res.archive_img,
-                        num_article = res.article_cnt,
-                        scrap = res.scrap
-                    ) }
-                },
-                successCallback = successCallback,
-                failCallback = failCallback,
-                statusCallback = statusCallback
+        Auth.token?.let {token ->
+            remote.getNewArchiveList(
+                contentType = "application/json",
+                token = token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res -> Archive(
+                            id = res.archive_idx,
+                            categories = res.category_all!!.map { cate -> cate.category_title },
+                            category_ids = listOf(res.category_idx),
+                            title = res.archive_title,
+                            title_img_url = res.archive_img,
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
+                        ) }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
             )
-        )
+        }
     }
 
     /**
@@ -489,7 +503,8 @@ class ArticRepository (
                             title = res.archive_title,
                             title_img_url = res.archive_img,
                             num_article = res.article_cnt,
-                            scrap = res.scrap
+                            scrap = res.scrap,
+                            category_title = res.category_title
                         )}
                     },
                     successCallback = successCallback,
@@ -682,18 +697,18 @@ class ArticRepository (
     }
 
     fun changeMyInfo(
-        data:MyPageRequest,
+        name: RequestBody,
+        intro: RequestBody,
+        img:MultipartBody.Part,
         successCallback: (Int) -> Unit,
         failCallback: ((Throwable) -> Unit)?=null,
         statusCallback: ((Int, Boolean, String) -> Unit)?=null
     ){
         Auth.token?.let{token->
-            remote.putMyPageInfo("application/json",token,
-                JsonObject().apply{
-                    addProperty("profile_img",data.profile_img)
-                    addProperty("name", data.name)
-                    addProperty("my_info",data.my_info)
-                }
+            remote.putMyPageInfo(token,
+                name,
+                intro,
+                img
             ).enqueue(
                 createFromRemoteCallback(
                     mapper={

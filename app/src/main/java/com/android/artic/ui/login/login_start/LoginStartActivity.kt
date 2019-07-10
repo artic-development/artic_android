@@ -39,15 +39,15 @@ class LoginStartActivity : BaseActivity() {
 
         // TODO 자동 로그인을 구현한다. 하지만 이 부분은 맨 처음 켜지는 화면, 즉 스플레시 화면에서 하는게 맞을것 - 2019.07.09 승민
         auth.autoLogin(
-            successCallback = {
-                // 자동 로그인이 완료되면 Navigation 화면으로 이동하자!
-                // 전 activity 로그를 날려야한다.
-                startActivity(intentFor<NavigationActivity>().clearTask().newTask())
-            },
-            failCallback = {
-                // TODO 실제 스플래시 화면에서는 자동 로그인 실패시 LoginStartActivity 로 넘어가야함 - 2019.07.09 승민
-                //startActivity<LoginStartActivity>()
-            }
+                successCallback = {
+                    // 자동 로그인이 완료되면 Navigation 화면으로 이동하자!
+                    // 전 activity 로그를 날려야한다.
+                    startActivity(intentFor<NavigationActivity>().clearTask().newTask())
+                },
+        failCallback = {
+            // TODO 실제 스플래시 화면에서는 자동 로그인 실패시 LoginStartActivity 로 넘어가야함 - 2019.07.09 승민
+            //startActivity<LoginStartActivity>()
+        }
         )
 
         setFacebookLogin()
