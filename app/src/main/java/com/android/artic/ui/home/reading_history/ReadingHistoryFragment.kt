@@ -82,7 +82,7 @@ class ReadingHistoryFragment : Fragment() {
             repository.readingHistoryArticle(
                 successCallback = {
                     logger.log("recent reading article list")
-                    adapter.dataList = it
+                    adapter.dataList = it.take(5)
                     adapter.notifyDataSetChanged()
                 },
                 failCallback = {

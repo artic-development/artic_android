@@ -10,6 +10,8 @@ import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.ui.new_archive.MakeNewArchiveData
 import com.android.artic.ui.search.data.RecommendWordData
 import com.google.gson.JsonObject
+import okhttp3.MultipartBody
+import okhttp3.RequestBody
 import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
@@ -657,18 +659,18 @@ class ArticRepository (
     }
 
     fun changeMyInfo(
-        data:MyPageRequest,
+        name: RequestBody,
+        intro: RequestBody,
+        img:MultipartBody.Part,
         successCallback: (Int) -> Unit,
         failCallback: ((Throwable) -> Unit)?=null,
         statusCallback: ((Int, Boolean, String) -> Unit)?=null
     ){
         Auth.token?.let{token->
-            remote.putMyPageInfo("application/json",token,
-                JsonObject().apply{
-                    addProperty("profile_img",data.profile_img)
-                    addProperty("name", data.name)
-                    addProperty("my_info",data.my_info)
-                }
+            remote.putMyPageInfo(token,
+                name,
+                intro,
+                img
             ).enqueue(
                 createFromRemoteCallback(
                     mapper={
