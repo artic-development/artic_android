@@ -45,23 +45,21 @@
 
         <ImageView
             android:id="@+id/version_artic_img"
-            android:layout_width="96dp"
-            android:layout_height="96dp"
+            android:layout_width="114dp"
+            android:layout_height="114dp"
             android:layout_marginStart="132dp"
-            android:layout_marginTop="40dp"
+            android:layout_marginTop="39dp"
             android:layout_marginEnd="132dp"
-            android:background="@drawable/archive_card_round"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            android:src="@drawable/artic_logo"  />
+            android:src="@drawable/versionicon"  />
 
         <TextView
             android:id="@+id/version_info_txt"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="140dp"
-            android:layout_marginTop="17dp"
             android:layout_marginEnd="140dp"
             android:text="현재버전 1.0.1"
             android:textColor="@color/brownish_grey"
@@ -78,9 +76,9 @@
             android:layout_height="34dp"
             android:background="@drawable/round_brownish_grey_border"
             android:layout_marginStart="89dp"
-            android:layout_marginTop="31dp"
+            android:layout_marginTop="21dp"
             android:layout_marginEnd="89dp"
-            android:layout_marginBottom="31dp"
+            android:layout_marginBottom="22dp"
             android:gravity="center"
             android:text="현재 최신 버전입니다."
             android:fontFamily="@font/nanum_barungothic_light"

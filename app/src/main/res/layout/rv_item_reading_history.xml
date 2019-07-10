@@ -45,6 +45,8 @@
             android:lineSpacingExtra="6sp"
             android:includeFontPadding="false"
             android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="2"
             android:text="제품 디자이너는 코딩에 대해 잊어야 합니다."/>
 
 
