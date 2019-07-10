@@ -31,7 +31,7 @@
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
-                android:layout_height="match_parent"
+                android:layout_height="wrap_content"
                 android:background="@drawable/back_transparent_round_card_grey"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -46,7 +46,9 @@
                     android:layout_marginEnd="20dp"
                     android:fontFamily="@font/nanum_barungothic_light"
                     android:includeFontPadding="false"
-                    android:text="디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점"
+                    tools:text="디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점"
+                    android:lines="2"
+                    android:ellipsize="end"
                     android:textColor="@color/black"
                     android:textSize="15sp"
                     app:layout_constraintEnd_toEndOf="parent"
@@ -62,7 +64,7 @@
                     android:layout_marginBottom="15dp"
                     android:fontFamily="@font/nanum_barungothic_regular"
                     android:includeFontPadding="false"
-                    android:text="brunch.co.kr"
+                    tools:text="brunch.co.kr"
                     android:textColor="#aaaaaa"
                     android:textSize="14sp"
                     app:layout_constraintBottom_toBottomOf="parent"

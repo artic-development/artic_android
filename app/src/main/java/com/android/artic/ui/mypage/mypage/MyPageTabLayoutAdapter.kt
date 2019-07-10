@@ -1,12 +1,8 @@
 package com.android.artic.ui.mypage.mypage
 
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import androidx.fragment.app.FragmentStatePagerAdapter
-import com.android.artic.ui.BaseFragment
-import com.android.artic.ui.HeightWrappingViewPager
+import com.android.artic.ui.base.BaseFragment
 
 class MyPageTabLayoutAdapter(
     fm: FragmentManager,

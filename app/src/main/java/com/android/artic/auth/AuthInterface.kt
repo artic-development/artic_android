@@ -41,4 +41,6 @@ interface AuthInterface{
         @Header("Content-Type") contentType: String,
         @Body body: JsonObject
     ): Call<BaseResponse<SigninResponse>>
+
+    
 }

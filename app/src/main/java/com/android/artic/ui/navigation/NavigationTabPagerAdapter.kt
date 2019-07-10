@@ -1,10 +1,8 @@
 package com.android.artic.ui.navigation
 
-import androidx.appcompat.app.AppCompatActivity
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
-import com.android.artic.ui.BaseActivity
 import com.android.artic.ui.category.CategoryFragment
 import com.android.artic.ui.home.HomeFragment
 import com.android.artic.ui.mypage.mypage.MyPageFragment

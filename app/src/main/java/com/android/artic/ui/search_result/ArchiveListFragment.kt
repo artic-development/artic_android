@@ -2,26 +2,18 @@ package com.android.artic.ui.search_result
 
 
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.android.artic.R
-import com.android.artic.data.Archive
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * none card archive list

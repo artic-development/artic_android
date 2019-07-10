@@ -1,13 +1,11 @@
 package com.android.artic.ui.article_about
 
-import android.content.Intent
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.android.artic.R
-import com.android.artic.data.Article
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.ui.article_webview.ArticleWebViewActivity
 import com.android.artic.util.defaultHolderOptions
@@ -16,9 +14,6 @@ import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * it must need archive id (intent["archiveId"])
@@ -49,9 +44,9 @@ class ArticleAboutActivity : BaseActivity() {
         repository.getArticleWithExtra(
             articleId = articleId,
             successCallback = { article, archivePair ->
-                txt_article_about_url.text = article.url
+                txt_article_about_domain.text = article.domain_url
                 // TODO 타이틀 길이가 너무 길면 안된다! 알아서 줄여주는 방안을 생각해야함.
-                txt_article_about_title.text = title
+                txt_article_about_title.text = article.title
                 Glide.with(this@ArticleAboutActivity)
                     .load(article.title_img_url)
                     .apply(defaultHolderOptions)
@@ -73,11 +68,13 @@ class ArticleAboutActivity : BaseActivity() {
                                 adapter.data = cut
                                 adapter.notifyDataSetChanged()
                             }
+
                             btn_article_about_show_all.setOnClickListener {
                                 startActivity<ArticleActivity>(
                                     "archiveId" to archiveId,
                                     "categoryTitle" to "", // TODO category Title 도 받아와야하나?
                                     "archiveTitle" to archivePair.second
+//                                    "archiveScraped" to
                                 )
                             }
                         },

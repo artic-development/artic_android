@@ -150,4 +150,15 @@
 
     </LinearLayout>
 
+    <!--<com.kakao.usermgmt.LoginButton-->
+        <!--android:id="@+id/btn_kakao_login"-->
+        <!--android:layout_width="100dp"-->
+        <!--android:layout_height="100dp"-->
+        <!--android:layout_marginStart="120dp"-->
+        <!--android:layout_marginTop="36dp"-->
+        <!--app:layout_constraintStart_toStartOf="parent"-->
+        <!--app:layout_constraintTop_toTopOf="parent">-->
+
+    <!--</com.kakao.usermgmt.LoginButton>-->
+
 </androidx.constraintlayout.widget.ConstraintLayout>

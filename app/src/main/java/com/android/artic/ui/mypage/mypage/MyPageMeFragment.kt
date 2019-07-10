@@ -4,26 +4,18 @@ package com.android.artic.ui.mypage.mypage
 import android.content.Intent
 import android.os.Bundle
 import androidx.fragment.app.Fragment
-import android.view.LayoutInflater
 import android.view.View
-import android.view.ViewGroup
 import androidx.recyclerview.widget.GridLayoutManager
 
 import com.android.artic.R
-import com.android.artic.data.Archive
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.new_archive.MakeNewArchiveActivity
 import io.reactivex.subjects.BehaviorSubject
-import kotlinx.android.synthetic.main.fragment_my_page.*
-import kotlinx.android.synthetic.main.fragment_my_page.view.*
 import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 
 /**

@@ -2,11 +2,9 @@ package com.android.artic.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
-import androidx.fragment.app.FragmentManager
 import com.android.artic.R
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.home.artic_pick.ArticPickFragment
 import com.android.artic.ui.home.category_archive.CategoryArchiveFragment
 import com.android.artic.ui.home.new_archive.NewArchiveFragment
