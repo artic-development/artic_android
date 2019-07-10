@@ -113,7 +113,7 @@ class NotificationAdapter(
     // 여러가지 아이템 요소를 그려주기 위해서 viewType 설정
     override fun getItemViewType(position: Int): Int = data[position].viewType.ordinal
 
-    inner class AddArticleNotificationHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class AddArticleNotificationHolder(view: View): RecyclerView.ViewHolder(view) { //NotificationType->ADD_ARTICLE, REMIND_ARCHIVE
         val container = view.findViewById<View?>(R.id.container_rv_item_article_notification)
         val img = view.findViewById<ImageView?>(R.id.img_rv_item_article_noti)?.apply {
             clipToOutline = true
@@ -122,7 +122,7 @@ class NotificationAdapter(
         val txt_date = view.findViewById<TextView?>(R.id.txt_rv_item_article_noti_date)
     }
 
-    inner class RecommendArchiveHolder(view: View): RecyclerView.ViewHolder(view) {
+    inner class RecommendArchiveHolder(view: View): RecyclerView.ViewHolder(view) { //NotificationType->RECOMMEND_ARCHIVE
         val container = view.findViewById<View?>(R.id.container_rv_item_recommend_noti)
         val img = view.findViewById<ImageView?>(R.id.img_rv_item_recommend_noti)?.apply {
             clipToOutline = true

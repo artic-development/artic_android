@@ -182,6 +182,7 @@ interface RetrofitInterface {
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<Int>>
 
+    //@경희)마이페이지 스크랩한 아카이브 get
     /**
      * 스크랩 한 아카이브 목록 (https://github.com/artic-development/artic_server/wiki/%EC%8A%A4%ED%81%AC%EB%9E%A9%ED%95%9C-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EB%AA%A9%EB%A1%9D)
      * @author 경희
@@ -224,7 +225,7 @@ interface RetrofitInterface {
         @Part("name") name: RequestBody,
         @Part("intro") intro:RequestBody,
         @Part img: MultipartBody.Part
-    ): Call<BaseResponse<Int>>
+    ): Call<BaseResponse<Any>>
 
     /**
      * 추천 검색어 (https://github.com/artic-development/artic_server/wiki/%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4)
