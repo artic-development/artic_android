@@ -19,6 +19,7 @@ import com.android.artic.ui.new_article_link.NewArticleLinkActivity
 import com.android.artic.util.dpToPx
 import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
@@ -66,5 +67,21 @@ class NewArticleFragment : Fragment() {
                 }
             )
         }
+    }
+
+    // 홈으로 다시 돌아오면 새로운 아티클 갱신
+    override fun onResume() {
+        super.onResume()
+
+        repository.getNewArticleList(
+            successCallback = {
+                articleCardAdapter.dataList = it
+                articleCardAdapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
+
+            }
+        )
     }
 }

@@ -8,4 +8,5 @@ data class Article (
     val like: Int,
     val domain_url: String = "artic",
     val isLiked: Boolean? = null // user data
+//    val isLiked : Boolean
 )
