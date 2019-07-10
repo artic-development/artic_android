@@ -69,9 +69,10 @@ class ArticleAboutActivity : BaseActivity() {
                     repository.getArticleListGivenArchive(
                         archiveId = archiveId,
                         successCallback = {
-                            adapter.data = it
-                            adapter.notifyDataSetChanged()
-
+                            it.take(4).let {cut->
+                                adapter.data = cut
+                                adapter.notifyDataSetChanged()
+                            }
                             btn_article_about_show_all.setOnClickListener {
                                 startActivity<ArticleActivity>(
                                     "archiveId" to archiveId,

@@ -33,7 +33,7 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
                 .apply(defaultHolderOptions)
                 .into(it)
         }
-        holder.reading_history_url?.text=dataList[position].url
+        holder.reading_history_url?.text=dataList[position].domain_url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
             var intent = Intent(ctx, ArticleAboutActivity::class.java)
