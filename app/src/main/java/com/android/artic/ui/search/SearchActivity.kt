@@ -65,7 +65,7 @@ class SearchActivity : BaseActivity() {
                     val keyword = v.text.toString()
 
                     if (keyword == "") {
-                        toast("검색어를 입력해주세요.")
+                        toast("검색어를 입력해주세요")
                     }
                     else {
                         startActivity<SearchResultActivity>("searchKeyword" to keyword)
