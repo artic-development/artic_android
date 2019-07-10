@@ -85,8 +85,10 @@ class CategoryArchiveFragment(
                 categoryId = categoryId,
                 successCallback = {
 
-                    if (it.isEmpty())
+                    if (it.isEmpty()) {
                         supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+                        adapter.notifyDataSetChanged()
+                    }
                     // 최신 4개의 archive 만 가져온다!
                     it.take(4).let { cut->
                         adapter.data = cut
@@ -100,7 +102,7 @@ class CategoryArchiveFragment(
         }
     }
 
-    // 홈으로 다시 돌아왔을 때 카테고리별 갱신ㄴ
+    // 홈으로 다시 돌아왔을 때 카테고리별 갱신
     override fun onResume() {
         super.onResume()
 
@@ -109,16 +111,15 @@ class CategoryArchiveFragment(
                 categoryId = categoryId,
                 successCallback = {
 
-                    if (it.isEmpty())
+                    if (it.isEmpty()) {
                         supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+                        adapter.notifyDataSetChanged()
+                    }
                     // 최신 4개의 archive 만 가져온다!
                     it.take(4).let { cut ->
                         adapter.data = cut
                         adapter.notifyDataSetChanged()
                     }
-
-                    // 데이터가 왜 다 똑같이 나오지?
-                    Log.v("숨니데이터 $categoryId + $categoryName", it.toString())
                 }
             )
         }

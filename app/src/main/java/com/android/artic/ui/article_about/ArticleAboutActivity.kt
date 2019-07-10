@@ -78,6 +78,7 @@ class ArticleAboutActivity : BaseActivity() {
                                     "archiveId" to archiveId,
                                     "categoryTitle" to "", // TODO category Title 도 받아와야하나?
                                     "archiveTitle" to archivePair.second
+//                                    "archiveScraped" to
                                 )
                             }
                         },
