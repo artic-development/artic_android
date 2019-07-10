@@ -48,6 +48,16 @@ class ArticleOverviewRecyclerViewAdapter(
         p0.link_title.text=dataList[p1].title
 
         // @수민 담기 버튼 리스너
+        p0.txt_put.setOnClickListener {
+            var bundle = Bundle()
+            bundle.putInt("article_idx", dataList[p1].id)
+
+            var putFragment = CollectArchiveDialogFragment()
+
+            putFragment.arguments = bundle
+
+            putFragment.show(ctx.supportFragmentManager, putFragment.tag)
+        }
         p0.btn_put.setOnClickListener {
             var bundle = Bundle()
             bundle.putInt("article_idx", dataList[p1].id)
@@ -122,5 +132,7 @@ class ArticleOverviewRecyclerViewAdapter(
         var btn_put = itemView.findViewById<ImageButton>(R.id.rv_link_list_storage)
         var relative_article_item_card = itemView.findViewById<RelativeLayout>(R.id.relative_rv_item_link_list)
         var toggle_btn_like = itemView.findViewById<ToggleButton>(R.id.rv_link_list_like)
+        var txt_put=itemView.findViewById<RelativeLayout>(R.id.rv_link_list_storage_txt)
+
     }
 }
