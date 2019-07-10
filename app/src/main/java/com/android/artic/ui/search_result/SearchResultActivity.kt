@@ -8,9 +8,7 @@ import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.logger.Logger
-import com.android.artic.ui.BaseActivity
-import io.reactivex.disposables.Disposable
-import kotlinx.android.synthetic.main.activity_search.*
+import com.android.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
 import org.koin.android.ext.android.inject

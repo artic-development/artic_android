@@ -10,7 +10,6 @@ import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
 import com.android.artic.repository.remote.response.BaseResponse
 import com.google.gson.JsonObject
-import io.reactivex.Observable
 import khronos.toString
 import okhttp3.OkHttpClient
 import retrofit2.Call
@@ -19,10 +18,20 @@ import retrofit2.Response
 import retrofit2.Retrofit
 import retrofit2.converter.gson.GsonConverterFactory
 
+/**
+ * it must need parameter activity!!!
+ * @author greedy0110
+ * */
 class Auth (
     private val context: Context,
     private val logger: Logger
 ) {
+    private val pref: SharedPreferences by lazy { context.getSharedPreferences("login", MODE_PRIVATE) }
+
+    enum class LoginKind {
+        EMAIL, KAKAO, FACEBOOK
+    }
+
     companion object {
         val BASE_URL = "http://15.164.11.203:3000"
         var token: String? = null
@@ -39,11 +48,7 @@ class Auth (
     fun logout(
         callback: () -> Unit
     ) {
-        val pref = context.getSharedPreferences("login", MODE_PRIVATE)
-        pref.edit().apply {
-            putString("www", "")
-            putString("ww", "")
-        }.apply()
+        clearLoginInfo()
         callback()
     }
 
@@ -51,26 +56,40 @@ class Auth (
      * it is called where app start
      * */
     fun autoLogin(
-        successCallback: (SigninResponse) -> Unit,
-        failCallback: () -> Unit
+        successCallback: () -> Unit,
+        failCallback: (String) -> Unit
     ) {
-        val pref = context.getSharedPreferences("login", MODE_PRIVATE)
+        val kind = pref.getInt("kind", -1)
         val www = pref.getString("www", "")
         val ww = pref.getString("ww", "")
-        if (www.isNullOrEmpty() || ww.isNullOrEmpty()) {
-            failCallback()
+        if (kind == -1) {
+            failCallback("fail auto login")
             return
         }
-        requestSignin(
-            data = Signin(www,ww),
-            successCallback = successCallback,
-            failCallback = {
-                failCallback()
-            },
-            statusCallback = { _, success, _ ->
-                if (!success) failCallback()
+        when (LoginKind.values()[kind]){
+            LoginKind.EMAIL -> {
+                if (www.isNullOrEmpty() || ww.isNullOrEmpty()) {
+                    failCallback("fail auto login")
+                    return
+                }
+
+                requestSignin(
+                    data = Signin(www,ww),
+                    successCallback = {
+                        successCallback()
+                    },
+                    failCallback = {
+                        failCallback("${it.message}")
+                    },
+                    statusCallback = { _, success, message ->
+                        if (!success) failCallback(message)
+                    }
+                )
             }
-        )
+            LoginKind.KAKAO -> {
+
+            }
+        }
     }
 
     fun requestSignin(
@@ -99,11 +118,9 @@ class Auth (
                         statusCallback?.invoke(it.status, it.success, it.message)
                         it.data?.let(successCallback)
                         it.data?.let { res->
-                            val pref = context.getSharedPreferences("login", MODE_PRIVATE)
-                            pref.edit().apply {
-                                putString("www", data.id)
-                                putString("ww", data.pw)
-                            }.apply()
+                            saveLoginInfo(
+                                LoginKind.EMAIL, data.id, data.pw
+                            )
                             token = res.token // 서버에서 받아온 토큰의 저장
                         }
                     }
@@ -130,6 +147,26 @@ class Auth (
                 successCallback, failCallback, statusCallback
             )
         )
+    }
+
+    private fun saveLoginInfo(
+        kind: LoginKind,
+        id: String?,
+        pw: String?
+    ) {
+        pref.edit().apply {
+            putInt("kind", kind.ordinal)
+            putString("www", id)
+            putString("ww", pw)
+        }.apply()
+    }
+
+    private fun clearLoginInfo(){
+        pref.edit().apply {
+            putInt("kind", -1)
+            putString("www", "")
+            putString("ww", "")
+        }.apply()
     }
 
     /**

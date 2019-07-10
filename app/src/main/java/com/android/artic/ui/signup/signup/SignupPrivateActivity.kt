@@ -14,16 +14,17 @@ import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
+import org.koin.core.parameter.parametersOf
 import java.util.regex.Pattern
 
 class SignupPrivateActivity : BaseActivity() {
-    private val api: Auth by inject()
+    private val auth: Auth by inject { parametersOf(this) }
     private val logger: Logger by inject()
 
     val namePattern = Pattern.compile("^[가-힣]*.{0,15}\$", Pattern.CASE_INSENSITIVE) // 이름 형식
@@ -121,10 +122,10 @@ class SignupPrivateActivity : BaseActivity() {
         val name = et_act_signup_private_name.text.toString()
         val birth = et_act_signup_private_birth.text.toString()
         if (name.isNotEmpty() && birth.isNotEmpty()) {
-            api.requestSignup(data = Signup(id,pw, birth.toDate("yyyy-MM-dd"), name),
+            auth.requestSignup(data = Signup(id,pw, birth.toDate("yyyy-MM-dd"), name),
                 successCallback = {
                     // 회원가입 성공한 것으로 자동 로그인하자!
-                    api.requestSignin(data = Signin(it.id, it.pw),
+                    auth.requestSignin(data = Signin(it.id, it.pw),
                         successCallback = {
                             // TODO 응답 받은 토큰을 저장할 것
                             logger.log("token data : $it")

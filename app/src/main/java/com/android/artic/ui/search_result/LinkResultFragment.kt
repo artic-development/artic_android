@@ -3,14 +3,13 @@ package com.android.artic.ui.search_result
 
 import android.os.Bundle
 import android.view.View
-import android.widget.TextView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_link_result.*

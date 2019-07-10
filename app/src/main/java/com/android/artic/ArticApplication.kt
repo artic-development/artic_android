@@ -2,8 +2,10 @@ package com.android.artic
 
 import android.app.Application
 import com.android.artic.auth.apiModule
+import com.android.artic.auth.kakao.KakaoSDKAdapter
 import com.android.artic.logger.loggerModule
 import com.android.artic.repository.module
+import com.kakao.auth.KakaoSDK
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -20,5 +22,8 @@ class ArticApplication : Application() {
                 apiModule
             ))
         }
+
+        // kakao init
+        KakaoSDK.init(KakaoSDKAdapter(this))
     }
 }

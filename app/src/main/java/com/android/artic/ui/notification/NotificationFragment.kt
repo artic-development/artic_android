@@ -6,7 +6,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.android.artic.R
 import com.android.artic.data.notification.*
 import com.android.artic.repository.ArticRepository
-import com.android.artic.ui.BaseFragment
+import com.android.artic.ui.base.BaseFragment
 import com.android.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_notification.*

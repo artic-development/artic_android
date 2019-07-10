@@ -11,17 +11,15 @@ import com.android.artic.R
 import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.logger.Logger
-import com.android.artic.ui.BaseActivity
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.navigation.NavigationActivity
-import com.jakewharton.rxbinding3.widget.textChanges
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import java.util.concurrent.TimeUnit
 import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
-    private val api: Auth by inject()
+    private val auth: Auth by inject()
     private val logger: Logger by inject()
 
     val emailPattern : Pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
@@ -103,7 +101,7 @@ class LoginActivity : BaseActivity() {
 //        else {
             logger.log("request signin")
             // TODO 로그인 구현이 되어야함!
-            api.requestSignin(
+            auth.requestSignin(
                 data = Signin(emailStr, passwordStr),
                 successCallback = {
                     // TODO 응답 받은 토큰을 저장할 것s

@@ -454,9 +454,33 @@ class ArticRepository (
         return Calls.response(local.getMyArchiveList())
     }
 
-
-    fun getRecommendWordList() : Call<List<RecommendWordData>> {
-        return Calls.response(local.getRecommendWordList())
+    /**
+     * 추천 검색어 (https://github.com/artic-development/artic_server/wiki/%EC%B6%94%EC%B2%9C-%EA%B2%80%EC%83%89%EC%96%B4)
+     * @author greedy0110
+     * */
+    fun getRecommendWordList(
+        successCallback: (List<RecommendWordData>) -> Unit,
+        failCallback: ((Throwable) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+    ) {
+        Auth.token?.let { token ->
+            remote.getSearchRecommendation(
+                "application/json",
+                token
+            ).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            RecommendWordData(res.search_word)
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
     }
 
 
@@ -479,6 +503,7 @@ class ArticRepository (
                             title = res.archive_title,
                             title_img_url = res.archive_img,
                             num_article = res.article_cnt,
+                            scrap = res.scrap,
                             category_title = res.category_title
                         )}
                     },
@@ -509,7 +534,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
                         ) }
                     },
                     successCallback = successCallback,
@@ -570,7 +596,7 @@ class ArticRepository (
 
     /**
      * get search article list given search keyword
-     * @see Archive
+     * @see Article
      * @author greedy0110
      * */
     fun getSearchArticleList(
@@ -632,7 +658,8 @@ class ArticRepository (
                             category_ids = listOf(res.category_idx),
                             title = res.archive_title,
                             title_img_url = res.archive_img,
-                            num_article = res.article_cnt
+                            num_article = res.article_cnt,
+                            scrap = res.scrap
                         ) }
                     },
                     successCallback = successCallback,
@@ -744,8 +771,6 @@ class ArticRepository (
         )
         }
     }
-
-
 
     /**
      * @param mapper transform server data to UI data
