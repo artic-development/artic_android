@@ -26,7 +26,10 @@ interface RetrofitInterface {
 
     // 신규 아카이브 받아오기
     @GET("/home/archive/archives/new")
-    fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>>
+    fun getNewArchiveList(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String
+    ): Call<BaseResponse<List<ArchiveResponse>>>
 
     @GET("/home/article/pick")
     fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>>
@@ -69,6 +72,8 @@ interface RetrofitInterface {
 
     @GET("/home/archive/category/{category_idx}")
     fun getArchiveListGivenCategory(
+        @Header("Content-Type") contentType: String,
+        @Header("token") token: String,
         @Path("category_idx") categoryIdx: Int
     ): Call<BaseResponse<List<ArchiveResponse>>>
 

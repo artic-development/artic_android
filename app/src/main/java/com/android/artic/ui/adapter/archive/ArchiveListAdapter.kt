@@ -39,7 +39,9 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
         holder.tv_title.text = dataList[position].title
 
         // 스크랩 버튼 select 설정
-        holder.ibtn_scrap.isChecked = dataList[position].scrap!!
+        (dataList[position].scrap)?.let {
+            holder.ibtn_scrap.isChecked = it
+        }
 
         Log.v("soominsoomin", dataList[position].toString())
 
@@ -54,7 +56,7 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
                 },
                 statusCallback = { status, success, message ->
                     ctx.toast(message)
-                    notifyItemChanged(dataList[position].id)
+//                    notifyItemChanged(dataList[position].id)
                 }
             )
         }
@@ -79,7 +81,8 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
             ctx.startActivity<ArticleActivity>(
                 "archiveTitle" to dataList[position].title,
                 "categoryTitle" to dataList[position].categories?.get(0),
-                "archiveId" to dataList[position].id
+                "archiveId" to dataList[position].id,
+                "archiveScraped" to dataList[position].scrap
             )
         }
     }

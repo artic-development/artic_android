@@ -23,8 +23,8 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getNewArticleList()
     }
 
-    override fun getNewArchiveList(): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getNewArchiveList()
+    override fun getNewArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getNewArchiveList(contentType, token)
     }
 
     override fun getArticle(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<ArticleResponse>> {
@@ -49,8 +49,8 @@ class RetrofitDataSource : RemoteDataSource {
         return retrofit.getCategoryArchiveList(contentType, token, categoryIdx)
     }
 
-    override fun getArchiveListGivenCategory(categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getArchiveListGivenCategory(categoryIdx)
+    override fun getArchiveListGivenCategory(contentType:String, token: String, categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>> {
+        return retrofit.getArchiveListGivenCategory(contentType, token, categoryIdx)
     }
 
     override fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
