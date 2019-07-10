@@ -16,6 +16,7 @@ import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.detail_reading_history.DetailReadingHistoryActivity
 import kotlinx.android.synthetic.main.fragment_reading_history.*
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
@@ -91,6 +92,22 @@ class ReadingHistoryFragment : Fragment() {
             )
 
         }
+    }
+
+    // 홈으로 다시 돌아오면 최근 읽은 아티클이 다시 갱신되도록
+    override fun onResume() {
+        super.onResume()
+
+        repository.readingHistoryArticle(
+            successCallback = {
+                logger.log("recent reading article list")
+                adapter.dataList = it.take(5)
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
+            }
+        )
     }
 
 }

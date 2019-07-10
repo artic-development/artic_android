@@ -85,7 +85,6 @@ class CategoryArchiveFragment(
                 categoryId = categoryId,
                 successCallback = {
 
-
                     if (it.isEmpty())
                         supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                     // 최신 4개의 archive 만 가져온다!
@@ -95,9 +94,31 @@ class CategoryArchiveFragment(
                     }
 
                     // 데이터가 왜 다 똑같이 나오지?
-                    Log.v("숨니 $categoryId + $categoryName", it.toString())
+                    Log.v("숨니데이터 $categoryId + $categoryName", it.toString())
                 }
             )
         }
+    }
+
+    // 홈으로 다시 돌아왔을 때 카테고리별 갱신ㄴ
+    override fun onResume() {
+        super.onResume()
+
+//        repository.getArchiveListGivenCategory(
+//            categoryId = categoryId,
+//            successCallback = {
+//
+//                if (it.isEmpty())
+//                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+//                // 최신 4개의 archive 만 가져온다!
+//                it.take(4).let { cut->
+//                    adapter.data = cut
+//                    adapter.notifyDataSetChanged()
+//                }
+//
+//                // 데이터가 왜 다 똑같이 나오지?
+//                Log.v("숨니데이터 $categoryId + $categoryName", it.toString())
+//            }
+//        )
     }
 }

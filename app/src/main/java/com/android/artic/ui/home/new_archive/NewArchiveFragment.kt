@@ -18,6 +18,7 @@ import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.detail_new_archive.DetailNewArchiveActivity
 import com.android.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_new_archive.*
+import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import retrofit2.Call
@@ -73,5 +74,20 @@ class NewArchiveFragment : Fragment() {
                 }
             )
         }
+    }
+
+    // 홈으로 다시 돌아왔을 때 새로운 아카이브 갱신
+    override fun onResume() {
+        super.onResume()
+
+        repository.getNewArchiveList(
+            successCallback = {
+                adapter.data = it
+                adapter.notifyDataSetChanged()
+            },
+            failCallback = {
+                toast(R.string.network_error)
+            }
+        )
     }
 }

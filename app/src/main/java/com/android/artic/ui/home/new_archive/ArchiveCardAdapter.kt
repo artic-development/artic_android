@@ -45,7 +45,8 @@ class ArchiveCardAdapter(
                 context.startActivity<ArticleActivity>(
                     "archiveTitle" to cur.title,
                     "categoryTitle" to categoryName,
-                    "archiveId" to cur.id
+                    "archiveId" to cur.id,
+                    "archiveScraped" to cur.scrap
                 )
             }
         }
