@@ -96,7 +96,7 @@ class RetrofitDataSource(
         name: RequestBody,
         intro:RequestBody,
         img: MultipartBody.Part
-    ): Call<BaseResponse<Int>> {
+    ): Call<BaseResponse<Any>> {
         return retrofit.putMyPageInfo( token,name,intro,img)
     }
     override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<MyPageResponse>> {

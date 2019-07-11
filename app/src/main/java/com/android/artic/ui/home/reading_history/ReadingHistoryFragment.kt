@@ -59,38 +59,6 @@ class ReadingHistoryFragment : Fragment() {
 
             rv_reading_history.adapter = adapter
             rv_reading_history.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL, false)
-
-//            repository.getReadingHistoryArticleList().enqueue(
-//                object : Callback<List<Article>> {
-//                    override fun onFailure(call: Call<List<Article>>, t: Throwable) {
-//                        toast(R.string.network_error)
-//                    }
-//
-//                    override fun onResponse(
-//                        call: Call<List<Article>>,
-//                        response: Response<List<Article>>
-//                    ) {
-//                        response.body()?.let {
-//                            // 데이터 없으면 fragment 제거
-//                            if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
-//                            adapter.dataList = it
-//                            adapter.notifyDataSetChanged()
-//                        }
-//                    }
-//                }
-//            )
-
-            repository.readingHistoryArticle(
-                successCallback = {
-                    logger.log("recent reading article list")
-                    adapter.dataList = it.take(5)
-                    adapter.notifyDataSetChanged()
-                },
-                failCallback = {
-                    toast(R.string.network_error)
-                }
-            )
-
         }
     }
 

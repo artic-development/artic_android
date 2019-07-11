@@ -13,6 +13,7 @@ import com.android.artic.data.Article
 import com.android.artic.ui.article_about.ArticleAboutActivity
 import com.android.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
+import org.jetbrains.anko.startActivity
 
 class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ReadingHistoryAdapter.Holder {
@@ -36,11 +37,9 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
         holder.reading_history_url?.text=dataList[position].domain_url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
-            var intent = Intent(ctx, ArticleAboutActivity::class.java)
-
-            intent.putExtra("articleId", dataList[position].id)
-
-            ctx.startActivity(intent)
+            ctx.startActivity<ArticleAboutActivity>(
+                "articleId" to dataList[position].id
+            )
         }
     }
 

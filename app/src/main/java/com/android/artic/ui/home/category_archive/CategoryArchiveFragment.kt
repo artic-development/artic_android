@@ -101,12 +101,8 @@ class CategoryArchiveFragment(
                         adapter.data = cut
                         adapter.notifyDataSetChanged()
                     }
-
-                    // 데이터가 왜 다 똑같이 나오지?
-                    Log.v("숨니데이터 $categoryId + $categoryName", it.toString())
                 },
                 failCallback = {
-                    logger.error("category empty $categoryName")
                     supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                 }
             )
