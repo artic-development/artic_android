@@ -18,7 +18,6 @@ import org.koin.android.ext.android.inject
  *
  */
 class SearchResultActivity : BaseActivity() {
-    private val logger: Logger by inject()
     private var searchKeyword = ""
     private lateinit var adapter: SearchResultAdapter
     private lateinit var archiveListFragment: ArchiveListFragment

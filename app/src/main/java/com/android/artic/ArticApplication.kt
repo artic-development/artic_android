@@ -24,6 +24,6 @@ class ArticApplication : Application() {
         }
 
         // kakao init
-        KakaoSDK.init(KakaoSDKAdapter(this))
+        //KakaoSDK.init(KakaoSDKAdapter(this))
     }
 }
