@@ -65,7 +65,7 @@ class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
                         mypage_scrap_empty_view.visibility=View.VISIBLE
                     }
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )

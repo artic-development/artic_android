@@ -77,7 +77,7 @@ class ArticleAboutActivity : BaseActivity() {
                                 )
                             }
                         },
-                        failCallback = {
+                        errorCallback = {
                             toast(R.string.network_error)
                         }
                     )

@@ -32,8 +32,9 @@ class ArticRepository (
     fun postArchiveScrap(
         archiveIdx: Int,
         successCallback: ((Int) -> Unit)? = null,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit),
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.postArchiveScrap(
@@ -47,7 +48,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback!!,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -58,8 +60,9 @@ class ArticRepository (
         archiveIdx: Int,
         articleIdx: Int,
         successCallback: ((Int) -> Unit)? = null,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit),
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let {token ->
             remote.postCollectArticleInArchive(
@@ -74,7 +77,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback!!,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -84,8 +88,9 @@ class ArticRepository (
     fun postArticleLike(
         articleIdx: Int,
         successCallback: ((Int) -> Unit)? = null,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit),
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.postArticleLike(
@@ -99,7 +104,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback!!,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -109,8 +115,9 @@ class ArticRepository (
     fun getCategoryArchiveList(
         categoryId: Int,
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.getCategoryArchiveList(
@@ -133,7 +140,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -149,8 +157,9 @@ class ArticRepository (
      * */
     fun getCategoryList(
         successCallback: (List<Category>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         remote.getCategoryList().enqueue(
             createFromRemoteCallback(
@@ -165,7 +174,8 @@ class ArticRepository (
                 },
                 successCallback = successCallback,
                 failCallback = failCallback,
-                statusCallback = statusCallback
+                statusCallback = statusCallback,
+                errorCallback = errorCallback
             )
         )
     }
@@ -182,8 +192,9 @@ class ArticRepository (
     fun getArticle(
         articleId: Int,
         successCallback: (Article) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let {token ->
             remote.getArticle(
@@ -207,7 +218,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -222,8 +234,9 @@ class ArticRepository (
     fun getArticleWithExtra(
         articleId: Int,
         successCallback: (Article, Pair<Int?, String?>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.getArticle(
@@ -251,7 +264,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -264,8 +278,9 @@ class ArticRepository (
      * */
     fun getArticPickList(
         successCallback: (List<Article>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         remote.getArticPickList().enqueue(
             createFromRemoteCallback(
@@ -284,26 +299,10 @@ class ArticRepository (
                 },
                 successCallback = successCallback,
                 failCallback = failCallback,
-                statusCallback = statusCallback
+                statusCallback = statusCallback,
+                errorCallback = errorCallback
             )
         )
-    }
-
-    /**
-     * get archive name given archive Id by Asynchronous
-     * @author greedy0110
-     * */
-    fun getArchiveName(archiveId: Int): Call<String> {
-        return Calls.response(local.getArchiveName(archiveId))
-    }
-
-    /**
-     * get dummy article list by asynchronous
-     * @see Article
-     * @author greedy0110
-     * */
-    fun getDummyArticleList(): Call<List<Article>> {
-        return Calls.response(local.getDummyArticleList())
     }
 
     /**
@@ -314,9 +313,10 @@ class ArticRepository (
     fun getArchiveListGivenCategory(
         categoryId: Int,
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
-        ){
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ){
         Auth.token?.let {token ->
             remote.getArchiveListGivenCategory(
                 contentType = "application/json",
@@ -338,7 +338,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -351,8 +352,10 @@ class ArticRepository (
      * */
     fun getNewArchiveList(
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ) {
         Auth.token?.let {token ->
             remote.getNewArchiveList(
                 contentType = "application/json",
@@ -373,7 +376,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -386,8 +390,10 @@ class ArticRepository (
      * */
     fun getNewArticleList(
         successCallback: (List<Article>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ) {
         remote.getNewArticleList().enqueue(
             createFromRemoteCallback(
                 mapper = {
@@ -404,7 +410,8 @@ class ArticRepository (
                 },
                 successCallback = successCallback,
                 failCallback = failCallback,
-                statusCallback = statusCallback
+                statusCallback = statusCallback,
+                errorCallback = errorCallback
             )
         )
     }
@@ -419,8 +426,9 @@ class ArticRepository (
     fun getArticleListGivenArchive(
         archiveId: Int,
         successCallback: (List<Article>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.getArticleListGivenArchiveId(
@@ -445,15 +453,11 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
-    }
-
-    // TODO (@수민) 내 아카이브 조회 아래 걸로 바꾼 후에 이거 지우긴
-    fun getMyArchiveList() : Call<List<Archive>> {
-        return Calls.response(local.getMyArchiveList())
     }
 
     /**
@@ -462,8 +466,9 @@ class ArticRepository (
      * */
     fun getRecommendWordList(
         successCallback: (List<RecommendWordData>) -> Unit,
-        failCallback: ((Throwable) -> Unit)?=null,
-        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+        failCallback: ((String) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.getSearchRecommendation(
@@ -479,7 +484,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -489,8 +495,9 @@ class ArticRepository (
 
     fun getMyPageScrap(
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)?=null,
-        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+        failCallback: ((String) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ){
         Auth.token?.let{token->
             remote.getScrapArchiveList(
@@ -511,7 +518,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
 
                 )
             )
@@ -521,8 +529,9 @@ class ArticRepository (
     // 나의 아카이브 조회
     fun getMyPageMe(
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ){
         Auth.token?.let {token ->
             remote.getMyArchiveList(
@@ -542,7 +551,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -550,8 +560,9 @@ class ArticRepository (
 
     fun getMyInfo(
         successCallback: (MyPage) -> Unit,
-        failCallback: ((Throwable) -> Unit)?=null,
-        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+        failCallback: ((String) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ){
         Auth.token?.let{token->
             remote.getMyPageInfo(
@@ -569,7 +580,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
 
@@ -584,8 +596,9 @@ class ArticRepository (
     fun getSearchArticleList(
         keyword: String,
         successCallback: (List<Article>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let {token ->
             remote.getSearchArticleList(
@@ -610,7 +623,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -624,8 +638,9 @@ class ArticRepository (
     fun getSearchArchiveList(
         keyword: String,
         successCallback: (List<Archive>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ){
         Auth.token?.let {token ->
             remote.getSearchArchiveList(
@@ -646,7 +661,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -655,8 +671,9 @@ class ArticRepository (
     fun addMyArchive(
         data: MakeNewArchiveData,
         successCallback: (Int) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let {token ->
             remote.postRegisterArchive("application/json", token,
@@ -672,7 +689,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -683,8 +701,9 @@ class ArticRepository (
         intro: RequestBody,
         img:MultipartBody.Part,
         successCallback: (Int) -> Unit,
-        failCallback: ((Throwable) -> Unit)?=null,
-        statusCallback: ((Int, Boolean, String) -> Unit)?=null
+        failCallback: ((String) -> Unit)?=null,
+        statusCallback: ((Int, Boolean, String) -> Unit)?=null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ){
         Auth.token?.let{token->
             remote.putMyPageInfo(token,
@@ -698,7 +717,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -707,8 +727,9 @@ class ArticRepository (
     fun readArticle(
         articleIdx: Int,
         successCallback: (Any) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.postArticleRead(
@@ -721,15 +742,18 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
     }
     fun readingHistoryArticle(
         successCallback: (List<Article>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null) {
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ) {
 
         Auth.token?.let{token->
         remote.getReadingHistoryArticle("application/json", token).enqueue(
@@ -747,7 +771,8 @@ class ArticRepository (
                 },
                 successCallback = successCallback,
                 failCallback = failCallback,
-                statusCallback = statusCallback
+                statusCallback = statusCallback,
+                errorCallback = errorCallback
             )
         )
         }
@@ -759,8 +784,9 @@ class ArticRepository (
      * */
     fun getNotification(
         successCallback: (List<AppNotification>) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         Auth.token?.let { token ->
             remote.getNotification(token).enqueue(
@@ -805,7 +831,8 @@ class ArticRepository (
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
-                    statusCallback = statusCallback
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
                 )
             )
         }
@@ -816,19 +843,22 @@ class ArticRepository (
      * @param successCallback will be called when server interaction success
      * @param failCallback will be called when server interaction fail
      * @param statusCallback will be called when server interaction with no error
+     * @param errorCallback will be called when called onFailure (network error)
      * @author greedy0110
      * */
     private fun <UI, SERVER: BaseResponse<*>>createFromRemoteCallback(
         mapper: (SERVER) -> UI,
         successCallback: ((UI) -> Unit)?,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ): Callback<SERVER>
     {
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
                 logger.error("createFromRemoteCallback error ${t.message}")
-                failCallback?.invoke(t)
+                errorCallback?.invoke(t)
             }
 
             override fun onResponse(
@@ -839,10 +869,10 @@ class ArticRepository (
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
-                    if (it.data != null)
+                    if (it.success && it.data != null)
                         successCallback?.invoke(mapper(it))
                     else if (!it.success) {
-                        failCallback?.invoke(IllegalStateException("createFromRemoteCallback data is null"))
+                        failCallback?.invoke(it.message)
                     }
                     else {
                         logger.error("createFromRemoteCallback data is null")
@@ -865,14 +895,16 @@ class ArticRepository (
         mapper: (SERVER) -> UI,
         extra: (SERVER) -> EXTRA,
         successCallback: ((UI, EXTRA) -> Unit)?,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ): Callback<SERVER>
     {
         logger.log("call createFromRemoteCallback")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
                 logger.error("createFromRemoteCallback error ${t.message}")
-                failCallback?.invoke(t)
+                errorCallback?.invoke(t)
             }
 
             override fun onResponse(
@@ -882,10 +914,10 @@ class ArticRepository (
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
-                    if (it.data != null)
+                    if (it.success && it.data != null)
                         successCallback?.invoke(mapper(it), extra(it))
                     else if (!it.success) {
-                        failCallback?.invoke(IllegalStateException("createFromRemoteCallbackAddExtra data is null"))
+                        failCallback?.invoke(it.message)
                     }
                     else {
                         logger.error("createFromRemoteCallbackAddExtra data is null")

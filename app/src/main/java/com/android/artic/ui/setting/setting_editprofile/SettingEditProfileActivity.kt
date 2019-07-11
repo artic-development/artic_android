@@ -92,8 +92,10 @@ class SettingEditProfileActivity : BaseActivity() {
                 edit_profile_myinfo_et.setText(it.my_info)
             },
             failCallback = {
-                toast(R.string.network_error)
                 logger.log("mypage edit fail")
+            },
+            errorCallback = {
+                toast(R.string.network_error)
             }
         )
 

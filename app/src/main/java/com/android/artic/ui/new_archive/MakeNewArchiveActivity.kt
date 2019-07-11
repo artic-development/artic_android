@@ -54,9 +54,9 @@ class MakeNewArchiveActivity : AppCompatActivity() {
                         toast("아카이브 생성 완료")
                         finish()
                     },
-                    failCallback = {
-                        logger.error("${it.message}")
+                    errorCallback = {
                         toast(R.string.network_error)
+
                     }
                 )
             }

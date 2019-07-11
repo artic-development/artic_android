@@ -13,6 +13,7 @@ import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 /**
@@ -52,7 +53,10 @@ class ArchiveListFragment(
                 }
             },
             failCallback = {
-                logger.error("ArchiveListFragment ${it.message}")
+                logger.error("ArchiveListFragment $it")
+
+            },
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

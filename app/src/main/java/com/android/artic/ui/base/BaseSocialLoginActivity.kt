@@ -71,12 +71,15 @@ open class BaseSocialLoginActivity : BaseActivity() {
                                 successCallback = {
                                     startActivity(intentFor<NavigationActivity>().clearTask().newTask())
                                 },
-                                failCallback = { t ->
-                                    logger.error("facebook login fail ${t.message}")
-                                    toast(R.string.network_error)
+                                failCallback = { message ->
+                                    logger.error("facebook login fail $message")
+
                                 },
                                 statusCallback = { _, success, message ->
                                     if (!success) toast(message)
+                                },
+                                errorCallback = {
+                                    toast(R.string.network_error)
                                 }
                             )
                         }

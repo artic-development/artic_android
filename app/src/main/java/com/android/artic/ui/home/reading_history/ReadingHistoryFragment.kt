@@ -70,7 +70,7 @@ class ReadingHistoryFragment : Fragment() {
             repository.readingHistoryArticle(
                 successCallback = {
                     if (it.isEmpty()) {
-                        supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
+                        supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
                         return@readingHistoryArticle
                     }
                     logger.log("recent reading article list")
@@ -78,8 +78,11 @@ class ReadingHistoryFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 },
                 failCallback = {
+
+                    supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
+                },
+                errorCallback = {
                     toast(R.string.network_error)
-                    supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
                 }
             )
         }

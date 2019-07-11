@@ -53,9 +53,10 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                     archiveIdx = collectArchiveListAdapter.selectArchiveId,
                     articleIdx = selectArticleId,
                     successCallback = {
+                        toast("success storage")
                     },
                     failCallback = {
-                        toast("fail")
+                      //  toast("fail storage")
                     },
                     statusCallback = { status, success, message ->
                         toast(message)
@@ -102,7 +103,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                     linear_dialog_put_archive_make_new_archive.visibility=View.VISIBLE
                 }
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

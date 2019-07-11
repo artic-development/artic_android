@@ -94,7 +94,7 @@ class CategoryArchiveFragment(
 
                     if (it.isEmpty()) {
                         logger.log("category empty $categoryName")
-                        supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+                        supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
                     }
                     // 최신 4개의 archive 만 가져온다!
                     it.take(4).let { cut->
@@ -103,7 +103,7 @@ class CategoryArchiveFragment(
                     }
                 },
                 failCallback = {
-                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
+                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
                 }
             )
         }
