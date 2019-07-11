@@ -9,7 +9,9 @@ import com.android.artic.repository.remote.RemoteDataSource
 import com.android.artic.repository.remote.response.BaseResponse
 import com.android.artic.ui.new_archive.MakeNewArchiveData
 import com.android.artic.ui.search.data.RecommendWordData
+import com.android.artic.util.fromServer
 import com.google.gson.JsonObject
+import khronos.toDate
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -574,26 +576,6 @@ class ArticRepository (
         }
     }
 
-
-    // TODO 어떻게 여러가지 타입의 서버에서 받아오는 데이터를 한번에 처리할 수 있을까?
-    /**
-     * get new notification list by async
-     * @see AppNotification
-     * @author greedy0110
-     * */
-    fun getNewNotificationList(): Call<List<AppNotification>> {
-        return Calls.response(local.getNewNotificationList())
-    }
-
-    /**
-     * get already read notification list by async
-     * @see AppNotification
-     * @author greedy0110
-     * */
-    fun getAlreadyReadNotificationList(): Call<List<AppNotification>> {
-        return Calls.response(local.getAlreadyReadNotificationList())
-    }
-
     /**
      * get search article list given search keyword
      * @see Article
@@ -772,6 +754,64 @@ class ArticRepository (
     }
 
     /**
+     * https://github.com/artic-development/artic_server/wiki/%EC%95%8C%EB%A6%BC%EC%A1%B0%ED%9A%8C
+     * @author greedy0110
+     * */
+    fun getNotification(
+        successCallback: (List<AppNotification>) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.getNotification(token).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) listOf()
+                        else it.data.map { res ->
+                            when(res.notification_type) {
+                                "0" -> { // New Article
+                                    AddArticleNotification(
+                                        viewType = NotificationType.ADD_ARTICLE,
+                                        date = res.date.fromServer(),
+                                        img_url = res.articles[0].thumnail,
+                                        archive_title = res.articles[0].archive_title?:"",
+                                        archive_id = res.articles[0].archive_idx?:-1
+                                    )
+                                }
+                                "1" -> {
+                                    RecommendArchiveNotification(
+                                        viewType = NotificationType.RECOMMEND_ARCHIVE,
+                                        img_url = "", // 기본 이미지!
+                                        date = res.date.fromServer(),
+                                        articleImgUrls = res
+                                            .articles.take(3) // 최대 3개!
+                                            .map { article -> article.thumnail }
+                                    )
+                                }
+                                "2" -> {
+                                    RemindArticleNotification(
+                                        viewType = NotificationType.REMIND_ARCHIVE,
+                                        img_url = res.articles[0].thumnail,
+                                        date = res.date.fromServer(),
+                                        articleName = res.articles[0].article_title,
+                                        num_article = res.articles.size
+                                    )
+                                }
+                                else -> {
+                                    throw IllegalArgumentException("서버에서 잘못된 정보를보냄")
+                                }
+                            }
+                        }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback
+                )
+            )
+        }
+    }
+
+    /**
      * @param mapper transform server data to UI data
      * @param successCallback will be called when server interaction success
      * @param failCallback will be called when server interaction fail
@@ -780,7 +820,7 @@ class ArticRepository (
      * */
     private fun <UI, SERVER: BaseResponse<*>>createFromRemoteCallback(
         mapper: (SERVER) -> UI,
-        successCallback: (UI) -> Unit,
+        successCallback: ((UI) -> Unit)?,
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
     {
@@ -800,13 +840,14 @@ class ArticRepository (
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
                     if (it.data != null)
-                        successCallback(mapper(it))
+                        successCallback?.invoke(mapper(it))
+                    else if (!it.success) {
+                        failCallback?.invoke(IllegalStateException("createFromRemoteCallback data is null"))
+                    }
                     else {
                         logger.error("createFromRemoteCallback data is null")
                     }
-                    if (!it.success) {
-                        failCallback?.invoke(IllegalStateException("createFromRemoteCallback data is null"))
-                    }
+
                 }
             }
 
@@ -823,7 +864,7 @@ class ArticRepository (
     private fun <UI, SERVER: BaseResponse<*>, EXTRA>createFromRemoteCallbackAddExtra(
         mapper: (SERVER) -> UI,
         extra: (SERVER) -> EXTRA,
-        successCallback: (UI, EXTRA) -> Unit,
+        successCallback: ((UI, EXTRA) -> Unit)?,
         failCallback: ((Throwable) -> Unit)? = null,
         statusCallback: ((Int, Boolean, String) -> Unit)? = null): Callback<SERVER>
     {
@@ -842,13 +883,14 @@ class ArticRepository (
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
                     if (it.data != null)
-                        successCallback(mapper(it), extra(it))
+                        successCallback?.invoke(mapper(it), extra(it))
+                    else if (!it.success) {
+                        failCallback?.invoke(IllegalStateException("createFromRemoteCallbackAddExtra data is null"))
+                    }
                     else {
                         logger.error("createFromRemoteCallbackAddExtra data is null")
                     }
-                    if (!it.success) {
-                        failCallback?.invoke(IllegalStateException("createFromRemoteCallbackAddExtra data is null"))
-                    }
+
                 }
             }
 

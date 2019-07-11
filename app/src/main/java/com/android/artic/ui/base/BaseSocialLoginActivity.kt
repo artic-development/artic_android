@@ -87,6 +87,7 @@ open class BaseSocialLoginActivity : BaseActivity() {
 
             override fun onCancel() {
                 logger.log("facebook login cancel")
+                onFacebookLoginCancel()
             }
 
             override fun onError(error: FacebookException?) {
@@ -114,6 +115,8 @@ open class BaseSocialLoginActivity : BaseActivity() {
         // 페이스북 로그아웃 시 이거 사용하면 된다.
         //LoginManager.getInstance().logOut()
     }
+
+    open fun onFacebookLoginCancel() {}
 
     //    private fun setKakaoLogin() {
 //        Session.getCurrentSession().addCallback(object : ISessionCallback{

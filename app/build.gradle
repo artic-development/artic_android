@@ -120,5 +120,8 @@ dependencies {
     // facebook
     implementation 'com.facebook.android:facebook-login:[5,6)'
 
-    implementation 'com.airbnb.android:lottie:2.8.0'
+    // lottie
+    def lottieVersion = '3.0.7'
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
 }

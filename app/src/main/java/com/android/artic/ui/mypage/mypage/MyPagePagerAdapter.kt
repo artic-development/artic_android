@@ -31,6 +31,7 @@ class MyPagePagerAdapter(
             if (fragment.view != null && pager != null) {
                 currentPosition = position
                 fragment.view?.let{
+                    pager.setPagingDisabled()
                     pager.measureCurrentView(it)
                 }
             }
