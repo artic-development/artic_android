@@ -142,13 +142,13 @@
                 android:id="@+id/view3"
                 android:layout_width="match_parent"
                 android:layout_height="0.1dp"
-                android:background="@color/brown_grey" />
+                android:background="@color/very_light_pink_two" />
 
             <View
                 android:id="@+id/view5"
                 android:layout_width="match_parent"
                 android:layout_height="10dp"
-                android:background="@color/very_light_pink" />
+                android:background="#f9f9f9" />
 
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
