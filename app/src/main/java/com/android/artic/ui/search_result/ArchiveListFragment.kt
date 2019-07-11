@@ -52,7 +52,7 @@ class ArchiveListFragment(
                 }
             },
             failCallback = {
-                logger.error("ArchiveListFragment ${it.message}")
+                logger.error("ArchiveListFragment $it")
                 toast(R.string.network_error)
             }
         )
