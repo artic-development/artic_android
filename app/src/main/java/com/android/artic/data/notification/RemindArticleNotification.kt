@@ -1,5 +1,6 @@
 package com.android.artic.data.notification
 
+import com.android.artic.data.Article
 import java.util.*
 
 data class RemindArticleNotification (
@@ -7,6 +8,8 @@ data class RemindArticleNotification (
     override val img_url: String,
     override val date: Date,
     override val isRead: Boolean = false,
+    override val id: String,
     val articleName: String,
-    val num_article: Int
+    val num_article: Int,
+    val articleList: List<Article>
 ): AppNotification

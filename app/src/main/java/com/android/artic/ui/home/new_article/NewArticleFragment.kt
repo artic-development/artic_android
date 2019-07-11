@@ -2,29 +2,21 @@ package com.android.artic.ui.home.new_article
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.Gravity
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
-import androidx.viewpager2.widget.ViewPager2
 import com.android.artic.R
-import com.android.artic.data.Article
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.android.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.android.artic.ui.new_article_link.NewArticleLinkActivity
 import com.android.artic.util.dpToPx
-import com.github.rubensousa.gravitysnaphelper.GravitySnapHelper
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
-import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 class NewArticleFragment : Fragment() {
     private val repository : ArticRepository by inject()
@@ -63,7 +55,7 @@ class NewArticleFragment : Fragment() {
                     articleCardAdapter.dataList = it
                     articleCardAdapter.notifyDataSetChanged()
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )

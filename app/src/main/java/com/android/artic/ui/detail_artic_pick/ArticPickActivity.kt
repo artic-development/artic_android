@@ -34,7 +34,7 @@ class ArticPickActivity : BaseActivity() {
                 adapter.dataList = it
                 adapter.notifyDataSetChanged()
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

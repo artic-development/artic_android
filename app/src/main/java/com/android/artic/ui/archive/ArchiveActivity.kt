@@ -69,7 +69,7 @@ class ArchiveActivity : BaseActivity() {
 
                     logger.log(it.toString())
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )

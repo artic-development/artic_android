@@ -21,7 +21,7 @@ class CategoryAdapter(
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view = LayoutInflater.from(context).inflate(R.layout.rv_item_category, parent, false).apply {
             // 여기서 부모 대비 비율을 지정할 수 있다.
-            layoutParams.height = (parent.height * heightRaito).toInt()
+          //  layoutParams.height = (parent.height * heightRaito).toInt()
         }
         return Holder(view)
     }

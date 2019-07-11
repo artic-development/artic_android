@@ -14,6 +14,7 @@ import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_link_result.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 
@@ -21,7 +22,6 @@ class LinkResultFragment(
     private val keyword: String
 ) : BaseFragment(R.layout.fragment_link_result) {
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
     val searchNumber = BehaviorSubject.createDefault(0)
 
@@ -51,9 +51,13 @@ class LinkResultFragment(
             },
             failCallback = {
                 logger.error("LinkResultFragment $it")
+                showEmptyView()
+            },
+            errorCallback = {
                 toast(R.string.network_error)
                 showEmptyView()
             }
+
         )
     }
 

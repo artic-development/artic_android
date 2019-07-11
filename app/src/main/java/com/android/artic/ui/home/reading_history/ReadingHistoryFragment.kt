@@ -78,8 +78,11 @@ class ReadingHistoryFragment : Fragment() {
                     adapter.notifyDataSetChanged()
                 },
                 failCallback = {
-                    toast(R.string.network_error)
+
                     supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
+                },
+                errorCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }

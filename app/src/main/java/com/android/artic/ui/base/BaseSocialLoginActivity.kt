@@ -68,16 +68,12 @@ open class BaseSocialLoginActivity : BaseActivity() {
                                 data = FacebookLoginBody(
                                     id = id, email = email, name = name, img = picture
                                 ),
-                                successCallback = {
-                                    startActivity(intentFor<NavigationActivity>().clearTask().newTask())
-                                },
-                                failCallback = { message ->
-                                    logger.error("facebook login fail $message")
-                                    toast(R.string.network_error)
-                                },
+                                successCallback = { successCallback() },
+                                failCallback = failCallback,
                                 statusCallback = { _, success, message ->
                                     if (!success) toast(message)
-                                }
+                                },
+                                errorCallback = errorCallback
                             )
                         }
                     }
@@ -92,6 +88,7 @@ open class BaseSocialLoginActivity : BaseActivity() {
 
             override fun onError(error: FacebookException?) {
                 logger.log("facebook login success $error")
+                onFacebookLoginError()
             }
         })
 
@@ -116,7 +113,19 @@ open class BaseSocialLoginActivity : BaseActivity() {
         //LoginManager.getInstance().logOut()
     }
 
+    open val successCallback: () -> Unit = {
+        startActivity(intentFor<NavigationActivity>().clearTask().newTask())
+    }
+    open val failCallback: (String) -> Unit = {
+        logger.error("facebook login fail $it")
+    }
+    open val statusCallback: () -> Unit = {
+    }
+    open val errorCallback: (Throwable) -> Unit = {}
+
     open fun onFacebookLoginCancel() {}
+    open fun onFacebookLoginError() {}
+    open fun onFacebookLoginSuccess() {}
 
     //    private fun setKakaoLogin() {
 //        Session.getCurrentSession().addCallback(object : ISessionCallback{

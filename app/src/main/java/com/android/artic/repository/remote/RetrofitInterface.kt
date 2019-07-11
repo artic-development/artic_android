@@ -65,7 +65,7 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("category_idx") categoryIdx: Int
-    ) : Call<BaseResponse<List<ArchiveResponse>>>
+    ): Call<BaseResponse<List<ArchiveResponse>>>
 
     // @수민) 아티클 담기
     /**
@@ -78,7 +78,7 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Path("archive_idx") archiveId: Int,
         @Path("article_idx") articleIdx: Int
-    ) : Call<BaseResponse<Int>>
+    ): Call<BaseResponse<Int>>
 
     // @수민) 아티클 좋아요
     /**
@@ -90,7 +90,7 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
-    ) : Call<BaseResponse<Int>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
+    ): Call<BaseResponse<Int>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
 
 
     // @수민) 아카이브 스크랩
@@ -99,7 +99,7 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("archive_idx") archiveIdx: Int
-    ) : Call<BaseResponse<Any>>
+    ): Call<BaseResponse<Any>>
 
     /**
      * 홈 카테고리별 아카이브 (https://github.com/artic-development/artic_server/wiki/%EC%B9%B4%ED%85%8C%EA%B3%A0%EB%A6%AC-%EB%B3%84-%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EC%A1%B0%ED%9A%8C)
@@ -178,7 +178,7 @@ interface RetrofitInterface {
     @POST("/archive/article/{article_idx}/history")
     fun postArticleRead(
         @Header("Content-Type") contentType: String,
-        @Header("token") token:String,
+        @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
     ): Call<BaseResponse<Int>>
 
@@ -190,7 +190,7 @@ interface RetrofitInterface {
     @GET("/mypage/archive/scrap")
     fun getScrapArchiveList(
         @Header("Content-Type") contentType: String,
-        @Header("token") token:String
+        @Header("token") token: String
     ): Call<BaseResponse<List<ArchiveResponse>>>
 
     /**
@@ -211,7 +211,7 @@ interface RetrofitInterface {
     fun getMyPageInfo(
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
-    ) : Call<BaseResponse<MyPageResponse>>
+    ): Call<BaseResponse<MyPageResponse>>
 
     /**
      * 마이페이지 수정 (https://github.com/artic-development/artic_server/wiki/%EB%A7%88%EC%9D%B4%ED%8E%98%EC%9D%B4%EC%A7%80-%EC%88%98%EC%A0%95)
@@ -223,7 +223,7 @@ interface RetrofitInterface {
         @Header("token") token: String,
 
         @Part("name") name: RequestBody,
-        @Part("intro") intro:RequestBody,
+        @Part("intro") intro: RequestBody,
         @Part img: MultipartBody.Part
     ): Call<BaseResponse<Any>>
 
@@ -246,4 +246,14 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String
     ): Call<BaseResponse<List<NotificationResponse>>>
+
+    /**
+     * 읽음으로 바꿈 (https://github.com/artic-development/artic_server/wiki/%EC%9D%BD%EC%9D%8C%EC%9C%BC%EB%A1%9C-%EB%B0%94%EA%BF%88)
+     * @author greedy0110
+     * */
+    @PUT("/notification/read")
+    fun readNotification(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ): Call<BaseResponse<Any>>
 }

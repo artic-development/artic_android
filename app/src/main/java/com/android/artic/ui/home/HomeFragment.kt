@@ -57,7 +57,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     }
                     trans.commitAllowingStateLoss()
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )

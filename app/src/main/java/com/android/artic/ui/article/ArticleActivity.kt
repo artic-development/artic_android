@@ -6,6 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
+import com.android.artic.logger.Logger
 import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
@@ -24,6 +25,7 @@ class ArticleActivity : BaseActivity() {
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
 
 
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_article)
@@ -34,6 +36,7 @@ class ArticleActivity : BaseActivity() {
         var archiveScraped = intent.getBooleanExtra("archiveScraped", false)
 
         link_btn_scrap.isChecked = archiveScraped // 아카이브 스크랩 여부에 따라 스크랩 버튼 바꿔줌
+
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         rv_link_list.adapter = adapter
@@ -52,11 +55,10 @@ class ArticleActivity : BaseActivity() {
                     empty_view_act_article.visibility = View.VISIBLE
                     rv_link_list.visibility = View.GONE
                 }
-
                 adapter.dataList = it
                 adapter.notifyDataSetChanged()
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

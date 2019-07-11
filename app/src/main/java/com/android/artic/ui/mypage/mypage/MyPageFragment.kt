@@ -24,7 +24,6 @@ import org.koin.android.ext.android.inject
 class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     private lateinit var adapter: MyPagePagerAdapter
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
     private lateinit var scrapFragment: MyPageScrapFragment
     private lateinit var meFragment: MyPageMeFragment
 
@@ -99,8 +98,10 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                     txt_my_page_introduce.text = it.my_info
                 },
                 failCallback = {
-                    toast(R.string.network_error)
                     logger.log("mypage fail")
+                },
+                errorCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }

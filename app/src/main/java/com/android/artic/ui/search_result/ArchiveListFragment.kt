@@ -13,6 +13,7 @@ import com.android.artic.ui.adapter.archive.ArchiveListAdapter
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 /**
@@ -22,7 +23,6 @@ class ArchiveListFragment(
     private val keyword: String
 ) : BaseFragment(R.layout.fragment_archive_result) {
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
     lateinit var adapter: ArchiveListAdapter
     val searchNumber = BehaviorSubject.createDefault(0)
 
@@ -53,6 +53,9 @@ class ArchiveListFragment(
             },
             failCallback = {
                 logger.error("ArchiveListFragment $it")
+
+            },
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )
