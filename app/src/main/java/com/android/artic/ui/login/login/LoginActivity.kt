@@ -20,7 +20,6 @@ import java.util.regex.Pattern
 
 class LoginActivity : BaseActivity() {
     private val auth: Auth by inject()
-    private val logger: Logger by inject()
 
     val emailPattern : Pattern = Pattern.compile("^[A-Z0-9._%+-]+@[A-Z0-9.-]+\\.[A-Z]{2,6}$", Pattern.CASE_INSENSITIVE)
     val passwordPattern = Pattern.compile("^(?=.*[a-zA-Z])(?=.*[0-9]).{8,}$", Pattern.CASE_INSENSITIVE)

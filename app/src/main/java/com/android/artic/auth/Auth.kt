@@ -1,14 +1,17 @@
 package com.android.artic.auth
 
+import android.app.Activity
 import android.content.Context
 import android.content.Context.MODE_PRIVATE
 import android.content.SharedPreferences
+import com.android.artic.auth.facebook.FacebookLoginBody
 import com.android.artic.auth.response.SigninResponse
 import com.android.artic.auth.response.SignupResponse
 import com.android.artic.data.auth.Signin
 import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
 import com.android.artic.repository.remote.response.BaseResponse
+import com.facebook.login.LoginManager
 import com.google.gson.JsonObject
 import khronos.toString
 import okhttp3.OkHttpClient
@@ -54,8 +57,11 @@ class Auth (
 
     /**
      * it is called where app start
+     * @param activity 소셜 로그인 할 때 필요하다!
+     * @author greedy0110
      * */
     fun autoLogin(
+        activity: Activity,
         successCallback: () -> Unit,
         failCallback: (String) -> Unit
     ) {
@@ -87,7 +93,10 @@ class Auth (
                 )
             }
             LoginKind.KAKAO -> {
-
+                // 아직 미구현 상태이다. 나중에 카카오 로그인이 필요할때 이부분에 코드를 추가해줄 것
+            }
+            LoginKind.FACEBOOK -> {
+                LoginManager.getInstance().logIn(activity, mutableListOf("public_profile", "email"))
             }
         }
     }
@@ -116,12 +125,63 @@ class Auth (
                     response.body()?.let {
                         logger.log("from SERVER : \n$it")
                         statusCallback?.invoke(it.status, it.success, it.message)
-                        it.data?.let(successCallback)
-                        it.data?.let { res->
-                            saveLoginInfo(
-                                LoginKind.EMAIL, data.id, data.pw
-                            )
-                            token = res.token // 서버에서 받아온 토큰의 저장
+                        if (it.success) {
+                            it.data?.let { res ->
+                                saveLoginInfo(
+                                    LoginKind.EMAIL, data.id, data.pw
+                                )
+                                token = res.token // 서버에서 받아온 토큰의 저장
+                            }
+                            it.data?.let(successCallback)
+                        }
+                        else {
+                            failCallback?.invoke(IllegalStateException("signin failed show detail in statusCallback"))
+                        }
+                    }
+                }
+
+            }
+        )
+    }
+
+    fun requestFacebookLogin(
+        data: FacebookLoginBody,
+        successCallback: (String) -> Unit,
+        failCallback: ((Throwable) -> Unit)? = null,
+        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null
+    ) {
+        retrofit.requestFacebookLogin(
+            body = JsonObject().apply {
+                addProperty("id", data.id)
+                addProperty("email", data.email)
+                addProperty("name", data.name)
+                addProperty("img", data.img)
+            }
+        ).enqueue(
+            object : Callback<BaseResponse<String>> {
+                override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
+                    failCallback?.invoke(t)
+                }
+
+                override fun onResponse(
+                    call: Call<BaseResponse<String>>,
+                    response: Response<BaseResponse<String>>
+                ) {
+                    response.body()?.let {
+                        logger.log("from SERVER : \n$it")
+                        statusCallback?.invoke(it.status, it.success, it.message)
+                        if (it.success) {
+                            it.data?.let { res ->
+                                saveLoginInfo(
+                                    LoginKind.FACEBOOK, data.id, null
+                                )
+                                logger.log("get facebook login token : $res")
+                                token = res // 서버에서 받아온 토큰의 저장
+                            }
+                            it.data?.let(successCallback)
+                        }
+                        else {
+                            failCallback?.invoke(IllegalStateException("facebook login failed show detail in statusCallback"))
                         }
                     }
                 }

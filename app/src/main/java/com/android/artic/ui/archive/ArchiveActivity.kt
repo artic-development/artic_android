@@ -20,7 +20,6 @@ import org.koin.android.ext.android.inject
  * */
 class ArchiveActivity : BaseActivity() {
 //    private var categoryId: Int = -1
-    private val logger: Logger by inject()
     private val repository: ArticRepository by inject()
     private val adapter: ArchiveListAdapter by lazy { ArchiveListAdapter(this, listOf()) }
 
