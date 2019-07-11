@@ -54,4 +54,6 @@ interface RemoteDataSource {
         token: String,
         archiveIdx: Int
     ) : Call<BaseResponse<Any>>
+
+    fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>>
 }

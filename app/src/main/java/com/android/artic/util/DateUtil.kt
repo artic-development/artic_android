@@ -1,5 +1,7 @@
 package com.android.artic.util
 
+import khronos.minutes
+import khronos.toDate
 import java.util.*
 
 // TODO 영어로 바꾸면? 다른 언어로 바꾸면?!
@@ -29,4 +31,9 @@ fun Date.howMuchPreviousFrom(date: Date): String {
         minuteDiff != 0L -> "${minuteDiff}분 전"
         else -> "에"
     }
+}
+
+fun String?.fromServer(): Date {
+    if (this == null) return 1.minutes.ago
+    return toDate("yyyy-MM-ddThh:mm:ss.000Z")
 }

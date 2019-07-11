@@ -50,49 +50,77 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
             container_notification_new.visibility = View.GONE
             container_notification_old.visibility = View.GONE
 
-            repository.getNewNotificationList().enqueue(
-                object : Callback<List<AppNotification>> {
-                    override fun onFailure(call: Call<List<AppNotification>>, t: Throwable) {
-                        toast(R.string.network_error)
+            repository.getNotification(
+                successCallback = {
+                    // 새로운 알림
+                    it.filter { !it.isRead }.let {
+                        if (it.isNotEmpty()) {
+                            container_notification_new.visibility = View.VISIBLE
+                            relative_frag_notification_no_alert.visibility = View.GONE
+                        }
+                        adapterNewNotification.data = it
+                        adapterNewNotification.notifyDataSetChanged()
                     }
 
-                    override fun onResponse(
-                        call: Call<List<AppNotification>>,
-                        response: Response<List<AppNotification>>
-                    ) {
-                        response.body()?.let {
-                            if (it.isNotEmpty()) {
-                                container_notification_new.visibility = View.VISIBLE
-                                relative_frag_notification_no_alert.visibility = View.GONE
-                            }
-                            adapterNewNotification.data = it
-                            adapterNewNotification.notifyDataSetChanged()
+                    // 읽은 알람
+                    it.filter { it.isRead }.let {
+                        if (it.isNotEmpty()) {
+                            container_notification_old.visibility = View.VISIBLE
+                            relative_frag_notification_no_alert.visibility = View.GONE
                         }
+                        adapterOldNotification.data = it
+                        adapterOldNotification.notifyDataSetChanged()
                     }
+
+                },
+                failCallback = {
+
                 }
             )
 
-            repository.getAlreadyReadNotificationList().enqueue(
-                object : Callback<List<AppNotification>> {
-                    override fun onFailure(call: Call<List<AppNotification>>, t: Throwable) {
-                        toast(R.string.network_error)
-                    }
-
-                    override fun onResponse(
-                        call: Call<List<AppNotification>>,
-                        response: Response<List<AppNotification>>
-                    ) {
-                        response.body()?.let {
-                            if (it.isNotEmpty()) {
-                                container_notification_old.visibility = View.VISIBLE
-                                relative_frag_notification_no_alert.visibility = View.GONE
-                            }
-                            adapterOldNotification.data = it
-                            adapterOldNotification.notifyDataSetChanged()
-                        }
-                    }
-                }
-            )
+//            repository.getNewNotificationList().enqueue(
+//                object : Callback<List<AppNotification>> {
+//                    override fun onFailure(call: Call<List<AppNotification>>, t: Throwable) {
+//                        toast(R.string.network_error)
+//                    }
+//
+//                    override fun onResponse(
+//                        call: Call<List<AppNotification>>,
+//                        response: Response<List<AppNotification>>
+//                    ) {
+//                        response.body()?.let {
+//                            if (it.isNotEmpty()) {
+//                                container_notification_new.visibility = View.VISIBLE
+//                                relative_frag_notification_no_alert.visibility = View.GONE
+//                            }
+//                            adapterNewNotification.data = it
+//                            adapterNewNotification.notifyDataSetChanged()
+//                        }
+//                    }
+//                }
+//            )
+//
+//            repository.getAlreadyReadNotificationList().enqueue(
+//                object : Callback<List<AppNotification>> {
+//                    override fun onFailure(call: Call<List<AppNotification>>, t: Throwable) {
+//                        toast(R.string.network_error)
+//                    }
+//
+//                    override fun onResponse(
+//                        call: Call<List<AppNotification>>,
+//                        response: Response<List<AppNotification>>
+//                    ) {
+//                        response.body()?.let {
+//                            if (it.isNotEmpty()) {
+//                                container_notification_old.visibility = View.VISIBLE
+//                                relative_frag_notification_no_alert.visibility = View.GONE
+//                            }
+//                            adapterOldNotification.data = it
+//                            adapterOldNotification.notifyDataSetChanged()
+//                        }
+//                    }
+//                }
+//            )
         }
     }
 }
