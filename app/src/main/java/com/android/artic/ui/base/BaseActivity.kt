@@ -6,11 +6,14 @@ import android.os.Bundle
 import android.os.PersistableBundle
 import android.view.View
 import androidx.appcompat.app.AppCompatActivity
+import com.android.artic.logger.Logger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
+import org.koin.android.ext.android.inject
 
 abstract class BaseActivity: AppCompatActivity() {
     private val compositeDisposable = CompositeDisposable()
+    protected val logger: Logger by inject()
 
     /**
      * registry Disposable for clear when activity is gone

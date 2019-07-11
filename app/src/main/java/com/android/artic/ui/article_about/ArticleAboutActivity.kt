@@ -22,7 +22,6 @@ import org.koin.android.ext.android.inject
 class ArticleAboutActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private val adapter: ArticleAdapter by lazy { ArticleAdapter(this, listOf()) }
-    private val logger: Logger by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)

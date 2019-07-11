@@ -25,7 +25,6 @@ import java.util.regex.Pattern
 
 class SignupPrivateActivity : BaseActivity() {
     private val auth: Auth by inject { parametersOf(this) }
-    private val logger: Logger by inject()
 
     val namePattern = Pattern.compile("^[가-힣]*.{0,15}\$", Pattern.CASE_INSENSITIVE) // 이름 형식
     val birthPattern = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", Pattern.CASE_INSENSITIVE) // 날짜 형식

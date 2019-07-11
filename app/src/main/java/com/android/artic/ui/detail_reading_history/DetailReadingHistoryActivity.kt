@@ -16,7 +16,6 @@ import org.koin.android.ext.android.inject
 class DetailReadingHistoryActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
-    private val logger: Logger by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
