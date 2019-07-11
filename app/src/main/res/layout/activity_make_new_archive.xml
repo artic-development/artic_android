@@ -32,7 +32,8 @@
             android:textSize="17sp"
             android:textColor="#707070"
             android:fontFamily="@font/nanum_barungothic_regular"
-            android:includeFontPadding="false"/>
+            android:includeFontPadding="false"
+            android:padding="20dp"/>
 
     </RelativeLayout>
     
@@ -57,14 +58,18 @@
         android:id="@+id/et_act_make_new_archive_title"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:layout_marginLeft="20dp"
-        android:layout_marginRight="20dp"
-        android:layout_marginTop="15dp"
+        android:paddingLeft="20dp"
+        android:paddingRight="20dp"
+        android:paddingTop="15dp"
+        android:paddingBottom="300dp"
         android:hint="브랜드 디자인"
         android:textSize="14sp"
         android:textColor="@color/black"
         android:fontFamily="@font/nanum_barungothic_regular"
         android:includeFontPadding="false"
-        android:background="@null"/>
+        android:background="@null"
+        />
+
+
 
 </LinearLayout>

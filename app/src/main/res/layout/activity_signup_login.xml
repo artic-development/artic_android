@@ -23,7 +23,7 @@
             android:includeFontPadding="false"
             android:textSize="17sp"
             android:layout_centerVertical="true"
-            android:layout_marginRight="20dp"
+            android:padding="20dp"
             android:text="다음"/>
         
     </RelativeLayout>
