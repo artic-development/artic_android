@@ -57,6 +57,7 @@ class NewArticleFragment : Fragment() {
                 HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
 
+            // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getNewArticleList(
                 successCallback = {
                     articleCardAdapter.dataList = it
@@ -67,21 +68,5 @@ class NewArticleFragment : Fragment() {
                 }
             )
         }
-    }
-
-    // 홈으로 다시 돌아오면 새로운 아티클 갱신
-    override fun onResume() {
-        super.onResume()
-
-        repository.getNewArticleList(
-            successCallback = {
-                articleCardAdapter.dataList = it
-                articleCardAdapter.notifyDataSetChanged()
-            },
-            failCallback = {
-                toast(R.string.network_error)
-
-            }
-        )
     }
 }
