@@ -5,6 +5,7 @@ import android.os.Bundle
 import com.android.artic.R
 import com.android.artic.auth.Auth
 import com.android.artic.logger.Logger
+import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.base.BaseSocialLoginActivity
 import com.android.artic.ui.login.login_start.LoginStartActivity
 import com.android.artic.ui.navigation.NavigationActivity
@@ -15,9 +16,14 @@ import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseSocialLoginActivity() {
+    private val repository: ArticRepository by inject()
+
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
         setContentView(R.layout.activity_splash)
+
+        repository.getNewArchiveList({})
+        repository.getNewArticleList({})
 
         auth.autoLogin(
             activity = this,
