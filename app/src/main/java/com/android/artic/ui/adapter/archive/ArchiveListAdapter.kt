@@ -27,6 +27,7 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
     private val repository : ArticRepository by ctx.inject()
     lateinit var detailNewArchiveCategoryAdapter: ArchiveCategoryAdapter
 
+
     override fun onCreateViewHolder(viewGroup: ViewGroup, viewType: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_archive_list, viewGroup, false)
 
@@ -41,6 +42,7 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
         // 스크랩 버튼 select 설정
         (dataList[position].scrap)?.let {
             holder.ibtn_scrap.isChecked = it
+
         }
 
         Log.v("soominsoomin", dataList[position].toString())

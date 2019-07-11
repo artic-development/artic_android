@@ -53,9 +53,10 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                     archiveIdx = collectArchiveListAdapter.selectArchiveId,
                     articleIdx = selectArticleId,
                     successCallback = {
+                        toast("success storage")
                     },
                     failCallback = {
-                        toast("fail")
+                      //  toast("fail storage")
                     },
                     statusCallback = { status, success, message ->
                         toast(message)
