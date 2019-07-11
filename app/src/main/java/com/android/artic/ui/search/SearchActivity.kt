@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import android.view.inputmethod.EditorInfo
+import com.android.artic.ui.search.data.RecommendWordData
 import com.android.artic.ui.search_result.SearchResultActivity
 import org.jetbrains.anko.startActivity
 
@@ -29,16 +30,36 @@ class SearchActivity : BaseActivity() {
         setSearch()
 
         rv_search_recommend_word.adapter = recommendWordAdapter
-        rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
+        rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL)
 
         // recyclerview space 조절
         var spacesItemDecoration =
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
+        var data: List<RecommendWordData> = listOf(
+            RecommendWordData("안드로이드"),
+            RecommendWordData("안드로이드"),
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+            ,
+            RecommendWordData("안드로이드")
+
+        )
+
+
         repository.getRecommendWordList(
             successCallback = {
-                recommendWordAdapter.dataList = it
+                recommendWordAdapter.dataList = data
                 recommendWordAdapter.notifyDataSetChanged()
             },
             failCallback = {

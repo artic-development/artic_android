@@ -39,7 +39,7 @@ class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
 
             rv_mypage_scrap.adapter = adapter
             rv_mypage_scrap.layoutManager = GridLayoutManager(this, 2)
-            rv_mypage_scrap.addItemDecoration(GridSpacesItemDecoration(this, 12.dpToPx(), 12.dpToPx()))
+            rv_mypage_scrap.addItemDecoration(GridSpacesItemDecoration(this, 18.dpToPx(), 18.dpToPx()))
         }
     }
 
