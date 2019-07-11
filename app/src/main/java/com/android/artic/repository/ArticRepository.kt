@@ -801,7 +801,8 @@ class ArticRepository (
                                         img_url = res.articles[0].thumnail,
                                         archive_title = res.articles[0].archive_title?:"",
                                         archive_id = res.articles[0].archive_idx?:-1,
-                                        id = res.notification_id
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 "1" -> {
@@ -820,7 +821,8 @@ class ArticRepository (
                                             url = data.link,
                                             domain_url = data.domain?:"")
                                         },
-                                        id = res.notification_id
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 "2" -> {
@@ -838,7 +840,8 @@ class ArticRepository (
                                             url = data.link,
                                             domain_url = data.domain?:"")
                                         },
-                                        id = res.notification_id
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 else -> {
