@@ -15,6 +15,7 @@ import com.android.artic.data.auth.Signin
 import com.android.artic.data.auth.Signup
 import com.android.artic.logger.Logger
 import com.android.artic.ui.base.BaseActivity
+import com.android.artic.ui.login.login.LoginActivity
 import com.android.artic.ui.navigation.NavigationActivity
 import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*
@@ -28,6 +29,8 @@ class SignupPrivateActivity : BaseActivity() {
 
     val namePattern = Pattern.compile("^[가-힣]*.{0,15}\$", Pattern.CASE_INSENSITIVE) // 이름 형식
     val birthPattern = Pattern.compile("^[0-9]{4}-[0-9]{2}-[0-9]{2}$", Pattern.CASE_INSENSITIVE) // 날짜 형식
+
+    private var loginActivated = false
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -62,12 +65,14 @@ class SignupPrivateActivity : BaseActivity() {
 
                     if (tv_act_signup_private_birth_check_success.visibility == View.VISIBLE) {
                         signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+                        loginActivated = true
                     }
                 }
                 else {
                     tv_act_signup_private_name_check_success.visibility = View.INVISIBLE
                     tv_act_signup_private_name_check_fail.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
+                    loginActivated = false
                 }
             }
         })
@@ -90,12 +95,14 @@ class SignupPrivateActivity : BaseActivity() {
 
                     if (tv_act_signup_private_name_check_success.visibility == View.VISIBLE) {
                         signup_private_done_txt.setTextColor(Color.parseColor("#4f80ff"))
+                        loginActivated = true
                     }
                 }
                 else {
                     tv_act_signup_private_birth_check_success.visibility = View.INVISIBLE
                     tv_act_signup_private_birth_check_fail.visibility = View.VISIBLE
                     signup_private_done_txt.setTextColor(Color.parseColor("#cdcdcd"))
+                    loginActivated = false
                 }
 
             }
@@ -105,7 +112,12 @@ class SignupPrivateActivity : BaseActivity() {
         et_act_signup_private_birth?.setOnEditorActionListener(object : TextView.OnEditorActionListener {
             override fun onEditorAction(v: TextView, actionId: Int, event: KeyEvent?): Boolean {
                 if (actionId == EditorInfo.IME_ACTION_DONE) {
-                    signup()
+                    if (loginActivated) {
+                        signup()
+                    }
+                    else {
+                        toast("형식에 맞게 입력해주세요.")
+                    }
                     return true
                 }
                 return false
@@ -129,12 +141,13 @@ class SignupPrivateActivity : BaseActivity() {
                             // TODO 응답 받은 토큰을 저장할 것
                             logger.log("token data : $it")
 
-                            val intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
+                            val intent = Intent(this@SignupPrivateActivity, LoginActivity::class.java)
 
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
 
                             this@SignupPrivateActivity.startActivity(intent)
+//                            finish()
                         },
                         statusCallback = {
                                 status, success, message ->

@@ -60,6 +60,8 @@
             android:textSize="21sp"
             android:includeFontPadding="false"
             android:text="PM과 디자이너가 원활하게 소통하는 법을 알려주세요"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="7sp"
             />
 
             <ToggleButton
