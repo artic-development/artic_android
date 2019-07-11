@@ -79,8 +79,6 @@ class CategoryArchiveFragment(
 
                 startActivity(intent)
             }
-
-
         }
     }
 

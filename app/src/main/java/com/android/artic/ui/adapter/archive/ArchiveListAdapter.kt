@@ -1,10 +1,12 @@
 package com.android.artic.ui.adapter.archive
+import androidx.core.content.ContextCompat
 
 import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.ToggleButton
@@ -42,21 +44,25 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
         (dataList[position].scrap)?.let {
             holder.ibtn_scrap.isChecked = it
         }
-
         Log.v("soominsoomin", dataList[position].toString())
 
         holder.ibtn_scrap.setOnClickListener{
             // 스크랩 버튼 서버 통신
             repository.postArchiveScrap(
+
                 archiveIdx = dataList[position].id,
                 successCallback = {
+
+
+
                 },
                 failCallback = {
 
                 },
                 statusCallback = { status, success, message ->
+
                     ctx.toast(message)
-                    notifyItemChanged(dataList[position].id)
+//                    notifyItemChanged(dataList[position].id)
                 }
             )
         }

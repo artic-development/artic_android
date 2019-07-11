@@ -20,8 +20,7 @@ import org.jetbrains.anko.startActivity
 class BigImageArticleAdapter (
     val ctx: Context,
     var dataList:List<Article>,
-    val widthRatio: Float = 1F, // custom image hieght ratio
-    val imageHieght: Int = 173.dpToPx() // custom image hieght
+    val widthRatio: Float = 1F // custom image hieght ratio
 ):RecyclerView.Adapter<BigImageArticleAdapter.Holder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_big_image_article, parent,false).apply {
@@ -53,8 +52,6 @@ class BigImageArticleAdapter (
         val container=itemView.findViewById<View?>(R.id.rv_big_image_article_container)
         val img_url=itemView.findViewById<ImageView?>(R.id.rv_big_image_article_img)?.apply {
             setTopRound(6.dpToPx().toFloat())
-            layoutParams.height = imageHieght
-            requestLayout()
         }
         val title=itemView.findViewById<TextView?>(R.id.rv_big_image_article_txt)
         val artic_pick_url=itemView.findViewById<TextView?>(R.id.rv_big_image_article_url)
