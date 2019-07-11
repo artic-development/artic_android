@@ -13,6 +13,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import android.view.inputmethod.EditorInfo
+import com.android.artic.ui.search.data.RecommendWordData
 import com.android.artic.ui.search_result.SearchResultActivity
 import org.jetbrains.anko.startActivity
 
@@ -29,7 +30,7 @@ class SearchActivity : BaseActivity() {
         setSearch()
 
         rv_search_recommend_word.adapter = recommendWordAdapter
-        rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.VERTICAL)
+        rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL)
 
         // recyclerview space 조절
         var spacesItemDecoration =
