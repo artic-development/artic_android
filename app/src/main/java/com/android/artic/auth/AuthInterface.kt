@@ -42,5 +42,19 @@ interface AuthInterface{
         @Body body: JsonObject
     ): Call<BaseResponse<SigninResponse>>
 
-    
+
+    /**
+     *
+     * body
+     *      id: String
+     *      email: String?
+     *      name: String
+     *      img: String?
+     * @author greedy0110
+     * */
+    @POST("/auth/facebook")
+    fun requestFacebookLogin(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Body body: JsonObject
+    ): Call<BaseResponse<String>>
 }

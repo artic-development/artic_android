@@ -40,7 +40,6 @@ import org.koin.android.ext.android.inject
 import java.io.*
 
 class SettingEditProfileActivity : BaseActivity() {
-    private val logger: Logger by inject()
     private val rxPermission by lazy { RxPermissions(this) }
     private val repository: ArticRepository by inject()
     private var btn: TextView?= null

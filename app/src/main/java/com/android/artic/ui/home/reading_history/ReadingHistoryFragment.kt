@@ -66,16 +66,23 @@ class ReadingHistoryFragment : Fragment() {
     override fun onResume() {
         super.onResume()
 
-        repository.readingHistoryArticle(
-            successCallback = {
-                logger.log("recent reading article list")
-                adapter.dataList = it.take(5)
-                adapter.notifyDataSetChanged()
-            },
-            failCallback = {
-                toast(R.string.network_error)
-            }
-        )
+        activity?.run {
+            repository.readingHistoryArticle(
+                successCallback = {
+                    if (it.isEmpty()) {
+                        supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
+                        return@readingHistoryArticle
+                    }
+                    logger.log("recent reading article list")
+                    adapter.dataList = it.take(5)
+                    adapter.notifyDataSetChanged()
+                },
+                failCallback = {
+                    toast(R.string.network_error)
+                    supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commit()
+                }
+            )
+        }
     }
 
 }
