@@ -3,6 +3,7 @@ package com.android.artic.ui
 import android.content.Context
 import android.util.AttributeSet
 import android.util.Log
+import android.view.MotionEvent
 import android.view.View
 import androidx.viewpager.widget.ViewPager
 
@@ -12,6 +13,7 @@ import androidx.viewpager.widget.ViewPager
  * */
 class HeightWrappingViewPager : ViewPager {
     private var currentView: View? = null
+    private var swipeEnabled =  true
 
     constructor(context: Context): super(context) {
         initPageChangeListener()
@@ -27,6 +29,55 @@ class HeightWrappingViewPager : ViewPager {
             }
         })
     }
+
+    override fun onTouchEvent(event: MotionEvent?): Boolean {
+        try {
+
+            if (this.swipeEnabled) {
+
+                //				Log.i("INFO", "스크롤 중..");
+
+                return super.onTouchEvent(event)
+
+            }
+
+        } catch (e: Exception) {
+
+//            val exceptionAsStrting = sw.toString()
+
+            Log.e("INFO", "exception")
+
+        }
+
+
+
+
+
+
+        return false
+    }
+
+    override fun onInterceptTouchEvent(event: MotionEvent?): Boolean {
+        if (this.swipeEnabled) {
+            return super.onInterceptTouchEvent(event)
+
+        }
+
+        return false
+    }
+
+    public fun setPagingDisabled() { //이 메소드를 이용해서 스크롤을 막아줍니다.
+
+        this.swipeEnabled = false;
+
+    }
+
+    public fun setPagingEnabled() { //이 메소드를 이용해서 스크롤을 막아줍니다.
+
+        this.swipeEnabled = true;
+
+    }
+
 
     // Thanks to https://buptfarmer.wordpress.com/2016/05/27/wrappingviewpager-support-different-height-of-fragments/
     override fun onMeasure(widthMeasureSpec: Int, heightMeasureSpec: Int) {

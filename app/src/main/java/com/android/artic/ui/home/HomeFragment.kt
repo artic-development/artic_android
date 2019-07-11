@@ -55,14 +55,14 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                     it.forEach { category ->
                         trans.add(R.id.container_home_fragments, CategoryArchiveFragment(category.id, category.name), category.name)
                     }
-                    trans.commit()
+                    trans.commitAllowingStateLoss()
                 },
                 failCallback = {
                     toast(R.string.network_error)
                 }
             )
 
-            transaction.commit()
+            transaction.commitAllowingStateLoss()
 
             constraintLayout.setOnClickListener {
                 var intent = Intent(this, SearchActivity::class.java)

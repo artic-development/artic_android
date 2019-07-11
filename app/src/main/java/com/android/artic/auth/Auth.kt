@@ -85,7 +85,7 @@ class Auth (
                         successCallback()
                     },
                     failCallback = {
-                        failCallback("${it.message}")
+                        failCallback(it)
                     },
                     statusCallback = { _, success, message ->
                         if (!success) failCallback(message)
@@ -104,8 +104,9 @@ class Auth (
     fun requestSignin(
         data: Signin,
         successCallback: (SigninResponse) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
         ) {
         retrofit.requestSignin("application/json",
             JsonObject().apply {
@@ -115,7 +116,7 @@ class Auth (
         ).enqueue(
             object : Callback<BaseResponse<SigninResponse>> {
                 override fun onFailure(call: Call<BaseResponse<SigninResponse>>, t: Throwable) {
-                    failCallback?.invoke(t)
+                    errorCallback?.invoke(t)
                 }
 
                 override fun onResponse(
@@ -135,7 +136,7 @@ class Auth (
                             it.data?.let(successCallback)
                         }
                         else {
-                            failCallback?.invoke(IllegalStateException("signin failed show detail in statusCallback"))
+                            failCallback?.invoke(it.message)
                         }
                     }
                 }
@@ -147,8 +148,9 @@ class Auth (
     fun requestFacebookLogin(
         data: FacebookLoginBody,
         successCallback: (String) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         retrofit.requestFacebookLogin(
             body = JsonObject().apply {
@@ -160,7 +162,7 @@ class Auth (
         ).enqueue(
             object : Callback<BaseResponse<String>> {
                 override fun onFailure(call: Call<BaseResponse<String>>, t: Throwable) {
-                    failCallback?.invoke(t)
+                    errorCallback?.invoke(t)
                 }
 
                 override fun onResponse(
@@ -181,7 +183,7 @@ class Auth (
                             it.data?.let(successCallback)
                         }
                         else {
-                            failCallback?.invoke(IllegalStateException("facebook login failed show detail in statusCallback"))
+                            failCallback?.invoke(it.message)
                         }
                     }
                 }
@@ -193,7 +195,7 @@ class Auth (
     fun requestSignup(
         data: Signup,
         successCallback: (SignupResponse) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
+        failCallback: ((String) -> Unit)? = null,
         statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null) {
         retrofit.requestSignup("application/json",
             JsonObject().apply {
@@ -238,13 +240,15 @@ class Auth (
      * */
     private fun <T,SERVER: BaseResponse<T>>createFromRemoteCallback(
         successCallback: (T) -> Unit,
-        failCallback: ((Throwable) -> Unit)? = null,
-        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null): Callback<SERVER>
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((status: Int, success: Boolean, message: String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ): Callback<SERVER>
     {
         logger.log("call api")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
-                failCallback?.invoke(t)
+                errorCallback?.invoke(t)
             }
 
             override fun onResponse(
@@ -254,7 +258,10 @@ class Auth (
                 response.body()?.let {
                     logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
-                    it.data?.let(successCallback)
+                    if (it.success)
+                        it.data?.let(successCallback)
+                    else
+                        failCallback?.invoke(it.message)
                 }
             }
 
