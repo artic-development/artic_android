@@ -20,7 +20,12 @@ class DetailNewArchiveActivity : BaseActivity() {
 
         rv_detail_new_archive_list.adapter = adapter
         rv_detail_new_archive_list.layoutManager = LinearLayoutManager(this)
+    }
 
+    override fun onResume() {
+        super.onResume()
+
+        // 새로운 아카이브 리스트 받아오는 통신
         repository.getNewArchiveList(
             successCallback = {
                 adapter.dataList = it

@@ -51,6 +51,7 @@ class ArchiveActivity : BaseActivity() {
             toast("카테고리 아이디를 받아오지 못했습니다.")
         }
         else { // 카테고리 아이디를 제대로 받아온 경우
+            // 카테고리 아이디에 해당하는 아카이브들을 받아오는 통신
             repository.getCategoryArchiveList(
                 categoryId = categoryId,
                 successCallback = {
