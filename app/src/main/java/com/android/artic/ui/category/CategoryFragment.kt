@@ -16,6 +16,10 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
         super.onCreate(savedInstanceState)
+    }
+
+    override fun onResume() {
+        super.onResume()
 
         activity?.run {
             adapter = CategoryAdapter(this, listOf(), 0.1f)

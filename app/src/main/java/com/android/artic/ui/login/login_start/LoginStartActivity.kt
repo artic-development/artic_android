@@ -137,7 +137,9 @@ class LoginStartActivity : BaseActivity() {
                 requestMe()
             }
         })
-        Session.getCurrentSession().checkAndImplicitOpen()
+
+        // 카카오 자동로그인 시 이거 사용하면 된다.
+        //Session.getCurrentSession().checkAndImplicitOpen()
 
         // 카카오 로그아웃 시 이거 사용하면 된다.
         //UserManagement.getInstance().requestLogout(object : LogoutResponseCallback(){

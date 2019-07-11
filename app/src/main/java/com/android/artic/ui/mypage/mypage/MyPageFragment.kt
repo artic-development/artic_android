@@ -22,7 +22,7 @@ import org.koin.android.ext.android.inject
 
 
 class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
-    private lateinit var adapter: MyPageTabLayoutAdapter
+    private lateinit var adapter: MyPagePagerAdapter
     private val repository: ArticRepository by inject()
     private val logger: Logger by inject()
     private lateinit var scrapFragment: MyPageScrapFragment
@@ -43,7 +43,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             scrapFragment = MyPageScrapFragment()
             meFragment = MyPageMeFragment()
 
-            adapter = MyPageTabLayoutAdapter(supportFragmentManager, listOf(scrapFragment, meFragment))
+            adapter = MyPagePagerAdapter(supportFragmentManager, listOf(scrapFragment, meFragment))
             vp_my_page.adapter = adapter
             tl_my_page.setupWithViewPager(vp_my_page)
 
@@ -78,27 +78,31 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                 startActivity<MakeNewArchiveActivity>()
             }
 
+        }
+    }
+
+    override fun onResume() {
+        super.onResume()
+        activity?.run {
             repository.getMyInfo(
                 successCallback = {
                     logger.log("mypage info success $it")
-                    txt_my_page_name.text= it.name
-                    txt__my_page_email.text=it.id
-                    val img=it.profile_img
-                    img_my_page_profile?.let{
+                    txt_my_page_name.text = it.name
+                    txt__my_page_email.text = it.id
+                    val img = it.profile_img
+                    img_my_page_profile?.let {
                         Glide.with(ctx)
                             .load(img)
                             .apply(defaultHolderOptions)
                             .into(it)
                     }
-                    txt_my_page_introduce.text=it.my_info
+                    txt_my_page_introduce.text = it.my_info
                 },
                 failCallback = {
                     toast(R.string.network_error)
                     logger.log("mypage fail")
                 }
             )
-
-
         }
     }
 
@@ -130,7 +134,5 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             meFragment.requireAddArchiveButton.subscribe(archiveAddButtonShowTask)
         }
     }
-
-    //TODO mypage_plus_btn 내 아카이브 탭 눌렀을 때 데이타가 있을 때만 visible하게 하기
 }
 
