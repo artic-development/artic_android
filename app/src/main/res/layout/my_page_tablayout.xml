@@ -9,21 +9,22 @@
     <androidx.constraintlayout.widget.ConstraintLayout
         android:id="@+id/my_page_tablayout_srcap"
         android:layout_width="wrap_content"
-        android:layout_height="match_parent"
-        android:layout_weight="1">
+        android:layout_height="match_parent">
 
         <TextView
             android:id="@+id/txt_my_page_tablayout_scrap"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:text="스크랩"
             android:textStyle="bold"
+            android:textSize="14sp"
+            android:includeFontPadding="false"
+            android:layout_marginStart="13dp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+             />
 
         <ImageView
             android:id="@+id/img_my_page_tablayout_scrap"
@@ -39,20 +40,22 @@
         android:id="@+id/my_page_tablayout_me"
         android:layout_width="wrap_content"
         android:layout_height="match_parent"
-        android:layout_weight="1">
+
+        >
 
         <TextView
             android:id="@+id/txt_my_page_tablayout_me"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_weight="1"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:text="내 아카이브"
+            android:textSize="14sp"
             android:textStyle="bold"
+            android:includeFontPadding="false"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.5" />
+             />
 
         <ImageView
             android:id="@+id/img_my_page_tablayout_me"

@@ -23,7 +23,7 @@ class ArticleActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
     private var archiveId: Int = -1
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
-    private val logger: Logger by inject()
+
 
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -55,7 +55,6 @@ class ArticleActivity : BaseActivity() {
                     empty_view_act_article.visibility = View.VISIBLE
                     rv_link_list.visibility = View.GONE
                 }
-
                 adapter.dataList = it
                 adapter.notifyDataSetChanged()
             },
