@@ -6,6 +6,6 @@ data class RecommendArchiveNotification (
     override val viewType: NotificationType,
     override val img_url: String,
     override val date: Date,
-    val archiveId: Int,
+    override val isRead: Boolean = false,
     val articleImgUrls: List<String>
 ): AppNotification

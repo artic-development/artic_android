@@ -236,4 +236,14 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
     ): Call<BaseResponse<List<RecommendationResponse>>>
+
+    /**
+     * 알림조희 (https://github.com/artic-development/artic_server/wiki/%EC%95%8C%EB%A6%BC%EC%A1%B0%ED%9A%8C)
+     * @author greedy0110
+     * */
+    @GET("/notification")
+    fun getNotification(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String
+    ): Call<BaseResponse<List<NotificationResponse>>>
 }

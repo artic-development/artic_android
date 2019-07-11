@@ -7,7 +7,7 @@
     android:layout_height="match_parent"
     tools:context=".ui.notification.NotificationFragment">
 
-    <ScrollView
+    <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_fragment_notification"
         android:layout_width="0dp"
         android:layout_height="0dp"
@@ -89,7 +89,7 @@
                     app:layout_constraintTop_toBottomOf="@+id/label_notification_old" />
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
-    </ScrollView>
+    </androidx.core.widget.NestedScrollView>
 
     <RelativeLayout
         android:id="@+id/relative_frag_notification_no_alert"

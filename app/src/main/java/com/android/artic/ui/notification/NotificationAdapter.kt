@@ -11,6 +11,7 @@ import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.notification.*
 import com.android.artic.ui.archive.ArchiveActivity
+import com.android.artic.ui.article.ArticleActivity
 import com.android.artic.util.*
 import com.bumptech.glide.Glide
 import khronos.toDate
@@ -55,7 +56,7 @@ class NotificationAdapter(
 
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동!
-                        context.startActivity<ArchiveActivity>()
+                        context.startActivity<ArticleActivity>()
                     }
                 }
             }
@@ -75,7 +76,7 @@ class NotificationAdapter(
 
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동!
-                        context.startActivity<ArchiveActivity>()
+                        context.startActivity<ArticleActivity>()
                     }
                 }
             }
@@ -103,7 +104,7 @@ class NotificationAdapter(
                     }
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동
-                        context.startActivity<ArchiveActivity>()
+                        context.startActivity<ArticleActivity>()
                     }
                 }
             }

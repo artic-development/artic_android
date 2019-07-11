@@ -95,20 +95,6 @@ interface LocalDataSource {
 
     fun getMyPageMe() : List<Archive>
 
-    /**
-     * get new notification list by async
-     * @see AppNotification
-     * @author greedy0110
-     * */
-    fun getNewNotificationList(): List<AppNotification>
-
-    /**
-     * get already read notification list by async
-     * @see AppNotification
-     * @author greedy0110
-     * */
-    fun getAlreadyReadNotificationList(): List<AppNotification>
-
     fun getSearchArticleList(keyword: String): List<Article>
 
     /**
