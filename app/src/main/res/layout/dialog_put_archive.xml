@@ -96,11 +96,11 @@
     <androidx.appcompat.widget.AppCompatButton
         android:id="@+id/btn_rv_dialog_put_archive_complete"
         android:layout_width="match_parent"
-        android:layout_height="84dp"
+        android:layout_height="57dp"
         android:background="@color/artic_transparent"
         android:text="취소"
         android:textColor="@color/black"
-        android:textSize="17sp"
+        android:textSize="15sp"
         android:fontFamily="@font/nanum_barungothic_regular"
         android:includeFontPadding="false"/>
 

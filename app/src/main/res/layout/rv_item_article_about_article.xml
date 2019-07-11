@@ -13,7 +13,6 @@
         android:layout_height="match_parent">
         <ImageView
             android:scaleType="centerCrop"
-
             android:id="@+id/img_rv_item_article_about_article"
             android:layout_width="wrap_content"
             android:layout_height="82dp"

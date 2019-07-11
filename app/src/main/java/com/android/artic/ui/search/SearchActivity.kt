@@ -37,29 +37,9 @@ class SearchActivity : BaseActivity() {
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
-        var data: List<RecommendWordData> = listOf(
-            RecommendWordData("안드로이드"),
-            RecommendWordData("안드로이드"),
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-            ,
-            RecommendWordData("안드로이드")
-
-        )
-
-
         repository.getRecommendWordList(
             successCallback = {
-                recommendWordAdapter.dataList = data
+                recommendWordAdapter.dataList = it
                 recommendWordAdapter.notifyDataSetChanged()
             },
             failCallback = {
