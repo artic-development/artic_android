@@ -80,7 +80,7 @@ class ArticleWebViewActivity : AppCompatActivity() {
                         articleIdx = articleId,
                         successCallback = {
                         },
-                        failCallback = {
+                        errorCallback = {
                             toast(R.string.network_error)
                         },
                         statusCallback = {status, success, message ->
@@ -121,9 +121,8 @@ class ArticleWebViewActivity : AppCompatActivity() {
                     putFragment.show(this@ArticleWebViewActivity.supportFragmentManager, putFragment.tag)
                 }
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
-                finish()
             })
     }
 

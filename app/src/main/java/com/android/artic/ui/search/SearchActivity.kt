@@ -42,7 +42,7 @@ class SearchActivity : BaseActivity() {
                 recommendWordAdapter.dataList = it
                 recommendWordAdapter.notifyDataSetChanged()
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

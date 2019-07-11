@@ -99,8 +99,10 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                     txt_my_page_introduce.text = it.my_info
                 },
                 failCallback = {
-                    toast(R.string.network_error)
                     logger.log("mypage fail")
+                },
+                errorCallback = {
+                    toast(R.string.network_error)
                 }
             )
         }

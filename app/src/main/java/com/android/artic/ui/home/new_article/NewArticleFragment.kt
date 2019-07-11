@@ -62,7 +62,7 @@ class NewArticleFragment : Fragment() {
                     articleCardAdapter.dataList = it
                     articleCardAdapter.notifyDataSetChanged()
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )
@@ -78,9 +78,8 @@ class NewArticleFragment : Fragment() {
                 articleCardAdapter.dataList = it
                 articleCardAdapter.notifyDataSetChanged()
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
-
             }
         )
     }

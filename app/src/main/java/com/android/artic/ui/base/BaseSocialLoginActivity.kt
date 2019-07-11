@@ -73,10 +73,13 @@ open class BaseSocialLoginActivity : BaseActivity() {
                                 },
                                 failCallback = { message ->
                                     logger.error("facebook login fail $message")
-                                    toast(R.string.network_error)
+
                                 },
                                 statusCallback = { _, success, message ->
                                     if (!success) toast(message)
+                                },
+                                errorCallback = {
+                                    toast(R.string.network_error)
                                 }
                             )
                         }

@@ -15,6 +15,7 @@ import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.support.v4.toast
+import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 
@@ -68,7 +69,7 @@ class MyPageMeFragment : BaseFragment(R.layout.fragment_my_page_me) {
                         mypage_my_empty_view.visibility=View.VISIBLE
                     }
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )
