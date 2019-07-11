@@ -16,7 +16,7 @@ import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 /**
- * it must need archive id (intent["archiveId"])
+ * it must need article id (intent["articleId"])
  * @author greedy0110
  * */
 class ArticleAboutActivity : BaseActivity() {
