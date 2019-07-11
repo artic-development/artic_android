@@ -102,6 +102,9 @@ class CategoryArchiveFragment(
                         adapter.data = cut
                         adapter.notifyDataSetChanged()
                     }
+                },
+                failCallback = {
+                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commit()
                 }
             )
         }

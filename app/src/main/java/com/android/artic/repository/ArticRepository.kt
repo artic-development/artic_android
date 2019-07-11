@@ -801,8 +801,10 @@ class ArticRepository (
                     statusCallback?.invoke(it.status, it.success, it.message)
                     if (it.data != null)
                         successCallback(mapper(it))
-                    else
+                    else {
                         logger.error("createFromRemoteCallback data is null")
+                        failCallback?.invoke(IllegalStateException("createFromRemoteCallback data is null"))
+                    }
                 }
             }
 
@@ -839,8 +841,10 @@ class ArticRepository (
                     statusCallback?.invoke(it.status, it.success, it.message)
                     if (it.data != null)
                         successCallback(mapper(it), extra(it))
-                    else
+                    else {
                         logger.error("createFromRemoteCallbackAddExtra data is null")
+                        failCallback?.invoke(IllegalStateException("createFromRemoteCallbackAddExtra data is null"))
+                    }
                 }
             }
 
