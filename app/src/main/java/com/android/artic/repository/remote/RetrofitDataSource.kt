@@ -126,4 +126,8 @@ class RetrofitDataSource(
     override fun postArchiveScrap(contentType: String, token: String, archiveIdx: Int): Call<BaseResponse<Any>> {
         return retrofit.postArchiveScrap(contentType, token, archiveIdx)
     }
+
+    override fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>> {
+        return retrofit.getNotification(token = token)
+    }
 }
