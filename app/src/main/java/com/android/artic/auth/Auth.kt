@@ -63,7 +63,8 @@ class Auth (
     fun autoLogin(
         activity: Activity,
         successCallback: () -> Unit,
-        failCallback: (String) -> Unit
+        failCallback: (String) -> Unit,
+        errorCallback: ((Throwable) -> Unit)? = null
     ) {
         val kind = pref.getInt("kind", -1)
         val www = pref.getString("www", "")
@@ -89,7 +90,8 @@ class Auth (
                     },
                     statusCallback = { _, success, message ->
                         if (!success) failCallback(message)
-                    }
+                    },
+                    errorCallback = errorCallback
                 )
             }
             LoginKind.KAKAO -> {

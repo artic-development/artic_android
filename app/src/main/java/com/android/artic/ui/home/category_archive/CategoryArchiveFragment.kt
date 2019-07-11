@@ -79,15 +79,10 @@ class CategoryArchiveFragment(
 
                 startActivity(intent)
             }
-        }
-    }
 
-    // 홈으로 다시 돌아왔을 때 카테고리별 갱신
-    override fun onResume() {
-        super.onResume()
-
-        activity?.run {
             logger.log("category fragment $categoryId $categoryName")
+
+            // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getArchiveListGivenCategory(
                 categoryId = categoryId,
                 successCallback = {

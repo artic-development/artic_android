@@ -35,5 +35,5 @@ fun Date.howMuchPreviousFrom(date: Date): String {
 
 fun String?.fromServer(): Date {
     if (this == null) return 1.minutes.ago
-    return toDate("yyyy-MM-ddThh:mm:ss.000Z")
+    return toDate("yyyy-MM-dd'T'hh:mm:ss")
 }

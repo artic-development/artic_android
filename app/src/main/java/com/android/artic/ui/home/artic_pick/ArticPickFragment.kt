@@ -52,6 +52,7 @@ class ArticPickFragment : Fragment() {
                 HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_artic_pick.addItemDecoration(spacesItemDecoration)
 
+            // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getArticPickList(
                 successCallback = {
                     // 추천 데이터가 없으면 프레그먼트를 제거하자!

@@ -3,6 +3,7 @@ package com.android.artic.ui.navigation
 import androidx.fragment.app.Fragment
 import androidx.fragment.app.FragmentManager
 import androidx.fragment.app.FragmentPagerAdapter
+import androidx.fragment.app.FragmentStatePagerAdapter
 import com.android.artic.ui.category.CategoryFragment
 import com.android.artic.ui.home.HomeFragment
 import com.android.artic.ui.mypage.mypage.MyPageFragment
@@ -10,7 +11,7 @@ import com.android.artic.ui.notification.NotificationFragment
 
 class NavigationTabPagerAdapter(
     fm: FragmentManager
-) : FragmentPagerAdapter(fm) {
+) : FragmentStatePagerAdapter(fm) {
     // 필요할때 Fragment 를 만들어서 사용해야함. 맨 처음 화면이라 다른 프래그먼트 로드까지 하면 부하가 큼
     private var homeFragment: HomeFragment? = null
 

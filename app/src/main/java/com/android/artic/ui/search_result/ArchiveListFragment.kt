@@ -23,7 +23,6 @@ class ArchiveListFragment(
     private val keyword: String
 ) : BaseFragment(R.layout.fragment_archive_result) {
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
     lateinit var adapter: ArchiveListAdapter
     val searchNumber = BehaviorSubject.createDefault(0)
 

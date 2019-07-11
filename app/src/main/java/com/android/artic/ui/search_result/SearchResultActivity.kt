@@ -9,6 +9,7 @@ import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.logger.Logger
 import com.android.artic.ui.base.BaseActivity
+import com.android.artic.ui.base.BaseOnPageChangeListener
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
 import org.koin.android.ext.android.inject
@@ -42,22 +43,10 @@ class SearchResultActivity : BaseActivity() {
         search_result_viewpager.offscreenPageLimit=2
 
         search_result_viewpager.addOnPageChangeListener(
-            object : ViewPager.OnPageChangeListener {
-                private var currentPosition = 0
-
-                override fun onPageScrollStateChanged(state: Int) {
-
-                }
-
-                override fun onPageScrolled(position: Int, positionOffset: Float, positionOffsetPixels: Int) {
-                }
-
+            object : BaseOnPageChangeListener(adapter) {
                 // Page 가 변경될때 마다. 상단에 검색 결과가 변경, 반영되어야 한다.
                 override fun onPageSelected(position: Int) {
-                    adapter.getItem(currentPosition).onPauseFragment()
-                    adapter.getItem(position).onResumeFragment()
-                    currentPosition = position
-
+                    super.onPageSelected(position)
                     when (position) {
                         0 -> {
                             selectArchiveTab()

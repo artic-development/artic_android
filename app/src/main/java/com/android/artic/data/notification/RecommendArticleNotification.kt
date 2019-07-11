@@ -1,11 +1,14 @@
 package com.android.artic.data.notification
 
+import com.android.artic.data.Article
 import java.util.*
 
-data class RecommendArchiveNotification (
+data class RecommendArticleNotification (
     override val viewType: NotificationType,
     override val img_url: String,
     override val date: Date,
     override val isRead: Boolean = false,
-    val articleImgUrls: List<String>
+    override val id: String,
+    val articleImgUrls: List<String>,
+    val articleList: List<Article>
 ): AppNotification

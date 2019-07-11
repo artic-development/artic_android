@@ -130,4 +130,8 @@ class RetrofitDataSource(
     override fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>> {
         return retrofit.getNotification(token = token)
     }
+
+    override fun readNotification(token: String): Call<BaseResponse<Any>> {
+        return retrofit.readNotification(token = token)
+    }
 }
