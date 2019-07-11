@@ -48,7 +48,7 @@ class MyPageScrapActivity : BaseActivity() {
                     rv_mypage_scrap_link.visibility = View.VISIBLE
                 }
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

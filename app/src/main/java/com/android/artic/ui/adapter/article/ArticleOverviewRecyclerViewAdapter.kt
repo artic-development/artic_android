@@ -93,7 +93,7 @@ class ArticleOverviewRecyclerViewAdapter(
                 articleIdx = dataList[p1].id,
                 successCallback = {
                 },
-                failCallback = {
+                errorCallback = {
                     ctx.toast(R.string.network_error)
                 },
                 statusCallback = {status, success, message ->

@@ -103,7 +103,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                     linear_dialog_put_archive_make_new_archive.visibility=View.VISIBLE
                 }
             },
-            failCallback = {
+            errorCallback = {
                 toast(R.string.network_error)
             }
         )

@@ -36,7 +36,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                     adapter.data = it
                     adapter.notifyDataSetChanged()
                 },
-                failCallback = {
+                errorCallback = {
                     toast(R.string.network_error)
                 }
             )
