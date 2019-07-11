@@ -50,7 +50,7 @@ class LinkResultFragment(
                 }
             },
             failCallback = {
-                logger.error("LinkResultFragment ${it.message}")
+                logger.error("LinkResultFragment $it")
                 toast(R.string.network_error)
                 showEmptyView()
             }
