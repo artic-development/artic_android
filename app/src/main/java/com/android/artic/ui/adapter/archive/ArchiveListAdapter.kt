@@ -78,11 +78,6 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
         holder.rv_category_list.adapter = detailNewArchiveCategoryAdapter
         holder.rv_category_list.layoutManager = LinearLayoutManager(ctx, LinearLayoutManager.HORIZONTAL, false)
 
-        // 카레고리 리스트 간격 설정
-        var spacesItemDecoration =
-            HorizontalSpaceItemDecoration(ctx, 6.dpToPx(), 28.dpToPx())
-        holder.rv_category_list.addItemDecoration(spacesItemDecoration)
-
         holder.relative_archive_list_card.setOnClickListener {
             ctx.startActivity<ArticleActivity>(
                 "archiveTitle" to dataList[position].title,
