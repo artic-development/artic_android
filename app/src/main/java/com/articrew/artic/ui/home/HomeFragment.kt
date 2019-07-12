@@ -1,9 +1,8 @@
 package com.articrew.artic.ui.home
 
-import android.animation.Animator
 import android.content.Intent
 import android.os.Bundle
-import android.view.View
+import android.widget.ScrollView
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
@@ -13,7 +12,6 @@ import com.articrew.artic.ui.home.new_archive.NewArchiveFragment
 import com.articrew.artic.ui.home.new_article.NewArticleFragment
 import com.articrew.artic.ui.home.reading_history.ReadingHistoryFragment
 import com.articrew.artic.ui.search.SearchActivity
-import kotlinx.android.synthetic.main.activity_splash.*
 import kotlinx.android.synthetic.main.fragment_home.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -71,5 +69,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun requestTopScroll() {
+        super.requestTopScroll()
+        sv_fragment_home.isSmoothScrollingEnabled = true
+        sv_fragment_home.smoothScrollTo(0,0)
     }
 }

@@ -29,4 +29,6 @@ open class BaseFragment(
      * */
     open fun onPauseFragment() {}
 
+    open fun requestTopScroll() {}
+
 }

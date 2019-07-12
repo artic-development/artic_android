@@ -1,7 +1,6 @@
 package com.articrew.artic.util
 
-import khronos.minutes
-import khronos.toDate
+import khronos.*
 import java.util.*
 
 // TODO 영어로 바꾸면? 다른 언어로 바꾸면?!
@@ -29,11 +28,11 @@ fun Date.howMuchPreviousFrom(date: Date): String {
         dayDiff != 0L -> "${dayDiff}일 전"
         hourDiff != 0L -> "${hourDiff}시간 전"
         minuteDiff != 0L -> "${minuteDiff}분 전"
-        else -> "에"
+        else -> "방금"
     }
 }
 
 fun String?.fromServer(): Date {
     if (this == null) return 1.minutes.ago
-    return toDate("yyyy-MM-dd'T'hh:mm:ss")
+    return toDate("yyyy-MM-dd'T'hh:mm:ss") + 9.hours // TODO 몽고디비 타이머가 Korean time 적용되지 않는다.
 }
