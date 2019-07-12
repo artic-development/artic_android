@@ -110,13 +110,13 @@ class ArticleOverviewRecyclerViewAdapter(
                                 p0.like_number.text = (like_number_int - 1).toString()
                             }
 
-                            ctx.toast(message)
+//                            ctx.toast(message)
                         }
                         else if (status == 400) {
-                            ctx.toast(message)
+//                            ctx.toast(message)
                         }
                         else {
-                            ctx.toast("오잉")
+//                            ctx.toast("오잉")
                         }
                     }
                 }
