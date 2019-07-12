@@ -64,6 +64,7 @@ class NewArchiveFragment : Fragment() {
             rv_archive_card.addItemDecoration(spacesItemDecoration)
 
             // recyclerview 데이터 뿌리기
+            // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getNewArchiveList(
                 successCallback = {
                     adapter.data = it
@@ -74,20 +75,5 @@ class NewArchiveFragment : Fragment() {
                 }
             )
         }
-    }
-
-    // 홈으로 다시 돌아왔을 때 새로운 아카이브 갱신
-    override fun onResume() {
-        super.onResume()
-
-        repository.getNewArchiveList(
-            successCallback = {
-                adapter.data = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
     }
 }

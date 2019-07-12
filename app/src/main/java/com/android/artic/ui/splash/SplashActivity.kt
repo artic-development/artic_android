@@ -69,18 +69,30 @@ class SplashActivity : BaseSocialLoginActivity() {
         auth.autoLogin(
             activity = this,
             successCallback = {
-                autoLoginEnd.onNext(true)
+                successCallback()
             },
             failCallback = {
-                autoLoginEnd.onNext(false)
+                failCallback(it)
+            },
+            errorCallback = {
+                errorCallback(it)
             }
         )
 
 
     }
 
+    override val failCallback: (String) -> Unit = { autoLoginEnd.onNext(false) }
+    override val successCallback: () -> Unit = { autoLoginEnd.onNext(true) }
+    override val errorCallback: (Throwable) -> Unit = { autoLoginEnd.onNext(false)}
+
     override fun onFacebookLoginCancel() {
         super.onFacebookLoginCancel()
-        startActivity<LoginStartActivity>()
+        autoLoginEnd.onNext(false)
+    }
+
+    override fun onFacebookLoginError() {
+        super.onFacebookLoginError()
+        autoLoginEnd.onNext(false)
     }
 }

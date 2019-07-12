@@ -25,7 +25,6 @@ import org.koin.android.ext.android.inject
 class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
     private val repository: ArticRepository by inject()
     private lateinit var adapter: MyPageScrapAdapter
-    private val logger: Logger by inject()
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)

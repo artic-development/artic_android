@@ -2,10 +2,12 @@ package com.android.artic.ui.navigation
 
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.viewpager.widget.ViewPager
 import com.android.artic.R
 import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.logger.Logger
+import com.android.artic.ui.base.BaseOnPageChangeListener
 import kotlinx.android.synthetic.main.activity_navigation.*
 import org.koin.android.ext.android.inject
 
@@ -33,5 +35,9 @@ class NavigationActivity : AppCompatActivity() {
         for (i in 0 until tl_navigation.tabCount) {
             tl_navigation.getTabAt(i)?.setIcon(iconList[i])
         }
+
+        vp_navigation.addOnPageChangeListener(
+            BaseOnPageChangeListener(pagerAdapter)
+        )
     }
 }

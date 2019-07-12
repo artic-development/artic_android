@@ -7,6 +7,7 @@ data class AddArticleNotification(
     override val date: Date,
     override val img_url: String,
     override val isRead: Boolean = false,
+    override val id: String,
     val archive_title: String,
     val archive_id: Int
 ): AppNotification

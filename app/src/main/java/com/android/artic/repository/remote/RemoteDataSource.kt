@@ -56,4 +56,6 @@ interface RemoteDataSource {
     ) : Call<BaseResponse<Any>>
 
     fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>>
+
+    fun readNotification(token: String): Call<BaseResponse<Any>>
 }

@@ -22,7 +22,6 @@ class LinkResultFragment(
     private val keyword: String
 ) : BaseFragment(R.layout.fragment_link_result) {
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
     lateinit var adapter: ArticleOverviewRecyclerViewAdapter
     val searchNumber = BehaviorSubject.createDefault(0)
 

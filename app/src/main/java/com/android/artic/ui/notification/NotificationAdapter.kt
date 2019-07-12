@@ -1,5 +1,6 @@
 package com.android.artic.ui.notification
 
+import android.app.Activity
 import android.content.Context
 import android.text.Html
 import android.view.LayoutInflater
@@ -7,19 +8,20 @@ import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.TextView
+import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.android.artic.R
 import com.android.artic.data.notification.*
-import com.android.artic.ui.archive.ArchiveActivity
 import com.android.artic.ui.article.ArticleActivity
+import com.android.artic.ui.base.BaseActivity
+import com.android.artic.ui.notification.article_fragment.RawArticleListFragment
 import com.android.artic.util.*
 import com.bumptech.glide.Glide
-import khronos.toDate
 import org.jetbrains.anko.startActivity
 import java.util.*
 
 class NotificationAdapter(
-    private val context: Context,
+    private val context: FragmentActivity,
     var data: List<AppNotification>
 ): RecyclerView.Adapter<RecyclerView.ViewHolder>() {
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): RecyclerView.ViewHolder {
@@ -56,7 +58,10 @@ class NotificationAdapter(
 
                     container?.setOnClickListener {
                         // TODO cur.archiveId 를 이용해 아카이브로 이동!
-                        context.startActivity<ArticleActivity>()
+                        context.startActivity<ArticleActivity>(
+                            "archiveId" to cur.archive_id,
+                            "archiveTitle" to cur.archive_title
+                        )
                     }
                 }
             }
@@ -75,13 +80,15 @@ class NotificationAdapter(
                     txt_title?.text = Html.fromHtml("회원님이 담은 <b>'${cur.articleName}'</b> 외 <b>${cur.num_article-1}개의 아티클</b>을 아직 읽지 않으셨습니다.")
 
                     container?.setOnClickListener {
-                        // TODO cur.archiveId 를 이용해 아카이브로 이동!
-                        context.startActivity<ArticleActivity>()
+                        context.supportFragmentManager.beginTransaction().apply {
+                            replace(android.R.id.content, RawArticleListFragment("읽지 않은 아티클", cur.articleList))
+                            addToBackStack(null)
+                        }.commit()
                     }
                 }
             }
             NotificationType.RECOMMEND_ARCHIVE -> {
-                val cur = data[position] as RecommendArchiveNotification
+                val cur = data[position] as RecommendArticleNotification
                 (holder as RecommendArchiveHolder).run {
                     img?.apply {
                         Glide.with(context)
@@ -103,8 +110,10 @@ class NotificationAdapter(
                         }
                     }
                     container?.setOnClickListener {
-                        // TODO cur.archiveId 를 이용해 아카이브로 이동
-                        context.startActivity<ArticleActivity>()
+                        context.supportFragmentManager.beginTransaction().apply {
+                            replace(android.R.id.content, RawArticleListFragment("당신을 위한 아티클", cur.articleList))
+                            addToBackStack(null)
+                        }.commit()
                     }
                 }
             }

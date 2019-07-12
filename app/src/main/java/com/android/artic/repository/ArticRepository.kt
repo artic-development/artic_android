@@ -11,7 +11,6 @@ import com.android.artic.ui.new_archive.MakeNewArchiveData
 import com.android.artic.ui.search.data.RecommendWordData
 import com.android.artic.util.fromServer
 import com.google.gson.JsonObject
-import khronos.toDate
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
 import retrofit2.Call
@@ -798,29 +797,51 @@ class ArticRepository (
                                 "0" -> { // New Article
                                     AddArticleNotification(
                                         viewType = NotificationType.ADD_ARTICLE,
-                                        date = res.date.fromServer(),
+                                        date = res.notification_date.fromServer(),
                                         img_url = res.articles[0].thumnail,
                                         archive_title = res.articles[0].archive_title?:"",
-                                        archive_id = res.articles[0].archive_idx?:-1
+                                        archive_id = res.articles[0].archive_idx?:-1,
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 "1" -> {
-                                    RecommendArchiveNotification(
+                                    RecommendArticleNotification(
                                         viewType = NotificationType.RECOMMEND_ARCHIVE,
                                         img_url = "", // 기본 이미지!
-                                        date = res.date.fromServer(),
+                                        date = res.notification_date.fromServer(),
                                         articleImgUrls = res
                                             .articles.take(3) // 최대 3개!
-                                            .map { article -> article.thumnail }
+                                            .map { article -> article.thumnail },
+                                        articleList =  res.articles.map { data -> Article(
+                                            id = data.article_idx,
+                                            like = data.like_cnt?:0,
+                                            title_img_url = data.thumnail,
+                                            title = data.article_title,
+                                            url = data.link,
+                                            domain_url = data.domain?:"")
+                                        },
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 "2" -> {
                                     RemindArticleNotification(
                                         viewType = NotificationType.REMIND_ARCHIVE,
                                         img_url = res.articles[0].thumnail,
-                                        date = res.date.fromServer(),
+                                        date = res.notification_date.fromServer(),
                                         articleName = res.articles[0].article_title,
-                                        num_article = res.articles.size
+                                        num_article = res.articles.size,
+                                        articleList =  res.articles.map { data -> Article(
+                                            id = data.article_idx,
+                                            like = data.like_cnt?:0,
+                                            title_img_url = data.thumnail,
+                                            title = data.article_title,
+                                            url = data.link,
+                                            domain_url = data.domain?:"")
+                                        },
+                                        id = res.notification_id,
+                                        isRead = res.isRead
                                     )
                                 }
                                 else -> {
@@ -828,6 +849,27 @@ class ArticRepository (
                                 }
                             }
                         }
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
+                )
+            )
+        }
+    }
+
+    fun readNotification(
+        successCallback: (Boolean) -> Unit,
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.readNotification(token).enqueue(
+                createFromRemoteCallback<Boolean, BaseResponse<Any>>(
+                    mapper = {
+                        it.success
                     },
                     successCallback = successCallback,
                     failCallback = failCallback,
