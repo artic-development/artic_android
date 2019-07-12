@@ -25,7 +25,7 @@ class CollectArchiveListAdapter(
 ): RecyclerView.Adapter<CollectArchiveListAdapter.Holder>(){
 
     private var checkedList = MutableList(dataList.size) {false}
-    var selectArchiveId = -100
+    var selectArchiveId = -1
 
     var dataList: List<Archive> = dataList
         set(value) {
@@ -87,7 +87,13 @@ class CollectArchiveListAdapter(
             }
 
             val selectArchivePosition = checkedList.indexOf(true)
-            selectArchiveId = dataList[selectArchivePosition].id
+
+            selectArchiveId = if (selectArchivePosition == -1) {
+                -1
+            } else {
+                dataList[selectArchivePosition].id
+            }
+
         }
     }
 

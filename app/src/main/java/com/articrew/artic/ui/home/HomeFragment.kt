@@ -36,7 +36,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             val transaction = supportFragmentManager.beginTransaction()
 
             // 순서) 새로운 아카이브, 새로운 아티클, 최근 읽은 아티클, 아틱의 선택, 카테고리별
-
             transaction.add(R.id.container_home_fragments, NewArchiveFragment(), "new_archive_fragment") // 새로운 아카이브
             // 수민 추가
             transaction.add(R.id.container_home_fragments, NewArticleFragment(), "new_article_fragment") // 새로운 아티클

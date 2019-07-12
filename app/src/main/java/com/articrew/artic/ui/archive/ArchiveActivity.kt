@@ -32,10 +32,6 @@ class ArchiveActivity : BaseActivity() {
 
         // CategoryAdapter 에서 온 부분
         // CategoryAdapter에서 받은 category_id를 사용하여 해당 카테고리에 있는 아카이브 리스트들을 가져온다.
-
-
-
-
     }
 
     override fun onResume() {

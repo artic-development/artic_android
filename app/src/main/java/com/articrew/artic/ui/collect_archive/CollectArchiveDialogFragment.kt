@@ -26,7 +26,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     private val repository: ArticRepository by inject()
     private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf()) }
-    private var selectArticleId = -100
+    private var selectArticleId = -1
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)

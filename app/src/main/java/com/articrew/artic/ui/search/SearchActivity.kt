@@ -13,8 +13,12 @@ import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import android.view.inputmethod.EditorInfo
+import com.articrew.artic.repository.remote.response.RecommendationResponse
 import com.articrew.artic.ui.search.data.RecommendWordData
 import com.articrew.artic.ui.search_result.SearchResultActivity
+import com.google.android.flexbox.FlexDirection
+import com.google.android.flexbox.FlexboxLayoutManager
+import com.google.android.flexbox.JustifyContent
 import org.jetbrains.anko.startActivity
 
 
@@ -30,12 +34,19 @@ class SearchActivity : BaseActivity() {
         setSearch()
 
         rv_search_recommend_word.adapter = recommendWordAdapter
-        rv_search_recommend_word.layoutManager = StaggeredGridLayoutManager(3,StaggeredGridLayoutManager.HORIZONTAL)
+
+        // layoutManager
+        var layoutManager = FlexboxLayoutManager(this)
+        layoutManager.flexDirection = FlexDirection.ROW
+        layoutManager.justifyContent = JustifyContent.FLEX_START
+
+        rv_search_recommend_word.layoutManager = layoutManager
 
         // recyclerview space 조절
         var spacesItemDecoration =
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
+
 
         repository.getRecommendWordList(
             successCallback = {

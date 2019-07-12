@@ -69,8 +69,6 @@ class NewArchiveFragment : Fragment() {
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getNewArchiveList(
                 successCallback = {
-//                    adapter.data = it
-//                    adapter.notifyDataSetChanged()
 
                     // 최신 10개의 archive 만 가져온다!
                     it.take(10).let { cut->
