@@ -52,8 +52,14 @@ class NewArticleFragment : Fragment() {
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getNewArticleList(
                 successCallback = {
-                    articleCardAdapter.dataList = it
-                    articleCardAdapter.notifyDataSetChanged()
+//                    articleCardAdapter.dataList = it
+//                    articleCardAdapter.notifyDataSetChanged()
+
+                    // 최신 10개의 article 만 가져온다!
+                    it.take(10).let { cut->
+                        articleCardAdapter.dataList = cut
+                        articleCardAdapter.notifyDataSetChanged()
+                    }
                 },
                 errorCallback = {
                     toast(R.string.network_error)
