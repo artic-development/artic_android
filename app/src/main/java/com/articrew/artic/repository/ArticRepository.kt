@@ -572,7 +572,7 @@ class ArticRepository (
                         if (it.data == null) throw IllegalArgumentException()
                         else it.data.let { res -> MyPage(
                             name = res.userName,
-                            id = res.userId,
+                            id = res.userId?:"",
                             profile_img = res.userImg,
                             my_info = res.userIntro)
                         }

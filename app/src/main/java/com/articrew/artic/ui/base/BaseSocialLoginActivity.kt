@@ -59,11 +59,14 @@ open class BaseSocialLoginActivity : BaseActivity() {
                 UserRequest.makeUserRequest(object : GraphRequest.Callback{
                     override fun onCompleted(response: GraphResponse?) {
                         response?.jsonObject?.let {
+                            logger.log("json: $it\n")
                             val picture = it.getJSONObject("picture")?.getJSONObject("data")?.getString("url")
-                            val email = it.getString("email")
+                            var email: String? = null
+                            if (it.has("email")) // 페이스북 정책상 이메일없이 로그인 하는 경우가 있을 수 있다.
+                                email = it.getString("email")
                             val id = it.getString("id")
                             val name = it.getString("name")
-                            logger.log("json: $it\n id: $id, name: $name, email: $email\npicture: $picture")
+                            logger.log("id: $id, name: $name, email: $email\npicture: $picture")
                             auth.requestFacebookLogin(
                                 data = FacebookLoginBody(
                                     id = id, email = email, name = name, img = picture
