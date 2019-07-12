@@ -7,11 +7,13 @@ import com.android.artic.R
 import com.android.artic.auth.Auth
 import com.android.artic.data.auth.Signin
 import com.android.artic.logger.Logger
+import com.android.artic.ui.base.BaseActivity
 import com.android.artic.ui.base.BaseOnPageChangeListener
+import com.android.artic.ui.notification.NotificationFragment
 import kotlinx.android.synthetic.main.activity_navigation.*
 import org.koin.android.ext.android.inject
 
-class NavigationActivity : AppCompatActivity() {
+class NavigationActivity : BaseActivity() {
     private lateinit var pagerAdapter: NavigationTabPagerAdapter
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -39,5 +41,15 @@ class NavigationActivity : AppCompatActivity() {
         vp_navigation.addOnPageChangeListener(
             BaseOnPageChangeListener(pagerAdapter)
         )
+
+        // Notification 숫자를 구독해야한다.
+        val notificationTabItem = tl_navigation.getTabAt(2)
+
+        (pagerAdapter.getItem(2) as NotificationFragment).numNewNotice.subscribe {
+            if (it > 0)
+                notificationTabItem?.showBadge()?.number = it
+            else
+                notificationTabItem?.removeBadge()
+        }.apply { addDisposable(this) }
     }
 }
