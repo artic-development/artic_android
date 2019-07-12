@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.articrew.artic.R
+import com.articrew.artic.data.Article
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
