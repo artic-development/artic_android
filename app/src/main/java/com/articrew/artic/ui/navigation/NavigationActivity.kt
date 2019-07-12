@@ -8,8 +8,10 @@ import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.base.BaseOnPageChangeListener
 import com.articrew.artic.ui.notification.NotificationFragment
+import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_navigation.*
 import org.koin.android.ext.android.inject
 
@@ -40,6 +42,20 @@ class NavigationActivity : BaseActivity() {
 
         vp_navigation.addOnPageChangeListener(
             BaseOnPageChangeListener(pagerAdapter)
+        )
+
+        tl_navigation.addOnTabSelectedListener(
+            object : TabLayout.OnTabSelectedListener {
+                override fun onTabReselected(tab: TabLayout.Tab?) {
+                    tab?.position?.let { pos ->
+                        (pagerAdapter.getItem(pos) as BaseFragment).requestTopScroll()
+                    }
+                }
+
+                override fun onTabUnselected(tab: TabLayout.Tab?) { }
+
+                override fun onTabSelected(tab: TabLayout.Tab?) { }
+            }
         )
 
         // Notification 숫자를 구독해야한다.

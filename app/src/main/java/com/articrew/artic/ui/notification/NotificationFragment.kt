@@ -2,6 +2,7 @@ package com.articrew.artic.ui.notification
 
 import android.os.Bundle
 import android.view.View
+import android.widget.ScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
@@ -105,5 +106,11 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
                 toast(R.string.network_error)
             }
         )
+    }
+
+    override fun requestTopScroll() {
+        super.requestTopScroll()
+        scrollview_fragment_notification.isSmoothScrollingEnabled = true
+        scrollview_fragment_notification.smoothScrollTo(0,0)
     }
 }

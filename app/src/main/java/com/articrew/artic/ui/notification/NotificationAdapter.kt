@@ -3,6 +3,7 @@ package com.articrew.artic.ui.notification
 import android.app.Activity
 import android.content.Context
 import android.text.Html
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -17,6 +18,7 @@ import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.notification.article_fragment.RawArticleListFragment
 import com.articrew.artic.util.*
 import com.bumptech.glide.Glide
+import khronos.toString
 import org.jetbrains.anko.startActivity
 import java.util.*
 
@@ -96,6 +98,7 @@ class NotificationAdapter(
                             .apply(defaultHolderOptions)
                             .into(this)
                     }
+                    Log.d("noti", "${Date().toString("yyyy-MM-dd hh:mm:ss")} ${cur.date.toString("yyyy-MM-dd hh:mm:ss")}")
                     txt_date?.text = Date().howMuchPreviousFrom(cur.date)
 
                     txt_title?.text = Html.fromHtml("회원님이 좋아하실 만한 <b>아티클</b>을 추천해 드려요!")
