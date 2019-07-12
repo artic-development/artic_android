@@ -1,6 +1,6 @@
-package com.android.artic
+package com.articrew.artic
 
-import com.android.artic.util.howMuchPreviousFrom
+import com.articrew.artic.util.howMuchPreviousFrom
 import junit.framework.Assert.assertEquals
 import khronos.Dates
 import khronos.minutes

@@ -1,6 +1,6 @@
-package com.android.artic
+package com.articrew.artic
 
-import com.android.artic.util.getDomainName
+import com.articrew.artic.util.getDomainName
 import junit.framework.Assert.assertEquals
 import org.junit.Test
 

@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:tools="http://schemas.android.com/tools"
-    package="com.android.artic">
+    package="com.articrew.artic">
     <!-- 인터넷 접근 허용, 네트워크 상태 접근 허용, 와이파이 상태 접근 허용 Glide을 이용해 http에서 이미지를 받아오기 위해 필요한 권한 -->
     <uses-permission android:name="android.permission.INTERNET" />
     <uses-permission android:name="android.permission.ACCESS_NETWORK_STATE" />
@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name=".ArticApplication"
+        android:name="com.articrew.artic.ArticApplication"
         android:allowBackup="true"
         android:icon="@mipmap/appicon"
         android:label="@string/app_name"

@@ -7,7 +7,7 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.android.artic"
+        applicationId "com.articrew.artic"
         minSdkVersion 21
         targetSdkVersion 28
         versionCode 1
