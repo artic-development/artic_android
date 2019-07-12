@@ -256,4 +256,11 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String = "application/json",
         @Header("token") token: String
     ): Call<BaseResponse<Any>>
+
+    @GET("/archive/{archive_idx}/scrap")
+    fun getArchiveIsScarp(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("archive_idx") articleIdx: Int
+    ): Call<BaseResponse<ArchiveScrapResponse>>
 }
