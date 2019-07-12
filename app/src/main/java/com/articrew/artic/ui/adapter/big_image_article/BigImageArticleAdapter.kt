@@ -42,6 +42,9 @@ class BigImageArticleAdapter (
         holder.artic_pick_url?.text=dataList[position].domain_url
         holder.title?.text=dataList[position].title
         holder.container?.setOnClickListener {
+            if (dataList[position].id == -1) {
+                return@setOnClickListener // 더미 데이터는 이벤트를 발생시키면 안됀다.
+            }
             ctx.startActivity<ArticleAboutActivity>("articleId" to dataList[position].id)
         }
     }

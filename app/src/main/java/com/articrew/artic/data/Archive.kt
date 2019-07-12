@@ -11,4 +11,13 @@ data class Archive (
     var scrap: Boolean? = null, // user data
     val category_idx : Int? = null, //
     val category_title : String? = null
-)
+) {
+    companion object {
+        fun createDummy() = Archive(
+            id = -1,
+            title_img_url = "",
+            title = "",
+            num_article = 0
+        )
+    }
+}
