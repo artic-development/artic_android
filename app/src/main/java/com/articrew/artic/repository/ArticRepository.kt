@@ -880,6 +880,29 @@ class ArticRepository (
         }
     }
 
+    fun getArchiveIsScrap(
+        archiveId: Int,
+        successCallback: (Boolean) -> Unit,
+        failCallback: ((String) -> Unit)? = null,
+        statusCallback: ((Int, Boolean, String) -> Unit)? = null,
+        errorCallback: ((Throwable) -> Unit)? = null
+    ) {
+        Auth.token?.let { token ->
+            remote.getArchiveIsScarp(token, archiveId).enqueue(
+                createFromRemoteCallback(
+                    mapper = {
+                        if (it.data == null) false
+                        else it.data.scrap
+                    },
+                    successCallback = successCallback,
+                    failCallback = failCallback,
+                    statusCallback = statusCallback,
+                    errorCallback = errorCallback
+                )
+            )
+        }
+    }
+
     /**
      * @param mapper transform server data to UI data
      * @param successCallback will be called when server interaction success

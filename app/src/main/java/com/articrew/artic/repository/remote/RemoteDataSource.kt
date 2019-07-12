@@ -58,4 +58,6 @@ interface RemoteDataSource {
     fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>>
 
     fun readNotification(token: String): Call<BaseResponse<Any>>
+
+    fun getArchiveIsScarp(token: String, articleIdx: Int): Call<BaseResponse<ArchiveScrapResponse>>
 }

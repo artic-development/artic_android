@@ -33,31 +33,41 @@ class ArticleActivity : BaseActivity() {
         tv_act_link_archive_title.text = intent.getStringExtra("categoryTitle")
         link_title.text = intent.getStringExtra("archiveTitle")
         archiveId = intent.getIntExtra("archiveId", -1)
-        var archiveScraped = intent.getBooleanExtra("archiveScraped", false)
-
-        link_btn_scrap.isChecked = archiveScraped // 아카이브 스크랩 여부에 따라 스크랩 버튼 바꿔줌
-
 
         adapter= ArticleOverviewRecyclerViewAdapter(this, listOf(), true)
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
-        // @수민) 스크랩 버튼 통신
-        link_btn_scrap.setOnClickListener {
-            Log.v("soomin", "click scrap")
+        // 스크랩 여부를 서버에서 쿼리해온다.
+        repository.getArchiveIsScrap(
+            archiveId = archiveId,
+            successCallback = {
+                logger.log("get archive is scarp $it")
+                link_btn_scrap.isChecked = it
 
-            repository.postArchiveScrap(
-                archiveIdx = archiveId,
-                successCallback = {
-                },
-                failCallback = {
+                // 스크랩 여부를 받아왔을때만 정상적으로 서버 통신할 수 있도록 구성한다.
+                // @수민) 스크랩 버튼 통신
+                link_btn_scrap.setOnClickListener {
+                    logger.log("click scrap")
+                    repository.postArchiveScrap(
+                        archiveIdx = archiveId,
+                        successCallback = {
+                        },
+                        failCallback = {
 
-                },
-                statusCallback = { status, success, message ->
-                    toast(message)
+                        },
+                        statusCallback = { status, success, message ->
+                            toast(message)
+                        }
+                    )
                 }
-            )
-        }
+            },
+            failCallback = {
+                link_btn_scrap.isChecked = false
+            }
+        )
+
+
     }
 
 

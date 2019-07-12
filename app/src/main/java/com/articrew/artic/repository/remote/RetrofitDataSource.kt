@@ -134,4 +134,8 @@ class RetrofitDataSource(
     override fun readNotification(token: String): Call<BaseResponse<Any>> {
         return retrofit.readNotification(token = token)
     }
+
+    override fun getArchiveIsScarp(token: String, articleIdx: Int): Call<BaseResponse<ArchiveScrapResponse>> {
+        return retrofit.getArchiveIsScarp(token = token, articleIdx = articleIdx)
+    }
 }
