@@ -60,7 +60,11 @@ class ArticPickFragment : Fragment() {
                     adapter.dataList = it
                     adapter.notifyDataSetChanged()
                 },
+                failCallback = {
+                    supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
+                },
                 errorCallback = {
+                    supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
                     toast(R.string.network_error)
                 }
             )

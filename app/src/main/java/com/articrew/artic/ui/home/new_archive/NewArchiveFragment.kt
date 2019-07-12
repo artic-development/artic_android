@@ -45,7 +45,9 @@ class NewArchiveFragment : Fragment() {
         super.onActivityCreated(savedInstanceState)
 
         activity?.run {
-            adapter = ArchiveCardAdapter(this, listOf())
+            adapter = ArchiveCardAdapter(this, listOf(
+                Archive.createDummy(), Archive.createDummy(), Archive.createDummy()
+            ))
 
             // @수민) 클릭 리스너
             linear_fragment_new_archive.setOnClickListener {

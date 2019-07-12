@@ -9,4 +9,14 @@ data class Article (
     val domain_url: String = "artic",
     val isLiked: Boolean? = null // user data
 //    val isLiked : Boolean
-)
+) {
+    companion object {
+        fun createDummy() = Article(
+            id = -1,
+            title = "",
+            url = "",
+            title_img_url = "",
+            like = 0
+        )
+    }
+}
