@@ -1,0 +1,90 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.search_result.SearchResultActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/white">
+
+    </RelativeLayout>
+    
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#d1d1d1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingBottom="22dp"
+        android:background="@color/white">
+
+    <TextView
+        android:id="@+id/search_result_category_name"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="디자인"
+        android:includeFontPadding="false"
+        android:textColor="@color/black"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:textStyle="bold"
+        android:textSize="21sp"
+        android:layout_marginTop="28dp"
+        android:layout_marginLeft="20dp" />
+
+        <TextView
+            android:id="@+id/search_result_number"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/search_result_category_name"
+            android:layout_marginLeft="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
+            android:text="0"
+            android:textColor="@color/soft_blue"
+            android:textStyle="bold" />
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="10dp"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nanum_square_regular"
+            android:layout_below="@id/search_result_category_name"
+            android:layout_toRightOf="@id/search_result_number"
+            android:text="개의 검색 결과가 있습니다"/>
+    </RelativeLayout>
+
+    <com.google.android.material.tabs.TabLayout
+        app:tabIndicatorHeight="0dp"
+        app:tabRippleColor="@null"
+        android:id="@+id/tl_search_result"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white"
+        app:tabGravity="fill"
+        app:tabMode="fixed"/>
+
+    <View
+        android:id="@+id/view2"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:background="#d1d1d1" />
+
+    <androidx.viewpager.widget.ViewPager
+        android:id="@+id/search_result_viewpager"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        >
+
+    </androidx.viewpager.widget.ViewPager>
+
+</LinearLayout>

@@ -1,3 +1,22 @@
 <resources>
     <string name="app_name">Artic</string>
+    <string name="home_welcome">안녕하세요,\n오늘의 아티클을 읽어보세요</string>
+    <string name="home_search_hint">어떤 아티클이 궁금하신가요?</string>
+
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="new_archive">새로운 아카이브</string>
+    <string name="network_error">서버에서 데이터를 받아오는데 문제가 있습니다 ㅠ</string>
+    <string name="home_title">당신이 찾는 모든 지식 콘텐츠</string>
+    <string name="reading_history_title">최근 읽은 아티클</string>
+    <string name="new_article_link_title">새로운 아티클</string>
+    <string name="artic_pick_title">아틱의 선택</string>
+    <string name="new_article_about_title">새로운 아티클</string>
+    <string name="new_article_about_read">아티클 읽기</string>
+    <string name="new_article_about_archive">아카이브의 다른 아티클</string>
+    <string name="new_article_about_showall">전체 보기</string>
+    <string name="new_notification">새로운 알림</string>
+    <string name="notification_old">읽은 알림</string>
+    <string name="read_storage_permission_warning">저장소 접근 권한이 없어서 이미지를 가져올 수 없어요.</string>
+    <string name="kakao_login_fail">카카오 로그인 실패</string>
 </resources>

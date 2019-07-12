@@ -1,0 +1,36 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_margin="10dp"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/rv_item_mypage_me_container"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+        <ImageView
+            android:id="@+id/rv_item_mypage_me_img"
+            android:layout_width="0dp"
+            android:layout_height="148.8dp"
+            android:background="@drawable/archive_card_round"
+            android:scaleType="centerCrop"
+            android:src="@drawable/mydirectory"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/rv_item_mypage_me_directory_name"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_item_mypage_me_img"
+            android:layout_marginTop="12dp"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:text="모든 스크랩"
+            android:textColor="@color/black"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="@+id/rv_item_mypage_me_img"
+            app:layout_constraintTop_toBottomOf="@+id/rv_item_mypage_me_img" />
+</androidx.constraintlayout.widget.ConstraintLayout>
+
+
+

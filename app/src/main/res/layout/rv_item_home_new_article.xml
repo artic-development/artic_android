@@ -1,0 +1,44 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="296dp" android:layout_height="wrap_content">
+
+    <ImageView
+    android:id="@+id/img_rv_item_home_new_article_background"
+    android:layout_width="match_parent"
+    android:layout_height="173dp"
+    android:background="@drawable/very_light_pink_round"
+    android:scaleType="centerCrop"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:background="@drawable/back_transparent_round_card_grey">
+
+        <TextView
+            android:id="@+id/tv_rv_item_home_new_article_title"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_marginLeft="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_marginTop="18dp"
+            android:text="브랜딩은 린(lean)하게, 합리적인 선에서 어떻게 해야 할까?"
+            android:textSize="14sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/nanum_barungothic_light"/>
+
+        <TextView
+            android:id="@+id/tv_rv_item_home_new_article_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="15dp"
+            android:text="brunch.co.kr"
+            android:textColor="#aaaaaa"
+            android:textSize="14sp"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_alignStart="@id/tv_rv_item_home_new_article_title"/>
+
+
+    </RelativeLayout>
+
+</LinearLayout>

@@ -1,0 +1,68 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="wrap_content"
+    android:layout_width="match_parent"
+    android:background="@color/white_two">
+
+    <RelativeLayout
+        android:id="@+id/rv_reading_history_container"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="@color/white_two"
+        android:paddingLeft="22dp"
+    >
+
+        <TextView
+            android:id="@+id/rv_reading_history_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="brunch.co.kr"
+            android:textSize="14sp"
+            android:layout_alignParentLeft="true"
+            android:includeFontPadding="false"
+            android:layout_marginTop="15dp"
+            android:textColor="#aaaaaa"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_toStartOf="@id/rv_reading_history_img"
+            android:layout_marginRight="80dp"
+            android:ellipsize="end"
+            android:maxLines="1"/>
+
+        <TextView
+            android:id="@+id/rv_reading_history_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_reading_history_url"
+            android:layout_toStartOf="@id/rv_reading_history_img"
+            android:layout_alignStart="@id/rv_reading_history_url"
+            android:layout_marginTop="8dp"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:layout_marginRight="45dp"
+            android:textColor="@color/black"
+            android:layout_alignParentLeft="true"
+            android:lineSpacingExtra="6sp"
+            android:includeFontPadding="false"
+            android:textSize="14sp"
+            android:ellipsize="end"
+            android:maxLines="2"
+            android:text="제품 디자이너는 코딩에 대해 잊어야 합니다."/>
+
+
+
+        <ImageView
+            android:id="@+id/rv_reading_history_img"
+            android:layout_width="70dp"
+            android:layout_height="70dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginBottom="10dp"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/archive_card_round"
+            android:scaleType="centerCrop"
+            android:layout_alignParentRight="true" />
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

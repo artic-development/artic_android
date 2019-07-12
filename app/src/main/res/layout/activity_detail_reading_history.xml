@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.detail_reading_history.DetailReadingHistoryActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="55dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="최근 읽은 아티클"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_centerInParent="true"
+            android:includeFontPadding="false"/>
+
+    </RelativeLayout>
+
+    <View
+        android:background="#d1d1d1"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp" />
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_act_detail_reading_history"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:visibility="gone"
+        >
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:visibility="visible"
+        android:id="@+id/empty_view_act_detail_reading_history"
+        layout="@layout/search_result_empty"
+        />
+
+</LinearLayout>

@@ -1,0 +1,179 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.setting.setting_editprofile.SettingEditProfileActivity">
+
+
+    <RelativeLayout
+        android:id="@+id/relativeLayout"
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/white"
+        tools:ignore="MissingConstraints">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:text="프로필 수정"
+            android:textColor="#000000"
+            android:textSize="17sp" />
+
+        <TextView
+            android:id="@+id/edit_profile_finish_btn"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="완료"
+            android:textSize="17sp"
+            android:padding="22dp"
+            android:textColor="#707070"
+            android:includeFontPadding="false"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            />
+
+        <View
+            android:id="@+id/view6"
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="0dp"
+            android:background="#d1d1d1" />
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.6dp"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="-193dp"
+            android:background="#d1d1d1" />
+    </RelativeLayout>
+
+    <de.hdodenhof.circleimageview.CircleImageView
+        android:id="@+id/edit_profile_img"
+        android:layout_width="106dp"
+        android:layout_height="106dp"
+        android:layout_marginStart="127dp"
+        android:layout_marginTop="25dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="15dp"
+        android:src="@drawable/profile"
+        app:layout_constraintBottom_toTopOf="@+id/edit_profile_img_change_btn"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/relativeLayout" />
+
+    <TextView
+        android:id="@+id/edit_profile_img_change_btn"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="127dp"
+        android:layout_marginEnd="127dp"
+        android:layout_marginBottom="20dp"
+        android:paddingBottom="15dp"
+        android:paddingRight="15dp"
+        android:paddingLeft="15dp"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:includeFontPadding="false"
+        android:text="프로필 사진 바꾸기"
+        android:textColor="@color/soft_blue"
+        android:textSize="14sp"
+        app:layout_constraintBottom_toTopOf="@+id/edit_profile_name_et"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent" />
+
+
+    <View
+        android:id="@+id/view5"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="255dp"
+        android:background="#d1d1d1"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <View
+        android:id="@+id/view3"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp"
+        android:layout_marginTop="20dp"
+        android:background="#d1d1d1"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_myinfo_et" />
+
+    <TextView
+        android:id="@+id/edit_profile_name_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="20dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="이름"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/view5" />
+
+
+    <TextView
+        android:id="@+id/edit_profile_myinfo_txt"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="30dp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:text="내 소개"
+        android:textColor="@color/black"
+        android:textSize="14sp"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_name_txt" />
+
+    <EditText
+        android:id="@+id/edit_profile_name_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="49dp"
+        android:paddingTop="20dp"
+        android:layout_marginEnd="20dp"
+        android:background="@null"
+        android:ems="10"
+        android:hint="이름"
+        android:inputType="text"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/edit_profile_name_txt"
+        app:layout_constraintTop_toTopOf="@+id/view5" />
+
+
+    <View
+        android:id="@+id/view7"
+        android:layout_width="284dp"
+        android:layout_height="0.6dp"
+        android:layout_marginStart="94dp"
+        android:layout_marginTop="15dp"
+        android:background="#d1d1d1"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/edit_profile_name_et" />
+
+    <EditText
+        android:id="@+id/edit_profile_myinfo_et"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:background="@null"
+        android:ems="10"
+        android:gravity="start|top"
+        android:hint="소개를 입력해주세요."
+        android:inputType="textMultiLine"
+        android:textSize="14sp"
+        app:layout_constraintEnd_toEndOf="@+id/edit_profile_name_et"
+        app:layout_constraintStart_toStartOf="@+id/edit_profile_name_et"
+        app:layout_constraintTop_toTopOf="@+id/edit_profile_myinfo_txt" />
+
+
+</androidx.constraintlayout.widget.ConstraintLayout>

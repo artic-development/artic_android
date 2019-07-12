@@ -1,0 +1,47 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.home.reading_history.ReadingHistoryFragment">
+
+   <LinearLayout
+       android:layout_width="match_parent"
+       android:layout_height="match_parent"
+       android:orientation="vertical"
+       android:background="@color/white_two">
+
+       <RelativeLayout
+           android:id="@+id/relative_fragment_reading_history"
+           android:layout_width="wrap_content"
+           android:layout_height="wrap_content"
+           android:layout_marginTop="30dp"
+           android:layout_marginLeft="20dp" >
+
+           <TextView
+               android:id="@+id/txt_reading_history"
+               android:layout_width="wrap_content"
+               android:layout_height="wrap_content"
+               android:text="@string/reading_history_title"
+               android:textColor="#191919"
+               android:textSize="18sp"
+               android:includeFontPadding="false"
+               android:fontFamily="@font/nanum_barungothic_regular"
+               android:textStyle="bold"/>
+
+           <ImageView
+               android:layout_width="21dp"
+               android:layout_height="21dp"
+               android:layout_toRightOf="@id/txt_reading_history"
+               android:src="@drawable/btn_rightarrow"/>
+
+       </RelativeLayout>
+       <androidx.recyclerview.widget.RecyclerView
+           android:id="@+id/rv_reading_history"
+           android:layout_width="match_parent"
+           android:layout_height="match_parent"
+           android:layout_marginTop="10dp"
+           android:layout_marginBottom="15dp"
+       />
+   </LinearLayout>
+</FrameLayout>

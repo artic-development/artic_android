@@ -7,11 +7,11 @@ apply plugin: 'kotlin-android-extensions'
 android {
     compileSdkVersion 28
     defaultConfig {
-        applicationId "com.android.artic"
+        applicationId "com.articrew.artic"
         minSdkVersion 21
         targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        versionCode 2
+        versionName "1.001"
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -24,11 +24,105 @@ android {
 
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])
-    implementation"org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
-    implementation 'androidx.appcompat:appcompat:1.0.2'
-    implementation 'androidx.core:core-ktx:1.0.2'
+    implementation "org.jetbrains.kotlin:kotlin-stdlib-jdk7:$kotlin_version"
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
     implementation 'androidx.constraintlayout:constraintlayout:1.1.3'
+    implementation 'androidx.legacy:legacy-support-v4:1.0.0'
     testImplementation 'junit:junit:4.12'
     androidTestImplementation 'androidx.test:runner:1.2.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
+
+    implementation 'androidx.recyclerview:recyclerview:1.0.0'
+
+    // asynchronous
+    implementation "io.reactivex.rxjava2:rxjava:2.2.9"
+    implementation 'io.reactivex.rxjava2:rxandroid:2.1.1'
+    implementation 'io.reactivex.rxjava2:rxkotlin:2.3.0'
+    implementation 'com.jakewharton.rxbinding3:rxbinding:3.0.0-alpha2'
+
+    // circle image view
+    implementation 'de.hdodenhof:circleimageview:3.0.0'
+
+    def koin_version = '2.0.1'
+
+// Koin for Kotlin (androidX)
+    implementation "org.koin:koin-core:$koin_version"
+// Koin extended & experimental features
+    implementation "org.koin:koin-core-ext:$koin_version"
+// Koin for Unit tests
+    testImplementation "org.koin:koin-test:$koin_version"
+// Koin for Java developers
+    implementation "org.koin:koin-java:$koin_version"
+// Koin AndroidX Scope features
+    implementation "org.koin:koin-androidx-scope:$koin_version"
+// Koin AndroidX ViewModel features
+    implementation "org.koin:koin-androidx-viewmodel:$koin_version"
+// Koin AndroidX Experimental features
+    implementation "org.koin:koin-androidx-ext:$koin_version"
+
+    // network
+    def retrofit_version = '2.6.0'
+
+    implementation "com.squareup.retrofit2:retrofit:$retrofit_version"
+    implementation "com.squareup.retrofit2:converter-gson:$retrofit_version"
+    implementation "com.squareup.retrofit2:retrofit-mock:$retrofit_version"
+    implementation 'com.google.code.gson:gson:2.8.5'
+
+    implementation "com.squareup.retrofit2:adapter-rxjava2:$retrofit_version"
+
+    // util
+    def anko_version = '0.10.8'
+
+// Anko Commons
+    implementation "org.jetbrains.anko:anko-commons:$anko_version"
+
+// Anko Layouts
+    implementation "org.jetbrains.anko:anko-sdk25:$anko_version" // sdk15, sdk19, sdk21, sdk23 are also available
+    implementation "org.jetbrains.anko:anko-appcompat-v7:$anko_version"
+
+// Coroutine listeners for Anko Layouts
+    implementation "org.jetbrains.anko:anko-sdk25-coroutines:$anko_version"
+    implementation "org.jetbrains.anko:anko-appcompat-v7-coroutines:$anko_version"
+
+// Anko SQLite
+    implementation "org.jetbrains.anko:anko-sqlite:$anko_version"
+
+    // image loading
+    implementation 'com.github.bumptech.glide:glide:4.9.0'
+    annotationProcessor 'com.github.bumptech.glide:compiler:4.9.0'
+
+    // date util extensions
+    implementation 'com.github.hotchemi:khronos:0.9.0'
+
+    //design
+    implementation 'com.android.support:design:28.0.0'
+    implementation 'com.android.support:percent:28.0.0'
+
+    // android web view
+    implementation 'com.github.delight-im:Android-AdvancedWebView:v3.0.0'
+
+    // google material
+    implementation 'com.google.android.material:material:1.1.0-alpha07'
+
+    // recylcer view snapHelper
+    // AndroidX
+    implementation 'com.github.rubensousa:gravitysnaphelper:2.0'
+
+    // https://github.com/tbruyelle/RxPermissions
+    // rx permissions
+    implementation 'com.github.tbruyelle:rxpermissions:0.10.2'
+
+    // kakao
+    def kakao_version = '1.19.0'
+
+    implementation "com.kakao.sdk:usermgmt:$kakao_version"
+
+    // facebook
+    implementation 'com.facebook.android:facebook-login:[5,6)'
+
+    // lottie
+    def lottieVersion = '3.0.7'
+
+    implementation "com.airbnb.android:lottie:$lottieVersion"
+    implementation 'com.google.android:flexbox:0.3.2'
 }

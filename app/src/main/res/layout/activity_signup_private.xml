@@ -1,0 +1,214 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.signup.signup.SignupPrivateActivity"
+    android:background="@color/white">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="56dp">
+
+        <TextView
+            android:id="@+id/signup_private_done_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentRight="true"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:textColor="#cdcdcd"
+            android:includeFontPadding="false"
+            android:textSize="17sp"
+            android:padding="20dp"
+            android:text="완료"
+            android:layout_centerVertical="true"/>
+
+    </RelativeLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.3dp"
+        android:background="#d1d1d1"/>
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:paddingTop="43dp"
+        android:paddingRight="170dp"
+        android:paddingBottom="74dp"
+        android:paddingLeft="20dp">
+
+        <TextView
+            android:id="@+id/name_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="이름"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="21sp" />
+
+        <TextView
+            android:id="@+id/signup_txt1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="과 "
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:textSize="21sp"
+            android:textColor="@color/black"
+            android:layout_toRightOf="@id/name_txt"/>
+
+        <TextView
+            android:id="@+id/birth_txt"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="생년월일"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            android:layout_toRightOf="@id/signup_txt1"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toRightOf="@id/birth_txt"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:textSize="21sp"
+            android:textColor="@color/black"
+            android:text="을"/>
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/name_txt"
+            android:layout_marginTop="8dp"
+            android:text="알려주세요!"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:textSize="21sp"
+            android:textColor="@color/black"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="이름 (닉네임)"
+        android:includeFontPadding="false"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/et_act_signup_private_name"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="20dp"
+        android:layout_marginRight="20dp"
+        android:hint="김아틱"
+        android:layout_marginLeft="20dp"
+        android:lineSpacingExtra="2sp"
+        android:theme="@style/EditTheme"
+        android:textSize="14sp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:singleLine ="true"
+        android:nextFocusDown="@id/et_act_signup_private_birth"/>
+
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_name_check_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용하실 수 있는 이름입니다"
+            android:textSize="12sp"
+            android:textColor="@color/soft_blue"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_name_check_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="15자 이내로 입력해주세요"
+            android:textSize="12sp"
+            android:textColor="#ff1515"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+    <TextView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="생년월일"
+        android:includeFontPadding="false"
+        android:layout_marginTop="54dp"
+        android:fontFamily="@font/nanum_barungothic_regular"
+        android:textColor="@color/black"
+        android:textSize="16sp"
+        android:layout_marginLeft="20dp"/>
+
+    <EditText
+        android:id="@+id/et_act_signup_private_birth"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginRight="20dp"
+        android:layout_marginTop="20dp"
+        android:hint="YYYY-MM-DD"
+        android:layout_marginLeft="20dp"
+        android:lineSpacingExtra="2sp"
+        android:theme="@style/EditTheme"
+        android:textSize="14sp"
+        android:fontFamily="@font/nanum_barungothic_light"
+        android:includeFontPadding="false"
+        android:inputType="phone"
+        android:singleLine ="true"/>
+
+    <RelativeLayout
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="25dp">
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_birth_check_success"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="사용하실 수 있는 형식입니다"
+            android:textSize="12sp"
+            android:textColor="@color/soft_blue"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="invisible"/>
+
+        <TextView
+            android:id="@+id/tv_act_signup_private_birth_check_fail"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="형식에 맞게 입력해주세요"
+            android:textSize="12sp"
+            android:textColor="#ff1515"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:visibility="visible"/>
+
+    </RelativeLayout>
+
+
+</LinearLayout>

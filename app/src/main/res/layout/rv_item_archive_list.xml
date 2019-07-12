@@ -1,0 +1,104 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android" android:orientation="vertical"
+    android:layout_width="match_parent" android:layout_height="180dp" android:background="#f9f9f9"
+    android:id="@+id/relative_rv_item_archive_list">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="170dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/tv_rv_item_archive_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_toStartOf="@id/ibtn_rv_item_archive_list_scrap"
+            android:layout_alignParentStart="true"
+            android:layout_marginStart="21dp"
+            android:layout_marginEnd="55dp"
+            android:layout_marginTop="30dp"
+            android:text="린 브랜딩을 어떻게 시작해야 할까?"
+            android:textColor="#000000"
+            android:textSize="21sp"
+            android:letterSpacing="-0.02"
+            android:lineSpacingExtra="7sp"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"/>
+
+        <ToggleButton
+            android:id="@+id/ibtn_rv_item_archive_list_scrap"
+            android:layout_width="24dp"
+            android:layout_height="24dp"
+            android:background="@drawable/toggle_btn_scrap"
+            android:textOff=""
+            android:textOn=""
+            android:checked="false"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="30dp"
+            android:layout_marginEnd="20dp"/>
+
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:layout_alignEnd="@id/ibtn_rv_item_archive_list_scrap"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="18dp">
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_rv_item_archive_list_category_list"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:layout_marginBottom="3dp"
+                android:layout_margin="21dp">
+
+            </androidx.recyclerview.widget.RecyclerView>
+
+            <!-- 아티클 개수 부분 -->
+
+            <LinearLayout
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:orientation="horizontal"
+                android:layout_alignParentBottom="true"
+                android:layout_alignParentEnd="true">
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="아티클 "
+                    android:textColor="#707070"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_barungothic_regular"
+                    android:includeFontPadding="false"/>
+
+                <TextView
+                    android:id="@+id/tv_rv_item_archive_list_article_num"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="13"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_barungothic_bold"
+                    android:textStyle="bold"
+                    android:textColor="#4f80ff"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2sp"/>
+
+                <TextView
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:text="개"
+                    android:textSize="14sp"
+                    android:fontFamily="@font/nanum_barungothic_bold"
+                    android:textStyle="bold"
+                    android:textColor="#4f80ff"
+                    android:includeFontPadding="false"
+                    android:lineSpacingExtra="2sp"/>
+
+            </LinearLayout>
+
+        </RelativeLayout>
+
+    </RelativeLayout>
+
+</RelativeLayout>

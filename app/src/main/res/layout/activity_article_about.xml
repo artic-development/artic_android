@@ -1,0 +1,185 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.core.widget.NestedScrollView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".ui.article_about.ArticleAboutActivity">
+
+    <LinearLayout
+        android:id="@+id/linearLayout"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:orientation="vertical">
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="64dp"
+            android:background="@color/white">
+
+            <TextView
+                android:id="@+id/txt_article_about_source"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:includeFontPadding="false"
+                android:text="@string/new_article_about_title"
+                android:textColor="@color/black"
+                android:textSize="17sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+            
+        </androidx.constraintlayout.widget.ConstraintLayout>
+        
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="0.3dp"
+            android:background="#d1d1d1" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:background="@color/very_light_pink">
+
+            <TextView
+                android:id="@+id/txt_article_about_archive_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginEnd="92dp"
+                android:layout_marginBottom="31dp"
+                android:fontFamily="@font/nanum_barungothic_light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="8sp"
+                android:textColor="@color/black"
+                android:textSize="20sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.55"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="지금 바로 시작할 수 있는\n린 브랜딩 방법론을 알려주세요" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <ImageView
+            android:id="@+id/img_article_about"
+            android:layout_width="match_parent"
+            android:layout_height="223dp"
+            android:scaleType="centerCrop"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/txt_article_about_domain"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="30dp"
+                android:layout_marginEnd="30dp"
+                android:layout_marginTop="21dp"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="9sp"
+                android:textColor="@color/brown_grey"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent"
+                tools:text="brunch.co.kr"
+                android:maxLines="1"  />
+
+            <TextView
+                android:id="@+id/txt_article_about_title"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="41dp"
+                android:fontFamily="@font/nanum_barungothic_light"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="7sp"
+                android:textColor="@color/black"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="@+id/txt_article_about_domain"
+                app:layout_constraintTop_toBottomOf="@+id/txt_article_about_domain"
+                tools:text="디자이너가 알아두면 좋은 인하우스와 에이전  에이전시의 차이점랜딩은 린(lean)하게, " />
+
+            <androidx.appcompat.widget.AppCompatButton
+                android:id="@+id/btn_article_about_read"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="27dp"
+                android:layout_marginEnd="20dp"
+                android:layout_marginBottom="20dp"
+                android:background="@drawable/blue_edge_round"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="9sp"
+                android:text="@string/new_article_about_read"
+                android:textColor="@color/soft_blue"
+                android:textSize="15sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/txt_article_about_title" />
+        </androidx.constraintlayout.widget.ConstraintLayout>
+
+        <androidx.constraintlayout.widget.ConstraintLayout
+            android:background="@color/very_light_pink"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content">
+
+            <TextView
+                android:id="@+id/lable_article3"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="23dp"
+                android:layout_marginTop="25dp"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="9sp"
+                android:text="@string/new_article_about_archive"
+                android:textColor="@color/black"
+                android:textSize="14sp"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toTopOf="parent" />
+
+            <androidx.recyclerview.widget.RecyclerView
+                android:id="@+id/rv_article_about_another_article"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="15dp"
+                android:layout_marginTop="26dp"
+                android:layout_marginEnd="14dp"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/lable_article3" />
+
+            <TextView
+                android:id="@+id/btn_article_about_show_all"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="28dp"
+                android:layout_marginBottom="40dp"
+                android:fontFamily="@font/nanum_barungothic_regular"
+                android:textStyle="bold"
+                android:includeFontPadding="false"
+                android:lineSpacingExtra="9sp"
+                android:text="@string/new_article_about_showall"
+                android:textAlignment="center"
+                android:textColor="@color/soft_blue"
+                android:textSize="14sp"
+                app:layout_constraintBottom_toBottomOf="parent"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/rv_article_about_another_article" />
+
+        </androidx.constraintlayout.widget.ConstraintLayout>
+    </LinearLayout>
+</androidx.core.widget.NestedScrollView>

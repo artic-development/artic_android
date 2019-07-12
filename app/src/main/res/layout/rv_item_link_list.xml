@@ -1,0 +1,126 @@
+<?xml version="1.0" encoding="utf-8"?>
+
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:layout_height="175dp"
+    android:layout_width="match_parent"
+    android:background="@color/very_light_pink"
+    android:id="@+id/relative_rv_item_link_list">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="165dp"
+        android:background="@color/white">
+
+        <TextView
+            android:id="@+id/rv_link_list_url"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="34dp"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:includeFontPadding="false"
+            android:text="brunch.co.kr"
+            android:textColor="@color/brown_grey"
+            android:textSize="14sp"
+            android:layout_toStartOf="@id/rv_link_list_img"
+            android:layout_marginRight="70dp"
+            android:ellipsize="end"
+            android:maxLines="1" />
+
+        <TextView
+            android:id="@+id/rv_link_list_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:lineSpacingExtra="6dp"
+            android:layout_below="@id/rv_link_list_url"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="44dp"
+            android:layout_alignParentStart="true"
+            android:layout_marginLeft="20dp"
+            android:layout_toStartOf="@id/rv_link_list_img"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 "
+            android:textColor="@color/black"
+            android:textSize="16sp"
+            android:ellipsize="end"
+            android:maxLines="2" />
+
+
+        <ImageView
+            android:id="@+id/rv_link_list_img"
+            android:layout_width="79dp"
+            android:layout_height="79dp"
+            android:layout_alignParentRight="true"
+            android:layout_centerVertical="true"
+            android:layout_marginRight="20dp"
+            android:background="@drawable/archive_card_round"
+            android:scaleType="centerCrop" />
+
+        <LinearLayout
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal"
+            android:layout_alignParentBottom="true"
+            android:layout_marginBottom="25dp"
+            android:layout_marginLeft="20dp"
+            android:gravity="center_vertical"
+            android:layout_below="@id/rv_link_list_title"
+            android:layout_marginTop="18dp">
+
+            <ToggleButton
+                android:id="@+id/rv_link_list_like"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:background="@drawable/toggle_btn_like"
+                android:textOn=""
+                android:textOff=""
+                android:checked="true"/>
+
+
+            <TextView
+                android:id="@+id/rv_link_list_like_num"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nanum_square_regular"
+                android:includeFontPadding="false"
+                android:text="1,202"
+                android:textColor="@color/brownish_grey"
+                android:textSize="13sp"
+                android:background="@drawable/archive_card_round"/>
+
+
+            <ImageButton
+                android:id="@+id/rv_link_list_storage"
+                android:layout_width="20dp"
+                android:layout_height="20dp"
+                android:layout_marginLeft="20dp"
+                android:background="@drawable/btn_folder"/>
+
+            <RelativeLayout
+                android:id="@+id/rv_link_list_storage_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_toRightOf="@id/rv_link_list_storage">
+
+            <TextView
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginLeft="5dp"
+                android:fontFamily="@font/nanum_barungothic_light"
+                android:includeFontPadding="false"
+                android:text="담기"
+                android:textColor="@color/brownish_grey"
+                android:textSize="13sp"/>
+            </RelativeLayout>
+
+
+        </LinearLayout>
+
+
+    </RelativeLayout>
+
+</RelativeLayout>

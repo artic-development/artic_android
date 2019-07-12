@@ -1,0 +1,106 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:orientation="vertical"
+    tools:context=".ui.mypage.mypage_scrap.MyPageScrapActivity">
+
+    <RelativeLayout
+        android:layout_width="match_parent"
+        android:layout_height="64dp"
+        android:background="@color/white">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="나의 아카이브"
+            android:textSize="17sp"
+            android:textColor="#000000"
+            android:fontFamily="@font/nanum_barungothic_regular"
+            android:layout_centerInParent="true"
+            android:includeFontPadding="false"/>
+
+    </RelativeLayout>
+
+    <View
+        android:background="#d1d1d1"
+        android:layout_width="match_parent"
+        android:layout_height="0.6dp" />
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="114dp"
+        >
+
+
+        <TextView
+            android:id="@+id/mypage_scrap_link_title"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="32dp"
+            android:fontFamily="@font/nanum_barungothic_bold"
+            android:includeFontPadding="false"
+            android:text="타이포 디자인"
+            android:textColor="@color/black"
+            android:textSize="21sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <TextView
+            android:id="@+id/mypage_scrap_link_num"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mypage_scrap_link_title"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:fontFamily="@font/nanum_square_regular"
+            android:includeFontPadding="false"
+            android:textStyle="bold"
+            android:text="7"
+            android:textColor="@color/soft_blue"
+            android:textSize="14sp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/mypage_scrap_link_title" />
+
+        <TextView
+
+            android:id="@+id/textView"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mypage_scrap_link_title"
+            android:layout_marginTop="10dp"
+            android:layout_toRightOf="@id/mypage_scrap_link_num"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"
+            android:text="개의 링크가 저장 되었습니다"
+            android:textColor="#242424"
+            android:textSize="14sp"
+            app:layout_constraintStart_toEndOf="@+id/mypage_scrap_link_num"
+            app:layout_constraintTop_toBottomOf="@+id/mypage_scrap_link_title" />
+
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+    <View
+        android:layout_width="match_parent"
+        android:layout_height="0.5dp"
+        android:background="#9d9d9d"/>
+
+    <androidx.recyclerview.widget.RecyclerView
+        android:id="@+id/rv_mypage_scrap_link"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent"
+        android:visibility="gone">
+
+    </androidx.recyclerview.widget.RecyclerView>
+
+    <include
+        android:id="@+id/my_page_scrap_link_result_empty"
+        layout="@layout/search_result_empty"
+        android:visibility="visible" />
+
+</LinearLayout>

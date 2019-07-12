@@ -1,0 +1,65 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:orientation="vertical"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content">
+
+    <androidx.cardview.widget.CardView
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <LinearLayout
+            android:id="@+id/rv_new_article_link_container"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical"
+            android:paddingTop="20dp">
+            
+            <ImageView
+                android:id="@+id/rv_new_article_link_img"
+                android:layout_width="match_parent"
+                android:layout_height="169.8dp"
+                android:scaleType="fitXY"
+                android:layout_marginHorizontal="20dp"
+                android:layout_gravity="center_horizontal"
+                android:background="@drawable/thumbnail"
+                />
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginHorizontal="20dp">
+            <TextView
+                android:id="@+id/rv_new_article_link_txt"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="15dp"
+                android:layout_marginBottom="15dp"
+                android:layout_marginLeft="22dp"
+                android:layout_marginRight="22dp"
+                android:textSize="15sp"
+                android:includeFontPadding="false"
+                android:fontFamily="@font/nanum_barungothic_light"
+                android:textColor="@color/black"
+                android:text="디자이너가 알아두면 좋은 인하우스와 에이전시는 에이전시의 차이점"/>
+
+                <TextView
+                    android:id="@+id/rv_new_article_link_url"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:textSize="14sp"
+                    android:layout_below="@id/rv_new_article_link_txt"
+                    android:layout_marginLeft="22dp"
+                    android:layout_marginBottom="15dp"
+                    android:includeFontPadding="false"
+                    android:fontFamily="@font/nanumbarungothic"
+                    android:text="brunch.co.kr"
+                    android:textColor="#aaaaaa"/>
+
+            </RelativeLayout>
+
+        </LinearLayout>
+
+
+    </androidx.cardview.widget.CardView>
+
+</RelativeLayout>
