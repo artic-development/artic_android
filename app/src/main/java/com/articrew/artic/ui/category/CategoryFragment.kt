@@ -43,9 +43,8 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
         }
     }
 
-    override fun onResume() {
-        super.onResume()
-
-
+    override fun requestTopScroll() {
+        super.requestTopScroll()
+        rv_category.smoothScrollToPosition(0)
     }
 }

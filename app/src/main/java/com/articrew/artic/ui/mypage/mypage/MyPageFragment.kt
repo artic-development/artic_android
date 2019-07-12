@@ -135,5 +135,11 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             meFragment.requireAddArchiveButton.subscribe(archiveAddButtonShowTask)
         }
     }
+
+    override fun requestTopScroll() {
+        super.requestTopScroll()
+        sv_fragment_my_page.isSmoothScrollingEnabled = true
+        sv_fragment_my_page.smoothScrollTo(0,0)
+    }
 }
 

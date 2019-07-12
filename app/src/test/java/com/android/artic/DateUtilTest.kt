@@ -2,9 +2,7 @@ package com.articrew.artic
 
 import com.articrew.artic.util.howMuchPreviousFrom
 import junit.framework.Assert.assertEquals
-import khronos.Dates
-import khronos.minutes
-import khronos.plus
+import khronos.*
 import org.junit.Test
 
 // TODO 영어로 바꾸면? 다른 언어로 바꾸면?!
@@ -22,7 +20,7 @@ class DateUtilTest {
     @Test
     fun testHours() {
         // 23시간 차이!
-        val getDate = Dates.of(year = 2019, month = 12, day = 22, hour = 21, minute = 20)
+        val getDate = logDate + 23.hours
         assertEquals("23시간 전", getDate.howMuchPreviousFrom(logDate))
     }
 

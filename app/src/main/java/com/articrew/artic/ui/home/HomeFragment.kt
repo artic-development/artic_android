@@ -2,6 +2,7 @@ package com.articrew.artic.ui.home
 
 import android.content.Intent
 import android.os.Bundle
+import android.widget.ScrollView
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
@@ -69,5 +70,11 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                 startActivity(intent)
             }
         }
+    }
+
+    override fun requestTopScroll() {
+        super.requestTopScroll()
+        sv_fragment_home.isSmoothScrollingEnabled = true
+        sv_fragment_home.smoothScrollTo(0,0)
     }
 }
