@@ -42,6 +42,27 @@ class ArticleActivity : BaseActivity() {
         rv_link_list.adapter = adapter
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
+        // @수민) 스크랩 버튼 통신
+        link_btn_scrap.setOnClickListener {
+            Log.v("soomin", "click scrap")
+
+            repository.postArchiveScrap(
+                archiveIdx = archiveId,
+                successCallback = {
+                },
+                failCallback = {
+
+                },
+                statusCallback = { status, success, message ->
+                    toast(message)
+                }
+            )
+        }
+    }
+
+
+    override fun onResume() {
+        super.onResume()
 
         // 아카이브 아이디로 아티클 리스트 받아오기
         repository.getArticleListGivenArchive(
@@ -62,25 +83,6 @@ class ArticleActivity : BaseActivity() {
                 toast(R.string.network_error)
             }
         )
-
-
-        // @수민) 스크랩 버튼 통신
-        link_btn_scrap.setOnClickListener {
-            Log.v("soomin", "click scrap")
-
-            repository.postArchiveScrap(
-                archiveIdx = archiveId,
-                successCallback = {
-                },
-                failCallback = {
-
-                },
-                statusCallback = { status, success, message ->
-                    toast(message)
-                }
-            )
-        }
     }
-
 }
 

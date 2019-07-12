@@ -95,13 +95,13 @@ class ArticleWebViewActivity : AppCompatActivity() {
                                         btn_article_web_view_like.isSelected = false
                                     }
 
-                                    toast(message)
+//                                    toast(message)
                                 }
                                 else if (status == 400) {
-                                    toast(message)
+//                                    toast(message)
                                 }
                                 else {
-                                    toast("오잉")
+//                                    toast("오잉")
                                 }
                             }
                         }
