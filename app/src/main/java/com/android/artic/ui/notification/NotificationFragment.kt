@@ -8,15 +8,17 @@ import com.android.artic.repository.ArticRepository
 import com.android.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.android.artic.ui.base.BaseFragment
 import com.android.artic.util.dpToPx
+import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_notification.*
 import org.jetbrains.anko.support.v4.toast
 import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent.inject
 
 class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
     private val repository: ArticRepository by inject()
     private lateinit var adapterNewNotification: NotificationAdapter
     private lateinit var adapterOldNotification: NotificationAdapter
+
+    val numNewNotice = BehaviorSubject.createDefault(0)
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -47,68 +49,60 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
             container_notification_new.visibility = View.GONE
             container_notification_old.visibility = View.GONE
 
-            repository.getNotification(
-                successCallback = {
-                    // 새로운 알림
-                    it.filter { !it.isRead }.let {
-                        if (it.isNotEmpty()) {
-                            container_notification_new.visibility = View.VISIBLE
-                            relative_frag_notification_no_alert.visibility = View.GONE
-                        }
-                        adapterNewNotification.data = it
-                        adapterNewNotification.notifyDataSetChanged()
-                    }
-
-                    // 읽은 알람
-                    it.filter { it.isRead }.let {
-                        if (it.isNotEmpty()) {
-                            container_notification_old.visibility = View.VISIBLE
-                            relative_frag_notification_no_alert.visibility = View.GONE
-                        }
-                        adapterOldNotification.data = it
-                        adapterOldNotification.notifyDataSetChanged()
-                    }
-
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+            getNotification()
         }
     }
 
-    override fun onResumeFragment() {
-        super.onResumeFragment()
+    // 이 탭을 들렸다가 나갈때 알림을 갱신한다.
+    // 사용자가 알림 확인 후 다시 들아오면 읽은 알람으로 변경되있도
+    override fun onPauseFragment() {
+        super.onPauseFragment()
         repository.readNotification(
             successCallback = {
                 logger.log("read notification")
-                repository.getNotification(
-                    successCallback = {
-                        // 새로운 알림
-                        it.filter { !it.isRead }.let {
-                            if (it.isNotEmpty()) {
-                                container_notification_new.visibility = View.VISIBLE
-                                relative_frag_notification_no_alert.visibility = View.GONE
-                            }
-                            adapterNewNotification.data = it
-                            adapterNewNotification.notifyDataSetChanged()
-                        }
+                getNotification()
+            }
+        )
+    }
 
-                        // 읽은 알람
-                        it.filter { it.isRead }.let {
-                            if (it.isNotEmpty()) {
-                                container_notification_old.visibility = View.VISIBLE
-                                relative_frag_notification_no_alert.visibility = View.GONE
-                            }
-                            adapterOldNotification.data = it
-                            adapterOldNotification.notifyDataSetChanged()
-                        }
+    private fun getNotification() {
+        repository.getNotification(
+            successCallback = {
+                if (it.isEmpty()) {
+                    // 알람이 없으면 엠티뷰를 보여준다.
+                    relative_frag_notification_no_alert.visibility = View.VISIBLE
+                }
 
-                    },
-                    errorCallback = {
-                        toast(R.string.network_error)
+                // 새로운 알림
+                it.filter { !it.isRead }.let {
+                    numNewNotice.onNext(it.size)
+                    if (it.isNotEmpty()) {
+                        container_notification_new.visibility = View.VISIBLE
+                        relative_frag_notification_no_alert.visibility = View.GONE
                     }
-                )
+                    else {
+                        container_notification_new.visibility = View.GONE
+                    }
+                    adapterNewNotification.data = it
+                    adapterNewNotification.notifyDataSetChanged()
+                }
+
+                // 읽은 알람
+                it.filter { it.isRead }.let {
+                    if (it.isNotEmpty()) {
+                        container_notification_old.visibility = View.VISIBLE
+                        relative_frag_notification_no_alert.visibility = View.GONE
+                    }
+                    else {
+                        container_notification_old.visibility = View.GONE
+                    }
+                    adapterOldNotification.data = it
+                    adapterOldNotification.notifyDataSetChanged()
+                }
+
+            },
+            errorCallback = {
+                toast(R.string.network_error)
             }
         )
     }
