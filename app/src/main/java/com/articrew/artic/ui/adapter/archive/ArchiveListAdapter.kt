@@ -65,6 +65,11 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
 
                     ctx.toast(message)
 //                    notifyItemChanged(dataList[position].id)
+//                    dataList[position].scrap = !(dataList[position].scrap)
+
+                    dataList[position].scrap?.let {
+                        dataList[position].scrap = !it
+                    }
                 }
             )
         }

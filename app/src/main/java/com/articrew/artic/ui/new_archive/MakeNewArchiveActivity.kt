@@ -52,13 +52,14 @@ class MakeNewArchiveActivity : AppCompatActivity() {
                     data = MakeNewArchiveData(title, null, 6),// TODO categoryIdx 를 어덯게 지정할지 얘기하고 수정해야한다. 일단 더미로 6으로 구현
                     successCallback = {
                         toast("아카이브 생성 완료")
-                        finish()
                     },
                     errorCallback = {
                         toast(R.string.network_error)
 
                     }
                 )
+
+                finish()
             }
         }
     }
