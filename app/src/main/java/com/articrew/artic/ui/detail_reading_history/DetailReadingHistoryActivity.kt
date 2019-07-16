@@ -41,25 +41,47 @@ class DetailReadingHistoryActivity : BaseActivity() {
 //            }
 //        )
 
-        repository.readingHistoryArticle(
-            successCallback = {
+//        repository.readingHistoryArticle(
+//            successCallback = {
+//
+//                if (it.isEmpty()) {
+//                    empty_view_act_detail_reading_history.visibility = View.VISIBLE
+//                    rv_act_detail_reading_history.visibility = View.GONE
+//                }
+//                else {
+//                    empty_view_act_detail_reading_history.visibility = View.GONE
+//                    rv_act_detail_reading_history.visibility = View.VISIBLE
+//                }
+//
+//                logger.log("recent reading article list")
+//                adapter.dataList = it
+//                adapter.notifyDataSetChanged()
+//            },
+//            errorCallback = {
+//                toast(R.string.network_error)
+//            }
+//        )
 
-                if (it.isEmpty()) {
-                    empty_view_act_detail_reading_history.visibility = View.VISIBLE
-                    rv_act_detail_reading_history.visibility = View.GONE
-                }
-                else {
-                    empty_view_act_detail_reading_history.visibility = View.GONE
-                    rv_act_detail_reading_history.visibility = View.VISIBLE
-                }
+        repository.readingHistoryArticle()
+            .subscribe(
+                {
+                    if (it.isEmpty()) {
+                        empty_view_act_detail_reading_history.visibility = View.VISIBLE
+                        rv_act_detail_reading_history.visibility = View.GONE
+                    }
+                    else {
+                        empty_view_act_detail_reading_history.visibility = View.GONE
+                        rv_act_detail_reading_history.visibility = View.VISIBLE
+                    }
 
-                logger.log("recent reading article list")
-                adapter.dataList = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+                    logger.log("recent reading article list")
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("detail reading history activity reading history article error")
+                    toast(R.string.network_error)
+                }
+            ).apply { addDisposable(this) }
     }
 }

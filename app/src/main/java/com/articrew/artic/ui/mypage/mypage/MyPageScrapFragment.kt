@@ -50,24 +50,26 @@ class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
     override fun onResume() {
         super.onResume()
         activity?.run {
-            repository.getMyPageScrap(
-                successCallback = {
-                    logger.log("scrap archive list")
-                    if(it.isNotEmpty()) {
-                        adapter.data = it
-                        adapter.notifyDataSetChanged()
-                        rv_mypage_scrap.visibility = View.VISIBLE
-                        mypage_scrap_empty_view.visibility = View.GONE
+            repository.getMyPageScrap()
+                .subscribe(
+                    {
+                        logger.log("scrap archive list")
+                        if(it.isNotEmpty()) {
+                            adapter.data = it
+                            adapter.notifyDataSetChanged()
+                            rv_mypage_scrap.visibility = View.VISIBLE
+                            mypage_scrap_empty_view.visibility = View.GONE
 
-                    } else{
-                        rv_mypage_scrap.visibility=View.GONE
-                        mypage_scrap_empty_view.visibility=View.VISIBLE
+                        } else{
+                            rv_mypage_scrap.visibility=View.GONE
+                            mypage_scrap_empty_view.visibility=View.VISIBLE
+                        }
+                    },
+                    {
+                        logger.error("my page scrap fragment get my page scrap error $it")
+                        toast(R.string.network_error)
                     }
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 }

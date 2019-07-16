@@ -83,27 +83,26 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     override fun onResume() {
         super.onResume()
         activity?.run {
-            repository.getMyInfo(
-                successCallback = {
-                    logger.log("mypage info success $it")
-                    txt_my_page_name.text = it.name
-                    txt__my_page_email.text = it.id
-                    val img = it.profile_img
-                    img_my_page_profile?.let {
-                        Glide.with(ctx)
-                            .load(img)
-                            .apply(defaultHolderOptions)
-                            .into(it)
+            repository.getMyInfo()
+                .subscribe(
+                    {
+                        logger.log("mypage info success $it")
+                        txt_my_page_name.text = it.name
+                        txt__my_page_email.text = it.id
+                        val img = it.profile_img
+                        img_my_page_profile?.let {
+                            Glide.with(ctx)
+                                .load(img)
+                                .apply(defaultHolderOptions)
+                                .into(it)
+                        }
+                        txt_my_page_introduce.text = it.my_info
+                    },
+                    {
+                        logger.error("my page fragment get my info error")
+                        toast(R.string.network_error)
                     }
-                    txt_my_page_introduce.text = it.my_info
-                },
-                failCallback = {
-                    logger.log("mypage fail")
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 

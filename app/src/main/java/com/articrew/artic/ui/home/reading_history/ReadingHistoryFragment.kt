@@ -14,6 +14,7 @@ import com.articrew.artic.R
 import com.articrew.artic.data.Article
 import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
+import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.detail_reading_history.DetailReadingHistoryActivity
 import kotlinx.android.synthetic.main.fragment_reading_history.*
 import org.jetbrains.anko.support.v4.toast
@@ -31,18 +32,9 @@ import retrofit2.Response
  * A simple [Fragment] subclass.
  *
  */
-class ReadingHistoryFragment : Fragment() {
+class ReadingHistoryFragment : BaseFragment(R.layout.fragment_reading_history) {
     private val repository: ArticRepository by inject()
     private lateinit var adapter:ReadingHistoryAdapter
-    private val logger: Logger by inject()
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_reading_history, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -67,24 +59,22 @@ class ReadingHistoryFragment : Fragment() {
         super.onResume()
 
         activity?.run {
-            repository.readingHistoryArticle(
-                successCallback = {
-                    if (it.isEmpty()) {
-                        supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
-                        return@readingHistoryArticle
+            repository.readingHistoryArticle()
+                .subscribe(
+                    {
+                        if (it.isEmpty()) {
+                            supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
+                            return@subscribe
+                        }
+                        logger.log("recent reading article list")
+                        adapter.dataList = it.take(5)
+                        adapter.notifyDataSetChanged()
+                    },
+                    {
+                        logger.error("reading history fragment reading history article error")
+                        toast(R.string.network_error)
                     }
-                    logger.log("recent reading article list")
-                    adapter.dataList = it.take(5)
-                    adapter.notifyDataSetChanged()
-                },
-                failCallback = {
-
-                    supportFragmentManager.beginTransaction().remove(this@ReadingHistoryFragment).commitAllowingStateLoss()
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 

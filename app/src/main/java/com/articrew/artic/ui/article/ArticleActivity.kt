@@ -39,9 +39,8 @@ class ArticleActivity : BaseActivity() {
         rv_link_list.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         // 스크랩 여부를 서버에서 쿼리해온다.
-        repository.getArchiveIsScrap(
-            archiveId = archiveId,
-            successCallback = {
+        repository.getArchiveIsScrap(archiveId)
+            .subscribe {
                 logger.log("get archive is scarp $it")
                 link_btn_scrap.isChecked = it
 
@@ -49,25 +48,12 @@ class ArticleActivity : BaseActivity() {
                 // @수민) 스크랩 버튼 통신
                 link_btn_scrap.setOnClickListener {
                     logger.log("click scrap")
-                    repository.postArchiveScrap(
-                        archiveIdx = archiveId,
-                        successCallback = {
-                        },
-                        failCallback = {
-
-                        },
-                        statusCallback = { status, success, message ->
-                            toast(message)
-                        }
-                    )
+                    repository.postArchiveScrap(archiveId)
+                        .subscribe {
+                            toast(it)
+                        }.apply { addDisposable(this) }
                 }
-            },
-            failCallback = {
-                link_btn_scrap.isChecked = false
-            }
-        )
-
-
+            }.apply { addDisposable(this) }
     }
 
 
@@ -75,24 +61,25 @@ class ArticleActivity : BaseActivity() {
         super.onResume()
 
         // 아카이브 아이디로 아티클 리스트 받아오기
-        repository.getArticleListGivenArchive(
-            archiveId = archiveId,
-            successCallback = {
-                if (it.isNotEmpty()) {
-                    empty_view_act_article.visibility = View.GONE
-                    rv_link_list.visibility = View.VISIBLE
+        repository.getArticleListGivenArchive(archiveId)
+            .subscribe(
+                {
+                    if (it.isNotEmpty()) {
+                        empty_view_act_article.visibility = View.GONE
+                        rv_link_list.visibility = View.VISIBLE
+                    }
+                    else {
+                        empty_view_act_article.visibility = View.VISIBLE
+                        rv_link_list.visibility = View.GONE
+                    }
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("article activity get article list given archive error")
+                    toast(R.string.network_error)
                 }
-                else {
-                    empty_view_act_article.visibility = View.VISIBLE
-                    rv_link_list.visibility = View.GONE
-                }
-                adapter.dataList = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+            ).apply { addDisposable(this) }
     }
 }
 

@@ -49,18 +49,20 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
 
             transaction.add(R.id.container_home_fragments, ArticPickFragment(), "artic_pick_fragment") // 아틱의 선택
 
-            repository.getCategoryList(
-                successCallback = {
-                    val trans = supportFragmentManager.beginTransaction()
-                    it.forEach { category ->
-                        trans.add(R.id.container_home_fragments, CategoryArchiveFragment(category.id, category.name), category.name)
+            repository.getCategoryList()
+                .subscribe(
+                    {
+                        val trans = supportFragmentManager.beginTransaction()
+                        it.forEach { category ->
+                            trans.add(R.id.container_home_fragments, CategoryArchiveFragment(category.id, category.name), category.name)
+                        }
+                        trans.commitAllowingStateLoss()
+                    },
+                    {
+                        logger.error("home fragment category load error")
+                        toast(R.string.network_error)
                     }
-                    trans.commitAllowingStateLoss()
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                )
 
             transaction.commitAllowingStateLoss()
 

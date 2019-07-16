@@ -6,11 +6,14 @@ import android.view.View
 import android.view.ViewGroup
 import androidx.fragment.app.Fragment
 import com.articrew.artic.logger.Logger
+import io.reactivex.disposables.CompositeDisposable
+import io.reactivex.disposables.Disposable
 import org.koin.android.ext.android.inject
 
 open class BaseFragment(
     private val layoutId: Int
 ) : Fragment() {
+    private val compositeDisposable = CompositeDisposable()
     protected val logger: Logger by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
@@ -30,5 +33,15 @@ open class BaseFragment(
     open fun onPauseFragment() {}
 
     open fun requestTopScroll() {}
+
+    protected fun addDisposable(dis: Disposable) {
+        compositeDisposable.add(dis)
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+
+        compositeDisposable.clear()
+    }
 
 }

@@ -15,6 +15,7 @@ import com.articrew.artic.R
 import com.articrew.artic.data.Archive
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
+import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.detail_new_archive.DetailNewArchiveActivity
 import com.articrew.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_new_archive.*
@@ -29,17 +30,9 @@ import retrofit2.Response
  * Show new-archive list
  * @author greedy0110
  */
-class NewArchiveFragment : Fragment() {
+class NewArchiveFragment : BaseFragment(R.layout.fragment_new_archive) {
     private val repository: ArticRepository by inject()
     private lateinit var adapter: ArchiveCardAdapter
-
-    override fun onCreateView(
-        inflater: LayoutInflater, container: ViewGroup?,
-        savedInstanceState: Bundle?
-    ): View? {
-        // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_new_archive, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -67,19 +60,18 @@ class NewArchiveFragment : Fragment() {
 
             // recyclerview 데이터 뿌리기
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
-            repository.getNewArchiveList(
-                successCallback = {
-
-                    // 최신 10개의 archive 만 가져온다!
-                    it.take(10).let { cut->
-                        adapter.data = cut
+            repository.getNewArchiveList()
+                .subscribe(
+                    {
+                        // 홈 화면에서는 10개의 카드만 보여줌
+                        adapter.data = it.take(10)
                         adapter.notifyDataSetChanged()
+                    },
+                    {
+                        logger.error("new archive fragment get new archive list error")
+                        toast(R.string.network_error)
                     }
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 }
