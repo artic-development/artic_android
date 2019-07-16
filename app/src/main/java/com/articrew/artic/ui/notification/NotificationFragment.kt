@@ -58,54 +58,54 @@ class NotificationFragment : BaseFragment(R.layout.fragment_notification) {
     // 사용자가 알림 확인 후 다시 들아오면 읽은 알람으로 변경되있도
     override fun onPauseFragment() {
         super.onPauseFragment()
-        repository.readNotification(
-            successCallback = {
+        repository.readNotification()
+            .subscribe {
                 logger.log("read notification")
                 getNotification()
-            }
-        )
+            }.apply { addDisposable(this) }
     }
 
     private fun getNotification() {
-        repository.getNotification(
-            successCallback = {
-                if (it.isEmpty()) {
-                    // 알람이 없으면 엠티뷰를 보여준다.
-                    relative_frag_notification_no_alert.visibility = View.VISIBLE
-                }
+        repository.getNotification()
+            .subscribe(
+                {
+                    if (it.isEmpty()) {
+                        // 알람이 없으면 엠티뷰를 보여준다.
+                        relative_frag_notification_no_alert.visibility = View.VISIBLE
+                    }
 
-                // 새로운 알림
-                it.filter { !it.isRead }.let {
-                    numNewNotice.onNext(it.size)
-                    if (it.isNotEmpty()) {
-                        container_notification_new.visibility = View.VISIBLE
-                        relative_frag_notification_no_alert.visibility = View.GONE
+                    // 새로운 알림
+                    it.filter { !it.isRead }.let {
+                        numNewNotice.onNext(it.size)
+                        if (it.isNotEmpty()) {
+                            container_notification_new.visibility = View.VISIBLE
+                            relative_frag_notification_no_alert.visibility = View.GONE
+                        }
+                        else {
+                            container_notification_new.visibility = View.GONE
+                        }
+                        adapterNewNotification.data = it
+                        adapterNewNotification.notifyDataSetChanged()
                     }
-                    else {
-                        container_notification_new.visibility = View.GONE
-                    }
-                    adapterNewNotification.data = it
-                    adapterNewNotification.notifyDataSetChanged()
-                }
 
-                // 읽은 알람
-                it.filter { it.isRead }.let {
-                    if (it.isNotEmpty()) {
-                        container_notification_old.visibility = View.VISIBLE
-                        relative_frag_notification_no_alert.visibility = View.GONE
+                    // 읽은 알람
+                    it.filter { it.isRead }.let {
+                        if (it.isNotEmpty()) {
+                            container_notification_old.visibility = View.VISIBLE
+                            relative_frag_notification_no_alert.visibility = View.GONE
+                        }
+                        else {
+                            container_notification_old.visibility = View.GONE
+                        }
+                        adapterOldNotification.data = it
+                        adapterOldNotification.notifyDataSetChanged()
                     }
-                    else {
-                        container_notification_old.visibility = View.GONE
-                    }
-                    adapterOldNotification.data = it
-                    adapterOldNotification.notifyDataSetChanged()
+                },
+                {
+                    logger.error("notification fragment get notification error")
+                    toast(R.string.network_error)
                 }
-
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+            ).apply { addDisposable(this) }
     }
 
     override fun requestTopScroll() {

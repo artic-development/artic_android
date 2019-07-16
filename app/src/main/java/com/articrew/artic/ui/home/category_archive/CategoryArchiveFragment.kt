@@ -17,6 +17,7 @@ import com.articrew.artic.data.Archive
 import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.archive.ArchiveActivity
+import com.articrew.artic.ui.base.BaseFragment
 import kotlinx.android.synthetic.main.fragment_category_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -34,9 +35,7 @@ import retrofit2.Response
 class CategoryArchiveFragment(
     private var categoryId: Int = 0,
     private var categoryName: String = "Dummy"
-) : Fragment() {
-    private val logger: Logger by inject()
-
+) : BaseFragment(R.layout.fragment_category_archive) {
     private val repository: ArticRepository by inject()
     private lateinit var adapter: CategoryArchiveCardAdapter
 
@@ -49,10 +48,10 @@ class CategoryArchiveFragment(
         savedInstanceState: Bundle?
     ): View? {
         // Inflate the layout for this fragment
-        val view = inflater.inflate(R.layout.fragment_category_archive, container, false)
+        val view = super.onCreateView(inflater, container, savedInstanceState)
 
         // kotlin extension 으로 하면 fragment 여러개 추가할때 오류 발생
-        txtCategoryArchiveName = view.findViewById(R.id.txt_category_archive_name)
+        txtCategoryArchiveName = view!!.findViewById(R.id.txt_category_archive_name)
         rvCategoryArchive = view.findViewById(R.id.rv_category_archive)
         containerArchive = view.findViewById(R.id.linear_fragment_category_archive_category)
         return view
@@ -83,24 +82,23 @@ class CategoryArchiveFragment(
             logger.log("category fragment $categoryId $categoryName")
 
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
-            repository.getArchiveListGivenCategory(
-                categoryId = categoryId,
-                successCallback = {
-
-                    if (it.isEmpty()) {
-                        logger.log("category empty $categoryName")
+            repository.getArchiveListGivenCategory(categoryId)
+                .subscribe(
+                    {
+                        if (it.isEmpty()) {
+                            logger.log("category empty $categoryName")
+                            supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
+                        }
+                        // 최신 4개의 archive 만 가져온다!
+                        it.take(4).let { cut->
+                            adapter.data = cut
+                            adapter.notifyDataSetChanged()
+                        }
+                    },
+                    {
                         supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
                     }
-                    // 최신 4개의 archive 만 가져온다!
-                    it.take(4).let { cut->
-                        adapter.data = cut
-                        adapter.notifyDataSetChanged()
-                    }
-                },
-                failCallback = {
-                    supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 }

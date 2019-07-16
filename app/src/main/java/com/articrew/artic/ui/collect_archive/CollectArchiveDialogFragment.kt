@@ -11,6 +11,7 @@ import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
 import com.articrew.artic.util.dpToPx
 import com.google.android.material.bottomsheet.BottomSheetDialogFragment
+import io.reactivex.disposables.CompositeDisposable
 import kotlinx.android.synthetic.main.dialog_put_archive.*
 import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import kotlinx.coroutines.selects.select
@@ -27,6 +28,8 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
     private val repository: ArticRepository by inject()
     private val collectArchiveListAdapter: CollectArchiveListAdapter by lazy { CollectArchiveListAdapter(context!!, this, listOf()) }
     private var selectArticleId = -1
+
+    private val compositeDisposable = CompositeDisposable()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)
@@ -49,21 +52,11 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
                 dismiss()
             }
             else if (btn_rv_dialog_put_archive_complete.text.toString() == "완료") {
-                repository.postCollectArticleInArchive(
-                    archiveIdx = collectArchiveListAdapter.selectArchiveId,
-                    articleIdx = selectArticleId,
-                    successCallback = {
-                        toast("success storage")
-                    },
-                    failCallback = {
-                      //  toast("fail storage")
-                    },
-                    statusCallback = { status, success, message ->
-                        toast(message)
+                repository.postCollectArticleInArchive(collectArchiveListAdapter.selectArchiveId, selectArticleId)
+                    .subscribe {
+                        toast(it)
                         dismiss()
-                    }
-                )
-
+                    }.apply { compositeDisposable.add(this) }
             }
         }
 
@@ -91,21 +84,27 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
             HorizontalSpaceItemDecoration(ctx, 16.dpToPx(), 20.dpToPx())
         rv_dialog_put_archive_my_archive_list.addItemDecoration(spacesItemDecoration)
 
-        repository.getMyPageMe(
-            successCallback = {
-                if(it.isNotEmpty()) {
-                    collectArchiveListAdapter.dataList = it
-                    collectArchiveListAdapter.notifyDataSetChanged()
+        repository.getMyPageMe()
+            .subscribe(
+                {
+                    if(it.isNotEmpty()) {
+                        collectArchiveListAdapter.dataList = it
+                        collectArchiveListAdapter.notifyDataSetChanged()
 
-                    linear_dialog_put_archive_make_new_archive.visibility=View.GONE
+                        linear_dialog_put_archive_make_new_archive.visibility=View.GONE
+                    }
+                    else{ // 내 아카이브가 없을 때
+                        linear_dialog_put_archive_make_new_archive.visibility=View.VISIBLE
+                    }
+                },
+                {
+                    toast(R.string.network_error)
                 }
-                else{ // 내 아카이브가 없을 때
-                    linear_dialog_put_archive_make_new_archive.visibility=View.VISIBLE
-                }
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+            ).apply { compositeDisposable.add(this) }
+    }
+
+    override fun onDestroy() {
+        super.onDestroy()
+        compositeDisposable.clear()
     }
 }

@@ -50,28 +50,14 @@ class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>)
 
         holder.ibtn_scrap.setOnClickListener{
             // 스크랩 버튼 서버 통신
-            repository.postArchiveScrap(
-
-                archiveIdx = dataList[position].id,
-                successCallback = {
-
-
-
-                },
-                failCallback = {
-
-                },
-                statusCallback = { status, success, message ->
-
-                    ctx.toast(message)
-//                    notifyItemChanged(dataList[position].id)
-//                    dataList[position].scrap = !(dataList[position].scrap)
-
+            // TODO 구독 관리
+            repository.postArchiveScrap(dataList[position].id)
+                .subscribe {
+                    ctx.toast(it)
                     dataList[position].scrap?.let {
                         dataList[position].scrap = !it
                     }
                 }
-            )
         }
         holder.tv_article_num.text = dataList[position].num_article.toString()
 

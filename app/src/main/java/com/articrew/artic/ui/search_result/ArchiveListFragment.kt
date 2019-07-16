@@ -36,29 +36,26 @@ class ArchiveListFragment(
         rv_search_result_archive.visibility=View.GONE
         archive_result_empty.visibility=View.VISIBLE
 
-        repository.getSearchArchiveList(
-            keyword = keyword,
-            successCallback = {
-                if(it.isNotEmpty()) {
-                    adapter.dataList = it
-                    searchNumber.onNext(it.size)
-                    adapter.notifyDataSetChanged()
+        repository.getSearchArchiveList(keyword)
+            .subscribe(
+                {
+                    if(it.isNotEmpty()) {
+                        adapter.dataList = it
+                        searchNumber.onNext(it.size)
+                        adapter.notifyDataSetChanged()
 
-                    rv_search_result_archive.visibility = View.VISIBLE
-                    archive_result_empty.visibility = View.GONE
-                } else{
-                    rv_search_result_archive.visibility=View.GONE
-                    archive_result_empty.visibility=View.VISIBLE
+                        rv_search_result_archive.visibility = View.VISIBLE
+                        archive_result_empty.visibility = View.GONE
+                    } else{
+                        rv_search_result_archive.visibility=View.GONE
+                        archive_result_empty.visibility=View.VISIBLE
+                    }
+                },
+                {
+                    logger.error("archive list fragment get search archive list error")
+                    toast(R.string.network_error)
                 }
-            },
-            failCallback = {
-                logger.error("ArchiveListFragment $it")
-
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+            ).apply { addDisposable(this) }
     }
 
     override fun onResumeFragment() {

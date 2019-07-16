@@ -47,28 +47,28 @@ class ArchiveActivity : BaseActivity() {
         }
         else { // 카테고리 아이디를 제대로 받아온 경우
             // 카테고리 아이디에 해당하는 아카이브들을 받아오는 통신
-            repository.getCategoryArchiveList(
-                categoryId = categoryId,
-                successCallback = {
+            repository.getCategoryArchiveList(categoryId)
+                .subscribe(
+                    {
+                        if (it.isNotEmpty()) {
+                            empty_view_act_archive.visibility = View.GONE
+                            rv_archive.visibility = View.VISIBLE
+                        }
+                        else {
+                            empty_view_act_archive.visibility = View.VISIBLE
+                            rv_archive.visibility = View.GONE
+                        }
 
-                    if (it.isNotEmpty()) {
-                        empty_view_act_archive.visibility = View.GONE
-                        rv_archive.visibility = View.VISIBLE
+                        adapter.dataList = it
+                        adapter.notifyDataSetChanged()
+
+                        logger.log(it.toString())
+                    },
+                    {
+                        logger.error("archive activity get category archive list error")
+                        toast(R.string.network_error)
                     }
-                    else {
-                        empty_view_act_archive.visibility = View.VISIBLE
-                        rv_archive.visibility = View.GONE
-                    }
-
-                    adapter.dataList = it
-                    adapter.notifyDataSetChanged()
-
-                    logger.log(it.toString())
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
 
             tv_archive_category_title.text = categoryName
         }

@@ -13,19 +13,16 @@ import com.articrew.artic.data.Article
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_article_link.NewArticleLinkActivity
 import com.articrew.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_home_new_article.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
-class NewArticleFragment : Fragment() {
+class NewArticleFragment : BaseFragment(R.layout.fragment_home_new_article) {
     private val repository : ArticRepository by inject()
     private lateinit var articleCardAdapter: BigImageArticleAdapter
-
-    override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
-        return inflater.inflate(R.layout.fragment_home_new_article, container, false)
-    }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
         super.onActivityCreated(savedInstanceState)
@@ -51,18 +48,20 @@ class NewArticleFragment : Fragment() {
             rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
 
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
-            repository.getNewArticleList(
-                successCallback = {
-                    // 최신 10개의 article 만 가져온다!
-                    it.take(10).let { cut->
-                        articleCardAdapter.dataList = cut
-                        articleCardAdapter.notifyDataSetChanged()
+            repository.getNewArticleList()
+                .subscribe(
+                    {
+                        // 최신 10개의 article 만 가져온다!
+                        it.take(10).let { cut->
+                            articleCardAdapter.dataList = cut
+                            articleCardAdapter.notifyDataSetChanged()
+                        }
+                    },
+                    {
+                        logger.error("new article fragment get new article list error")
+                        toast(R.string.network_error)
                     }
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 }

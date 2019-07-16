@@ -29,14 +29,16 @@ class NewArticleLinkActivity : BaseActivity() {
         var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
         rv_new_article_link.addItemDecoration(spacesItemDecoration)
 
-        repository.getNewArticleList(
-            successCallback = {
-                adapter.dataList = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+        repository.getNewArticleList()
+            .subscribe(
+                {
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("new article link activity get new article list error")
+                    toast(R.string.network_error)
+                }
+        ).apply { addDisposable(this) }
     }
 }

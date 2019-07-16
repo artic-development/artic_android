@@ -26,14 +26,18 @@ class DetailNewArchiveActivity : BaseActivity() {
         super.onResume()
 
         // 새로운 아카이브 리스트 받아오는 통신
-        repository.getNewArchiveList(
-            successCallback = {
-                adapter.dataList = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+        repository.getNewArchiveList()
+            .subscribe(
+                {
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("detail new archive activity get new archive list error")
+                    toast(R.string.network_error)
+                }
+            ).apply { addDisposable(this) }
+
+
     }
 }
