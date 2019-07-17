@@ -88,7 +88,7 @@ class SignupPrivateActivity : BaseActivity() {
                 val birthStr = et_act_signup_private_birth.text.toString()
                 val birthMatcher = birthPattern.matcher(birthStr)
 
-                // TODO (@수민) 생일 유효성 검사
+                // (@수민) 생일 유효성 검사
                 if (et_act_signup_private_birth.text.toString() != "" && birthMatcher.find()) {
                     tv_act_signup_private_birth_check_success.visibility = View.VISIBLE
                     tv_act_signup_private_birth_check_fail.visibility = View.INVISIBLE
@@ -138,7 +138,6 @@ class SignupPrivateActivity : BaseActivity() {
                     // 회원가입 성공한 것으로 자동 로그인하자!
                     auth.requestSignin(data = Signin(it.id, it.pw),
                         successCallback = {
-                            // TODO 응답 받은 토큰을 저장할 것
                             logger.log("token data : $it")
 
                             val intent = Intent(this@SignupPrivateActivity, LoginActivity::class.java)

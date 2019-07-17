@@ -59,7 +59,6 @@ class NotificationAdapter(
                     txt_title?.text = Html.fromHtml("<b>'${cur.archive_title}'</b>에 <b>새로운 아티클</b>이 추가되었습니다.")
 
                     container?.setOnClickListener {
-                        // TODO cur.archiveId 를 이용해 아카이브로 이동!
                         context.startActivity<ArticleActivity>(
                             "archiveId" to cur.archive_id,
                             "archiveTitle" to cur.archive_title

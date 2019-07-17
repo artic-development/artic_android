@@ -99,11 +99,9 @@ class LoginActivity : BaseActivity() {
 //
 //        else {
             logger.log("request signin")
-            // TODO 로그인 구현이 되어야함!
             auth.requestSignin(
                 data = Signin(emailStr, passwordStr),
                 successCallback = {
-                    // TODO 응답 받은 토큰을 저장할 것s
                     logger.log("token data : $it")
 
                     val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
