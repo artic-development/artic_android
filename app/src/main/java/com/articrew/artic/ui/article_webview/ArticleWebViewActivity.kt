@@ -79,7 +79,6 @@ class ArticleWebViewActivity : BaseActivity() {
                     }
 
                     btn_article_web_view_collect.setOnClickListener {
-                        // TODO 담기 Dialog 를 띄워줘야함.
                         var bundle = Bundle()
                         bundle.putInt("article_idx", articleId)
 

@@ -44,7 +44,6 @@ class ArticleAboutActivity : BaseActivity() {
             .subscribe(
                 { article ->
                     txt_article_about_domain.text = article.domain_url
-                    // TODO 타이틀 길이가 너무 길면 안된다! 알아서 줄여주는 방안을 생각해야함.
                     txt_article_about_title.text = article.title
                     Glide.with(this@ArticleAboutActivity)
                         .load(article.title_img_url)
@@ -69,7 +68,7 @@ class ArticleAboutActivity : BaseActivity() {
                                 btn_article_about_show_all.setOnClickListener {
                                     startActivity<ArticleActivity>(
                                         "archiveId" to archiveId,
-                                        "categoryTitle" to "", // TODO category Title 도 받아와야하나?
+                                        "categoryTitle" to "",
                                         "archiveTitle" to article.archive_title
                                     )
                                 }

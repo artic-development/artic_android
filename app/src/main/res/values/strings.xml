@@ -3,7 +3,6 @@
     <string name="home_welcome">안녕하세요,\n오늘의 아티클을 읽어보세요</string>
     <string name="home_search_hint">어떤 아티클이 궁금하신가요?</string>
 
-    <!-- TODO: Remove or change this placeholder text -->
     <string name="hello_blank_fragment">Hello blank fragment</string>
     <string name="new_archive">새로운 아카이브</string>
     <string name="network_error">서버에서 데이터를 받아오는데 문제가 있습니다 ㅠ</string>

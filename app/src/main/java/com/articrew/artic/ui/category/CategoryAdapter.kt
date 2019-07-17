@@ -34,7 +34,6 @@ class CategoryAdapter(
             txt_name?.text = cur.name
 
             container?.setOnClickListener {
-                // TODO cur.id 를 이용해서 category 에 해당하는 archive 로드하는 창으로 이동
                 var intent = Intent(context, ArchiveActivity::class.java)
 
                 intent.putExtra("category_idx", cur.id)

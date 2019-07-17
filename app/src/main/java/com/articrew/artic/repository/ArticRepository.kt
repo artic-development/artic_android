@@ -67,7 +67,7 @@ class ArticRepository (
     fun getCategoryList(): Observable<List<Category>> {
         return remote.getCategoryList()
             .subscribeOn(scheduler.io()) // io thread 에서 네트워크 처리를 한다.
-            .map { if (it.success) it.data!!.map { res -> CategoryMapper.to(res) } else listOf() }
+            .map { if (it.success && it.data != null) it.data.map { res -> CategoryMapper.to(res) } else listOf() }
             .observeOn(scheduler.ui())// ui 코드에서 사용할 반환값이므로 ui 갱신 가능하도록 ui thread 로 변경
     }
 
@@ -115,7 +115,7 @@ class ArticRepository (
     fun getNewArchiveList(): Observable<List<Archive>> {
         return remote.getNewArchiveList()
             .subscribeOn(scheduler.io())
-            .map { if (it.success && it.data != null) it.data!!.map { ArchiveMapper.to(it) } else listOf() }
+            .map { if (it.success && it.data != null) it.data.map { ArchiveMapper.to(it) } else listOf() }
             .observeOn(scheduler.ui())
     }
 
