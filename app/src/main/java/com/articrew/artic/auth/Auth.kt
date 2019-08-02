@@ -36,6 +36,7 @@ class Auth (
     }
 
     companion object {
+        // TODO 이거 아틱 도메인 네임으로 변경 & 이거 버전관리 어캐할까?
         val BASE_URL = "http://15.164.11.203:3000"
         var token: String? = null
     }
