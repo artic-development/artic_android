@@ -6,7 +6,7 @@ import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.local.LocalDataSource
 import com.articrew.artic.repository.remote.RetrofitDataSource
 import com.articrew.artic.repository.remote.mapper.*
-import com.articrew.artic.repository.scheduler.ArticSchduler
+import com.articrew.artic.repository.scheduler.ArticSchedulers
 import com.articrew.artic.ui.new_archive.MakeNewArchiveData
 import com.articrew.artic.ui.search.data.RecommendWordData
 import io.reactivex.Observable
@@ -21,7 +21,7 @@ class ArticRepository (
     private val logger: Logger,
     private val local: LocalDataSource,
     private val remote: RetrofitDataSource,
-    private val scheduler: ArticSchduler
+    private val scheduler: ArticSchedulers
 ) {
     // @수민) 아카이브 스크랩 통신
     fun postArchiveScrap(archiveIdx: Int): Observable<String> {
