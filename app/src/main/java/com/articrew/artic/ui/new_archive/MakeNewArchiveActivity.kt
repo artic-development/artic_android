@@ -8,15 +8,15 @@ import android.text.TextWatcher
 import com.articrew.artic.R
 import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
+import com.articrew.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import kotlinx.android.synthetic.main.activity_make_new_archive.*
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
-class MakeNewArchiveActivity : AppCompatActivity() {
+class MakeNewArchiveActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
 
     override fun onCreate(savedInstanceState: Bundle?) {
         super.onCreate(savedInstanceState)
@@ -48,16 +48,16 @@ class MakeNewArchiveActivity : AppCompatActivity() {
         txt_act_make_new_archive_complete.setOnClickListener {
             if (txt_act_make_new_archive_complete.currentTextColor == Color.parseColor("#4f80ff")) {
                 val title = et_act_make_new_archive_title.text.toString()
-                repository.addMyArchive(
-                    data = MakeNewArchiveData(title, null, 6),// TODO categoryIdx 를 어덯게 지정할지 얘기하고 수정해야한다. 일단 더미로 6으로 구현
-                    successCallback = {
-                        toast("아카이브 생성 완료")
-                    },
-                    errorCallback = {
-                        toast(R.string.network_error)
-
-                    }
-                )
+                repository.addMyArchive(MakeNewArchiveData(title, null, 6))
+                    .subscribe(
+                        {
+                            toast("아카이브 생성 완료")
+                        },
+                        {
+                            logger.error("make new archive activity add my archive error")
+                            toast(R.string.network_error)
+                        }
+                    ).apply { addDisposable(this) }
 
                 finish()
             }

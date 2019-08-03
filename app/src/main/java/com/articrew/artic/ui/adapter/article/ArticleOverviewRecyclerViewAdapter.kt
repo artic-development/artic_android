@@ -87,41 +87,17 @@ class ArticleOverviewRecyclerViewAdapter(
 
         // @수민) 좋아요 통신
         p0.toggle_btn_like.setOnClickListener {
-
-
-            repository.postArticleLike(
-                articleIdx = dataList[p1].id,
-                successCallback = {
-                },
-                errorCallback = {
-                    ctx.toast(R.string.network_error)
-                },
-                statusCallback = {status, success, message ->
-                    run {
-
-                        if (status == 200) {
-
-                            var like_number_int = Integer.parseInt(p0.like_number.text.toString())
-
-                            if (message == "아티클 좋아요 성공") { // 좋아요 성공
-                                p0.like_number.text = (like_number_int + 1).toString()
-                            }
-                            else { // 좋아요 취소 성공
-                                p0.like_number.text = (like_number_int - 1).toString()
-                            }
-
-//                            ctx.toast(message)
-                        }
-                        else if (status == 400) {
-//                            ctx.toast(message)
-                        }
-                        else {
-//                            ctx.toast("오잉")
-                        }
+            // TODO 구독 관리
+            repository.postArticleLike(dataList[p1].id)
+                .subscribe {
+                    val like_number_int = Integer.parseInt(p0.like_number.text.toString())
+                    if (it) { // 좋아요 성공
+                        p0.like_number.text = (like_number_int + 1).toString()
+                    }
+                    else { // 좋아요 취소 성공
+                        p0.like_number.text = (like_number_int - 1).toString()
                     }
                 }
-
-            )
         }
     }
 

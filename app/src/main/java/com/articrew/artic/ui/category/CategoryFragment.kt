@@ -31,15 +31,17 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                 VerticalSpaceItemDecoration(this, 40.dpToPx())
             rv_category.addItemDecoration(spacesItemDecoration)
 
-            repository.getCategoryList(
-                successCallback = {
-                    adapter.data = it
-                    adapter.notifyDataSetChanged()
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+            repository.getCategoryList()
+                .subscribe (
+                    {
+                        adapter.data = it
+                        adapter.notifyDataSetChanged()
+                    },
+                    {
+                        logger.error("category fragment get category list error")
+                        toast(R.string.network_error)
+                    }
+                )
         }
     }
 

@@ -47,16 +47,17 @@ class SearchActivity : BaseActivity() {
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
-
-        repository.getRecommendWordList(
-            successCallback = {
-                recommendWordAdapter.dataList = it
-                recommendWordAdapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+        repository.getRecommendWordList()
+            .subscribe(
+                {
+                    recommendWordAdapter.dataList = it
+                    recommendWordAdapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("search activity get recommend word list error")
+                    toast(R.string.network_error)
+                }
+            ).apply { addDisposable(this) }
     }
 
     // @수민) 검색 기능 구현

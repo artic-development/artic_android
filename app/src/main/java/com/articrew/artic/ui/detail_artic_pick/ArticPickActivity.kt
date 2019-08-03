@@ -29,15 +29,17 @@ class ArticPickActivity : BaseActivity() {
         var spaceItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
         rv_artic_pick.addItemDecoration(spaceItemDecoration)
 
-        repository.getArticPickList(
-            successCallback = {
-                adapter.dataList = it
-                adapter.notifyDataSetChanged()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+        repository.getArticPickList()
+            .subscribe(
+                {
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                },
+                {
+                    logger.error("artic pick activity get artic pick list error")
+                    toast(R.string.network_error)
+                }
+            ).apply { addDisposable(this) }
 
     }
 }

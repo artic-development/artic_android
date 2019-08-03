@@ -53,26 +53,28 @@ class MyPageMeFragment : BaseFragment(R.layout.fragment_my_page_me) {
         super.onResume()
 
         activity?.run {
-            repository.getMyPageMe(
-                successCallback = { // 데이터가 있으면 커다란 아카이브 추가 버튼이 없고 오른쪽 위에 조그만 버튼이 필요함
-                    if(it.isNotEmpty()) {
-                        requireAddArchiveButton.onNext(true)
+            repository.getMyPageMe()
+                .subscribe(
+                    {
+                        if(it.isNotEmpty()) {
+                            requireAddArchiveButton.onNext(true)
 
-                        adapter.data = it
-                        adapter.notifyDataSetChanged()
-                        rv_mypage_me.visibility = View.VISIBLE
-                        mypage_my_empty_view.visibility = View.GONE
-                    }else{ // 데이터가 없으면 커다란 아카이브 추가 버튼이 있을것
-                        requireAddArchiveButton.onNext(false)
+                            adapter.data = it
+                            adapter.notifyDataSetChanged()
+                            rv_mypage_me.visibility = View.VISIBLE
+                            mypage_my_empty_view.visibility = View.GONE
+                        }else{ // 데이터가 없으면 커다란 아카이브 추가 버튼이 있을것
+                            requireAddArchiveButton.onNext(false)
 
-                        rv_mypage_me.visibility=View.GONE
-                        mypage_my_empty_view.visibility=View.VISIBLE
+                            rv_mypage_me.visibility=View.GONE
+                            mypage_my_empty_view.visibility=View.VISIBLE
+                        }
+                    },
+                    {
+                        logger.error("my page me fragment get my page me error $it")
+                        toast(R.string.network_error)
                     }
-                },
-                errorCallback = {
-                    toast(R.string.network_error)
-                }
-            )
+                ).apply { addDisposable(this) }
         }
     }
 }

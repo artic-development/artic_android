@@ -3,135 +3,206 @@ package com.articrew.artic.repository.remote
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.remote.response.*
+import com.articrew.artic.ui.new_archive.MakeNewArchiveData
 import com.google.gson.JsonObject
+import io.reactivex.Observable
 import okhttp3.MultipartBody
 import okhttp3.OkHttpClient
 import okhttp3.RequestBody
-import retrofit2.Call
 import retrofit2.Retrofit
+import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
 class RetrofitDataSource(
     private val logger: Logger
-) : RemoteDataSource {
+) {
     private val retrofit: RetrofitInterface by lazy {
         Retrofit.Builder()
-            .baseUrl(com.articrew.artic.auth.Auth.BASE_URL)
+            .baseUrl(Auth.BASE_URL)
+            .client(OkHttpClient())
             .addConverterFactory(GsonConverterFactory.create())
+            .addCallAdapterFactory(RxJava2CallAdapterFactory.create()) // Observable 객체로 반환
             .build().create(RetrofitInterface::class.java)
     }
 
-    override fun getNewArticleList(): Call<BaseResponse<List<ArticleResponse>>> {
+    fun getNewArticleList(): Observable<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getNewArticleList()
     }
 
-    override fun getNewArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getNewArchiveList(contentType, token)
+    fun getNewArchiveList(): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getNewArchiveList(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getArticle(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<ArticleResponse>> {
-        return retrofit.getArticle(contentType, token, articleIdx)
+    fun getArticle(articleIdx: Int): Observable<BaseResponse<ArticleResponse>> {
+        Auth.token?.let { token ->
+            return retrofit.getArticle(contentType, token, articleIdx)
+        }
+        return createUninitializedToken()
     }
 
     // 아티클 좋아요 누르기
-    override fun postArticleLike(contentType: String, token: String, articleIdx: Int): Call<BaseResponse<Int>> {
-        return retrofit.postArticleLike(contentType, token, articleIdx)
+    fun postArticleLike(articleIdx: Int): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postArticleLike(contentType, token, articleIdx)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getArticPickList(): Call<BaseResponse<List<ArticleResponse>>> {
+    fun getArticPickList(): Observable<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticPickList()
     }
 
-    override fun getCategoryList(): Call<BaseResponse<List<CategoryResponse>>> {
+    fun getCategoryList(): Observable<BaseResponse<List<CategoryResponse>>> {
         return retrofit.getCategoryList()
     }
 
     // @수민) 카테고리에 따른 아카이브 리스트
-    override fun getCategoryArchiveList(contentType: String, token: String, categoryIdx : Int): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getCategoryArchiveList(contentType, token, categoryIdx)
+    fun getCategoryArchiveList(categoryIdx : Int): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let {token ->
+            return retrofit.getCategoryArchiveList(contentType, token, categoryIdx)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getArchiveListGivenCategory(contentType:String, token: String, categoryIdx: Int): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getArchiveListGivenCategory(contentType, token, categoryIdx)
+    fun getArchiveListGivenCategory(categoryIdx: Int): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getArchiveListGivenCategory(contentType, token, categoryIdx)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getMyArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getMyArchiveList(contentType, token)
+    fun getMyArchiveList(): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getMyArchiveList(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getScrapArchiveList(contentType: String, token: String): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getScrapArchiveList(contentType,token)
+    fun getScrapArchiveList(): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getScrapArchiveList(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getReadingHistoryArticle(contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
-        return retrofit.getReadingHistoryArticle(contentType, token)
+    fun getReadingHistoryArticle(): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getReadingHistoryArticle(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
     // @수민) 아티클 담기
-    override fun postCollectArticleInArchive(
-        contentType: String,
-        token: String,
+    fun postCollectArticleInArchive(
         archiveIdx: Int,
         articleIdx: Int
-    ): Call<BaseResponse<Int>> {
-        return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
+    ): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
+        }
+        return createUninitializedToken()
     }
 
-    override fun postRegisterArchive(contentType: String, token: String, body: JsonObject): Call<BaseResponse<Int>> {
-        return retrofit.postRegisterArchive(contentType, token, body)
+    fun postRegisterArchive(data: MakeNewArchiveData): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postRegisterArchive(contentType, token, JsonObject().apply {
+                addProperty("title", data.title)
+                addProperty("img", data.img)
+                addProperty("category_idx", data.categoryIdx)
+            })
+        }
+        return createUninitializedToken()
     }
 
-    override fun postArticleRead(
-        contentType: String, token: String,articleIdx: Int
-    ): Call<BaseResponse<Int>> {
-        return retrofit.postArticleRead(contentType,token,articleIdx)
+    fun postArticleRead(articleIdx: Int): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postArticleRead(contentType,token,articleIdx)
+        }
+        return createUninitializedToken()
 
     }
-    override fun getArticleListGivenArchiveId(archiveId: Int, contentType: String, token: String): Call<BaseResponse<List<ArticleResponse>>> {
-        return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+    fun getArticleListGivenArchiveId(archiveId: Int): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+        }
+        return createUninitializedToken()
     }
 
-    override fun putMyPageInfo(
-        token: String,
+    // TODO RequestBody 같은 정보는 retrofit 에 강하게 종속인걸?
+    fun putMyPageInfo(
         name: RequestBody,
         intro:RequestBody,
         img: MultipartBody.Part
-    ): Call<BaseResponse<Any>> {
-        return retrofit.putMyPageInfo( token,name,intro,img)
+    ): Observable<BaseResponse<Any>> {
+        Auth.token?.let { token ->
+            return retrofit.putMyPageInfo( token,name,intro,img)
+        }
+        return createUninitializedToken()
     }
-    override fun getMyPageInfo(contentType: String, token: String): Call<BaseResponse<MyPageResponse>> {
-        return retrofit.getMyPageInfo(contentType, token)
-    }
-
-    override fun getSearchArticleList(
-        contentType: String,
-        token: String,
-        keyword: String
-    ): Call<BaseResponse<List<ArticleResponse>>> {
-        return retrofit.getSearchArticleList(contentType, token, keyword)
+    fun getMyPageInfo(): Observable<BaseResponse<MyPageResponse>> {
+        Auth.token?.let {  token ->
+            return retrofit.getMyPageInfo(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getSearchArchiveList(
-        contentType: String,
-        token: String,
-        keyword: String
-    ): Call<BaseResponse<List<ArchiveResponse>>> {
-        return retrofit.getSearchArchiveList(contentType, token, keyword)
+    fun getSearchArticleList(keyword: String): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let {  token ->
+            return retrofit.getSearchArticleList(contentType, token, keyword)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getSearchRecommendation(contentType: String, token: String): Call<BaseResponse<List<RecommendationResponse>>> {
-        return retrofit.getSearchRecommendation(contentType, token)
+    fun getSearchArchiveList(keyword: String): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let {  token ->
+            return retrofit.getSearchArchiveList(contentType, token, keyword)
+        }
+        return createUninitializedToken()
     }
 
-    override fun postArchiveScrap(contentType: String, token: String, archiveIdx: Int): Call<BaseResponse<Any>> {
-        return retrofit.postArchiveScrap(contentType, token, archiveIdx)
+    fun getSearchRecommendation(): Observable<BaseResponse<List<RecommendationResponse>>> {
+        Auth.token?.let {  token ->
+            return retrofit.getSearchRecommendation(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
-    override fun getNotification(token: String): Call<BaseResponse<List<NotificationResponse>>> {
-        return retrofit.getNotification(token = token)
+    fun postArchiveScrap(archiveIdx: Int): Observable<BaseResponse<Any>> {
+        Auth.token?.let { token ->
+            return retrofit.postArchiveScrap(contentType, token, archiveIdx)
+        }
+        return createUninitializedToken()
     }
 
-    override fun readNotification(token: String): Call<BaseResponse<Any>> {
-        return retrofit.readNotification(token = token)
+    fun getNotification(): Observable<BaseResponse<List<NotificationResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getNotification(contentType, token)
+        }
+        return createUninitializedToken()
+    }
+
+    fun readNotification(): Observable<BaseResponse<Any>> {
+        Auth.token?.let {  token ->
+            return retrofit.readNotification(contentType, token)
+        }
+        return createUninitializedToken()
+    }
+
+    fun getArchiveIsScarp(articleIdx: Int): Observable<BaseResponse<ArchiveScrapResponse>> {
+        Auth.token?.let { token ->
+            return retrofit.getArchiveIsScarp(contentType, token, articleIdx)
+        }
+        return createUninitializedToken()
+    }
+
+    private fun <T>createUninitializedToken(): Observable<BaseResponse<T>> {
+        return Observable.just(BaseResponse.createUninitializedToken())
+    }
+
+    companion object {
+        val contentType = "application/json"
     }
 }

@@ -25,7 +25,7 @@ class SettingActivity : AppCompatActivity() {
 
         setting_artic_account_logout.setOnClickListener {
             auth.logout {
-                // TODO 첫 화면으로 이동하고, 기존의 Activity Stack을 전부 정리해준다. 스플래시 화면이 나오면 스플래쉬로 이동해야하나?
+                // 첫 화면으로 이동하고, 기존의 Activity Stack을 전부 정리해준다. 스플래시 화면이 나오면 스플래쉬로 이동해야하나?
                 startActivity(intentFor<LoginStartActivity>().newTask().clearTask())
             }
         }

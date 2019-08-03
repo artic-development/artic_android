@@ -35,30 +35,26 @@ class LinkResultFragment(
 
         showEmptyView()
 
-        repository.getSearchArticleList(
-            keyword = keyword,
-            successCallback = {
-                if(it.isNotEmpty()) {
-                    adapter.dataList = it
-                    searchNumber.onNext(it.size)
-                    adapter.notifyDataSetChanged()
+        repository.getSearchArticleList(keyword)
+            .subscribe(
+                {
+                    if(it.isNotEmpty()) {
+                        adapter.dataList = it
+                        searchNumber.onNext(it.size)
+                        adapter.notifyDataSetChanged()
 
-                    showListView()
+                        showListView()
 
-                } else{
+                    } else{
+                        showEmptyView()
+                    }
+                },
+                {
+                    logger.error("link result fragment get search article list error")
+                    toast(R.string.network_error)
                     showEmptyView()
                 }
-            },
-            failCallback = {
-                logger.error("LinkResultFragment $it")
-                showEmptyView()
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-                showEmptyView()
-            }
-
-        )
+            ).apply { addDisposable(this) }
     }
 
     private fun showEmptyView() {

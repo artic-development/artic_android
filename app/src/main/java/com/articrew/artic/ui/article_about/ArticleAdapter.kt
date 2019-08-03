@@ -40,7 +40,7 @@ class ArticleAdapter(
                     .into(it)
             }
             txt_title?.text = cur.title
-            txt_url?.text = cur.url // TODO url의 뒷부분만 보여줘야함. 어캐할래? .com .co.kr ... 등등 파서를 만들어야할듯?
+            txt_url?.text = cur.domain_url
             container?.setOnClickListener {
                 context.startActivity<ArticleWebViewActivity>("articleId" to cur.id)
             }

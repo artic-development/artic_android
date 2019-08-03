@@ -13,6 +13,7 @@ import com.articrew.artic.data.Article
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.detail_artic_pick.ArticPickActivity
 import com.articrew.artic.util.dpToPx
 import kotlinx.android.synthetic.main.fragment_home_artic_pick.*
@@ -22,7 +23,7 @@ import retrofit2.Call
 import retrofit2.Callback
 import retrofit2.Response
 
-class ArticPickFragment : Fragment() {
+class ArticPickFragment : BaseFragment(R.layout.fragment_home_artic_pick) {
     private val repository : ArticRepository by inject()
     private lateinit var adapter: BigImageArticleAdapter
 
@@ -53,21 +54,20 @@ class ArticPickFragment : Fragment() {
             rv_frag_home_artic_pick.addItemDecoration(spacesItemDecoration)
 
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
-            repository.getArticPickList(
-                successCallback = {
-                    // 추천 데이터가 없으면 프레그먼트를 제거하자!
-                    if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
-                    adapter.dataList = it
-                    adapter.notifyDataSetChanged()
-                },
-                failCallback = {
-                    supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
-                },
-                errorCallback = {
-                    supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
-                    toast(R.string.network_error)
-                }
-            )
+            repository.getArticPickList()
+                .subscribe(
+                    {
+                        // 추천 데이터가 없으면 프레그먼트를 제거하자!
+                        if (it.isEmpty()) supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
+                        adapter.dataList = it
+                        adapter.notifyDataSetChanged()
+                    },
+                    {
+                        supportFragmentManager.beginTransaction().remove(this@ArticPickFragment).commitAllowingStateLoss()
+                        logger.error("artic pick fragment get artic pick list error")
+                        toast(R.string.network_error)
+                    }
+                ).apply { addDisposable(this) }
         }
     }
 }

@@ -31,26 +31,27 @@ class MyPageScrapActivity : BaseActivity() {
         rv_mypage_scrap_link.adapter=adapter
         rv_mypage_scrap_link.layoutManager=LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
-        repository.getArticleListGivenArchive(
-            archiveId = archiveId,
-            successCallback = {
-                adapter.dataList=it
-                adapter.notifyDataSetChanged()
+        repository.getArticleListGivenArchive(archiveId)
+            .subscribe(
+                {
+                    adapter.dataList=it
+                    adapter.notifyDataSetChanged()
 
-                mypage_scrap_link_num.text = it.size.toString()
+                    mypage_scrap_link_num.text = it.size.toString()
 
-                if (it.size == 0) {
-                    my_page_scrap_link_result_empty.visibility = View.VISIBLE
-                    rv_mypage_scrap_link.visibility = View.GONE
+                    if (it.size == 0) {
+                        my_page_scrap_link_result_empty.visibility = View.VISIBLE
+                        rv_mypage_scrap_link.visibility = View.GONE
+                    }
+                    else {
+                        my_page_scrap_link_result_empty.visibility = View.GONE
+                        rv_mypage_scrap_link.visibility = View.VISIBLE
+                    }
+                },
+                {
+                    toast("mypage scrap activity get article list given archive error")
+                    toast(R.string.network_error)
                 }
-                else {
-                    my_page_scrap_link_result_empty.visibility = View.GONE
-                    rv_mypage_scrap_link.visibility = View.VISIBLE
-                }
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
+            ).apply { addDisposable(this) }
     }
 }

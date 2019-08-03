@@ -69,37 +69,34 @@ class SettingEditProfileActivity : BaseActivity() {
             choosePhotoFromGallary()
         }
 
-        repository.getMyInfo(
-            successCallback = {
-                // 추가
-                name = it.name
-                it.my_info?.let {my_info ->
-                    myInfo = my_info
+        repository.getMyInfo()
+            .subscribe(
+                {
+                    // 추가
+                    name = it.name
+                    it.my_info?.let {my_info ->
+                        myInfo = my_info
+                    }
+                    //
+
+                    logger.log("mypage success $it")
+                    edit_profile_name_et.setText(it.name)
+                    //  txt__my_page_email.text=it.id
+                    val img =it.profile_img
+                    originalImage = img
+                    edit_profile_img?.let{
+                        Glide.with(this)
+                            .load(img)
+                            .apply(defaultHolderOptions)
+                            .into(it)
+                    }
+                    edit_profile_myinfo_et.setText(it.my_info)
+                },
+                {
+                    logger.error("setting edit profile activity get my info error")
+                    toast(R.string.network_error)
                 }
-                //
-
-                logger.log("mypage success $it")
-                edit_profile_name_et.setText(it.name)
-              //  txt__my_page_email.text=it.id
-                val img =it.profile_img
-                originalImage = img
-                edit_profile_img?.let{
-                    Glide.with(this)
-                        .load(img)
-                        .apply(defaultHolderOptions)
-                        .into(it)
-                }
-                edit_profile_myinfo_et.setText(it.my_info)
-            },
-            failCallback = {
-                logger.log("mypage edit fail")
-            },
-            errorCallback = {
-                toast(R.string.network_error)
-            }
-        )
-
-
+            ).apply { addDisposable(this) }
     }
 
     private fun setListener() {
@@ -204,18 +201,10 @@ class SettingEditProfileActivity : BaseActivity() {
         val name_rb=RequestBody.create(MediaType.parse("text/plain"),name)
         val my_info_rb=RequestBody.create(MediaType.parse("text/plain"),my_info)
 
-        repository.changeMyInfo(name_rb, my_info_rb,picture_rb,
-            successCallback = {
+        repository.changeMyInfo(name_rb, my_info_rb, picture_rb)
+            .subscribe {
                 logger.log("token data : $it")
-                toast("success")
-
-            },
-            failCallback = {
-                toast("mypage change fail")
-                logger.log("mypage change fail")
-            }
-        )
-
+            }.apply { addDisposable(this) }
         finish()
     }
 
