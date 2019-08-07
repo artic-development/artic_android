@@ -62,7 +62,7 @@
         android:paddingRight="20dp"
         android:paddingTop="15dp"
         android:paddingBottom="300dp"
-        android:hint="브랜드 디자인"
+        android:hint="이름을 입력하세요"
         android:textSize="14sp"
         android:textColor="@color/black"
         android:fontFamily="@font/nanum_barungothic_regular"
