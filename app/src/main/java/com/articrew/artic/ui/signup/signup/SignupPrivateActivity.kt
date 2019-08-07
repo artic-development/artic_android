@@ -78,10 +78,21 @@ class SignupPrivateActivity : BaseActivity() {
         })
 
         et_act_signup_private_birth.addTextChangedListener(object : TextWatcher {
+
+            var prevL = 0
+
             override fun afterTextChanged(p0: Editable?) {
+
+                if ((prevL < p0?.length!!) && (p0?.length == 4 || p0?.length == 7)) {
+                    p0.append('-')
+                }
+
             }
 
             override fun beforeTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
+
+                prevL = et_act_signup_private_birth.text.toString().length
+
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
