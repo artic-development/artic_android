@@ -25,15 +25,9 @@ class RetrofitDataSource(
             .build().create(RetrofitInterface::class.java)
     }
 
+    // Article 관련 함수들
     fun getNewArticleList(): Observable<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getNewArticleList()
-    }
-
-    fun getNewArchiveList(): Observable<BaseResponse<List<ArchiveResponse>>> {
-        Auth.token?.let { token ->
-            return retrofit.getNewArchiveList(contentType, token)
-        }
-        return createUninitializedToken()
     }
 
     fun getArticle(articleIdx: Int): Observable<BaseResponse<ArticleResponse>> {
@@ -43,20 +37,38 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
-    // 아티클 좋아요 누르기
-    fun postArticleLike(articleIdx: Int): Observable<BaseResponse<Int>> {
-        Auth.token?.let { token ->
-            return retrofit.postArticleLike(contentType, token, articleIdx)
-        }
-        return createUninitializedToken()
-    }
-
     fun getArticPickList(): Observable<BaseResponse<List<ArticleResponse>>> {
         return retrofit.getArticPickList()
     }
 
-    fun getCategoryList(): Observable<BaseResponse<List<CategoryResponse>>> {
-        return retrofit.getCategoryList()
+    fun getReadingHistoryArticle(): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getReadingHistoryArticle(contentType, token)
+        }
+        return createUninitializedToken()
+    }
+
+    fun getArticleListGivenArchiveId(archiveId: Int): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+        }
+        return createUninitializedToken()
+    }
+
+    fun getSearchArticleList(keyword: String): Observable<BaseResponse<List<ArticleResponse>>> {
+        Auth.token?.let {  token ->
+            return retrofit.getSearchArticleList(contentType, token, keyword)
+        }
+        return createUninitializedToken()
+    }
+    /////////////////////
+
+    // Archive 관련 함수들
+    fun getNewArchiveList(): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let { token ->
+            return retrofit.getNewArchiveList(contentType, token)
+        }
+        return createUninitializedToken()
     }
 
     // @수민) 카테고리에 따른 아카이브 리스트
@@ -88,45 +100,39 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
-    fun getReadingHistoryArticle(): Observable<BaseResponse<List<ArticleResponse>>> {
+    fun getSearchArchiveList(keyword: String): Observable<BaseResponse<List<ArchiveResponse>>> {
+        Auth.token?.let {  token ->
+            return retrofit.getSearchArchiveList(contentType, token, keyword)
+        }
+        return createUninitializedToken()
+    }
+    /////////////////////
+
+
+    // Category 관련 함수들
+    fun getCategoryList(): Observable<BaseResponse<List<CategoryResponse>>> {
+        return retrofit.getCategoryList()
+    }
+
+
+    /////////////////////
+
+
+    // Notification 관련 함수들
+    fun getNotification(): Observable<BaseResponse<List<NotificationResponse>>> {
         Auth.token?.let { token ->
-            return retrofit.getReadingHistoryArticle(contentType, token)
+            return retrofit.getNotification(contentType, token)
         }
         return createUninitializedToken()
     }
 
-    // @수민) 아티클 담기
-    fun postCollectArticleInArchive(
-        archiveIdx: Int,
-        articleIdx: Int
-    ): Observable<BaseResponse<Int>> {
-        Auth.token?.let { token ->
-            return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
-        }
-        return createUninitializedToken()
-    }
+    /////////////////////
 
-    fun postRegisterArchive(data: MakeNewArchiveData): Observable<BaseResponse<Int>> {
-        Auth.token?.let { token ->
-            return retrofit.postRegisterArchive(contentType, token, JsonObject().apply {
-                addProperty("title", data.title)
-                addProperty("img", data.img)
-                addProperty("category_idx", data.categoryIdx)
-            })
-        }
-        return createUninitializedToken()
-    }
 
-    fun postArticleRead(articleIdx: Int): Observable<BaseResponse<Int>> {
-        Auth.token?.let { token ->
-            return retrofit.postArticleRead(contentType,token,articleIdx)
-        }
-        return createUninitializedToken()
-
-    }
-    fun getArticleListGivenArchiveId(archiveId: Int): Observable<BaseResponse<List<ArticleResponse>>> {
-        Auth.token?.let { token ->
-            return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
+    // MyPage 관련 함수들
+    fun getMyPageInfo(): Observable<BaseResponse<MyPageResponse>> {
+        Auth.token?.let {  token ->
+            return retrofit.getMyPageInfo(contentType, token)
         }
         return createUninitializedToken()
     }
@@ -142,27 +148,10 @@ class RetrofitDataSource(
         }
         return createUninitializedToken()
     }
-    fun getMyPageInfo(): Observable<BaseResponse<MyPageResponse>> {
-        Auth.token?.let {  token ->
-            return retrofit.getMyPageInfo(contentType, token)
-        }
-        return createUninitializedToken()
-    }
+    /////////////////////
 
-    fun getSearchArticleList(keyword: String): Observable<BaseResponse<List<ArticleResponse>>> {
-        Auth.token?.let {  token ->
-            return retrofit.getSearchArticleList(contentType, token, keyword)
-        }
-        return createUninitializedToken()
-    }
 
-    fun getSearchArchiveList(keyword: String): Observable<BaseResponse<List<ArchiveResponse>>> {
-        Auth.token?.let {  token ->
-            return retrofit.getSearchArchiveList(contentType, token, keyword)
-        }
-        return createUninitializedToken()
-    }
-
+    // Recommend 관련 함수들
     fun getSearchRecommendation(): Observable<BaseResponse<List<RecommendationResponse>>> {
         Auth.token?.let {  token ->
             return retrofit.getSearchRecommendation(contentType, token)
@@ -170,6 +159,60 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
+    /////////////////////
+
+
+
+
+
+
+
+
+
+
+    // 아티클 좋아요 누르기
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
+    fun postArticleLike(articleIdx: Int): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postArticleLike(contentType, token, articleIdx)
+        }
+        return createUninitializedToken()
+    }
+
+    // @수민) 아티클 담기
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
+    fun postCollectArticleInArchive(
+        archiveIdx: Int,
+        articleIdx: Int
+    ): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postCollectArticleInArchive(contentType, token, archiveIdx, articleIdx)
+        }
+        return createUninitializedToken()
+    }
+
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
+    fun postRegisterArchive(data: MakeNewArchiveData): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postRegisterArchive(contentType, token, JsonObject().apply {
+                addProperty("title", data.title)
+                addProperty("img", data.img)
+                addProperty("category_idx", data.categoryIdx)
+            })
+        }
+        return createUninitializedToken()
+    }
+
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
+    fun postArticleRead(articleIdx: Int): Observable<BaseResponse<Int>> {
+        Auth.token?.let { token ->
+            return retrofit.postArticleRead(contentType,token,articleIdx)
+        }
+        return createUninitializedToken()
+    }
+
+
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
     fun postArchiveScrap(archiveIdx: Int): Observable<BaseResponse<Any>> {
         Auth.token?.let { token ->
             return retrofit.postArchiveScrap(contentType, token, archiveIdx)
@@ -177,13 +220,7 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
-    fun getNotification(): Observable<BaseResponse<List<NotificationResponse>>> {
-        Auth.token?.let { token ->
-            return retrofit.getNotification(contentType, token)
-        }
-        return createUninitializedToken()
-    }
-
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
     fun readNotification(): Observable<BaseResponse<Any>> {
         Auth.token?.let {  token ->
             return retrofit.readNotification(contentType, token)
@@ -191,6 +228,7 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
+    // TODO repository에 들어갈  의미에 대해서 생각해보자
     fun getArchiveIsScarp(articleIdx: Int): Observable<BaseResponse<ArchiveScrapResponse>> {
         Auth.token?.let { token ->
             return retrofit.getArchiveIsScarp(contentType, token, articleIdx)
