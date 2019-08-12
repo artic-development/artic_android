@@ -30,7 +30,6 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
                     .load(cur.title_img_url)
                     .apply(defaultHolderOptions)
                     .into(it)
-
             }
 
             directory_name?.text=cur.title
