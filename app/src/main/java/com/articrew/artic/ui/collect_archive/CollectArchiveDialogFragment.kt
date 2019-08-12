@@ -33,6 +33,7 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)
+
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
