@@ -14,7 +14,7 @@
         android:layout_marginStart="120dp"
         android:layout_marginTop="64dp"
         android:layout_marginEnd="120dp"
-        android:src="@drawable/artic_logo"
+        android:src="@drawable/logo_login"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
@@ -24,8 +24,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="53dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="56dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -62,8 +62,8 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
-        android:layout_marginTop="55dp"
-        android:layout_marginEnd="36dp"
+        android:layout_marginTop="50dp"
+        android:layout_marginEnd="20dp"
         android:orientation="vertical"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -100,7 +100,7 @@
         android:layout_width="match_parent"
         android:layout_height="37dp"
         android:layout_marginStart="80dp"
-        android:layout_marginTop="50dp"
+        android:layout_marginTop="41dp"
         android:layout_marginEnd="80dp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
@@ -111,5 +111,41 @@
         android:textSize="14sp"
         android:fontFamily="@font/nanum_barungothic_regular"
         android:includeFontPadding="false"/>
+
+    <LinearLayout
+        android:id="@+id/linear_act_login_start_go_to_signup_button"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/btn_login_complete"
+        android:orientation="vertical"
+        android:layout_marginTop="26dp"
+        android:layout_gravity="center">
+
+        <TextView
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:text="비밀번호를 잊어버리셨나요?"
+            android:textSize="14sp"
+            android:textColor="#242424"
+            android:fontFamily="@font/nanum_barungothic_light"
+            android:includeFontPadding="false"/>
+
+        <View
+            android:layout_width="match_parent"
+            android:layout_height="1dp"
+            android:background="#242424"
+            android:layout_marginTop="-2dp"/>
+
+    </LinearLayout>
+
+    <ImageView
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintBottom_toBottomOf="parent"
+        android:src="@drawable/login_character"/>
 
 </androidx.constraintlayout.widget.ConstraintLayout>

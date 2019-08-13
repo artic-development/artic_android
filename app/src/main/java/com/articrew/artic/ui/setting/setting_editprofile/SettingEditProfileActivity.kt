@@ -151,6 +151,7 @@ class SettingEditProfileActivity : BaseActivity() {
 
         })
 
+        // 완료 버튼
         edit_profile_finish_btn.setOnClickListener {
             if (flag == 1) {
                 logger.log("edit profile finish btn")
@@ -180,6 +181,8 @@ class SettingEditProfileActivity : BaseActivity() {
                         }
                         )
                 }
+
+
             }
             else {
                 toast("정보를 바꿔주세요")
