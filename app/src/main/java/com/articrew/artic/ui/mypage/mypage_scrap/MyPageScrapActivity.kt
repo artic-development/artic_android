@@ -8,11 +8,13 @@ import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
+import com.articrew.artic.util.PopupSystem
 import kotlinx.android.synthetic.main.activity_my_page_scrap.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 
+// TODO 내가 만든 아카이브 목록을 보여주는 Activity이다. 즉, Scrap 목록을 보여주는 화면이 아니다. 따라서 네이밍 수정이 필요하다.
 class MyPageScrapActivity : BaseActivity() {
     private val repository :ArticRepository by inject()
 //    private var archiveId : Int=-1
@@ -53,5 +55,32 @@ class MyPageScrapActivity : BaseActivity() {
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }
+
+        btn_mypage_myarchive_modify.setOnClickListener {
+            // TODO 아카이브를 제거할 것인지, 이름을 변경할 것인지를 보여줄 팝업을 띄워준다.
+            PopupSystem.show(this, R.layout.dlg_modify_archive,
+                mapOf(
+                    R.id.btn_dlg_archive_modify to {
+                        // TODO 아카이브 수정 activity로 이동해야한다.
+                        toast("아카이브 수정")
+                    },
+                    R.id.btn_dlg_archive_delete to  {
+                        toast("아카이브 제거")
+                        // TODO 아카이브 제거 popup을 다시 띄워주어야 한다.
+                        PopupSystem.show(this, R.layout.dlg_confirm_delete_archive,
+                            mapOf(
+                                R.id.btn_dlg_confirm_delete to {
+                                    // TODO 아카이브 제거 서버 통신을 해야한다.
+                                    toast("아카이브 제거 확실!")
+                                },
+                                R.id.btn_dlg_confirm_cancel to {
+                                    // 팝업창을 종료하면 되니까 아무것도 하지않는다. (PopupSystem에서 알아서 종료시켜준다.)
+                                }
+                            )
+                        )
+                    }
+                )
+            )
+        }
     }
 }
