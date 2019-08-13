@@ -7,6 +7,7 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
+import com.articrew.artic.FindPasswordActivity
 import com.articrew.artic.R
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
@@ -81,6 +82,13 @@ class LoginActivity : BaseActivity() {
                     return false
             }
         })
+
+        // @수민) 비밀번호 찾기 버튼
+        linear_act_login_start_go_to_signup_button.setOnClickListener {
+            var intent = Intent(this, FindPasswordActivity::class.java)
+
+            startActivity(intent)
+        }
     }
 
     private fun signin() {
