@@ -151,7 +151,7 @@ class SignupPrivateActivity : BaseActivity() {
                         successCallback = {
                             logger.log("token data : $it")
 
-                            val intent = Intent(this@SignupPrivateActivity, LoginActivity::class.java)
+                            val intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
 
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
                             intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK)
