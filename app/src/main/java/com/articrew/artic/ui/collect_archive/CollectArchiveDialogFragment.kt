@@ -33,6 +33,31 @@ class CollectArchiveDialogFragment : BottomSheetDialogFragment() {
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(R.layout.dialog_put_archive, container)
+
+    }
+
+
+    // @수민) 새 아카이브를 만들고 돌아오면 서버에서 데이터를 다시 받아와서 RecyclerView를 설정해준다.
+    override fun onResume() {
+        super.onResume()
+
+        repository.getMyPageMe()
+            .subscribe(
+                {
+                    if(it.isNotEmpty()) {
+                        collectArchiveListAdapter.dataList = it
+                        collectArchiveListAdapter.notifyDataSetChanged()
+
+                        linear_dialog_put_archive_make_new_archive.visibility=View.GONE
+                    }
+                    else{ // 내 아카이브가 없을 때
+                        linear_dialog_put_archive_make_new_archive.visibility=View.VISIBLE
+                    }
+                },
+                {
+                    toast(R.string.network_error)
+                }
+            ).apply { compositeDisposable.add(this) }
     }
 
     override fun onActivityCreated(savedInstanceState: Bundle?) {
