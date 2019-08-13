@@ -33,7 +33,7 @@
             android:textColor="#707070"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:includeFontPadding="false"
-            android:padding="20dp"/>
+            android:padding="11dp"/>
 
     </RelativeLayout>
     
