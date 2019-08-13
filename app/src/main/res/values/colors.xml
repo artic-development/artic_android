@@ -14,5 +14,6 @@
     <color name="white_two">#f9f9f9</color>
     <color name="artic_transparent">#00000000</color>
     <color name="kakao_yellow">#fddc3f</color>
+    <color name="red">#ff1515</color>
 
 </resources>

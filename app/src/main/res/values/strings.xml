@@ -18,4 +18,10 @@
     <string name="notification_old">읽은 알림</string>
     <string name="read_storage_permission_warning">저장소 접근 권한이 없어서 이미지를 가져올 수 없어요.</string>
     <string name="kakao_login_fail">카카오 로그인 실패</string>
+    <string name="modify_archive_name">아카이브 이름 변경하기</string>
+    <string name="delete_archive">아카이브 삭제</string>
+    <string name="label_do_you_delete_archive">아카이브를 삭제하시겠습니까?</string>
+    <string name="label_warning_delete_archive">삭제된 아카이브는 복구되지 않습니다.</string>
+    <string name="delete">삭제</string>
+    <string name="cancel">취소</string>
 </resources>
