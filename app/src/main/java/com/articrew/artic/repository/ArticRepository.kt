@@ -166,10 +166,10 @@ class ArticRepository (
         name: RequestBody,
         intro: RequestBody,
         img:MultipartBody.Part
-    ): Observable<Int> {
+    ): Observable<String> {
         return remote.putMyPageInfo(name, intro, img)
             .subscribeOn(scheduler.io())
-            .map { it.status }
+            .map { it.message }
             .observeOn(scheduler.ui())
     }
 

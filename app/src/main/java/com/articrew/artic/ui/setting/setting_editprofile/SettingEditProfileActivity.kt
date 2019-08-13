@@ -206,7 +206,8 @@ class SettingEditProfileActivity : BaseActivity() {
 
         repository.changeMyInfo(name_rb, my_info_rb, picture_rb)
             .subscribe {
-                logger.log("token data : $it")
+                logger.log("token data (change) : $it")
+                toast(it)
             }.apply { addDisposable(this) }
         finish()
     }
