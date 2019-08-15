@@ -125,4 +125,7 @@ dependencies {
 
     implementation "com.airbnb.android:lottie:$lottieVersion"
     implementation 'com.google.android:flexbox:0.3.2'
+
+    // soomin
+    implementation 'com.daimajia.swipelayout:library:1.2.0@aar'
 }

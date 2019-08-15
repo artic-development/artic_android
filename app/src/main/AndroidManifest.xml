@@ -17,9 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
-        <activity android:name=".ResetPasswordActivity"></activity>
-        <activity android:name=".InputAuthCodeActivity" />
-        <activity android:name=".FindPasswordActivity" />
+        <activity android:name=".SampleActivity">
+
+
+        </activity>
+        <activity android:name=".ui.reset_password.ResetPasswordActivity" />
+        <activity android:name=".ui.reset_password.InputAuthCodeActivity" />
+        <activity android:name=".ui.reset_password.FindPasswordActivity" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />

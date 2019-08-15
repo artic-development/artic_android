@@ -64,10 +64,11 @@ class ArticRepository (
      * @see Article
      * @author greedy0110
      * */
-    fun getArticleListGivenArchive(archiveId: Int): Observable<List<Article>> {
+    // @수민) 아티클 삭제를 위해 바꿈
+    fun getArticleListGivenArchive(archiveId: Int): Observable<MutableList<Article>> {
         return remote.getArticleListGivenArchiveId(archiveId)
             .subscribeOn(scheduler.io())
-            .map { if (it.success && it.data != null) it.data.map { ArticleMapper.to(it) } else listOf() }
+            .map { if (it.success && it.data != null) it.data.map { ArticleMapper.to(it) }.toMutableList() else mutableListOf() }
             .observeOn(scheduler.ui())
     }
 
@@ -199,6 +200,17 @@ class ArticRepository (
         return remote.getSearchRecommendation()
             .subscribeOn(scheduler.io())
             .map { if (it.success && it.data != null) it.data.map { RecommendWordMapper.to(it) } else listOf() }
+            .observeOn(scheduler.ui())
+    }
+
+    /**
+     * 아카이브 삭제 (https://github.com/artic-development/artic_server/wiki/%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EC%82%AD%EC%A0%9C)
+     * @author ChoSooMin
+     * */
+    fun deleteArchive(archiveIdx: Int) : Observable<String> {
+        return remote.deleteArchive(archiveIdx)
+            .subscribeOn(scheduler.io())
+            .map { it.message }
             .observeOn(scheduler.ui())
     }
 

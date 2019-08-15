@@ -29,7 +29,7 @@ class LinkResultFragment(
         super.onActivityCreated(savedInstanceState)
 
 
-        adapter= ArticleOverviewRecyclerViewAdapter(activity!!, listOf(), false)
+        adapter= ArticleOverviewRecyclerViewAdapter(activity!!, mutableListOf(), false)
         rv_search_result_link.adapter=adapter
         rv_search_result_link.layoutManager= LinearLayoutManager(context!!, RecyclerView.VERTICAL,false)
 
@@ -39,7 +39,7 @@ class LinkResultFragment(
             .subscribe(
                 {
                     if(it.isNotEmpty()) {
-                        adapter.dataList = it
+                        adapter.dataList = it.toMutableList()
                         searchNumber.onNext(it.size)
                         adapter.notifyDataSetChanged()
 

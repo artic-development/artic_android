@@ -1,11 +1,10 @@
-package com.articrew.artic
+package com.articrew.artic.ui.reset_password
 
-import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
-import android.view.View
+import com.articrew.artic.R
 import com.articrew.artic.ui.login.login_start.LoginStartActivity
 import kotlinx.android.synthetic.main.activity_reset_password.*
 import org.jetbrains.anko.clearTask
