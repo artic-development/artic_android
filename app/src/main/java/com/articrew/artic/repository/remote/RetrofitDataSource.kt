@@ -48,7 +48,7 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
-    fun getArticleListGivenArchiveId(archiveId: Int): Observable<BaseResponse<List<ArticleResponse>>> {
+    fun getArticleListGivenArchiveId(archiveId: Int): Observable<BaseResponse<MutableList<ArticleResponse>>> {
         Auth.token?.let { token ->
             return retrofit.getArticleListGivenArchiveId(archiveId, contentType, token )
         }
@@ -104,6 +104,15 @@ class RetrofitDataSource(
         Auth.token?.let {  token ->
             return retrofit.getSearchArchiveList(contentType, token, keyword)
         }
+        return createUninitializedToken()
+    }
+
+    // @수민) 아카이브 삭제
+    fun deleteArchive(archiveIdx: Int) : Observable<BaseResponse<String>> {
+        Auth.token?.let { token ->
+            return retrofit.deleteArchive(contentType, token, archiveIdx)
+        }
+
         return createUninitializedToken()
     }
     /////////////////////

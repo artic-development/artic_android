@@ -1,10 +1,11 @@
-package com.articrew.artic
+package com.articrew.artic.ui.reset_password
 
 import android.content.Intent
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import com.articrew.artic.R
 import kotlinx.android.synthetic.main.activity_input_auth_code.*
 
 class InputAuthCodeActivity : AppCompatActivity() {

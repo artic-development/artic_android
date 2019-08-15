@@ -1,6 +1,7 @@
 package com.articrew.artic.ui.adapter.article
 
 import android.os.Bundle
+import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -9,12 +10,15 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Article
+import com.articrew.artic.data.MyPage
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.article_about.ArticleAboutActivity
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
 import com.articrew.artic.ui.collect_archive.CollectArchiveDialogFragment
+import com.articrew.artic.ui.mypage.mypage_scrap.MyPageScrapActivity
 import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
+import com.daimajia.swipe.SwipeLayout
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -27,9 +31,13 @@ class ArticleOverviewRecyclerViewAdapter(
 ): RecyclerView.Adapter<ArticleOverviewRecyclerViewAdapter.Holder>() {
 
     private val repository : ArticRepository by ctx.inject()
+    private var isMyPageScrapACtivity = false
 
     override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view:View= LayoutInflater.from(ctx).inflate(R.layout.rv_item_link_list,p0,false)
+
+        isMyPageScrapACtivity = ctx is MyPageScrapActivity // 현재 activity가 MyPageScrapActivity라면 isMyPageScrapACtivity값을 true로 바꿔준다.
+
         return Holder(view)
     }
 
@@ -99,6 +107,17 @@ class ArticleOverviewRecyclerViewAdapter(
                     }
                 }
         }
+
+        // @수민) set Swipe Layout
+        p0.swipeLayout.showMode = SwipeLayout.ShowMode.PullOut // swipeLayout 모드 설정?
+        p0.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, p0.bottomWrapper2) // 오른쪽에서 스와이프 하면 이 레이아웃이 나오게 하는 것 같음
+        p0.bottomWrapper2.setOnClickListener {
+            // TODO 아티클 담기 취소 통신
+        }
+
+//      p0.swipeLayout.isSwipeEnabled = false // ㅇㅣ 코드를 사용하면 SwipeLayout이 enabled 되어 스와이프 해도 나오지 않는다.
+        p0.swipeLayout.isSwipeEnabled = isMyPageScrapACtivity // 현재 activity가 MyPageScrapActivity일때만 스와이프를 가능하게 해준다.
+
     }
 
     inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView){
@@ -113,5 +132,8 @@ class ArticleOverviewRecyclerViewAdapter(
         var toggle_btn_like = itemView.findViewById<ToggleButton>(R.id.rv_link_list_like)
         var txt_put=itemView.findViewById<RelativeLayout>(R.id.rv_link_list_storage_txt)
 
+        // @수민 ) swipeLayout 추가 -> 마이 아카이브에서 아티클 삭제 가능하도록
+        var swipeLayout = itemView.findViewById<SwipeLayout>(R.id.swipe)
+        var bottomWrapper2 = itemView.findViewById<RelativeLayout>(R.id.bottom_wrapper_2)
     }
 }

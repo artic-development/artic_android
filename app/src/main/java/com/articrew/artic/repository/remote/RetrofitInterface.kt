@@ -147,7 +147,7 @@ interface RetrofitInterface {
         @Path("archive_idx") archiveId: Int,
         @Header("Content-Type") contentType: String,
         @Header("token") token: String
-    ): Observable<BaseResponse<List<ArticleResponse>>>
+    ): Observable<BaseResponse<MutableList<ArticleResponse>>>
 
     /**
      * 아티클 검색 (https://github.com/artic-development/artic_server/wiki/%EC%95%84%ED%8B%B0%ED%81%B4-%EA%B2%80%EC%83%89)
@@ -263,4 +263,15 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Path("archive_idx") articleIdx: Int
     ): Observable<BaseResponse<ArchiveScrapResponse>>
+
+    /**
+     * 아카이브 삭제 (https://github.com/artic-development/artic_server/wiki/%EC%95%84%EC%B9%B4%EC%9D%B4%EB%B8%8C-%EC%82%AD%EC%A0%9C)
+     * @author ChoSooMin
+     * */
+    @DELETE("/archive/{archive_idx}")
+    fun deleteArchive(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("archive_idx") archiveIdx: Int
+    ) : Observable<BaseResponse<String>>
 }
