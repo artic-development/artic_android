@@ -9,7 +9,7 @@
     <uses-permission android:name="android.permission.READ_EXTERNAL_STORAGE" />
 
     <application
-        android:name="com.articrew.artic.ArticApplication"
+        android:name=".ArticApplication"
         android:allowBackup="true"
         android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
@@ -17,6 +17,13 @@
         android:supportsRtl="true"
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
+        <activity android:name=".SampleActivity">
+
+
+        </activity>
+        <activity android:name=".ui.reset_password.ResetPasswordActivity" />
+        <activity android:name=".ui.reset_password.InputAuthCodeActivity" />
+        <activity android:name=".ui.reset_password.FindPasswordActivity" />
         <activity android:name=".ui.splash.SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -32,9 +39,9 @@
         <activity
             android:name="com.facebook.FacebookActivity"
             android:configChanges="keyboard|keyboardHidden|screenLayout|screenSize|orientation"
+            android:label="@string/app_name"
             android:theme="@style/Translucent"
-            tools:replace="android:theme"
-            android:label="@string/app_name" />
+            tools:replace="android:theme" />
         <activity
             android:name="com.facebook.CustomTabActivity"
             android:exported="true">
@@ -58,14 +65,12 @@
         <!-- <category android:name="android.intent.category.DEFAULT"/> -->
         <!-- </intent-filter> -->
         <!-- </activity> -->
-        <activity android:name=".ui.base.BaseSocialLoginActivity"/>
+        <activity android:name=".ui.base.BaseSocialLoginActivity" />
         <activity android:name=".ui.navigation.NavigationActivity" />
         <activity android:name=".ui.new_archive.MakeNewArchiveActivity" />
         <activity android:name=".ui.article_webview.ArticleWebViewActivity" />
         <activity android:name=".ui.signup.signup_start.SignupStartActivity" />
-        <activity android:name=".ui.login.login_start.LoginStartActivity">
-
-        </activity>
+        <activity android:name=".ui.login.login_start.LoginStartActivity" />
         <activity android:name=".ui.setting.setting.SettingActivity" />
         <activity android:name=".ui.setting.setting_editprofile.SettingEditProfileActivity" />
         <activity android:name=".ui.mypage.mypage_scrap.MyPageScrapActivity" />
