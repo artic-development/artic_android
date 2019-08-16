@@ -15,23 +15,26 @@
 
         <TextView
             android:id="@+id/btn_dlg_archive_modify"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
+            android:layout_marginEnd="8dp"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:lineSpacingExtra="10sp"
             android:text="@string/modify_archive_name"
             android:textColor="@color/black"
             android:textSize="14sp"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/btn_dlg_archive_delete"
-            android:layout_width="wrap_content"
+            android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
+            android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
             android:fontFamily="@font/nanum_barungothic_regular"
             android:lineSpacingExtra="10sp"
@@ -39,6 +42,7 @@
             android:textColor="@color/red"
             android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/btn_dlg_archive_modify"
             app:layout_constraintTop_toBottomOf="@+id/btn_dlg_archive_modify" />
     </androidx.constraintlayout.widget.ConstraintLayout>

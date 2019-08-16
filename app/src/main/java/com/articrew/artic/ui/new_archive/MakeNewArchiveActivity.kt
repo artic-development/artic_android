@@ -48,14 +48,13 @@ class MakeNewArchiveActivity : BaseActivity() {
                     .subscribe(
                         {
                             toast("아카이브 생성 완료")
+                            finish()
                         },
                         {
                             logger.error("make new archive activity add my archive error")
                             toast(R.string.network_error)
                         }
                     ).apply { addDisposable(this) }
-
-                finish()
             }
         }
     }
