@@ -1,5 +1,5 @@
 package com.articrew.artic.data.notification
 
 enum class NotificationType {
-    ADD_ARTICLE, RECOMMEND_ARCHIVE, REMIND_ARCHIVE
+    NEW_ARTICLE, RECOMMEND_ARCHIVE, UNREAD, ARTIC_GUIDE
 }
