@@ -274,4 +274,20 @@ interface RetrofitInterface {
         @Header("token") token: String,
         @Path("archive_idx") archiveIdx: Int
     ) : Observable<BaseResponse<String>>
+
+    /**
+     * 아카이브 수정 (https://github.com/artic-development/artic_server/wiki/아카이브-수정)
+     * body
+     *      title: String
+     *      img: String? (if img == null, server will set default img)
+     *      category_idx: Int? (if make my archive then it is set null)
+     * @author greedy0110
+     */
+    @PUT("/archive/{archive_idx}")
+    fun updateArchive(
+        @Header("Content-Type") contentType: String = "application/json",
+        @Header("token") token: String,
+        @Path("archive_idx") archiveIdx: Int,
+        @Body body: JsonObject
+    ): Observable<BaseResponse<String>>
 }
