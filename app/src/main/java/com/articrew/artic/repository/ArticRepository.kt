@@ -234,10 +234,10 @@ class ArticRepository (
     }
 
     // @수민) 좋아요 통신
-    fun postArticleLike(articleIdx: Int): Observable<Boolean> {
+    fun postArticleLike(articleIdx: Int): Observable<String> {
         return remote.postArticleLike(articleIdx)
             .subscribeOn(scheduler.io())
-            .map { it.success }
+            .map { it.message }
             .observeOn(scheduler.ui())
     }
 

@@ -96,13 +96,16 @@ class ArticleOverviewRecyclerViewAdapter(
         // @수민) 좋아요 통신
         p0.toggle_btn_like.setOnClickListener {
             // TODO 구독 관리
-            repository.postArticleLike(dataList[p1].id)
+            repository
+                .postArticleLike(dataList[p1].id)
                 .subscribe {
                     val like_number_int = Integer.parseInt(p0.like_number.text.toString())
-                    if (it) { // 좋아요 성공
+                    if (it == "아티클 좋아요 성공") { // 좋아요 성공
+                        Log.v("like", "좋아요 성공")
                         p0.like_number.text = (like_number_int + 1).toString()
                     }
                     else { // 좋아요 취소 성공
+                        Log.v("like", "좋아요 취소 성공")
                         p0.like_number.text = (like_number_int - 1).toString()
                     }
                 }
@@ -113,6 +116,7 @@ class ArticleOverviewRecyclerViewAdapter(
         p0.swipeLayout.addDrag(SwipeLayout.DragEdge.Right, p0.bottomWrapper2) // 오른쪽에서 스와이프 하면 이 레이아웃이 나오게 하는 것 같음
         p0.bottomWrapper2.setOnClickListener {
             // TODO 아티클 담기 취소 통신
+
         }
 
 //      p0.swipeLayout.isSwipeEnabled = false // ㅇㅣ 코드를 사용하면 SwipeLayout이 enabled 되어 스와이프 해도 나오지 않는다.
