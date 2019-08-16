@@ -90,7 +90,7 @@ interface RetrofitInterface {
         @Header("Content-Type") contentType: String,
         @Header("token") token: String,
         @Path("article_idx") articleIdx: Int
-    ): Observable<BaseResponse<Int>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
+    ): Observable<BaseResponse<String>> // response가 status, success, message만 있다면 data에 아무 값이나 넣어서 status 콜백 함수로 하면 됨
 
 
     // @수민) 아카이브 스크랩

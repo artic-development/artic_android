@@ -181,7 +181,7 @@ class RetrofitDataSource(
 
     // 아티클 좋아요 누르기
     // TODO repository에 들어갈  의미에 대해서 생각해보자
-    fun postArticleLike(articleIdx: Int): Observable<BaseResponse<Int>> {
+    fun postArticleLike(articleIdx: Int): Observable<BaseResponse<String>> {
         Auth.token?.let { token ->
             return retrofit.postArticleLike(contentType, token, articleIdx)
         }
