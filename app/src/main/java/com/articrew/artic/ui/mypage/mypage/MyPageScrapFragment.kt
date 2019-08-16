@@ -55,6 +55,7 @@ class MyPageScrapFragment : BaseFragment(R.layout.fragment_my_page_scrap) {
                     {
                         logger.log("scrap archive list")
                         if(it.isNotEmpty()) {
+                            logger.log(it.toString())
                             adapter.data = it
                             adapter.notifyDataSetChanged()
                             rv_mypage_scrap.visibility = View.VISIBLE
