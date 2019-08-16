@@ -75,13 +75,19 @@ class MyPageScrapActivity : BaseActivity() {
                         )
                     },
                     R.id.btn_dlg_archive_delete to  {
-                        toast("아카이브 제거")
-                        // TODO 아카이브 제거 popup을 다시 띄워주어야 한다.
+                        // 아카이브 제거 popup을 다시 띄워주어야 한다.
                         PopupSystem.show(this, R.layout.dlg_confirm_delete_archive,
                             mapOf(
                                 R.id.btn_dlg_confirm_delete to {
-                                    // TODO 아카이브 제거 서버 통신을 해야한다.
-                                    toast("아카이브 제거 확실!")
+                                    // 아카이브 제거 서버 통신을 해야한다.
+                                    repository.deleteArchive(archiveId)
+                                        .subscribe({
+                                            toast(it)
+                                            finish()
+                                        }, {
+                                            toast(R.string.network_error)
+                                            logger.error("my page scrap activity delete archive error ${it.message}")
+                                        })
                                 },
                                 R.id.btn_dlg_confirm_cancel to {
                                     // 팝업창을 종료하면 되니까 아무것도 하지않는다. (PopupSystem에서 알아서 종료시켜준다.)
