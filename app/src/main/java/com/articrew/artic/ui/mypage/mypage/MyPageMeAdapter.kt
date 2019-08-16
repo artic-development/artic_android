@@ -39,6 +39,7 @@ class MyPageMeAdapter(val ctx: Context, var data:List<Archive>): RecyclerView.Ad
 
                 intent.putExtra("archive_idx", data[position].id)
                 intent.putExtra("archive_title", data[position].title)
+                intent.putExtra("archive_img", data[position].title_img_url)
 
                 ctx.startActivity(intent)
             }

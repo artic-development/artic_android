@@ -212,6 +212,17 @@ class RetrofitDataSource(
         return createUninitializedToken()
     }
 
+    fun updateRegisterArchive(archiveIdx: Int ,data: MakeNewArchiveData): Observable<BaseResponse<String>> {
+        Auth.token?.let { token ->
+            return retrofit.updateArchive(contentType, token, archiveIdx, JsonObject().apply {
+                addProperty("title", data.title)
+                addProperty("img", data.img)
+                addProperty("category_idx", data.categoryIdx)
+            })
+        }
+        return createUninitializedToken()
+    }
+
     // TODO repository에 들어갈  의미에 대해서 생각해보자
     fun postArticleRead(articleIdx: Int): Observable<BaseResponse<Int>> {
         Auth.token?.let { token ->

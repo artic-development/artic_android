@@ -248,6 +248,13 @@ class ArticRepository (
             .observeOn(scheduler.ui())
     }
 
+    fun updateMyArchive(archiveIdx: Int, data: MakeNewArchiveData): Observable<String> {
+        return remote.updateRegisterArchive(archiveIdx, data)
+            .subscribeOn(scheduler.io())
+            .map { it.message }
+            .observeOn(scheduler.ui())
+    }
+
     fun readArticle(articleIdx: Int): Observable<Any> {
         return remote.postArticleRead(articleIdx)
             .subscribeOn(scheduler.io())

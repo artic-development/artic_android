@@ -22,7 +22,7 @@ import org.koin.android.ext.android.inject
  * @author greedy0110
  * */
 open class BaseSocialLoginActivity : BaseActivity() {
-    protected val auth: com.articrew.artic.auth.Auth by inject()
+    protected val auth: Auth by inject()
     private lateinit var callbackManager: CallbackManager
     private lateinit var accessTokenTracker: AccessTokenTracker
     private lateinit var profileTracker: ProfileTracker
