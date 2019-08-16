@@ -4,6 +4,7 @@ import android.app.Activity
 import android.content.Intent
 import android.os.Bundle
 import android.view.View
+import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
@@ -13,6 +14,7 @@ import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import com.articrew.artic.ui.edit_archive.EditArchiveActivity
 import com.articrew.artic.util.PopupSystem
 import kotlinx.android.synthetic.main.activity_my_page_scrap.*
+import kotlinx.android.synthetic.main.activity_setting.*
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast
@@ -63,7 +65,7 @@ class MyPageScrapActivity : BaseActivity() {
             ).apply { addDisposable(this) }
 
         btn_mypage_myarchive_modify.setOnClickListener {
-            // TODO 아카이브를 제거할 것인지, 이름을 변경할 것인지를 보여줄 팝업을 띄워준다.
+            // 아카이브를 제거할 것인지, 이름을 변경할 것인지를 보여줄 팝업을 띄워준다.
             PopupSystem.show(this, R.layout.dlg_modify_archive,
                 mapOf(
                     R.id.btn_dlg_archive_modify to {

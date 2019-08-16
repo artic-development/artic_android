@@ -8,6 +8,7 @@ object ArchiveMapper {
         return Archive(
             id = res.archive_idx,
             categories = res.category_all?.map { cate -> cate.category_title },
+            category_title = res.category_title,
             category_ids = listOf(res.category_idx),
             category_idx = res.category_idx,
             title = res.archive_title,
