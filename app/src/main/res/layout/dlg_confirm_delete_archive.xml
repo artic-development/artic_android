@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
     android:id="@+id/popup_delete_cardview"
     android:layout_width="wrap_content"
     android:layout_height="wrap_content"
@@ -16,61 +15,49 @@
 
         <TextView
             android:id="@+id/textView3"
+            style="@style/Text.NanumB.15s.24h"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginStart="41dp"
             android:layout_marginTop="38dp"
             android:layout_marginEnd="42dp"
-            android:fontFamily="@font/nanum_barungothic_bold"
-            android:lineSpacingExtra="9sp"
             android:text="@string/label_do_you_delete_archive"
-            android:textColor="@color/black"
-            android:textSize="15sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/textView5"
+            style="@style/Text.NanumR.12s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="10dp"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:lineSpacingExtra="12sp"
             android:text="@string/label_warning_delete_archive"
-            android:textSize="12sp"
             app:layout_constraintEnd_toEndOf="@+id/textView3"
             app:layout_constraintStart_toStartOf="@+id/textView3"
             app:layout_constraintTop_toBottomOf="@+id/textView3" />
 
         <TextView
             android:id="@+id/btn_dlg_confirm_delete"
+            style="@style/Text.NanumB.14s.23h.Red"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:lineSpacingExtra="2sp"
             android:text="@string/delete"
             android:textAlignment="center"
-            android:textColor="@color/red"
-            android:textSize="14sp"
-            android:textStyle="bold"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/view8" />
 
         <TextView
             android:id="@+id/btn_dlg_confirm_cancel"
+            style="@style/Text.NanumR.14s"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="16dp"
             android:layout_marginBottom="17dp"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:lineSpacingExtra="2sp"
             android:text="@string/cancel"
             android:textAlignment="center"
-            android:textColor="@color/black"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
