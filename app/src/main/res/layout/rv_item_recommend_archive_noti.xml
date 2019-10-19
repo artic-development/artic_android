@@ -17,34 +17,6 @@
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
-    <TextView
-        android:id="@+id/txt_rv_item_recommend_noti_title"
-        android:layout_width="0dp"
-        android:layout_height="wrap_content"
-        android:layout_marginStart="20dp"
-        android:layout_marginTop="2dp"
-        android:layout_marginEnd="6dp"
-        android:fontFamily="@font/nanum_barungothic_light"
-        android:lineSpacingExtra="7sp"
-        android:text="회원님이 좋아하실 만한 아티클을 추천해 드려요!"
-        android:textColor="@color/black"
-        android:textSize="13sp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/img_rv_item_recommend_noti"
-        app:layout_constraintTop_toTopOf="parent" />
-
-    <TextView
-        android:id="@+id/txt_rv_item_recommend_noti_date"
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:layout_marginTop="13dp"
-        android:fontFamily="@font/nanum_barungothic_light"
-        android:text="1시간 전"
-        android:textColor="@color/brown_grey"
-        android:textSize="11sp"
-        app:layout_constraintStart_toStartOf="@+id/txt_rv_item_recommend_noti_title"
-        app:layout_constraintTop_toBottomOf="@+id/linearLayout2" />
-
     <LinearLayout
         android:id="@+id/linearLayout2"
         android:layout_width="0dp"
@@ -83,4 +55,26 @@
             tools:srcCompat="@tools:sample/avatars" />
     </LinearLayout>
 
+    <TextView
+        android:id="@+id/txt_rv_item_recommend_noti_date"
+        style="@style/Text.NanumL.12s.BrownGrey"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginTop="13dp"
+        app:layout_constraintStart_toStartOf="@+id/txt_rv_item_recommend_noti_title"
+        app:layout_constraintTop_toBottomOf="@+id/linearLayout2"
+        tools:text="1시간 전" />
+
+    <TextView
+        android:id="@+id/txt_rv_item_recommend_noti_title"
+        style="@style/Text.NanumL.14s.21h"
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="20dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginEnd="6dp"
+        android:text="회원님이 좋아하실 만한 아티클을 추천해 드려요!"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/img_rv_item_recommend_noti"
+        app:layout_constraintTop_toTopOf="parent" />
 </androidx.constraintlayout.widget.ConstraintLayout>

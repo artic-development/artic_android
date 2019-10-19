@@ -21,46 +21,37 @@
                 android:id="@+id/img_rv_item_category_archive_card_background"
                 android:layout_width="0dp"
                 android:layout_height="0dp"
+                android:scaleType="centerCrop"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:srcCompat="@tools:sample/avatars"
-                android:scaleType="centerCrop"/>
+                tools:srcCompat="@tools:sample/avatars" />
 
             <TextView
                 android:id="@+id/txt_rv_item_category_archive_card_title"
+                style="@style/Text.NanumR.14s.23h.White"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginTop="20dp"
                 android:layout_marginEnd="16dp"
-                android:fontFamily="@font/nanum_barungothic_regular"
-                android:textSize="14sp"
-                android:includeFontPadding="false"
-                android:lineSpacingExtra="6sp"
-                android:textColor="@color/white"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent"
-                tools:text="TextView"/>
+                tools:text="TextView" />
 
             <TextView
                 android:id="@+id/txt_rv_item_category_archive_card_articlenum"
+                style="@style/Text.AvenirB.13s.20h.White"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="16dp"
                 android:layout_marginBottom="20dp"
-                android:fontFamily="@font/nanum_square_bold"
-                android:includeFontPadding="false"
                 android:textStyle="bold"
-                android:lineSpacingExtra="7sp"
-                android:textColor="@color/white"
-                android:textSize="13sp"
                 app:layout_constraintBottom_toBottomOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 tools:text="TextView" />
-
         </androidx.constraintlayout.widget.ConstraintLayout>
     </androidx.cardview.widget.CardView>
 </FrameLayout>

@@ -1,9 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="wrap_content"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
+    android:layout_height="wrap_content"
     android:background="@color/white_two">
 
     <RelativeLayout
@@ -11,58 +10,45 @@
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:background="@color/white_two"
-        android:paddingLeft="22dp"
-    >
-
-        <TextView
-            android:id="@+id/rv_reading_history_url"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:text="brunch.co.kr"
-            android:textSize="14sp"
-            android:layout_alignParentLeft="true"
-            android:includeFontPadding="false"
-            android:layout_marginTop="15dp"
-            android:textColor="#aaaaaa"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:layout_toStartOf="@id/rv_reading_history_img"
-            android:layout_marginRight="80dp"
-            android:ellipsize="end"
-            android:maxLines="1"/>
-
-        <TextView
-            android:id="@+id/rv_reading_history_title"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_below="@id/rv_reading_history_url"
-            android:layout_toStartOf="@id/rv_reading_history_img"
-            android:layout_alignStart="@id/rv_reading_history_url"
-            android:layout_marginTop="8dp"
-            android:fontFamily="@font/nanum_barungothic_light"
-            android:layout_marginRight="45dp"
-            android:textColor="@color/black"
-            android:layout_alignParentLeft="true"
-            android:lineSpacingExtra="6sp"
-            android:includeFontPadding="false"
-            android:textSize="14sp"
-            android:ellipsize="end"
-            android:maxLines="2"
-            android:text="제품 디자이너는 코딩에 대해 잊어야 합니다."/>
-
-
+        android:paddingLeft="22dp">
 
         <ImageView
             android:id="@+id/rv_reading_history_img"
             android:layout_width="70dp"
             android:layout_height="70dp"
+            android:layout_alignParentRight="true"
             android:layout_marginTop="10dp"
-            android:layout_marginBottom="10dp"
             android:layout_marginRight="20dp"
+            android:layout_marginBottom="10dp"
             android:background="@drawable/archive_card_round"
-            android:scaleType="centerCrop"
-            android:layout_alignParentRight="true" />
+            android:scaleType="centerCrop" />
 
+        <TextView
+            android:id="@+id/rv_reading_history_title"
+            style="@style/Text.NanumL.14s.21h"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/rv_reading_history_url"
+            android:layout_alignStart="@id/rv_reading_history_url"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="8dp"
+            android:layout_marginRight="45dp"
+            android:layout_toStartOf="@id/rv_reading_history_img"
+            android:ellipsize="end"
+            android:maxLines="2"
+            tools:text="제품 디자이너는 코딩에 대해 잊어야 합니다." />
 
+        <TextView
+            android:id="@+id/rv_reading_history_url"
+            style="@style/Text.NanumR.14s.23h.BrownishGrey"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentLeft="true"
+            android:layout_marginTop="15dp"
+            android:layout_marginRight="80dp"
+            android:layout_toStartOf="@id/rv_reading_history_img"
+            android:ellipsize="end"
+            android:maxLines="1"
+            tools:text="brunch.co.kr" />
     </RelativeLayout>
-
 </RelativeLayout>

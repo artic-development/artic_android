@@ -1,6 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
 <LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
@@ -13,64 +12,46 @@
 
         <TextView
             android:id="@+id/txt_make_new_archive_title"
+            style="@style/Text.NanumR.17s"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_centerInParent="true"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:includeFontPadding="false"
-            android:text="새 아카이브"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
+            android:text="새 아카이브" />
 
         <TextView
             android:id="@+id/btn_act_make_new_archive_complete"
+            style="@style/Text.NanumR.17s.19h.BrownishGrey"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentEnd="true"
             android:layout_centerVertical="true"
             android:layout_marginEnd="20dp"
-            android:text="완료"
-            android:textSize="17sp"
-            android:textColor="#707070"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:includeFontPadding="false"
-            android:padding="11dp"/>
-
+            android:padding="11dp"
+            android:text="완료" />
     </RelativeLayout>
-    
+
+    <TextView
+        style="@style/Text.NanumR.16s"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:layout_marginLeft="20dp"
+        android:layout_marginTop="36dp"
+        android:text="이름" />
+
     <View
         android:layout_width="match_parent"
         android:layout_height="0.3dp"
-        android:background="#d1d1d1"/>
-
-    <TextView
-        android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
-        android:text="이름"
-        android:textColor="@color/black"
-        android:textSize="16sp"
-        android:fontFamily="@font/nanum_barungothic_regular"
-        android:includeFontPadding="false"
-        android:layout_marginLeft="20dp"
-        android:layout_marginTop="36dp"
-        android:textStyle="bold"/>
+        android:background="#d1d1d1" />
 
     <androidx.appcompat.widget.AppCompatEditText
         android:id="@+id/et_act_make_new_archive_title"
+        style="@style/Text.NanumR.14s"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:paddingLeft="20dp"
-        android:paddingRight="20dp"
-        android:paddingTop="15dp"
-        android:paddingBottom="300dp"
-        android:hint="이름을 입력하세요"
-        android:textSize="14sp"
-        android:textColor="@color/black"
-        android:fontFamily="@font/nanum_barungothic_regular"
-        android:includeFontPadding="false"
         android:background="@null"
-        />
-
-
-
+        android:hint="이름을 입력하세요"
+        android:paddingLeft="20dp"
+        android:paddingTop="15dp"
+        android:paddingRight="20dp"
+        android:paddingBottom="300dp" />
 </LinearLayout>

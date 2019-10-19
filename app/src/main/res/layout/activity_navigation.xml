@@ -16,20 +16,20 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <com.google.android.material.tabs.TabLayout
-        app:tabIndicatorHeight="0dp"
-        app:tabRippleColor="@null"
-        android:background="@drawable/bottom_navigation_border"
         android:id="@+id/tl_navigation"
         android:layout_width="match_parent"
         android:layout_height="56dp"
+        android:background="@drawable/bottom_navigation_border"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toStartOf="parent">
+        app:layout_constraintStart_toStartOf="parent"
+        app:tabIndicatorHeight="0dp"
+        app:tabRippleColor="@null">
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/ti_navigation_home"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/ti_navigation_category"
@@ -39,11 +39,11 @@
         <com.google.android.material.tabs.TabItem
             android:id="@+id/ti_navigation_notice"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
 
         <com.google.android.material.tabs.TabItem
             android:id="@+id/ti_navigation_profile"
             android:layout_width="wrap_content"
-            android:layout_height="wrap_content"/>
+            android:layout_height="wrap_content" />
     </com.google.android.material.tabs.TabLayout>
 </androidx.constraintlayout.widget.ConstraintLayout>
