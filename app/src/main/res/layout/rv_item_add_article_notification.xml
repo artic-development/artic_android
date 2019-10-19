@@ -8,25 +8,22 @@
     android:orientation="vertical">
 
     <ImageView
-        android:scaleType="centerCrop"
         android:id="@+id/img_rv_item_article_noti"
         android:layout_width="40dp"
         android:layout_height="40dp"
         android:background="@drawable/round_brownish_grey_border"
+        android:scaleType="centerCrop"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent"
         tools:srcCompat="@tools:sample/avatars" />
 
     <TextView
         android:id="@+id/txt_rv_item_article_noti_title"
+        style="@style/Text.NanumL.14s.21h"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="20dp"
         android:layout_marginEnd="20dp"
-        android:fontFamily="@font/nanum_barungothic_light"
-        android:lineSpacingExtra="7sp"
-        android:textColor="@color/black"
-        android:textSize="13sp"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toEndOf="@+id/img_rv_item_article_noti"
         app:layout_constraintTop_toTopOf="parent"
@@ -34,13 +31,11 @@
 
     <TextView
         android:id="@+id/txt_rv_item_article_noti_date"
+        style="@style/Text.NanumL.12s.BrownGrey"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="13dp"
         android:layout_marginBottom="2dp"
-        android:fontFamily="@font/nanum_barungothic_light"
-        android:textColor="@color/brown_grey"
-        android:textSize="11sp"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintStart_toStartOf="@+id/txt_rv_item_article_noti_title"
         app:layout_constraintTop_toBottomOf="@+id/txt_rv_item_article_noti_title"

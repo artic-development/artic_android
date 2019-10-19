@@ -1,7 +1,5 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<LinearLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
+<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
@@ -13,16 +11,6 @@
         android:layout_height="64dp"
         android:background="@color/white">
 
-        <TextView
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_centerInParent="true"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:includeFontPadding="false"
-            android:text="artic"
-            android:textColor="@color/black"
-            android:textSize="17sp" />
-
         <ImageButton
             android:id="@+id/btn_my_page_setting"
             android:layout_width="21dp"
@@ -32,13 +20,18 @@
             android:layout_marginRight="25dp"
             android:background="@drawable/btn_setting" />
 
+        <TextView
+            style="@style/Text.NanumR.17s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_centerInParent="true"
+            android:text="artic" />
+
         <View
             android:layout_width="match_parent"
             android:layout_height="0.3dp"
             android:layout_alignParentBottom="true"
             android:background="@color/very_light_pink_two" />
-
-
     </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
@@ -50,52 +43,6 @@
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:orientation="vertical">
-
-            <View
-                android:layout_width="match_parent"
-                android:layout_height="0.3dp"
-                android:background="#d1d1d1" />
-
-            <RelativeLayout
-                android:layout_width="match_parent"
-                android:layout_height="130dp"
-                android:background="@color/white"
-                android:paddingLeft="20dp">
-
-                <de.hdodenhof.circleimageview.CircleImageView
-                    android:id="@+id/img_my_page_profile"
-                    android:layout_width="72dp"
-                    android:layout_height="72dp"
-                    android:layout_marginTop="32dp"
-                    android:src="@drawable/profile" />
-
-                <TextView
-                    android:id="@+id/txt_my_page_name"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="49dp"
-                    android:layout_marginRight="20dp"
-                    android:layout_toRightOf="@id/img_my_page_profile"
-                    android:fontFamily="@font/nanum_barungothic_bold"
-                    android:includeFontPadding="false"
-                    android:text="이아틱"
-                    android:textColor="@color/black"
-                    android:textSize="16sp" />
-
-                <TextView
-                    android:id="@+id/txt__my_page_email"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@id/txt_my_page_name"
-                    android:layout_marginLeft="20dp"
-                    android:layout_marginTop="5dp"
-                    android:layout_toRightOf="@id/img_my_page_profile"
-                    android:fontFamily="@font/nanum_barungothic_light"
-                    android:text="articcrew@gmail.com"
-                    android:textColor="@color/black"
-                    android:textSize="13sp" />
-            </RelativeLayout>
 
             <FrameLayout
                 android:layout_width="match_parent"
@@ -110,17 +57,15 @@
 
                     <TextView
                         android:id="@+id/label_my_page_introduce"
+                        style="@style/Text.NanumR.14s"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="20dp"
-                        android:fontFamily="@font/nanum_barungothic_regular"
-                        android:includeFontPadding="false"
-                        android:text="내 소개"
-                        android:textColor="@color/black"
-                        android:textSize="13sp" />
+                        android:text="내 소개" />
 
                     <TextView
                         android:id="@+id/txt_my_page_introduce"
+                        style="@style/Text.NanumL.12s.23h"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_below="@id/label_my_page_introduce"
@@ -128,17 +73,51 @@
                         android:layout_marginTop="11dp"
                         android:layout_marginRight="72dp"
                         android:ellipsize="end"
-                        android:fontFamily="@font/nanum_barungothic_light"
-                        android:includeFontPadding="false"
-                        android:lineSpacingExtra="11sp"
                         android:maxLines="2"
-                        android:text="저는 10년 동안 유엑스에 매진하였고, 총 3번의 아카데미를 수료한 경험이 있습니다."
-                        android:textColor="@color/black"
-                        android:textSize="12sp" />
-
+                        tools:text="저는 10년 동안 유엑스에 매진하였고, 총 3번의 아카데미를 수료한 경험이 있습니다." />
                 </RelativeLayout>
-
             </FrameLayout>
+
+            <RelativeLayout
+                android:layout_width="match_parent"
+                android:layout_height="130dp"
+                android:background="@color/white"
+                android:paddingLeft="20dp">
+
+                <TextView
+                    android:id="@+id/txt_my_page_name"
+                    style="@style/Text.NanumB.16s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="49dp"
+                    android:layout_marginRight="20dp"
+                    android:layout_toRightOf="@id/img_my_page_profile"
+                    tools:text="이아틱" />
+
+                <TextView
+                    android:id="@+id/txt__my_page_email"
+                    style="@style/Text.NanumL.14s"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/txt_my_page_name"
+                    android:layout_marginLeft="20dp"
+                    android:layout_marginTop="5dp"
+                    android:layout_toRightOf="@id/img_my_page_profile"
+                    tools:text="articcrew@gmail.com" />
+
+                <de.hdodenhof.circleimageview.CircleImageView
+                    android:id="@+id/img_my_page_profile"
+                    android:layout_width="72dp"
+                    android:layout_height="72dp"
+                    android:layout_marginTop="32dp"
+                    android:src="@drawable/profile" />
+            </RelativeLayout>
+
+            <View
+                android:layout_width="match_parent"
+                android:layout_height="0.3dp"
+                android:background="#d1d1d1" />
 
             <View
                 android:id="@+id/view3"
@@ -152,19 +131,15 @@
                 android:layout_height="10dp"
                 android:background="#f9f9f9" />
 
+            <View
+                android:id="@+id/view4"
+                android:layout_width="match_parent"
+                android:layout_height="0.5dp"
+                android:background="@color/brown_grey" />
+
             <androidx.constraintlayout.widget.ConstraintLayout
                 android:layout_width="match_parent"
                 android:layout_height="44dp">
-
-                <com.google.android.material.tabs.TabLayout
-                    android:id="@+id/tl_my_page"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    app:layout_constraintBottom_toBottomOf="parent"
-                    app:layout_constraintStart_toStartOf="parent"
-                    app:layout_constraintTop_toTopOf="parent"
-                    app:tabGravity="center"
-                    app:tabRippleColor="@null" />
 
                 <ImageView
                     android:id="@+id/mypage_plus_btn"
@@ -176,13 +151,17 @@
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintTop_toTopOf="parent"
                     app:srcCompat="@drawable/btn_plus" />
-            </androidx.constraintlayout.widget.ConstraintLayout>
 
-            <View
-                android:id="@+id/view4"
-                android:layout_width="match_parent"
-                android:layout_height="0.5dp"
-                android:background="@color/brown_grey" />
+                <com.google.android.material.tabs.TabLayout
+                    android:id="@+id/tl_my_page"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent"
+                    app:tabGravity="center"
+                    app:tabRippleColor="@null" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
 
             <com.articrew.artic.ui.HeightWrappingViewPager
                 android:id="@+id/vp_my_page"

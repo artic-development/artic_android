@@ -1,10 +1,9 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:tools="http://schemas.android.com/tools"
-    android:orientation="vertical"
     android:layout_width="match_parent"
     android:layout_height="wrap_content"
+    android:orientation="vertical"
     android:padding="1dp"
     app:cardCornerRadius="6dp">
 
@@ -15,32 +14,26 @@
 
         <TextView
             android:id="@+id/btn_dlg_archive_modify"
+            style="@style/Text.NanumR.14s"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="16dp"
             android:layout_marginEnd="8dp"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:lineSpacingExtra="10sp"
             android:text="@string/modify_archive_name"
-            android:textColor="@color/black"
-            android:textSize="14sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
             android:id="@+id/btn_dlg_archive_delete"
+            style="@style/Text.NanumR.14s.23h.Red"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginTop="19dp"
             android:layout_marginEnd="8dp"
             android:layout_marginBottom="16dp"
-            android:fontFamily="@font/nanum_barungothic_regular"
-            android:lineSpacingExtra="10sp"
             android:text="@string/delete_archive"
-            android:textColor="@color/red"
-            android:textSize="14sp"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="@+id/btn_dlg_archive_modify"

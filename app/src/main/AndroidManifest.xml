@@ -18,7 +18,6 @@
         android:theme="@style/AppTheme"
         android:usesCleartextTraffic="true">
         <activity android:name=".ui.edit_archive.EditArchiveActivity"></activity>
-        <activity android:name=".SampleActivity"></activity>
         <activity android:name=".ui.reset_password.ResetPasswordActivity" />
         <activity android:name=".ui.reset_password.InputAuthCodeActivity" />
         <activity android:name=".ui.reset_password.FindPasswordActivity" />

@@ -1,11 +1,49 @@
 <?xml version="1.0" encoding="utf-8"?>
 <androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
-    android:background="@color/white"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:background="@color/white"
     tools:context=".ui.notification.NotificationFragment">
+
+    <RelativeLayout
+        android:id="@+id/relative_frag_notification_no_alert"
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/img_frag_notification_character"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentBottom="true"
+            android:layout_marginLeft="40dp"
+            android:src="@drawable/alarm_character" />
+
+        <RelativeLayout
+            android:id="@+id/relative_frag_notification"
+            android:layout_width="match_parent"
+            android:layout_height="64dp">
+
+            <TextView
+                style="@style/Text.NanumB.18s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_centerVertical="true"
+                android:layout_marginLeft="20dp"
+                android:text="알림" />
+        </RelativeLayout>
+
+        <TextView
+            style="@style/Text.NanumR.16s"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_above="@id/img_frag_notification_character"
+            android:layout_centerHorizontal="true"
+            android:layout_marginTop="20dp"
+            android:layout_marginBottom="20dp"
+            android:text="새로운 알림이 없어요.." />
+    </RelativeLayout>
 
     <androidx.core.widget.NestedScrollView
         android:id="@+id/scrollview_fragment_notification"
@@ -35,13 +73,10 @@
 
                 <TextView
                     android:id="@+id/label_notification_new"
+                    style="@style/Text.NanumB.18s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_barungothic_regular"
                     android:text="@string/new_notification"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -69,13 +104,10 @@
 
                 <TextView
                     android:id="@+id/label_notification_old"
+                    style="@style/Text.NanumB.18s"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:fontFamily="@font/nanum_barungothic_regular"
                     android:text="@string/notification_old"
-                    android:textColor="@color/black"
-                    android:textSize="18sp"
-                    android:textStyle="bold"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toTopOf="parent" />
 
@@ -90,51 +122,4 @@
             </androidx.constraintlayout.widget.ConstraintLayout>
         </LinearLayout>
     </androidx.core.widget.NestedScrollView>
-
-    <RelativeLayout
-        android:id="@+id/relative_frag_notification_no_alert"
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-
-        <RelativeLayout
-            android:id="@+id/relative_frag_notification"
-            android:layout_width="match_parent"
-            android:layout_height="64dp">
-
-            <TextView
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:text="알림"
-                android:textSize="18sp"
-                android:textColor="@color/black"
-                android:fontFamily="@font/nanum_barungothic_regular"
-                android:textStyle="bold"
-                android:includeFontPadding="false"
-                android:layout_centerVertical="true"
-                android:layout_marginLeft="20dp"/>
-
-        </RelativeLayout>
-
-        <TextView
-            android:layout_above="@id/img_frag_notification_character"
-            android:layout_marginBottom="20dp"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:layout_marginTop="20dp"
-            android:layout_centerHorizontal="true"
-            android:text="새로운 알림이 없어요.."
-            android:textColor="@color/black"
-            android:textSize="16sp"
-            android:fontFamily="@font/nanum_barungothic_regular"/>
-
-        <ImageView
-            android:id="@+id/img_frag_notification_character"
-            android:layout_width="wrap_content"
-            android:layout_height="wrap_content"
-            android:src="@drawable/alarm_character"
-            android:layout_alignParentBottom="true"
-            android:layout_marginLeft="40dp"/>s
-
-    </RelativeLayout>
-
 </androidx.constraintlayout.widget.ConstraintLayout>

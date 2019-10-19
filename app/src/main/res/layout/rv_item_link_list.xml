@@ -1,35 +1,33 @@
 <?xml version="1.0" encoding="utf-8"?>
-
-<RelativeLayout
-    xmlns:android="http://schemas.android.com/apk/res/android"
-    android:layout_height="175dp"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/relative_rv_item_link_list"
     android:layout_width="match_parent"
-    android:background="@color/very_light_pink"
-    android:id="@+id/relative_rv_item_link_list">
+    android:layout_height="175dp"
+    android:background="@color/very_light_pink">
 
     <com.daimajia.swipe.SwipeLayout
         android:id="@+id/swipe"
-        xmlns:android="http://schemas.android.com/apk/res/android"
-        xmlns:app="http://schemas.android.com/apk/res-auto"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         app:clickToClose="true">
 
         <!-- 삭제 버튼 -->
         <RelativeLayout
-            android:tag="Bottom4"
             android:id="@+id/bottom_wrapper_2"
             android:layout_width="80dp"
             android:layout_height="match_parent"
             android:background="#ff1515"
-            android:gravity="center">
+            android:gravity="center"
+            android:tag="Bottom4">
 
             <LinearLayout
                 android:id="@+id/magnifier2"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="vertical"
-                android:gravity="center">
+                android:gravity="center"
+                android:orientation="vertical">
 
                 <ImageView
                     android:layout_width="wrap_content"
@@ -37,63 +35,19 @@
                     android:src="@drawable/ic_trashcan" />
 
                 <TextView
+                    style="@style/Text.NanumL.14s.21h.White"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:text="삭제"
-                    android:textColor="#ffffff"
-                    android:textSize="13sp"
-                    android:fontFamily="@font/nanum_barungothic_light"
-                    android:includeFontPadding="false"
-                    android:layout_marginTop="8dp"/>
-
+                    android:layout_marginTop="8dp"
+                    android:text="삭제" />
             </LinearLayout>
-
-
         </RelativeLayout>
 
         <!-- 여기까지 삭제 버튼 -->
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="165dp"
             android:background="@color/white">
-
-            <TextView
-                android:id="@+id/rv_link_list_url"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginTop="34dp"
-                android:fontFamily="@font/nanum_barungothic_regular"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:includeFontPadding="false"
-                android:text="brunch.co.kr"
-                android:textColor="@color/brown_grey"
-                android:textSize="14sp"
-                android:layout_toStartOf="@id/rv_link_list_img"
-                android:layout_marginRight="70dp"
-                android:ellipsize="end"
-                android:maxLines="1" />
-
-            <TextView
-                android:id="@+id/rv_link_list_title"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:lineSpacingExtra="6dp"
-                android:layout_below="@id/rv_link_list_url"
-                android:layout_marginTop="8dp"
-                android:layout_marginRight="44dp"
-                android:layout_alignParentStart="true"
-                android:layout_marginLeft="20dp"
-                android:layout_toStartOf="@id/rv_link_list_img"
-                android:fontFamily="@font/nanum_barungothic_light"
-                android:includeFontPadding="false"
-                android:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 "
-                android:textColor="@color/black"
-                android:textSize="16sp"
-                android:ellipsize="end"
-                android:maxLines="2" />
-
 
             <ImageView
                 android:id="@+id/rv_link_list_img"
@@ -108,43 +62,20 @@
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:orientation="horizontal"
-                android:layout_alignParentBottom="true"
-                android:layout_marginBottom="25dp"
-                android:layout_marginLeft="20dp"
-                android:gravity="center_vertical"
                 android:layout_below="@id/rv_link_list_title"
-                android:layout_marginTop="18dp">
-
-                <ToggleButton
-                    android:id="@+id/rv_link_list_like"
-                    android:layout_width="20dp"
-                    android:layout_height="20dp"
-                    android:background="@drawable/toggle_btn_like"
-                    android:textOn=""
-                    android:textOff=""
-                    android:checked="true"/>
-
-
-                <TextView
-                    android:id="@+id/rv_link_list_like_num"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_marginLeft="5dp"
-                    android:fontFamily="@font/nanum_square_regular"
-                    android:includeFontPadding="false"
-                    android:text="1,202"
-                    android:textColor="@color/brownish_grey"
-                    android:textSize="13sp"
-                    android:background="@drawable/archive_card_round"/>
-
+                android:layout_alignParentBottom="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="18dp"
+                android:layout_marginBottom="25dp"
+                android:gravity="center_vertical"
+                android:orientation="horizontal">
 
                 <ImageButton
                     android:id="@+id/rv_link_list_storage"
                     android:layout_width="20dp"
                     android:layout_height="20dp"
                     android:layout_marginLeft="20dp"
-                    android:background="@drawable/btn_folder"/>
+                    android:background="@drawable/btn_folder" />
 
                 <RelativeLayout
                     android:id="@+id/rv_link_list_storage_txt"
@@ -153,22 +84,60 @@
                     android:layout_toRightOf="@id/rv_link_list_storage">
 
                     <TextView
+                        style="@style/Text.NanumL.12s.BrownGrey"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
                         android:layout_marginLeft="5dp"
-                        android:fontFamily="@font/nanum_barungothic_light"
-                        android:includeFontPadding="false"
-                        android:text="담기"
-                        android:textColor="@color/brownish_grey"
-                        android:textSize="13sp"/>
+                        android:text="담기" />
                 </RelativeLayout>
 
+                <TextView
+                    android:id="@+id/rv_link_list_like_num"
+                    style="@style/Text.NanumR.14s.23h.BrownishGrey"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginLeft="5dp"
+                    android:background="@drawable/archive_card_round"
+                    tools:text="1,202" />
 
+                <ToggleButton
+                    android:id="@+id/rv_link_list_like"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:background="@drawable/toggle_btn_like"
+                    android:checked="true"
+                    android:textOff=""
+                    android:textOn="" />
             </LinearLayout>
 
+            <TextView
+                android:id="@+id/rv_link_list_url"
+                style="@style/Text.NanumR.14s.23h.BrownishGrey"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="34dp"
+                android:layout_marginRight="70dp"
+                android:layout_toStartOf="@id/rv_link_list_img"
+                android:ellipsize="end"
+                android:maxLines="1"
+                tools:text="brunch.co.kr" />
 
+            <TextView
+                android:id="@+id/rv_link_list_title"
+                style="@style/Text.NanumL.15s"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_below="@id/rv_link_list_url"
+                android:layout_alignParentStart="true"
+                android:layout_marginLeft="20dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginRight="44dp"
+                android:layout_toStartOf="@id/rv_link_list_img"
+                android:ellipsize="end"
+                android:maxLines="2"
+                tools:text="로고디자인을 위한 지식에 대한 모든 것을 파헤친다 " />
         </RelativeLayout>
-
     </com.daimajia.swipe.SwipeLayout>
-
 </RelativeLayout>
