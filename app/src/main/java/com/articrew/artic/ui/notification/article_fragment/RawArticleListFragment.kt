@@ -2,6 +2,7 @@ package com.articrew.artic.ui.notification.article_fragment
 
 
 import android.os.Bundle
+import android.util.Log
 import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
@@ -10,11 +11,17 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.articrew.artic.R
 import com.articrew.artic.data.Article
+import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.loggerModule
+import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.articrew.artic.util.dpToPx
+import io.reactivex.Observable
 import kotlinx.android.synthetic.main.fragment_raw_article_list.*
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 
 /**
  * article list 데이터를 받고 해당 list 를 그려주는 fragment
@@ -22,9 +29,11 @@ import kotlinx.android.synthetic.main.fragment_raw_article_list.*
  */
 class RawArticleListFragment(
     private val title: String,
-    private val data: List<Article>
+    private val data: List<Int>
 ) : Fragment() {
     private lateinit var adapter: BigImageArticleAdapter
+    private val repository: ArticRepository by inject()
+    private val logger: Logger by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -39,7 +48,8 @@ class RawArticleListFragment(
 
         activity?.run {
             txt_fragment_raw_article_list_title.text = this@RawArticleListFragment.title
-            adapter = BigImageArticleAdapter(this, data)
+
+            adapter = BigImageArticleAdapter(this, listOf())
 
             rv_fragment_raw_article_list.adapter = adapter
             rv_fragment_raw_article_list.layoutManager = LinearLayoutManager(this)
@@ -47,6 +57,25 @@ class RawArticleListFragment(
             // recyclerview space 조절
             var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
             rv_fragment_raw_article_list.addItemDecoration(spacesItemDecoration)
+
+            Log.e("notinotif", "article id list = ${data}")
+
+            Observable.just(data)
+                .flatMapIterable { it }
+                .doOnNext {
+                    logger.log("this article id $it")
+                }
+                .concatMapEager { repository.getArticle(it) }
+                .doOnNext {
+                    logger.log("get article $it")
+                }
+                .toList()
+                .subscribe({
+                    adapter.dataList = it
+                    adapter.notifyDataSetChanged()
+                }, {
+                    toast(R.string.network_error)
+                })
         }
     }
 }

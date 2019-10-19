@@ -74,7 +74,7 @@ class ArticleWebViewActivity : BaseActivity() {
                     btn_article_web_view_like.setOnClickListener {
                         repository.postArticleLike(articleId)
                             .subscribe { success ->
-                                btn_article_web_view_like.isSelected = success
+                                btn_article_web_view_like.isSelected = success == "아티클 좋아요 성공"
                             }.apply { addDisposable(this) }
                     }
 
