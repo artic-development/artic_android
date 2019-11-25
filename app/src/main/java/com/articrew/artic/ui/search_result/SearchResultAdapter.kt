@@ -8,7 +8,7 @@ import com.articrew.artic.ui.base.BaseFragment
 class SearchResultAdapter (
     fm:FragmentManager,
     private val fragments: List<BaseFragment>
-) : FragmentStatePagerAdapter(fm) {
+) : FragmentStatePagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     override fun getItem(position: Int): BaseFragment {
         return when(position) {
             in 0..fragments.size -> fragments[position]

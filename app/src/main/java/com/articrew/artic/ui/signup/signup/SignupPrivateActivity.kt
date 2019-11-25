@@ -55,8 +55,8 @@ class SignupPrivateActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var nameStr = et_act_signup_private_name.text.toString()
-                var nameMatcher = namePattern.matcher(nameStr)
+                val nameStr = et_act_signup_private_name.text.toString()
+                val nameMatcher = namePattern.matcher(nameStr)
 
                 if (et_act_signup_private_name.text.toString() != "" && nameMatcher.find()) {
                     tv_act_signup_private_name_check_success.visibility = View.VISIBLE
@@ -82,7 +82,7 @@ class SignupPrivateActivity : BaseActivity() {
 
             override fun afterTextChanged(p0: Editable?) {
 
-                if ((prevL < p0?.length!!) && (p0?.length == 4 || p0?.length == 7)) {
+                if ((prevL < p0?.length!!) && (p0.length == 4 || p0.length == 7)) {
                     p0.append('-')
                 }
 
@@ -156,14 +156,14 @@ class SignupPrivateActivity : BaseActivity() {
 //                            finish()
                         },
                         statusCallback = {
-                                status, success, message ->
+                                status, _, message ->
                             if (status == 400) {
                                 toast(message)
                             }
                         }
                     )
                 },
-                statusCallback = { status, success, message ->
+                statusCallback = { status, _, message ->
                     if (status == 400) {
                         toast(message)
                     }
