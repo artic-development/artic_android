@@ -5,14 +5,11 @@ import android.view.LayoutInflater
 import android.view.View
 import android.widget.RelativeLayout
 import androidx.core.content.ContextCompat
-import androidx.viewpager.widget.ViewPager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.base.BaseOnPageChangeListener
 import kotlinx.android.synthetic.main.activity_search_result.*
 import kotlinx.android.synthetic.main.search_result_tab.*
-import org.koin.android.ext.android.inject
 
 /**
  * it must need searchWord intent["searchKeyword"]
@@ -24,7 +21,6 @@ class SearchResultActivity : BaseActivity() {
     private lateinit var archiveListFragment: ArchiveListFragment
     private lateinit var linkResultFragment: LinkResultFragment
     private val searchNumberTask: (Int)-> Unit = {
-        logger.log("search result number $it")
         search_result_number.text = it.toString()
     }
 

@@ -5,8 +5,6 @@ import com.articrew.artic.ui.login.login_start.LoginStartActivity
 import org.junit.Before
 import org.junit.Rule
 import org.junit.Test
-import org.mockito.Mock
-import org.mockito.Mockito.verify
 import org.mockito.MockitoAnnotations
 
 class FacebookLoginTest {

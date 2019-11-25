@@ -5,14 +5,14 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
-import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
+import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_new_article_link.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-
 
 class NewArticleLinkActivity : BaseActivity() {
     private val repository: ArticRepository by inject()
@@ -26,7 +26,7 @@ class NewArticleLinkActivity : BaseActivity() {
         rv_new_article_link.layoutManager = LinearLayoutManager(this, RecyclerView.VERTICAL,false)
 
         // recyclerview space 조절
-        var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
+        val spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
         rv_new_article_link.addItemDecoration(spacesItemDecoration)
 
         repository.getNewArticleList()
@@ -36,7 +36,7 @@ class NewArticleLinkActivity : BaseActivity() {
                     adapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("new article link activity get new article list error")
+                    "new article link activity get new article list error".logError()
                     toast(R.string.network_error)
                 }
         ).apply { addDisposable(this) }

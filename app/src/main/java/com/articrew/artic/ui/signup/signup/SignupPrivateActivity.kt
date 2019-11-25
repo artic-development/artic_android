@@ -10,12 +10,9 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.articrew.artic.R
-import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.data.auth.Signup
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
-import com.articrew.artic.ui.login.login.LoginActivity
 import com.articrew.artic.ui.navigation.NavigationActivity
 import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*
@@ -56,8 +53,8 @@ class SignupPrivateActivity : BaseActivity() {
             }
 
             override fun onTextChanged(p0: CharSequence?, p1: Int, p2: Int, p3: Int) {
-                var nameStr = et_act_signup_private_name.text.toString()
-                var nameMatcher = namePattern.matcher(nameStr)
+                val nameStr = et_act_signup_private_name.text.toString()
+                val nameMatcher = namePattern.matcher(nameStr)
 
                 if (et_act_signup_private_name.text.toString() != "" && nameMatcher.find()) {
                     tv_act_signup_private_name_check_success.visibility = View.VISIBLE
@@ -83,7 +80,7 @@ class SignupPrivateActivity : BaseActivity() {
 
             override fun afterTextChanged(p0: Editable?) {
 
-                if ((prevL < p0?.length!!) && (p0?.length == 4 || p0?.length == 7)) {
+                if ((prevL < p0?.length!!) && (p0.length == 4 || p0.length == 7)) {
                     p0.append('-')
                 }
 
@@ -137,7 +134,6 @@ class SignupPrivateActivity : BaseActivity() {
     }
 
     private fun signup() {
-        logger.log("ui signup")
         // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
         val id = intent.getStringExtra("id")
         val pw = intent.getStringExtra("pw")
@@ -149,8 +145,6 @@ class SignupPrivateActivity : BaseActivity() {
                     // 회원가입 성공한 것으로 자동 로그인하자!
                     auth.requestSignin(data = Signin(it.id, it.pw),
                         successCallback = {
-                            logger.log("token data : $it")
-
                             val intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
 
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)
@@ -160,14 +154,14 @@ class SignupPrivateActivity : BaseActivity() {
 //                            finish()
                         },
                         statusCallback = {
-                                status, success, message ->
+                                status, _, message ->
                             if (status == 400) {
                                 toast(message)
                             }
                         }
                     )
                 },
-                statusCallback = { status, success, message ->
+                statusCallback = { status, _, message ->
                     if (status == 400) {
                         toast(message)
                     }

@@ -2,7 +2,6 @@ package com.articrew.artic.ui.home
 
 import android.content.Intent
 import android.os.Bundle
-import android.widget.ScrollView
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
@@ -59,7 +58,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                         trans.commitAllowingStateLoss()
                     },
                     {
-                        logger.error("home fragment category load error")
                         toast(R.string.network_error)
                     }
                 )
@@ -67,7 +65,7 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
             transaction.commitAllowingStateLoss()
 
             constraintLayout.setOnClickListener {
-                var intent = Intent(this, SearchActivity::class.java)
+                val intent = Intent(this, SearchActivity::class.java)
                 startActivity(intent)
             }
         }

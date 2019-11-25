@@ -3,12 +3,12 @@ package com.articrew.artic.ui.article_about
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.article.ArticleActivity
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
+import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.defaultHolderOptions
+import com.articrew.artic.util.logError
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.startActivity
@@ -28,13 +28,6 @@ class ArticleAboutActivity : BaseActivity() {
         setContentView(R.layout.activity_article_about)
 
         val articleId = intent.getIntExtra("articleId", -1)
-
-        logger.log("ArticleAboutActivity articleId $articleId")
-
-        if (articleId == -1) {
-            //toast(R.string.network_error)
-            //finish()
-        }
 
         rv_article_about_another_article.adapter = adapter
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.
@@ -58,7 +51,6 @@ class ArticleAboutActivity : BaseActivity() {
 
                     // 비동기 통신의 연속
                     article.archive_id?.let { archiveId ->
-                        logger.log("ArticleAboutActivity $archiveId")
                         repository.getArticleListGivenArchive(archiveId)
                             .subscribe( {
                                 it.take(4).let {cut->
@@ -74,7 +66,7 @@ class ArticleAboutActivity : BaseActivity() {
                                 }
                             },
                                 {
-                                    logger.error("article about activity get article with extra")
+                                    "article about activity get article with extra".logError()
                                     toast(R.string.network_error)
                                 }
                             ).apply { addDisposable(this) }

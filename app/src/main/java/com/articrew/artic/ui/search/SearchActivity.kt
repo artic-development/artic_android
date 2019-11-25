@@ -2,24 +2,22 @@ package com.articrew.artic.ui.search
 
 import android.os.Bundle
 import android.view.KeyEvent
+import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import androidx.recyclerview.widget.StaggeredGridLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.deco.GridSpacesItemDecoration
-import com.articrew.artic.util.dpToPx
-import kotlinx.android.synthetic.main.activity_search.*
-import org.jetbrains.anko.toast
-import org.koin.android.ext.android.inject
-import android.view.inputmethod.EditorInfo
-import com.articrew.artic.repository.remote.response.RecommendationResponse
-import com.articrew.artic.ui.search.data.RecommendWordData
+import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.search_result.SearchResultActivity
+import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent
+import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.startActivity
+import org.jetbrains.anko.toast
+import org.koin.android.ext.android.inject
 
 
 class SearchActivity : BaseActivity() {
@@ -36,14 +34,14 @@ class SearchActivity : BaseActivity() {
         rv_search_recommend_word.adapter = recommendWordAdapter
 
         // layoutManager
-        var layoutManager = FlexboxLayoutManager(this)
+        val layoutManager = FlexboxLayoutManager(this)
         layoutManager.flexDirection = FlexDirection.ROW
         layoutManager.justifyContent = JustifyContent.FLEX_START
 
         rv_search_recommend_word.layoutManager = layoutManager
 
         // recyclerview space 조절
-        var spacesItemDecoration =
+        val spacesItemDecoration =
             GridSpacesItemDecoration(this, 10.dpToPx(), 15.dpToPx())
         rv_search_recommend_word.addItemDecoration(spacesItemDecoration)
 
@@ -54,7 +52,7 @@ class SearchActivity : BaseActivity() {
                     recommendWordAdapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("search activity get recommend word list error")
+                    "search activity get recommend word list error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

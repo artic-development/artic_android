@@ -7,11 +7,11 @@ import android.text.TextWatcher
 import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
-import com.articrew.artic.ui.reset_password.FindPasswordActivity
 import com.articrew.artic.R
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.navigation.NavigationActivity
+import com.articrew.artic.ui.reset_password.FindPasswordActivity
 import kotlinx.android.synthetic.main.activity_login.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -83,7 +83,7 @@ class LoginActivity : BaseActivity() {
 
         // @수민) 비밀번호 찾기 버튼
         linear_act_login_start_go_to_signup_button.setOnClickListener {
-            var intent = Intent(this, FindPasswordActivity::class.java)
+            val intent = Intent(this, FindPasswordActivity::class.java)
 
             startActivity(intent)
         }
@@ -104,12 +104,9 @@ class LoginActivity : BaseActivity() {
 //        }
 //
 //        else {
-            logger.log("request signin")
             auth.requestSignin(
                 data = Signin(emailStr, passwordStr),
                 successCallback = {
-                    logger.log("token data : $it")
-
                     val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

@@ -2,10 +2,7 @@ package com.articrew.artic
 
 import android.app.Application
 import com.articrew.artic.auth.apiModule
-import com.articrew.artic.auth.kakao.KakaoSDKAdapter
-import com.articrew.artic.logger.loggerModule
 import com.articrew.artic.repository.module
-import com.kakao.auth.KakaoSDK
 import org.koin.android.ext.koin.androidContext
 import org.koin.core.context.startKoin
 
@@ -18,7 +15,6 @@ class ArticApplication : Application() {
             androidContext(this@ArticApplication)
             modules(listOf(
                 module,
-                loggerModule,
                 apiModule
             ))
         }

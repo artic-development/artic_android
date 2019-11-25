@@ -2,13 +2,12 @@ package com.articrew.artic.ui.archive
 
 import android.os.Bundle
 import android.view.View
-import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
+import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -61,11 +60,9 @@ class ArchiveActivity : BaseActivity() {
 
                         adapter.dataList = it
                         adapter.notifyDataSetChanged()
-
-                        logger.log(it.toString())
                     },
                     {
-                        logger.error("archive activity get category archive list error")
+                        "archive activity get category archive list error".logError()
                         toast(R.string.network_error)
                     }
                 ).apply { addDisposable(this) }

@@ -1,8 +1,8 @@
 package com.articrew.artic.ui.setting.setting_version
 
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import androidx.core.content.ContextCompat
 import com.articrew.artic.R
 import kotlinx.android.synthetic.main.activity_setting_version.*

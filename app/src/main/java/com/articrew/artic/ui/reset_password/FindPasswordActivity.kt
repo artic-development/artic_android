@@ -1,10 +1,10 @@
 package com.articrew.artic.ui.reset_password
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
 import com.articrew.artic.R
 import kotlinx.android.synthetic.main.activity_find_password.*
 
@@ -35,7 +35,7 @@ class FindPasswordActivity : AppCompatActivity() {
         btn_act_find_pw_get_auth_code.setOnClickListener {
             if(btn_act_find_pw_get_auth_code.isActivated) {
                 // TODO 인증번호 받기 서버 통신 ...?
-                var intent = Intent(this, InputAuthCodeActivity::class.java)
+                val intent = Intent(this, InputAuthCodeActivity::class.java)
 
                 startActivity(intent)
             }

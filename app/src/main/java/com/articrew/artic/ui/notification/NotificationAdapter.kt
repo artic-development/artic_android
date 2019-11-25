@@ -1,7 +1,6 @@
 package com.articrew.artic.ui.notification
 
 import android.text.Html
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,13 +9,13 @@ import android.widget.TextView
 import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.data.notification.*
-import com.articrew.artic.ui.article.ArticleActivity
+import com.articrew.artic.data.notification.AddArticleNotification
+import com.articrew.artic.data.notification.AppNotification
+import com.articrew.artic.data.notification.NotificationType
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
 import com.articrew.artic.ui.notification.article_fragment.RawArticleListFragment
 import com.articrew.artic.util.*
 import com.bumptech.glide.Glide
-import khronos.toString
 import org.jetbrains.anko.startActivity
 import java.util.*
 

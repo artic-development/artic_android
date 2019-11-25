@@ -1,7 +1,10 @@
 package com.articrew.artic.repository.remote.mapper
 
 import com.articrew.artic.data.Article
-import com.articrew.artic.data.notification.*
+import com.articrew.artic.data.notification.AddArticleNotification
+import com.articrew.artic.data.notification.AppNotification
+import com.articrew.artic.data.notification.NotificationType
+import com.articrew.artic.data.notification.RemindArticleNotification
 import com.articrew.artic.repository.remote.response.NotificationResponse
 import com.articrew.artic.util.fromServer
 

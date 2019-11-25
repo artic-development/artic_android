@@ -1,11 +1,9 @@
 package com.articrew.artic.ui.adapter.deco
 
-import androidx.recyclerview.widget.RecyclerView
-import android.R.attr.right
-import android.R.attr.left
 import android.content.Context
 import android.graphics.Rect
 import android.view.View
+import androidx.recyclerview.widget.RecyclerView
 
 
 class GridSpacesItemDecoration(val context : Context, private val horizontalSpace : Int, private val verticalSpace : Int) : RecyclerView.ItemDecoration() {

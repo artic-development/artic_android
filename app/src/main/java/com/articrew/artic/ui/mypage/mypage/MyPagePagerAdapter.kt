@@ -10,7 +10,7 @@ import com.articrew.artic.ui.base.BaseFragment
 class MyPagePagerAdapter(
     fm: FragmentManager,
     private val frags: List<BaseFragment>
-): FragmentPagerAdapter(fm) {
+): FragmentPagerAdapter(fm, BEHAVIOR_RESUME_ONLY_CURRENT_FRAGMENT) {
     private var currentPosition = -1
 
     override fun getItem(position: Int): BaseFragment {

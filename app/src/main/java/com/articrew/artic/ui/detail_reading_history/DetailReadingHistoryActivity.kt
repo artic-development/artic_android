@@ -5,10 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
+import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_detail_reading_history.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -74,12 +74,11 @@ class DetailReadingHistoryActivity : BaseActivity() {
                         rv_act_detail_reading_history.visibility = View.VISIBLE
                     }
 
-                    logger.log("recent reading article list")
                     adapter.dataList = it
                     adapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("detail reading history activity reading history article error")
+                    "detail reading history activity reading history article error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

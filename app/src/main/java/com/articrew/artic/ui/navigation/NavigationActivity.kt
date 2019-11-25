@@ -1,19 +1,13 @@
 package com.articrew.artic.ui.navigation
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
-import androidx.viewpager.widget.ViewPager
 import com.articrew.artic.R
-import com.articrew.artic.auth.Auth
-import com.articrew.artic.data.auth.Signin
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.base.BaseOnPageChangeListener
 import com.articrew.artic.ui.notification.NotificationFragment
 import com.google.android.material.tabs.TabLayout
 import kotlinx.android.synthetic.main.activity_navigation.*
-import org.koin.android.ext.android.inject
 
 class NavigationActivity : BaseActivity() {
     private lateinit var pagerAdapter: NavigationTabPagerAdapter

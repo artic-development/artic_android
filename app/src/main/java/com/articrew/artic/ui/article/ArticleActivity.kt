@@ -1,15 +1,14 @@
 package com.articrew.artic.ui.article
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
+import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_article.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
@@ -41,13 +40,11 @@ class ArticleActivity : BaseActivity() {
         // 스크랩 여부를 서버에서 쿼리해온다.
         repository.getArchiveIsScrap(archiveId)
             .subscribe {
-                logger.log("get archive is scarp $it")
                 link_btn_scrap.isChecked = it
 
                 // 스크랩 여부를 받아왔을때만 정상적으로 서버 통신할 수 있도록 구성한다.
                 // @수민) 스크랩 버튼 통신
                 link_btn_scrap.setOnClickListener {
-                    logger.log("click scrap")
                     repository.postArchiveScrap(archiveId)
                         .subscribe {
                             toast(it)
@@ -76,7 +73,7 @@ class ArticleActivity : BaseActivity() {
                     adapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("article activity get article list given archive error")
+                    "article activity get article list given archive error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

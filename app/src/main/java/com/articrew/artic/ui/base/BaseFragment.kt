@@ -4,17 +4,15 @@ import android.os.Bundle
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.annotation.LayoutRes
 import androidx.fragment.app.Fragment
-import com.articrew.artic.logger.Logger
 import io.reactivex.disposables.CompositeDisposable
 import io.reactivex.disposables.Disposable
-import org.koin.android.ext.android.inject
 
 open class BaseFragment(
-    private val layoutId: Int
+    @LayoutRes private val layoutId: Int
 ) : Fragment() {
     private val compositeDisposable = CompositeDisposable()
-    protected val logger: Logger by inject()
 
     override fun onCreateView(inflater: LayoutInflater, container: ViewGroup?, savedInstanceState: Bundle?): View? {
         return inflater.inflate(layoutId, container, false)

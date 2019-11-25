@@ -2,13 +2,12 @@ package com.articrew.artic.ui.article_webview
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.collect_archive.CollectArchiveDialogFragment
+import com.articrew.artic.util.logError
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_article_web_view.*
 import org.jetbrains.anko.toast
@@ -29,12 +28,9 @@ class ArticleWebViewActivity : BaseActivity() {
         setContentView(R.layout.activity_article_web_view)
 
         articleId = intent.getIntExtra("articleId", -1)
-        logger.log("ArticleWebViewActivity articleId : $articleId")
 
         repository.readArticle(articleId)
-            .subscribe {
-                logger.log("$articleId read article $it")
-            }.apply { addDisposable(this) }
+            .subscribe().apply { addDisposable(this) }
 
         // article id를 사용해서 데이터를 받아와야함. article url, article isLiked 여부
         repository.getArticle(articleId)
@@ -79,17 +75,17 @@ class ArticleWebViewActivity : BaseActivity() {
                     }
 
                     btn_article_web_view_collect.setOnClickListener {
-                        var bundle = Bundle()
+                        val bundle = Bundle()
                         bundle.putInt("article_idx", articleId)
 
-                        var putFragment = CollectArchiveDialogFragment()
+                        val putFragment = CollectArchiveDialogFragment()
                         putFragment.arguments = bundle
 
                         putFragment.show(this@ArticleWebViewActivity.supportFragmentManager, putFragment.tag)
                     }
                 },
                 {
-                    logger.error("article web view activity get article error")
+                    "article web view activity get article error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

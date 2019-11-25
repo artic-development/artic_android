@@ -2,11 +2,12 @@ package com.articrew.artic.ui.base
 
 import android.content.Intent
 import android.os.Bundle
-import com.articrew.artic.R
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.auth.facebook.FacebookLoginBody
 import com.articrew.artic.auth.facebook.UserRequest
 import com.articrew.artic.ui.navigation.NavigationActivity
+import com.articrew.artic.util.logDebug
+import com.articrew.artic.util.logError
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult
@@ -59,14 +60,13 @@ open class BaseSocialLoginActivity : BaseActivity() {
                 UserRequest.makeUserRequest(object : GraphRequest.Callback{
                     override fun onCompleted(response: GraphResponse?) {
                         response?.jsonObject?.let {
-                            logger.log("json: $it\n")
+                            "json: $it\n".logDebug()
                             val picture = it.getJSONObject("picture")?.getJSONObject("data")?.getString("url")
                             var email: String? = null
                             if (it.has("email")) // 페이스북 정책상 이메일없이 로그인 하는 경우가 있을 수 있다.
                                 email = it.getString("email")
                             val id = it.getString("id")
                             val name = it.getString("name")
-                            logger.log("id: $id, name: $name, email: $email\npicture: $picture")
                             auth.requestFacebookLogin(
                                 data = FacebookLoginBody(
                                     id = id, email = email, name = name, img = picture
@@ -81,32 +81,28 @@ open class BaseSocialLoginActivity : BaseActivity() {
                         }
                     }
                 })
-                logger.log("facebook login success ${result?.accessToken} \n${result?.recentlyDeniedPermissions}\n${result?.recentlyGrantedPermissions}")
+                "facebook login success ${result?.accessToken} \n${result?.recentlyDeniedPermissions}\n${result?.recentlyGrantedPermissions}".logDebug()
             }
 
             override fun onCancel() {
-                logger.log("facebook login cancel")
+                "facebook login cancel".logDebug()
                 onFacebookLoginCancel()
             }
 
             override fun onError(error: FacebookException?) {
-                logger.log("facebook login success $error")
+                "facebook login success $error".logDebug()
                 onFacebookLoginError()
             }
         })
 
         // 실제로 facebook token 을 사용해 통신할 일은 없기때문에 크게 의미있진 않다.
         accessTokenTracker = object : AccessTokenTracker() {
-            override fun onCurrentAccessTokenChanged(oldAccessToken: AccessToken?, currentAccessToken: AccessToken?) {
-                logger.log("token change")
-            }
+            override fun onCurrentAccessTokenChanged(oldAccessToken: AccessToken?, currentAccessToken: AccessToken?) {}
         }
 
         // 프로필 변경됬을때 서버에 알려줄 수 있긴한데... 흠...
         profileTracker = object : ProfileTracker() {
-            override fun onCurrentProfileChanged(oldProfile: Profile?, currentProfile: Profile?) {
-                logger.log("facebook ${oldProfile.toString()} ${currentProfile.toString()}")
-            }
+            override fun onCurrentProfileChanged(oldProfile: Profile?, currentProfile: Profile?) {}
         }
 
         // 자동 로그인 시 이거 사용하면 된다.
@@ -120,7 +116,7 @@ open class BaseSocialLoginActivity : BaseActivity() {
         startActivity(intentFor<NavigationActivity>().clearTask().newTask())
     }
     open val failCallback: (String) -> Unit = {
-        logger.error("facebook login fail $it")
+        "facebook login fail $it".logError()
     }
     open val statusCallback: () -> Unit = {
     }

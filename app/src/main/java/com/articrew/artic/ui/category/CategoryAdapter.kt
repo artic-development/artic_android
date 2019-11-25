@@ -2,14 +2,12 @@ package com.articrew.artic.ui.category
 
 import android.content.Context
 import android.content.Intent
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.data.Archive
 import com.articrew.artic.data.Category
 import com.articrew.artic.ui.archive.ArchiveActivity
 
@@ -34,7 +32,7 @@ class CategoryAdapter(
             txt_name?.text = cur.name
 
             container?.setOnClickListener {
-                var intent = Intent(context, ArchiveActivity::class.java)
+                val intent = Intent(context, ArchiveActivity::class.java)
 
                 intent.putExtra("category_idx", cur.id)
                 intent.putExtra("category_name", cur.name)

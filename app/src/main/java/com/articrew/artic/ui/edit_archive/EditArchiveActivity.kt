@@ -3,12 +3,12 @@ package com.articrew.artic.ui.edit_archive
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.new_archive.MakeNewArchiveData
+import com.articrew.artic.util.logError
 import com.jakewharton.rxbinding3.widget.textChanges
 import kotlinx.android.synthetic.main.activity_make_new_archive.*
 import org.jetbrains.anko.toast
@@ -56,7 +56,7 @@ class EditArchiveActivity : BaseActivity() {
                 setResult(Activity.RESULT_OK, Intent().apply { putExtra("archiveTitle", title) })
                 finish()
             }, {
-                logger.error("edit archive activity error ${it.message}")
+                "edit archive activity error ${it.message}".logError()
             })
         }
     }

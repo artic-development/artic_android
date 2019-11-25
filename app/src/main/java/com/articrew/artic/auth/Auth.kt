@@ -9,7 +9,6 @@ import com.articrew.artic.auth.response.SigninResponse
 import com.articrew.artic.auth.response.SignupResponse
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.data.auth.Signup
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.remote.response.BaseResponse
 import com.facebook.login.LoginManager
 import com.google.gson.JsonObject
@@ -26,8 +25,7 @@ import retrofit2.converter.gson.GsonConverterFactory
  * @author greedy0110
  * */
 class Auth (
-    private val context: Context,
-    private val logger: Logger
+    private val context: Context
 ) {
     private val pref: SharedPreferences by lazy { context.getSharedPreferences("login", MODE_PRIVATE) }
 
@@ -127,7 +125,6 @@ class Auth (
                     response: Response<BaseResponse<SigninResponse>>
                 ) {
                     response.body()?.let {
-                        logger.log("from SERVER : \n$it")
                         statusCallback?.invoke(it.status, it.success, it.message)
                         if (it.success) {
                             it.data?.let { res ->
@@ -173,14 +170,12 @@ class Auth (
                     response: Response<BaseResponse<String>>
                 ) {
                     response.body()?.let {
-                        logger.log("from SERVER : \n$it")
                         statusCallback?.invoke(it.status, it.success, it.message)
                         if (it.success) {
                             it.data?.let { res ->
                                 saveLoginInfo(
                                     com.articrew.artic.auth.Auth.LoginKind.FACEBOOK, data.id, null
                                 )
-                                logger.log("get facebook login token : $res")
                                 com.articrew.artic.auth.Auth.Companion.token = res // 서버에서 받아온 토큰의 저장
                             }
                             it.data?.let(successCallback)
@@ -248,7 +243,6 @@ class Auth (
         errorCallback: ((Throwable) -> Unit)? = null
     ): Callback<SERVER>
     {
-        logger.log("call api")
         return object : Callback<SERVER> {
             override fun onFailure(call: Call<SERVER>, t: Throwable) {
                 errorCallback?.invoke(t)
@@ -259,7 +253,6 @@ class Auth (
                 response: Response<SERVER>
             ) {
                 response.body()?.let {
-                    logger.log("from SERVER : \n$it")
                     statusCallback?.invoke(it.status, it.success, it.message)
                     if (it.success)
                         it.data?.let(successCallback)
