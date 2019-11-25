@@ -2,7 +2,6 @@ package com.articrew.artic.repository
 
 import com.articrew.artic.data.*
 import com.articrew.artic.data.notification.*
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.local.LocalDataSource
 import com.articrew.artic.repository.remote.RetrofitDataSource
 import com.articrew.artic.repository.remote.mapper.*
@@ -18,7 +17,6 @@ import okhttp3.RequestBody
  * @author greedy0110
  * */
 class ArticRepository (
-    private val logger: Logger,
     private val local: LocalDataSource,
     private val remote: RetrofitDataSource,
     private val scheduler: ArticSchedulers

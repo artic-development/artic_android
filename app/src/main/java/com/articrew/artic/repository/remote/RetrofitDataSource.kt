@@ -1,7 +1,6 @@
 package com.articrew.artic.repository.remote
 
 import com.articrew.artic.auth.Auth
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.remote.response.*
 import com.articrew.artic.ui.new_archive.MakeNewArchiveData
 import com.google.gson.JsonObject
@@ -13,9 +12,7 @@ import retrofit2.Retrofit
 import retrofit2.adapter.rxjava2.RxJava2CallAdapterFactory
 import retrofit2.converter.gson.GsonConverterFactory
 
-class RetrofitDataSource(
-    private val logger: Logger
-) {
+class RetrofitDataSource() {
     private val retrofit: RetrofitInterface by lazy {
         Retrofit.Builder()
             .baseUrl(Auth.BASE_URL)

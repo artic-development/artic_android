@@ -3,6 +3,7 @@ package com.articrew.artic.ui.category
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
@@ -38,7 +39,7 @@ class CategoryFragment : BaseFragment(R.layout.fragment_category) {
                         adapter.notifyDataSetChanged()
                     },
                     {
-                        logger.error("category fragment get category list error")
+                        "category fragment get category list error".logError()
                         toast(R.string.network_error)
                     }
                 )

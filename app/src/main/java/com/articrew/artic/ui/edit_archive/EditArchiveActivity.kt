@@ -6,6 +6,7 @@ import android.graphics.Color
 import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.new_archive.MakeNewArchiveData
@@ -56,7 +57,7 @@ class EditArchiveActivity : BaseActivity() {
                 setResult(Activity.RESULT_OK, Intent().apply { putExtra("archiveTitle", title) })
                 finish()
             }, {
-                logger.error("edit archive activity error ${it.message}")
+                "edit archive activity error ${it.message}".logError()
             })
         }
     }

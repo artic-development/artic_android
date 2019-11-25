@@ -10,6 +10,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.articrew.artic.R
 import com.articrew.artic.data.Article
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
@@ -58,7 +59,7 @@ class NewArticleFragment : BaseFragment(R.layout.fragment_home_new_article) {
                         }
                     },
                     {
-                        logger.error("new article fragment get new article list error")
+                        "new article fragment get new article list error".logError()
                         toast(R.string.network_error)
                     }
                 ).apply { addDisposable(this) }

@@ -3,7 +3,7 @@ package com.articrew.artic.ui.article_about
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.article.ArticleActivity
@@ -29,7 +29,6 @@ class ArticleAboutActivity : BaseActivity() {
 
         val articleId = intent.getIntExtra("articleId", -1)
 
-        logger.log("ArticleAboutActivity articleId $articleId")
 
         if (articleId == -1) {
             //toast(R.string.network_error)
@@ -58,7 +57,6 @@ class ArticleAboutActivity : BaseActivity() {
 
                     // 비동기 통신의 연속
                     article.archive_id?.let { archiveId ->
-                        logger.log("ArticleAboutActivity $archiveId")
                         repository.getArticleListGivenArchive(archiveId)
                             .subscribe( {
                                 it.take(4).let {cut->
@@ -74,7 +72,7 @@ class ArticleAboutActivity : BaseActivity() {
                                 }
                             },
                                 {
-                                    logger.error("article about activity get article with extra")
+                                    "article about activity get article with extra".logError()
                                     toast(R.string.network_error)
                                 }
                             ).apply { addDisposable(this) }

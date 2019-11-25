@@ -5,6 +5,7 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_make_new_archive.*
@@ -51,7 +52,7 @@ class MakeNewArchiveActivity : BaseActivity() {
                             finish()
                         },
                         {
-                            logger.error("make new archive activity add my archive error")
+                            "make new archive activity add my archive error".logError()
                             toast(R.string.network_error)
                         }
                     ).apply { addDisposable(this) }

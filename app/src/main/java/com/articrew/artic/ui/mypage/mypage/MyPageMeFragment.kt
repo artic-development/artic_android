@@ -6,8 +6,8 @@ import android.os.Bundle
 import androidx.fragment.app.Fragment
 import android.view.View
 import androidx.recyclerview.widget.GridLayoutManager
-
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
@@ -71,7 +71,7 @@ class MyPageMeFragment : BaseFragment(R.layout.fragment_my_page_me) {
                         }
                     },
                     {
-                        logger.error("my page me fragment get my page me error $it")
+                        "my page me fragment get my page me error $it".logError()
                         toast(R.string.network_error)
                     }
                 ).apply { addDisposable(this) }

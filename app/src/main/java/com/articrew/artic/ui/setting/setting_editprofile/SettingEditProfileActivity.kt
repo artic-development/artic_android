@@ -14,7 +14,7 @@ import android.text.Editable
 import android.text.TextWatcher
 import android.widget.*
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.defaultHolderOptions
@@ -79,7 +79,6 @@ class SettingEditProfileActivity : BaseActivity() {
                     }
                     //
 
-                    logger.log("mypage success $it")
                     edit_profile_name_et.setText(it.name)
                     //  txt__my_page_email.text=it.id
                     val img =it.profile_img
@@ -93,7 +92,7 @@ class SettingEditProfileActivity : BaseActivity() {
                     edit_profile_myinfo_et.setText(it.my_info)
                 },
                 {
-                    logger.error("setting edit profile activity get my info error")
+                    "setting edit profile activity get my info error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }
@@ -154,10 +153,8 @@ class SettingEditProfileActivity : BaseActivity() {
         // 완료 버튼
         edit_profile_finish_btn.setOnClickListener {
             if (flag == 1) {
-                logger.log("edit profile finish btn")
                 if (selectedPicUri != null) {
                     selectedPicUri?.let {
-                        logger.info("select pic uri")
                         //Encoding->이미지 파일을 서버로 전송 가능한 형태로 변환하는 부분
                         val options=BitmapFactory.Options()
                         val inputStream: InputStream? = contentResolver.openInputStream(it)
@@ -167,15 +164,12 @@ class SettingEditProfileActivity : BaseActivity() {
                     }
                 }
                 else {
-                    logger.log("original image encode")
                     Glide.with(this).asBitmap().load(originalImage)
                         .into(object : CustomTarget<Bitmap>() {
                             override fun onLoadCleared(placeholder: Drawable?) {
-                                logger.log("on load cleared")
                             }
 
                             override fun onResourceReady(resource: Bitmap, transition: Transition<in Bitmap>?) {
-                                logger.log("oh yes bitmap resource is ready!")
                                 changeWithBitmap(resource)
                             }
                         }
@@ -206,7 +200,6 @@ class SettingEditProfileActivity : BaseActivity() {
 
         repository.changeMyInfo(name_rb, my_info_rb, picture_rb)
             .subscribe {
-                logger.log("token data (change) : $it")
                 toast(it)
             }.apply { addDisposable(this) }
         finish()
@@ -240,7 +233,6 @@ class SettingEditProfileActivity : BaseActivity() {
         {
             data?.data?.let {contentURI ->
                 selectedPicUri=contentURI
-                logger.log("$contentURI ${contentURI.path}")
                 Glide.with(this)
                     .load(contentURI)
                     .apply(defaultHolderOptions)
@@ -251,7 +243,7 @@ class SettingEditProfileActivity : BaseActivity() {
                             target: Target<Drawable>?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            logger.error("image load fail from gallery $e")
+                            "image load fail from gallery $e".logError()
                             return false
                         }
 
@@ -262,8 +254,6 @@ class SettingEditProfileActivity : BaseActivity() {
                             dataSource: DataSource?,
                             isFirstResource: Boolean
                         ): Boolean {
-                            logger.log("image load success from gallery")
-
                             edit_profile_finish_btn.textColor = Color.parseColor("#4f80ff")
                             flag = 1
 

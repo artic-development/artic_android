@@ -59,7 +59,6 @@ class HomeFragment : BaseFragment(R.layout.fragment_home) {
                         trans.commitAllowingStateLoss()
                     },
                     {
-                        logger.error("home fragment category load error")
                         toast(R.string.network_error)
                     }
                 )

@@ -14,7 +14,6 @@ import androidx.recyclerview.widget.RecyclerView
 
 import com.articrew.artic.R
 import com.articrew.artic.data.Archive
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.archive.ArchiveActivity
 import com.articrew.artic.ui.base.BaseFragment
@@ -79,14 +78,11 @@ class CategoryArchiveFragment(
                 startActivity(intent)
             }
 
-            logger.log("category fragment $categoryId $categoryName")
-
             // 데이터 갱신이 onResume 마다 될 필요가 없음.
             repository.getArchiveListGivenCategory(categoryId)
                 .subscribe(
                     {
                         if (it.isEmpty()) {
-                            logger.log("category empty $categoryName")
                             supportFragmentManager.beginTransaction().remove(this@CategoryArchiveFragment).commitAllowingStateLoss()
                         }
                         // 최신 4개의 archive 만 가져온다!

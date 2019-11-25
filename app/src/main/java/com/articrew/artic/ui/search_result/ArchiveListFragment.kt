@@ -6,7 +6,7 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
@@ -52,7 +52,7 @@ class ArchiveListFragment(
                     }
                 },
                 {
-                    logger.error("archive list fragment get search archive list error")
+                    "archive list fragment get search archive list error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

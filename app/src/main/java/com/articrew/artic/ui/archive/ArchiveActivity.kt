@@ -5,7 +5,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
@@ -61,11 +61,9 @@ class ArchiveActivity : BaseActivity() {
 
                         adapter.dataList = it
                         adapter.notifyDataSetChanged()
-
-                        logger.log(it.toString())
                     },
                     {
-                        logger.error("archive activity get category archive list error")
+                        "archive activity get category archive list error".logError()
                         toast(R.string.network_error)
                     }
                 ).apply { addDisposable(this) }

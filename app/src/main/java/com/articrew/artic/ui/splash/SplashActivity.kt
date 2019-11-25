@@ -5,7 +5,6 @@ import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
 import com.articrew.artic.auth.Auth
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseSocialLoginActivity
 import com.articrew.artic.ui.login.login_start.LoginStartActivity

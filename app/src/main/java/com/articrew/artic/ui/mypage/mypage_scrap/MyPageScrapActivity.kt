@@ -8,6 +8,7 @@ import androidx.cardview.widget.CardView
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
@@ -88,7 +89,7 @@ class MyPageScrapActivity : BaseActivity() {
                                             finish()
                                         }, {
                                             toast(R.string.network_error)
-                                            logger.error("my page scrap activity delete archive error ${it.message}")
+                                            "my page scrap activity delete archive error ${it.message}".logError()
                                         })
                                 },
                                 R.id.btn_dlg_confirm_cancel to {

@@ -104,12 +104,9 @@ class LoginActivity : BaseActivity() {
 //        }
 //
 //        else {
-            logger.log("request signin")
             auth.requestSignin(
                 data = Signin(emailStr, passwordStr),
                 successCallback = {
-                    logger.log("token data : $it")
-
                     val intent = Intent(this@LoginActivity, NavigationActivity::class.java)
 
                     intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

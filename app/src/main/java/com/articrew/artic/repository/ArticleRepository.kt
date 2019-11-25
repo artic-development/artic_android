@@ -32,7 +32,7 @@ class ArticleRepository (
     fun getArticPickList(): Observable<List<Article>> {
         return remote.getArticPickList()
             .subscribeOn(scheduler.io())
-            .map { if (it.success && it.data != null) it.data!!.map { ArticleMapper.to(it) } else listOf() }
+            .map { if (it.success && it.data != null) it.data.map { ArticleMapper.to(it) } else listOf() }
             .observeOn(scheduler.ui())
     }
 

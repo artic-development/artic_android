@@ -7,7 +7,7 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
@@ -50,7 +50,7 @@ class LinkResultFragment(
                     }
                 },
                 {
-                    logger.error("link result fragment get search article list error")
+                    "link result fragment get search article list error".logError()
                     toast(R.string.network_error)
                     showEmptyView()
                 }

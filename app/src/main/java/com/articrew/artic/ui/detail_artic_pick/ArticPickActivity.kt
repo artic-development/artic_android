@@ -4,6 +4,7 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
@@ -36,7 +37,7 @@ class ArticPickActivity : BaseActivity() {
                     adapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("artic pick activity get artic pick list error")
+                    "artic pick activity get artic pick list error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

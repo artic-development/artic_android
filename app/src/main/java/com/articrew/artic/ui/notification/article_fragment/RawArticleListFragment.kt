@@ -11,8 +11,6 @@ import androidx.recyclerview.widget.LinearLayoutManager
 
 import com.articrew.artic.R
 import com.articrew.artic.data.Article
-import com.articrew.artic.logger.Logger
-import com.articrew.artic.logger.loggerModule
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
@@ -33,7 +31,6 @@ class RawArticleListFragment(
 ) : Fragment() {
     private lateinit var adapter: BigImageArticleAdapter
     private val repository: ArticRepository by inject()
-    private val logger: Logger by inject()
 
     override fun onCreateView(
         inflater: LayoutInflater, container: ViewGroup?,
@@ -62,13 +59,7 @@ class RawArticleListFragment(
 
             Observable.just(data)
                 .flatMapIterable { it }
-                .doOnNext {
-                    logger.log("this article id $it")
-                }
                 .concatMapEager { repository.getArticle(it) }
-                .doOnNext {
-                    logger.log("get article $it")
-                }
                 .toList()
                 .subscribe({
                     adapter.dataList = it

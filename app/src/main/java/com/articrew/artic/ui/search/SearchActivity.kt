@@ -13,8 +13,7 @@ import kotlinx.android.synthetic.main.activity_search.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 import android.view.inputmethod.EditorInfo
-import com.articrew.artic.repository.remote.response.RecommendationResponse
-import com.articrew.artic.ui.search.data.RecommendWordData
+import com.articrew.artic.logger.logError
 import com.articrew.artic.ui.search_result.SearchResultActivity
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
@@ -54,7 +53,7 @@ class SearchActivity : BaseActivity() {
                     recommendWordAdapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("search activity get recommend word list error")
+                    "search activity get recommend word list error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

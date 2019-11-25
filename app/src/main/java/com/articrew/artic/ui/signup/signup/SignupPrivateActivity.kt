@@ -13,7 +13,6 @@ import com.articrew.artic.R
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.data.auth.Signup
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.login.login.LoginActivity
 import com.articrew.artic.ui.navigation.NavigationActivity
@@ -137,7 +136,6 @@ class SignupPrivateActivity : BaseActivity() {
     }
 
     private fun signup() {
-        logger.log("ui signup")
         // @수민) 아이디와 비밀번호 모두 비어있지 않을 때 통신
         val id = intent.getStringExtra("id")
         val pw = intent.getStringExtra("pw")
@@ -149,8 +147,6 @@ class SignupPrivateActivity : BaseActivity() {
                     // 회원가입 성공한 것으로 자동 로그인하자!
                     auth.requestSignin(data = Signin(it.id, it.pw),
                         successCallback = {
-                            logger.log("token data : $it")
-
                             val intent = Intent(this@SignupPrivateActivity, NavigationActivity::class.java)
 
                             intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK)

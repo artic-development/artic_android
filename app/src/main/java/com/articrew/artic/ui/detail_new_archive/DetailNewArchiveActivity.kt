@@ -3,6 +3,7 @@ package com.articrew.artic.ui.detail_new_archive
 import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
@@ -33,7 +34,7 @@ class DetailNewArchiveActivity : BaseActivity() {
                     adapter.notifyDataSetChanged()
                 },
                 {
-                    logger.error("detail new archive activity get new archive list error")
+                    "detail new archive activity get new archive list error".logError()
                     toast(R.string.network_error)
                 }
             ).apply { addDisposable(this) }

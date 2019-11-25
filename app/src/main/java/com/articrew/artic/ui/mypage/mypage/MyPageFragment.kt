@@ -6,7 +6,7 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.articrew.artic.R
-import com.articrew.artic.logger.Logger
+import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
@@ -28,7 +28,6 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
     private lateinit var meFragment: MyPageMeFragment
 
     private val archiveAddButtonShowTask: (Boolean)-> Unit = {
-        logger.log("archive add button $it")
         if (it)
             mypage_plus_btn.visibility = View.VISIBLE
         else
@@ -67,7 +66,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                 }
             )
 
-            selectScrapTab() // 초기에는 scrap tab을 선택한다.
+            selectScrapTab() // 초기에는 scrap tab 을 선택한다.
 
             btn_my_page_setting.setOnClickListener {
                 startActivity<SettingActivity>()
@@ -86,7 +85,6 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
             repository.getMyInfo()
                 .subscribe(
                     {
-                        logger.log("mypage info success $it")
                         txt_my_page_name.text = it.name
                         txt__my_page_email.text = it.id
                         val img = it.profile_img
@@ -99,7 +97,7 @@ class MyPageFragment() : BaseFragment(R.layout.fragment_my_page) {
                         txt_my_page_introduce.text = it.my_info
                     },
                     {
-                        logger.error("my page fragment get my info error")
+                        "my page fragment get my info error".logError()
                         toast(R.string.network_error)
                     }
                 ).apply { addDisposable(this) }

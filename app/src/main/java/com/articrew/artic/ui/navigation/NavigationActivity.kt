@@ -6,7 +6,6 @@ import androidx.viewpager.widget.ViewPager
 import com.articrew.artic.R
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
-import com.articrew.artic.logger.Logger
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.base.BaseOnPageChangeListener
