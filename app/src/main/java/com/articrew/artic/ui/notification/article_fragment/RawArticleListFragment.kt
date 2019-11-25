@@ -3,17 +3,14 @@ package com.articrew.artic.ui.notification.article_fragment
 
 import android.os.Bundle
 import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.articrew.artic.R
-import com.articrew.artic.data.Article
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
-import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.articrew.artic.util.dpToPx
 import io.reactivex.Observable
@@ -52,7 +49,7 @@ class RawArticleListFragment(
             rv_fragment_raw_article_list.layoutManager = LinearLayoutManager(this)
 
             // recyclerview space 조절
-            var spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
+            val spacesItemDecoration = VerticalSpaceItemDecoration(this, 20.dpToPx())
             rv_fragment_raw_article_list.addItemDecoration(spacesItemDecoration)
 
             Log.e("notinotif", "article id list = ${data}")

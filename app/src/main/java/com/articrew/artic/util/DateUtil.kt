@@ -1,6 +1,9 @@
 package com.articrew.artic.util
 
-import khronos.*
+import khronos.hours
+import khronos.minutes
+import khronos.plus
+import khronos.toDate
 import java.util.*
 
 // TODO 영어로 바꾸면? 다른 언어로 바꾸면?!

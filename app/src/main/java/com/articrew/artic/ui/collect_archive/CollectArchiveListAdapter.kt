@@ -2,15 +2,12 @@ package com.articrew.artic.ui.collect_archive
 
 import android.content.Context
 import android.graphics.Color
-import android.opengl.Visibility
-import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.ImageView
 import android.widget.RelativeLayout
 import android.widget.TextView
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Archive
@@ -44,7 +41,7 @@ class CollectArchiveListAdapter(
     override fun onBindViewHolder(holder: Holder, position: Int) {
         holder.img_my_archive_thumbnail.clipToOutline = true
         holder.img_select_layer.clipToOutline = true
-        var alpha = holder.img_select_layer.drawable
+        val alpha = holder.img_select_layer.drawable
         alpha.alpha = 80
 
         Glide

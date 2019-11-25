@@ -5,9 +5,9 @@ import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.article.ArticleActivity
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
+import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
@@ -28,12 +28,6 @@ class ArticleAboutActivity : BaseActivity() {
         setContentView(R.layout.activity_article_about)
 
         val articleId = intent.getIntExtra("articleId", -1)
-
-
-        if (articleId == -1) {
-            //toast(R.string.network_error)
-            //finish()
-        }
 
         rv_article_about_another_article.adapter = adapter
         // 2x2 를 만들어줘야 하므로 데이터는 앞의 4개만 받아오자.

@@ -1,10 +1,9 @@
 package com.articrew.artic.ui.setting.setting
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
+import androidx.appcompat.app.AppCompatActivity
 import com.articrew.artic.R
-import com.articrew.artic.auth.Auth
 import com.articrew.artic.ui.login.login_start.LoginStartActivity
 import com.articrew.artic.ui.setting.setting_editprofile.SettingEditProfileActivity
 import com.articrew.artic.ui.setting.setting_version.SettingVersionActivity
@@ -12,7 +11,6 @@ import kotlinx.android.synthetic.main.activity_setting.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
-import org.jetbrains.anko.startActivity
 import org.koin.android.ext.android.inject
 import org.koin.core.parameter.parametersOf
 

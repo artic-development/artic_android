@@ -10,11 +10,9 @@ import android.view.View
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.articrew.artic.R
-import com.articrew.artic.auth.Auth
 import com.articrew.artic.data.auth.Signin
 import com.articrew.artic.data.auth.Signup
 import com.articrew.artic.ui.base.BaseActivity
-import com.articrew.artic.ui.login.login.LoginActivity
 import com.articrew.artic.ui.navigation.NavigationActivity
 import khronos.toDate
 import kotlinx.android.synthetic.main.activity_signup_private.*

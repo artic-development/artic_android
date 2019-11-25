@@ -1,8 +1,11 @@
 package com.articrew.artic
 
 import com.articrew.artic.util.howMuchPreviousFrom
-import junit.framework.Assert.assertEquals
-import khronos.*
+import khronos.Dates
+import khronos.hours
+import khronos.minutes
+import khronos.plus
+import org.junit.Assert.assertEquals
 import org.junit.Test
 
 // TODO 영어로 바꾸면? 다른 언어로 바꾸면?!

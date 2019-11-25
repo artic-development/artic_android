@@ -1,7 +1,10 @@
 package com.articrew.artic.repository
 
-import com.articrew.artic.data.*
-import com.articrew.artic.data.notification.*
+import com.articrew.artic.data.Archive
+import com.articrew.artic.data.Article
+import com.articrew.artic.data.Category
+import com.articrew.artic.data.MyPage
+import com.articrew.artic.data.notification.AppNotification
 import com.articrew.artic.repository.local.LocalDataSource
 import com.articrew.artic.repository.remote.RetrofitDataSource
 import com.articrew.artic.repository.remote.mapper.*

@@ -4,13 +4,7 @@ import com.articrew.artic.data.Archive
 import com.articrew.artic.data.Article
 import com.articrew.artic.data.Category
 import com.articrew.artic.data.MyPage
-import com.articrew.artic.data.notification.*
 import com.articrew.artic.ui.search.data.RecommendWordData
-import khronos.Dates
-import khronos.days
-import khronos.minutes
-import retrofit2.Call
-import retrofit2.mock.Calls
 
 class MockLocalDataSource : LocalDataSource {
     override fun getCategoryList(): List<Category> {

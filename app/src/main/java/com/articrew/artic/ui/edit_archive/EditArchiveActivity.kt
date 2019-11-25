@@ -3,7 +3,6 @@ package com.articrew.artic.ui.edit_archive
 import android.app.Activity
 import android.content.Intent
 import android.graphics.Color
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError

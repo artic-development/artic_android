@@ -10,7 +10,6 @@ import androidx.fragment.app.FragmentActivity
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Article
-import com.articrew.artic.data.MyPage
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.article_about.ArticleAboutActivity
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
@@ -20,7 +19,6 @@ import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import com.daimajia.swipe.SwipeLayout
 import org.jetbrains.anko.startActivity
-import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 
@@ -57,20 +55,20 @@ class ArticleOverviewRecyclerViewAdapter(
 
         // @수민 담기 버튼 리스너
         p0.txt_put.setOnClickListener {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt("article_idx", dataList[p1].id)
 
-            var putFragment = CollectArchiveDialogFragment()
+            val putFragment = CollectArchiveDialogFragment()
 
             putFragment.arguments = bundle
 
             putFragment.show(ctx.supportFragmentManager, putFragment.tag)
         }
         p0.btn_put.setOnClickListener {
-            var bundle = Bundle()
+            val bundle = Bundle()
             bundle.putInt("article_idx", dataList[p1].id)
 
-            var putFragment = CollectArchiveDialogFragment()
+            val putFragment = CollectArchiveDialogFragment()
 
             putFragment.arguments = bundle
 

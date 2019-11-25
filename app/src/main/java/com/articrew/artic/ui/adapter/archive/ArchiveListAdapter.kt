@@ -1,12 +1,9 @@
 package com.articrew.artic.ui.adapter.archive
-import androidx.core.content.ContextCompat
 
-import android.content.Context
 import android.util.Log
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
-import android.widget.ImageButton
 import android.widget.RelativeLayout
 import android.widget.TextView
 import android.widget.ToggleButton
@@ -16,13 +13,10 @@ import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Archive
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.article.ArticleActivity
-import com.articrew.artic.util.dpToPx
 import org.jetbrains.anko.startActivity
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import org.koin.java.KoinJavaComponent.inject
 
 class ArchiveListAdapter(val ctx: FragmentActivity, var dataList: List<Archive>): RecyclerView.Adapter<ArchiveListAdapter.Holder>(){
 

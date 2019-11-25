@@ -4,16 +4,14 @@ package com.articrew.artic.ui.search_result
 import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
-
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
+import com.articrew.artic.ui.base.BaseFragment
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_archive_result.*
 import org.jetbrains.anko.support.v4.toast
-import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 
 /**

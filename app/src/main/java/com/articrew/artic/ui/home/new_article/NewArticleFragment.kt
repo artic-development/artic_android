@@ -2,18 +2,13 @@ package com.articrew.artic.ui.home.new_article
 
 import android.content.Intent
 import android.os.Bundle
-import android.view.LayoutInflater
-import android.view.View
-import android.view.ViewGroup
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.articrew.artic.R
-import com.articrew.artic.data.Article
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
+import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_article_link.NewArticleLinkActivity
 import com.articrew.artic.util.dpToPx
@@ -31,7 +26,7 @@ class NewArticleFragment : BaseFragment(R.layout.fragment_home_new_article) {
         activity?.run {
             // 수민 추가 (액티비티 연결) -> 새로운 아티클을 누르면 새로운 아티클 리스트가 뜨는 화면으로 이동
             linear_fragment_home_new_article.setOnClickListener {
-                var intent = Intent(this, NewArticleLinkActivity::class.java)
+                val intent = Intent(this, NewArticleLinkActivity::class.java)
 
                 startActivity(intent)
             }
@@ -44,7 +39,7 @@ class NewArticleFragment : BaseFragment(R.layout.fragment_home_new_article) {
             rv_frag_home_new_article.layoutManager = LinearLayoutManager(this, LinearLayoutManager.HORIZONTAL, false)
 
             // recyclerview space 조절
-            var spacesItemDecoration =
+            val spacesItemDecoration =
                 HorizontalSpaceItemDecoration(this, 10.dpToPx(), 20.dpToPx())
             rv_frag_home_new_article.addItemDecoration(spacesItemDecoration)
 

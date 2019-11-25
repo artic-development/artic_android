@@ -1,15 +1,14 @@
 package com.articrew.artic.ui.article
 
 import android.os.Bundle
-import android.util.Log
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
+import com.articrew.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_article.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

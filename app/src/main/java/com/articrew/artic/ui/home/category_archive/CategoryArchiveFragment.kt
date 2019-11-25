@@ -3,26 +3,17 @@ package com.articrew.artic.ui.home.category_archive
 
 import android.content.Intent
 import android.os.Bundle
-import android.util.Log
-import androidx.fragment.app.Fragment
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
 import android.widget.TextView
 import androidx.recyclerview.widget.GridLayoutManager
 import androidx.recyclerview.widget.RecyclerView
-
 import com.articrew.artic.R
-import com.articrew.artic.data.Archive
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.archive.ArchiveActivity
 import com.articrew.artic.ui.base.BaseFragment
-import kotlinx.android.synthetic.main.fragment_category_archive.*
-import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import retrofit2.Call
-import retrofit2.Callback
-import retrofit2.Response
 
 /**
  * Display Category Archive List (2x2)
@@ -70,7 +61,7 @@ class CategoryArchiveFragment(
 
             // @수민) 카테고리 누르면 해당 카테고리에 해당하는 아카이브 리스트가 있는 페이지로
             containerArchive.setOnClickListener {
-                var intent = Intent(this, ArchiveActivity::class.java)
+                val intent = Intent(this, ArchiveActivity::class.java)
 
                 intent.putExtra("category_idx", categoryId)
                 intent.putExtra("category_name", categoryName)

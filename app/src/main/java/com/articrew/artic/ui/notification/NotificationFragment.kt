@@ -2,7 +2,6 @@ package com.articrew.artic.ui.notification
 
 import android.os.Bundle
 import android.view.View
-import android.widget.ScrollView
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError

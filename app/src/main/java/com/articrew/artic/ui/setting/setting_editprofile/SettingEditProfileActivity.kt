@@ -5,14 +5,14 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.graphics.BitmapFactory
 import android.graphics.Color
-import android.graphics.drawable.BitmapDrawable
 import android.graphics.drawable.Drawable
 import android.net.Uri
 import android.os.Bundle
 import android.provider.MediaStore
 import android.text.Editable
 import android.text.TextWatcher
-import android.widget.*
+import android.widget.ImageView
+import android.widget.TextView
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
@@ -21,7 +21,6 @@ import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException
-import com.bumptech.glide.load.resource.bitmap.BitmapTransformation
 import com.bumptech.glide.request.RequestListener
 import com.bumptech.glide.request.target.CustomTarget
 import com.bumptech.glide.request.target.Target
@@ -31,13 +30,11 @@ import kotlinx.android.synthetic.main.activity_setting_edit_profile.*
 import okhttp3.MediaType
 import okhttp3.MultipartBody
 import okhttp3.RequestBody
-import org.jetbrains.anko.backgroundColor
-import org.jetbrains.anko.imageBitmap
-import org.jetbrains.anko.support.v4.ctx
 import org.jetbrains.anko.textColor
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
-import java.io.*
+import java.io.ByteArrayOutputStream
+import java.io.InputStream
 
 class SettingEditProfileActivity : BaseActivity() {
     private val rxPermission by lazy { RxPermissions(this) }

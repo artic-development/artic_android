@@ -5,8 +5,8 @@ import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.adapter.archive.ArchiveListAdapter
+import com.articrew.artic.ui.base.BaseActivity
 import kotlinx.android.synthetic.main.activity_detail_new_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

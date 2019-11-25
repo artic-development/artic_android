@@ -1,24 +1,18 @@
 package com.articrew.artic.ui.splash
 
 import android.animation.Animator
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
-import com.articrew.artic.auth.Auth
-import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseSocialLoginActivity
 import com.articrew.artic.ui.login.login_start.LoginStartActivity
 import com.articrew.artic.ui.navigation.NavigationActivity
 import io.reactivex.Observable
 import io.reactivex.functions.BiFunction
 import io.reactivex.subjects.PublishSubject
-import kotlinx.android.synthetic.main.activity_signup_start.*
 import kotlinx.android.synthetic.main.activity_splash.*
 import org.jetbrains.anko.clearTask
 import org.jetbrains.anko.intentFor
 import org.jetbrains.anko.newTask
-import org.jetbrains.anko.startActivity
-import org.koin.android.ext.android.inject
 
 class SplashActivity : BaseSocialLoginActivity() {
     private val animationEnd = PublishSubject.create<Boolean>()

@@ -1,9 +1,9 @@
 package com.articrew.artic.ui.reset_password
 
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
 import com.articrew.artic.R
 import com.articrew.artic.ui.login.login_start.LoginStartActivity
 import kotlinx.android.synthetic.main.activity_reset_password.*
@@ -42,8 +42,8 @@ class ResetPasswordActivity : AppCompatActivity() {
         btn_act_reset_pw_complete.setOnClickListener {
             if(btn_act_reset_pw_complete.isActivated) {
                 // 비밀번호 유효성 검사
-                var newPwStr = et_act_reset_pw_new_pw.text.toString()
-                var passwordMathcer = passwordPattern.matcher(newPwStr)
+                val newPwStr = et_act_reset_pw_new_pw.text.toString()
+                val passwordMathcer = passwordPattern.matcher(newPwStr)
 
                 if (et_act_reset_pw_new_pw.text.toString() != "" && passwordMathcer.find()) {
                     // TODO 비밀번호 재설정 서버 통신

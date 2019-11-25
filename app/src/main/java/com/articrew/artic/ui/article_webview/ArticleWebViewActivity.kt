@@ -2,7 +2,6 @@ package com.articrew.artic.ui.article_webview
 
 import android.content.Intent
 import android.graphics.Bitmap
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
@@ -76,10 +75,10 @@ class ArticleWebViewActivity : BaseActivity() {
                     }
 
                     btn_article_web_view_collect.setOnClickListener {
-                        var bundle = Bundle()
+                        val bundle = Bundle()
                         bundle.putInt("article_idx", articleId)
 
-                        var putFragment = CollectArchiveDialogFragment()
+                        val putFragment = CollectArchiveDialogFragment()
                         putFragment.arguments = bundle
 
                         putFragment.show(this@ArticleWebViewActivity.supportFragmentManager, putFragment.tag)

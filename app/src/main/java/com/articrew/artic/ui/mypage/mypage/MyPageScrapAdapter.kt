@@ -10,8 +10,8 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Archive
-import com.articrew.artic.util.defaultHolderOptions
 import com.articrew.artic.ui.article.ArticleActivity
+import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide
 
 class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerView.Adapter <MyPageScrapAdapter.Holder>(){
@@ -37,7 +37,7 @@ class MyPageScrapAdapter(val ctx: Context, var data: List<Archive>) : RecyclerVi
         scrap_category?.text = cur.category_title
 
             holder.container?.setOnClickListener {
-            var intent = Intent(ctx, ArticleActivity::class.java)
+                val intent = Intent(ctx, ArticleActivity::class.java)
 
                 intent.putExtra("archiveId", data[position].id)
                 intent.putExtra("archiveScraped", true)

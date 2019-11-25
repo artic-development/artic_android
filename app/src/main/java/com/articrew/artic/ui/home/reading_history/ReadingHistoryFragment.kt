@@ -3,7 +3,6 @@ package com.articrew.artic.ui.home.reading_history
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
@@ -24,7 +23,7 @@ class ReadingHistoryFragment : BaseFragment(R.layout.fragment_reading_history) {
         activity?.run {
             // 수민 추가 (액티비티 연결) -> 최근 읽은 아티클을 누르면 최근 읽은 아티클 리스가 뜨는 화면으로 이동
             relative_fragment_reading_history.setOnClickListener {
-                var intent = Intent(this, DetailReadingHistoryActivity::class.java)
+                val intent = Intent(this, DetailReadingHistoryActivity::class.java)
 
                 startActivity(intent)
             }

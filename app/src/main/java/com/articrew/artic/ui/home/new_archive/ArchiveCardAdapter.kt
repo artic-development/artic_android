@@ -1,7 +1,6 @@
 package com.articrew.artic.ui.home.new_archive
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -10,7 +9,6 @@ import android.widget.TextView
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
 import com.articrew.artic.data.Archive
-import com.articrew.artic.ui.archive.ArchiveActivity
 import com.articrew.artic.ui.article.ArticleActivity
 import com.articrew.artic.util.defaultHolderOptions
 import com.bumptech.glide.Glide

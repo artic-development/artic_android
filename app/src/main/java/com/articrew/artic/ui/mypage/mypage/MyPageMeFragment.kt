@@ -3,8 +3,8 @@ package com.articrew.artic.ui.mypage.mypage
 
 import android.content.Intent
 import android.os.Bundle
-import androidx.fragment.app.Fragment
 import android.view.View
+import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
 import com.articrew.artic.logger.logError
@@ -14,7 +14,6 @@ import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import org.jetbrains.anko.support.v4.ctx
-import org.jetbrains.anko.support.v4.toast
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject
 

@@ -1,10 +1,10 @@
 package com.articrew.artic.ui.reset_password
 
 import android.content.Intent
-import androidx.appcompat.app.AppCompatActivity
 import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
+import androidx.appcompat.app.AppCompatActivity
 import com.articrew.artic.R
 import kotlinx.android.synthetic.main.activity_input_auth_code.*
 
@@ -34,7 +34,7 @@ class InputAuthCodeActivity : AppCompatActivity() {
         btn_act_input_auth_code_complete.setOnClickListener {
             if (btn_act_input_auth_code_complete.isActivated) {
                 // TODO 인증번호 맞는지 확인하는 코드 (서버 통신 ..?)
-                var intent = Intent(this, ResetPasswordActivity::class.java)
+                val intent = Intent(this, ResetPasswordActivity::class.java)
 
                 startActivity(intent)
             }

@@ -4,9 +4,7 @@ import com.articrew.artic.data.Archive
 import com.articrew.artic.data.Article
 import com.articrew.artic.data.Category
 import com.articrew.artic.data.MyPage
-import com.articrew.artic.data.notification.AppNotification
 import com.articrew.artic.ui.search.data.RecommendWordData
-import retrofit2.Call
 
 interface LocalDataSource {
     /**

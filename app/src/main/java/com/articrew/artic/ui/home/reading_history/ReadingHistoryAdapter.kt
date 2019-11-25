@@ -1,7 +1,6 @@
 package com.articrew.artic.ui.home.reading_history
 
 import android.content.Context
-import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
@@ -16,11 +15,10 @@ import com.bumptech.glide.Glide
 import org.jetbrains.anko.startActivity
 
 class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): RecyclerView.Adapter<ReadingHistoryAdapter.Holder>() {
-    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): ReadingHistoryAdapter.Holder {
+    override fun onCreateViewHolder(p0: ViewGroup, p1: Int): Holder {
         val view: View = LayoutInflater.from(ctx).inflate(R.layout.rv_item_reading_history, p0, false)
         return Holder(view)
     }
-
 
     override fun getItemCount(): Int =dataList.size
 
@@ -43,14 +41,11 @@ class ReadingHistoryAdapter(val ctx: Context, var dataList:List<Article> ): Recy
         }
     }
 
-
-        inner class Holder(itemView: View): RecyclerView.ViewHolder(itemView) {
-            val container =itemView.findViewById<View?>(R.id.rv_reading_history_container)
-            val reading_history_url=itemView.findViewById<TextView?>(R.id.rv_reading_history_url)
-            val title=itemView.findViewById<TextView?>(R.id.rv_reading_history_title)
-            val img_url=itemView.findViewById<ImageView?>(R.id.rv_reading_history_img)
-
-
-        }
-
+    inner class Holder(itemView: View) : RecyclerView.ViewHolder(itemView) {
+        val container = itemView.findViewById<View?>(R.id.rv_reading_history_container)
+        val reading_history_url = itemView.findViewById<TextView?>(R.id.rv_reading_history_url)
+        val title = itemView.findViewById<TextView?>(R.id.rv_reading_history_title)
+        val img_url = itemView.findViewById<ImageView?>(R.id.rv_reading_history_img)
     }
+
+}

@@ -3,7 +3,6 @@ package com.articrew.artic.ui.signup.signup_start
 import android.content.Intent
 import android.os.Bundle
 import com.articrew.artic.R
-import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.base.BaseSocialLoginActivity
 import com.articrew.artic.ui.signup.signup.SignupLoginActivity
 import com.facebook.login.LoginManager
@@ -21,7 +20,7 @@ class SignupStartActivity : BaseSocialLoginActivity() {
     private fun setOnClickListener() {
         // @수민) "이메일로 시작하기" 누르면 이메일로 회원가입하는 액티비티(SignupLoginActivity)로 이동
         relative_act_signup_start_email_login.setOnClickListener {
-            var intent = Intent(this, SignupLoginActivity::class.java)
+            val intent = Intent(this, SignupLoginActivity::class.java)
 
             startActivity(intent)
         }
