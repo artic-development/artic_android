@@ -7,10 +7,10 @@ import android.view.View
 import androidx.fragment.app.Fragment
 import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
+import com.articrew.artic.util.logError
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_my_page_me.*
 import org.jetbrains.anko.support.v4.ctx

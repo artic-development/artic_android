@@ -7,12 +7,12 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.edit_archive.EditArchiveActivity
 import com.articrew.artic.util.PopupSystem
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_my_page_scrap.*
 import org.jetbrains.anko.startActivityForResult
 import org.jetbrains.anko.toast

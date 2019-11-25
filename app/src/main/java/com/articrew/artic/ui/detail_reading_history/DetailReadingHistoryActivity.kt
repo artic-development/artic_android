@@ -5,10 +5,10 @@ import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.article.ArticleOverviewRecyclerViewAdapter
 import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_detail_reading_history.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

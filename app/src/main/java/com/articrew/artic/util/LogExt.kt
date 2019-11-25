@@ -1,4 +1,4 @@
-package com.articrew.artic.logger
+package com.articrew.artic.util
 
 import android.util.Log
 

@@ -4,12 +4,12 @@ import android.os.Bundle
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.RecyclerView
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_new_article_link.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

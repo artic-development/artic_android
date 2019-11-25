@@ -6,12 +6,12 @@ import android.view.View
 import androidx.core.content.ContextCompat
 import androidx.viewpager.widget.ViewPager
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.new_archive.MakeNewArchiveActivity
 import com.articrew.artic.ui.setting.setting.SettingActivity
 import com.articrew.artic.util.defaultHolderOptions
+import com.articrew.artic.util.logError
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.fragment_my_page.*
 import kotlinx.android.synthetic.main.my_page_tablayout.*

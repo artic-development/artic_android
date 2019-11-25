@@ -5,9 +5,9 @@ import android.os.Bundle
 import android.text.Editable
 import android.text.TextWatcher
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.activity_make_new_archive.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

@@ -4,10 +4,10 @@ import android.content.Intent
 import android.graphics.Bitmap
 import android.os.Bundle
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.collect_archive.CollectArchiveDialogFragment
+import com.articrew.artic.util.logError
 import im.delight.android.webview.AdvancedWebView
 import kotlinx.android.synthetic.main.activity_article_web_view.*
 import org.jetbrains.anko.toast

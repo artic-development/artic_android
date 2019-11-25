@@ -5,9 +5,9 @@ import android.os.Bundle
 import com.articrew.artic.auth.Auth
 import com.articrew.artic.auth.facebook.FacebookLoginBody
 import com.articrew.artic.auth.facebook.UserRequest
-import com.articrew.artic.logger.logDebug
-import com.articrew.artic.logger.logError
 import com.articrew.artic.ui.navigation.NavigationActivity
+import com.articrew.artic.util.logDebug
+import com.articrew.artic.util.logError
 import com.facebook.*
 import com.facebook.login.LoginManager
 import com.facebook.login.LoginResult

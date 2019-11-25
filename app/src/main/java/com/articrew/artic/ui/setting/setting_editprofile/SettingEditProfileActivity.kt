@@ -14,10 +14,10 @@ import android.text.TextWatcher
 import android.widget.ImageView
 import android.widget.TextView
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.defaultHolderOptions
+import com.articrew.artic.util.logError
 import com.bumptech.glide.Glide
 import com.bumptech.glide.load.DataSource
 import com.bumptech.glide.load.engine.GlideException

@@ -8,13 +8,13 @@ import android.view.ViewGroup
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.big_image_article.BigImageArticleAdapter
 import com.articrew.artic.ui.adapter.deco.HorizontalSpaceItemDecoration
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.ui.detail_artic_pick.ArticPickActivity
 import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import kotlinx.android.synthetic.main.fragment_home_artic_pick.*
 import org.jetbrains.anko.toast
 import org.koin.android.ext.android.inject

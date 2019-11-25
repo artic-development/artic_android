@@ -5,12 +5,12 @@ import android.view.KeyEvent
 import android.view.inputmethod.EditorInfo
 import android.widget.TextView
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.GridSpacesItemDecoration
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.ui.search_result.SearchResultActivity
 import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import com.google.android.flexbox.FlexDirection
 import com.google.android.flexbox.FlexboxLayoutManager
 import com.google.android.flexbox.JustifyContent

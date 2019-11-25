@@ -4,11 +4,11 @@ import android.os.Bundle
 import android.view.View
 import androidx.recyclerview.widget.LinearLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.adapter.deco.VerticalSpaceItemDecoration
 import com.articrew.artic.ui.base.BaseFragment
 import com.articrew.artic.util.dpToPx
+import com.articrew.artic.util.logError
 import io.reactivex.subjects.BehaviorSubject
 import kotlinx.android.synthetic.main.fragment_notification.*
 import org.jetbrains.anko.support.v4.toast

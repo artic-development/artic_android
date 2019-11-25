@@ -3,12 +3,12 @@ package com.articrew.artic.ui.article_about
 import android.os.Bundle
 import androidx.recyclerview.widget.GridLayoutManager
 import com.articrew.artic.R
-import com.articrew.artic.logger.logError
 import com.articrew.artic.repository.ArticRepository
 import com.articrew.artic.ui.article.ArticleActivity
 import com.articrew.artic.ui.article_webview.ArticleWebViewActivity
 import com.articrew.artic.ui.base.BaseActivity
 import com.articrew.artic.util.defaultHolderOptions
+import com.articrew.artic.util.logError
 import com.bumptech.glide.Glide
 import kotlinx.android.synthetic.main.activity_article_about.*
 import org.jetbrains.anko.startActivity
